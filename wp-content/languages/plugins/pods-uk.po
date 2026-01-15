@@ -1,0 +1,2836 @@
+# Translation of Plugins - Pods &#8211; Custom Content Types and Fields - Stable (latest release) in Ukrainian
+# This file is distributed under the same license as the Plugins - Pods &#8211; Custom Content Types and Fields - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2025-04-02 19:08:11+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: uk_UA\n"
+"Project-Id-Version: Plugins - Pods &#8211; Custom Content Types and Fields - Stable (latest release)\n"
+
+#: ui/js/blocks/block-types/pods-block-single-list-fields/block.json
+msgctxt "block keyword"
+msgid "fields"
+msgstr "поля"
+
+#: classes/PodsAdmin.php:959 classes/PodsAdmin.php:1399
+#: classes/PodsAdmin.php:1511 classes/PodsAdmin.php:1933
+msgid "Source"
+msgstr "Джерело"
+
+#: src/Pods/Whatsit/Storage/File.php:28
+msgid "File"
+msgstr "Файл"
+
+#: src/Pods/Integrations/WPGraphQL/Settings.php:134
+#: src/Pods/Integrations/WPGraphQL/Settings.php:208
+msgid "Title only"
+msgstr "Тільки заголовок"
+
+#: src/Pods/Blocks/Types/Field.php:117 src/Pods/Blocks/Types/Form.php:177
+#: src/Pods/Blocks/Types/Form.php:231 src/Pods/Blocks/Types/Item_List.php:225
+#: src/Pods/Blocks/Types/Item_Single.php:181
+#: src/Pods/Blocks/Types/Item_Single_List_Fields.php:81
+#: src/Pods/Blocks/Types/Related_Item_List.php:108 ui/admin/help.php:83
+#: ui/admin/help.php:121 ui/admin/help.php:150 ui/admin/help.php:179
+#: ui/admin/help.php:265
+msgid "Documentation"
+msgstr "Документація"
+
+#: ui/admin/help.php:77 ui/admin/help.php:115 ui/admin/help.php:144
+#: ui/admin/help.php:173 ui/admin/help.php:202 ui/admin/help.php:226
+#: ui/admin/help.php:259 ui/admin/help.php:288 ui/admin/help.php:323
+#: ui/admin/help.php:342 ui/admin/help.php:361 ui/admin/help.php:380
+#: ui/admin/help.php:399
+msgid "Support"
+msgstr "Підтримка"
+
+#: ui/admin/settings-reset.php:161 ui/admin/settings-tools.php:148
+#: ui/admin/settings-tools.php:173 ui/admin/settings-tools.php:206
+msgid "Are you sure you want to do this?"
+msgstr "Ви впевнені, що хочете це зробити?"
+
+#: ui/admin/help-addons.php:17
+msgid "Links"
+msgstr "Посилання"
+
+#: ui/admin/help.php:82 ui/admin/help.php:120 ui/admin/help.php:149
+#: ui/admin/help.php:178 ui/admin/help.php:264
+msgid "Docs"
+msgstr "Документація"
+
+#: ui/admin/help-addons.php:16
+msgid "Plugin"
+msgstr "Плагін"
+
+#: ui/js/blocks/block-types/pods-block-form/block.json
+msgctxt "block keyword"
+msgid "form"
+msgstr "форма"
+
+#: includes/access.php:1753 includes/access.php:1914
+msgid "Display"
+msgstr "Відображення"
+
+#: src/Pods/Wisdom_Tracker.php:842
+msgid "Allow"
+msgstr "Дозволити"
+
+#: src/Pods/Wisdom_Tracker.php:141
+msgid "Once Weekly"
+msgstr "Один раз на тиждень"
+
+#: src/Pods/Blocks/Types/Item_List.php:350
+#: src/Pods/Blocks/Types/Related_Item_List.php:245
+#: src/Pods/Blocks/Types/View.php:122
+msgid "Expires"
+msgstr "Спливає"
+
+#: src/Pods/Blocks/Types/Field.php:128
+msgid "Field Name"
+msgstr "Ярлик"
+
+#: includes/access.php:1739 src/Pods/Admin/Settings.php:190
+#: src/Pods/Admin/Settings.php:334
+msgid "Enabled"
+msgstr "Увімкнено"
+
+#: includes/access.php:1740 src/Pods/Admin/Settings.php:190
+#: src/Pods/Admin/Settings.php:334
+msgid "Disabled"
+msgstr "Вимкнено"
+
+#: src/Pods/Admin/Config/Group.php:207
+msgid "Normal"
+msgstr "Звичайний"
+
+#: src/Pods/Admin/Config/Pod.php:160
+msgid "Add title"
+msgstr "Додати заголовок"
+
+#: includes/general.php:4928 src/Pods/Admin/Settings.php:326
+msgid "Security"
+msgstr "Безпека"
+
+#: src/Pods/Admin/Config/Pod.php:239
+msgid "Delete %s"
+msgstr "Видалити %s"
+
+#: src/Pods/Admin/Config/Group.php:208
+msgid "Side"
+msgstr "Збоку"
+
+#: src/Pods/Admin/Config/Pod.php:63
+msgid "Connections"
+msgstr "З’єднання"
+
+#: src/Pods/Admin/Config/Pod.php:328 src/Pods/Admin/Config/Pod.php:529
+#: src/Pods/Admin/Config/Pod.php:538 src/Pods/Admin/Config/Pod.php:547
+#: src/Pods/Admin/Config/Pod.php:556
+msgid "items"
+msgstr "елементи"
+
+#: components/Roles/Roles.php:86
+msgid "Roles"
+msgstr "Ролі"
+
+#: components/Roles/Roles.php:87
+msgid "Role"
+msgstr "Роль"
+
+#. translators: %s: Field type label.
+#: src/Pods/Admin/Config/Field.php:37
+msgctxt "Field type options"
+msgid "%s Options"
+msgstr "Параметри %s"
+
+#: src/Pods/Admin/Config/Group.php:231
+msgid "Low"
+msgstr "Низький"
+
+#: classes/fields/code.php:35 classes/fields/paragraph.php:37
+#: classes/fields/wysiwyg.php:33
+msgid "Paragraph"
+msgstr "Параграф"
+
+#: classes/PodsAPI.php:2102 src/Pods/Tools/Repair.php:449
+msgid "Details"
+msgstr "Подробиці"
+
+#: classes/PodsAPI.php:11930
+msgid "User"
+msgstr "Користувач"
+
+#: classes/fields/email.php:33 classes/fields/link.php:35
+#: classes/fields/password.php:33 classes/fields/phone.php:33
+#: classes/fields/text.php:33 classes/fields/website.php:32
+msgid "Text"
+msgstr "Текст"
+
+#: classes/fields/heading.php:35
+msgid "Heading"
+msgstr "Заголовок"
+
+#: classes/PodsAPI.php:11942
+msgid "Comment"
+msgstr "Коментар"
+
+#: classes/PodsAdmin.php:4651 classes/PodsAdmin.php:4843
+msgid "Unknown"
+msgstr "Невідомо"
+
+#: classes/Pods.php:3909 classes/Pods.php:3923 classes/Pods.php:3932
+#: ui/forms/form.php:128
+msgid "Error"
+msgstr "Помилка"
+
+#: classes/PodsAdmin.php:4883 src/Pods/Admin/Settings.php:215
+msgid "Performance"
+msgstr "Продуктивність"
+
+#: classes/PodsAdmin.php:1297 src/Pods/Tools/Reset.php:280
+msgid "group"
+msgid_plural "groups"
+msgstr[0] "група"
+msgstr[1] "групи"
+msgstr[2] "груп"
+
+#: classes/fields/currency.php:41 classes/fields/number.php:33
+msgid "Number"
+msgstr "Число"
+
+#: classes/fields/html.php:35 classes/fields/html.php:44
+msgid "HTML Content"
+msgstr "Вміст HTML"
+
+#: classes/PodsAdmin.php:968
+msgid "Groups"
+msgstr "Групи"
+
+#: classes/PodsAPI.php:12046
+msgctxt "pod type label"
+msgid "Custom Post Type"
+msgstr "Користувацький тип публікації"
+
+#: classes/PodsAPI.php:12076
+msgctxt "storage type label"
+msgid "Options"
+msgstr "Параметри"
+
+#: classes/PodsAPI.php:12077
+msgctxt "storage type label"
+msgid "Meta"
+msgstr "Мета"
+
+#: classes/PodsAPI.php:12078
+msgctxt "storage type label"
+msgid "Table"
+msgstr "Таблиця"
+
+#: classes/fields/website.php:48
+msgid "https://example.com/ (remove www)"
+msgstr "https://example.com/ (видалити www)"
+
+#: classes/fields/website.php:47
+msgid "https://example.com/"
+msgstr "https://example.com/"
+
+#: classes/fields/file.php:170
+msgid "WordPress Default"
+msgstr "Початковий WordPress"
+
+#: classes/PodsInit.php:2057 src/Pods/Admin/Config/Pod.php:608
+msgid "Filter by date"
+msgstr "Фільтр за датою"
+
+#: classes/PodsInit.php:2077 src/Pods/Admin/Config/Pod.php:615
+msgid "Filter by %s"
+msgstr "Фільтрувати за %s"
+
+#. Translators: %s stands for a number.
+#: classes/PodsI18n.php:204
+msgid "You can only select %s items"
+msgstr "Можете вибрати лише %s елементів"
+
+#: ui/admin/postbox-header.php:41
+msgid "Click to toggle"
+msgstr "Натисніть для зміни"
+
+#: classes/fields/wysiwyg.php:77
+msgid "Height in pixels"
+msgstr "Висота в пікселях"
+
+#: ui/admin/callouts/friends_2024_docs.php:111 ui/admin/help.php:73
+#: ui/admin/help.php:111 ui/admin/help.php:140 ui/admin/help.php:169
+#: ui/admin/help.php:198 ui/admin/help.php:222 ui/admin/help.php:255
+#: ui/admin/help.php:284 ui/admin/help.php:319 ui/admin/help.php:338
+#: ui/admin/help.php:357 ui/admin/help.php:376 ui/admin/help.php:395
+msgid "Learn More"
+msgstr "Дізнатись більше"
+
+#: classes/fields/file.php:876
+msgid "Full Size"
+msgstr "Повний розмір"
+
+#: classes/fields/pick.php:249
+msgid "Display Format"
+msgstr "Формат показу"
+
+#: classes/fields/currency.php:444
+msgid "Nigerian Naira"
+msgstr "Нігерійська найра"
+
+#: classes/fields/currency.php:408
+msgid "Indonesian Rupiah"
+msgstr "Індонезійська рупія"
+
+#: ui/fields/link.php:73
+msgid "Or link to existing content"
+msgstr "Або прив’язати до існуючого вмісту"
+
+#: ui/fields/link.php:66
+msgid "Open link in a new tab"
+msgstr "Відкрити посилання у новій вкладці"
+
+#: components/I18n/I18n.php:700
+msgid "Locale"
+msgstr "Локаль"
+
+#: components/I18n/I18n.php:692 components/I18n/I18n.php:703
+msgid "Language"
+msgstr "Мова"
+
+#: components/I18n/I18n.php:691
+msgid "Languages"
+msgstr "Мови"
+
+#: src/Pods/Integrations/WPML.php:272
+msgid "WPML"
+msgstr "WPML"
+
+#: src/Pods/Integrations/Polylang.php:110
+#: src/Pods/Integrations/Polylang.php:320
+msgid "Polylang"
+msgstr "Polylang"
+
+#: classes/fields/pick.php:4004
+msgid "Saskatchewan"
+msgstr "Саскачеван"
+
+#: classes/fields/pick.php:4003
+msgid "Quebec"
+msgstr "Квебек"
+
+#: classes/fields/pick.php:4002
+msgid "Prince Edward Island"
+msgstr "Острів Принца Едуарда"
+
+#: classes/fields/pick.php:4001
+msgid "Ontario"
+msgstr "Онтаріо"
+
+#: classes/fields/pick.php:4000
+msgid "Nunavut"
+msgstr "Нунавут"
+
+#: classes/fields/pick.php:3999
+msgid "Nova Scotia"
+msgstr "Нова Шотландія"
+
+#: classes/fields/pick.php:3998
+msgid "Northwest Territories"
+msgstr "Північно-західні території (Канада)"
+
+#: classes/fields/pick.php:3997
+msgid "Newfoundland and Labrador"
+msgstr "Ньюфаундленд і Лабрадор"
+
+#: classes/fields/pick.php:3996
+msgid "New Brunswick"
+msgstr "Нью-Брансвік"
+
+#: classes/fields/pick.php:3995
+msgid "Manitoba"
+msgstr "Манітоба"
+
+#: classes/fields/pick.php:3994
+msgid "British Columbia"
+msgstr "Британська Колумбія"
+
+#: classes/fields/pick.php:3993
+msgid "Alberta"
+msgstr "Альберта"
+
+#: classes/fields/link.php:36
+msgid "Link"
+msgstr "Посилання"
+
+#: classes/fields/file.php:240
+msgid "Rows"
+msgstr "Рядки"
+
+#: classes/fields/file.php:227
+msgid "List Style"
+msgstr "Стиль списку"
+
+#: ui/fields/oembed.php:29
+msgid "Preview"
+msgstr "Переглянути"
+
+#: components/I18n/I18n.php:240
+msgid "Select"
+msgstr "Обрати"
+
+#: components/I18n/I18n.php:696
+msgid "Active"
+msgstr "Активно"
+
+#: classes/fields/date.php:60 classes/fields/datetime.php:69
+#: classes/fields/datetime.php:126 classes/fields/time.php:66
+msgid "WordPress default"
+msgstr "Стандартних форм WordPress"
+
+#: classes/PodsI18n.php:206
+msgid "Icon"
+msgstr "Іконка"
+
+#: classes/PodsI18n.php:165
+msgid "Deselect"
+msgstr "Зняти виділення"
+
+#: classes/PodsI18n.php:163
+msgid "Remove"
+msgstr "Видалити"
+
+#: classes/PodsI18n.php:159 ui/js/jquery.pods.js:1931
+msgid "Copy"
+msgstr "Копіювати"
+
+#: classes/PodsI18n.php:149
+msgid "Add"
+msgstr "Додати"
+
+#: classes/PodsAdmin.php:3609
+msgid "Version %s"
+msgstr "Версія %s"
+
+#: src/Pods/Admin/Config/Pod.php:451
+msgid "Use as featured Image"
+msgstr "Використати як головне зображення"
+
+#: src/Pods/Admin/Config/Pod.php:443
+msgid "Remove featured Image"
+msgstr "Видалити головне зображення"
+
+#: src/Pods/Admin/Config/Pod.php:435
+msgid "Set featured Image"
+msgstr "Встановити зображення запису"
+
+#. Translators: %s stands for a number.
+#: classes/PodsI18n.php:195
+msgid "%s item"
+msgstr "%s елемент"
+
+#: classes/PodsI18n.php:167 ui/admin/help-addons-row.php:14
+#: ui/admin/help.php:69 ui/admin/help.php:107 ui/admin/help.php:136
+#: ui/admin/help.php:165 ui/admin/help.php:194 ui/admin/help.php:218
+#: ui/admin/help.php:251 ui/admin/help.php:280 ui/admin/help.php:315
+#: ui/admin/help.php:334 ui/admin/help.php:353 ui/admin/help.php:372
+#: ui/admin/help.php:391
+msgid "Download"
+msgstr "Завантажити"
+
+#. Translators: %s stands for a number.
+#: classes/PodsI18n.php:198
+msgid "%s items"
+msgstr "%s позицій"
+
+#: src/Pods/Integrations/WPGraphQL/Settings.php:144
+#: src/Pods/Integrations/WPGraphQL/Settings.php:235
+msgid "File format"
+msgstr "Формат файлу"
+
+#: classes/PodsInit.php:2073
+msgid "No %s found."
+msgstr "%s не знайдені."
+
+#: classes/fields/date.php:62 classes/fields/datetime.php:71
+#: classes/fields/time.php:69
+msgid "Custom format"
+msgstr "Власний формат"
+
+#: classes/fields/currency.php:462
+msgid "Philippine Peso"
+msgstr "Філіппінський песо"
+
+#: classes/fields/currency.php:438
+msgid "Mexican Peso"
+msgstr "Мексиканський песо"
+
+#: classes/fields/currency.php:396
+msgid "Hungarian Forint"
+msgstr "Угорський форинт"
+
+#: classes/fields/currency.php:390
+msgid "Hong Kong Dollar"
+msgstr "Гонконгський долар"
+
+#: classes/fields/currency.php:372
+msgid "Czech Koruna"
+msgstr "Чеська крона"
+
+#: classes/fields/currency.php:342
+msgid "Brazilian Real"
+msgstr "Бразильський реал"
+
+#: classes/PodsUI.php:4273 classes/PodsUI.php:4289 classes/PodsUI.php:4323
+msgid "Show more details"
+msgstr "Показати більше інформації"
+
+#: classes/fields/time.php:50
+msgid "Time"
+msgstr "Час"
+
+#: classes/fields/text.php:34
+msgid "Plain Text"
+msgstr "Простий текст"
+
+#: classes/fields/pick.php:97
+msgid "Relationship"
+msgstr "Зв'язок"
+
+#: classes/fields/phone.php:34
+msgid "Phone"
+msgstr "Телефон"
+
+#: classes/fields/file.php:286
+msgid "None"
+msgstr "Немає"
+
+#: classes/fields/file.php:285
+msgid "Media File"
+msgstr "Медіафайл"
+
+#: classes/fields/file.php:284
+msgid "Attachment Page"
+msgstr "Сторінка прикріпленого файлу"
+
+#: classes/fields/email.php:34
+msgid "E-mail"
+msgstr "E-mail"
+
+#: classes/fields/date.php:43 classes/fields/datetime.php:52
+#: classes/fields/datetime.php:53 classes/fields/time.php:49
+msgid "Date / Time"
+msgstr "Дата / Час"
+
+#: classes/fields/date.php:44
+msgid "Date"
+msgstr "Дата"
+
+#: classes/fields/currency.php:432
+msgid "Malaysian Ringgit"
+msgstr "Малайзійський рингіт"
+
+#: classes/fields/currency.php:516
+msgid "Turkish Lira"
+msgstr "Турецька ліра"
+
+#: classes/fields/currency.php:510
+msgid "Thai Baht"
+msgstr "Тайський бахт"
+
+#: classes/fields/currency.php:486
+msgid "Singapore Dollar"
+msgstr "Сінгапурський долар"
+
+#: classes/fields/currency.php:420
+msgid "Japanese Yen"
+msgstr "Японська єна"
+
+#: classes/fields/currency.php:402
+msgid "Indian Rupee"
+msgstr "Індійська рупія"
+
+#: classes/fields/password.php:34
+msgid "Password"
+msgstr "Пароль"
+
+#: classes/fields/currency.php:492
+msgid "South African Rand"
+msgstr "Південноафриканський ранд"
+
+#: classes/fields/currency.php:480
+msgid "Swedish Krona"
+msgstr "Шведська крона"
+
+#: classes/fields/currency.php:456
+msgid "Norwegian Krone"
+msgstr "Норвезька крона"
+
+#: classes/fields/currency.php:378
+msgid "Danish Krone"
+msgstr "Данська крона"
+
+#: classes/fields/currency.php:498
+msgid "Swiss Franc"
+msgstr "Швейцарський франк"
+
+#: classes/fields/currency.php:474
+msgid "Russian Ruble"
+msgstr "Російський рубль"
+
+#: classes/fields/currency.php:450
+msgid "New Zealand Dollar"
+msgstr "Новозеландський долар"
+
+#: classes/fields/currency.php:336
+msgid "Australian Dollar"
+msgstr "Австралійський долар"
+
+#: classes/fields/currency.php:354
+msgid "Canadian Dollar"
+msgstr "Канадський долар"
+
+#: classes/fields/currency.php:384
+msgid "Euro"
+msgstr "Євро"
+
+#: classes/fields/currency.php:42
+msgid "Currency"
+msgstr "Валюта"
+
+#: classes/fields/color.php:28
+msgid "Color Picker"
+msgstr "Вибір кольору"
+
+#: classes/fields/avatar.php:40
+msgid "Avatar"
+msgstr "Аватар"
+
+#: classes/fields/website.php:33
+msgid "Website"
+msgstr "Сайт"
+
+#: src/Pods/Admin/Config/Pod.php:1109
+msgid "Whether to generate a default UI for managing this taxonomy."
+msgstr "Створювати інтерфейс за замовчуванням для управління цією таксономією."
+
+#: classes/PodsInit.php:2050 classes/PodsInit.php:2075
+msgid "%s navigation"
+msgstr "Навігація %s"
+
+#: classes/fields/website.php:72
+msgid "Open link in new window"
+msgstr "Відкрити посилання в новому вікні"
+
+#: classes/PodsInit.php:2045 src/Pods/Admin/Config/Pod.php:391
+msgid "%s Archives"
+msgstr "Архів формату &laquo;%s&raquo;"
+
+#: classes/PodsInit.php:2047 src/Pods/Admin/Config/Pod.php:409
+msgid "Insert into %s"
+msgstr "Вставити у %s"
+
+#: classes/PodsInit.php:2044
+msgid "Use as featured image"
+msgstr "Викоритовувати як оброблене зображення"
+
+#: classes/PodsInit.php:2042
+msgid "Set featured image"
+msgstr "Встановити головне зображення"
+
+#: classes/PodsInit.php:2043
+msgid "Remove featured image"
+msgstr "Видалити головне зображення"
+
+#: classes/PodsAdmin.php:4364 classes/PodsAdmin.php:4620
+msgid "REST API"
+msgstr "REST API"
+
+#: classes/PodsAdmin.php:4501
+msgid "Read/Write"
+msgstr "Читання/Запис"
+
+#: ui/admin/shortcode.php:528
+msgid "Insert"
+msgstr "Вставити"
+
+#: src/Pods/Admin/Config/Pod.php:968
+msgid "Author"
+msgstr "Автор"
+
+#: ui/admin/upgrade/upgrade_2_0_0.php:139
+#: ui/admin/upgrade/upgrade_2_0_0.php:247
+msgid "Content"
+msgstr "Вміст"
+
+#: ui/admin/upgrade/upgrade_2_0_0.php:20 ui/admin/upgrade/upgrade_2_1_0.php:20
+msgid "Getting Started"
+msgstr "Приступаючи до роботи"
+
+#: src/Pods/Admin/Config/Field.php:598 src/Pods/Admin/Config/Field.php:599
+#: src/Pods/Admin/Config/Field.php:602
+msgid "Other"
+msgstr "Інше"
+
+#: classes/fields/color.php:39 classes/fields/color.php:97
+#: ui/fields/color.php:21
+msgid "Select Color"
+msgstr "Вибрати колір"
+
+#: ui/fields/color.php:22
+msgid "Current Color"
+msgstr "Поточний колір"
+
+#: classes/PodsAPI.php:1089 classes/PodsInit.php:2041
+#: src/Pods/Admin/Config/Pod.php:427 src/Pods/Admin/Config/Pod.php:973
+msgid "Featured Image"
+msgstr "Головне зображення"
+
+#: src/Pods/Whatsit/Block.php:40
+msgid "Options"
+msgstr "Параметри"
+
+#: src/Pods/Admin/Config/Pod.php:958 ui/admin/widgets/field.php:21
+#: ui/admin/widgets/form.php:21 ui/admin/widgets/list.php:23
+#: ui/admin/widgets/single.php:23 ui/admin/widgets/view.php:21
+msgid "Title"
+msgstr "Заголовок"
+
+#: classes/fields/file.php:580 classes/PodsI18n.php:186
+msgid "Allowed Files"
+msgstr "Дозволені файли"
+
+#: ui/admin/widgets/list.php:94
+msgid "After Content"
+msgstr "Після тексту"
+
+#: ui/admin/widgets/list.php:82
+msgid "Before Content"
+msgstr "Перед текстом"
+
+#: ui/admin/upgrade/upgrade_2_0_0.php:109
+#: ui/admin/upgrade/upgrade_2_0_0.php:217
+msgid "Templates"
+msgstr "Шаблони"
+
+#: ui/admin/upgrade/backup.php:16
+msgid "Coupon Code"
+msgstr "Код купону"
+
+#: ui/admin/shortcode.php:352
+msgid "What would you like to do?"
+msgstr "Що ви бажаєте робити?"
+
+#: src/Pods/Admin/Config/Pod.php:369
+msgid "Not Found"
+msgstr "Не знайдено"
+
+#: src/Pods/Admin/Config/Field.php:154
+msgid "Field Type"
+msgstr "Тип поля"
+
+#: ui/admin/setup-add.php:514
+msgid "Taxonomy"
+msgstr "Таксономія"
+
+#: ui/admin/setup-add.php:237
+msgid "Plural Label"
+msgstr "Ярлик у множині"
+
+#: src/Pods/Admin/Config/Pod.php:149 ui/admin/setup-add.php:225
+msgid "Singular Label"
+msgstr "Ярлик у однині"
+
+#: ui/admin/setup-add.php:473
+msgid "Post Type"
+msgstr "Тип запису"
+
+#: src/Pods/Admin/Config/Field.php:219
+msgid "Required"
+msgstr "Вимагається"
+
+#: src/Pods/Admin/Config/Pod.php:979
+msgid "Excerpt"
+msgstr "Витяг"
+
+#: src/Pods/Admin/Config/Pod.php:999
+msgid "Revisions"
+msgstr "Ревізії"
+
+#: src/Pods/Admin/Config/Pod.php:1004
+msgid "Page Attributes"
+msgstr "Атрибути сторінки"
+
+#: components/I18n/I18n.php:822 src/Pods/Admin/Config/Group.php:230
+#: ui/fields/color.php:20
+msgid "Default"
+msgstr "Значення за замовчуванням"
+
+#. Plugin Name of the plugin
+#: init.php
+msgid "Pods - Custom Content Types and Fields"
+msgstr "Pods - Custom Content Types and Fields"
+
+#. Plugin URI of the plugin
+#: init.php
+msgid "https://pods.io/"
+msgstr "https://pods.io/"
+
+#. Author of the plugin
+#: init.php
+msgid "Pods Framework Team"
+msgstr "Pods Framework Team"
+
+#. Author URI of the plugin
+#: init.php
+msgid "https://pods.io/about/"
+msgstr "https://pods.io/about/"
+
+#: ui/admin/setup-add.php:260
+msgid "Menu Label"
+msgstr "Мітка меню"
+
+#: src/Pods/Admin/Config/Pod.php:954
+msgid "Supports"
+msgstr "Підтримки"
+
+#: components/Roles/ui/edit.php:46 ui/forms/form.php:179
+msgid "Save"
+msgstr "Зберегти"
+
+#: components/Migrate-Packages/ui/wizard.php:339
+#: components/Migrate-PHP/ui/wizard.php:188
+msgid "Continue"
+msgstr "Продовжити"
+
+#: components/Roles/Roles.php:69 components/Roles/Roles.php:240
+msgid "%s User"
+msgid_plural "%s Users"
+msgstr[0] "%s користувач"
+msgstr[1] "%s користувачі"
+msgstr[2] "%s користувачів"
+
+#: ui/admin/setup-add.php:193 ui/admin/setup-add.php:410
+msgid "Content Type"
+msgstr "Тип вмісту"
+
+#: ui/admin/settings-reset.php:94
+msgid "Please Note:"
+msgstr "Будь ласка, зверніть увагу:"
+
+#: classes/PodsAdmin.php:972 ui/admin/upgrade/upgrade_2_0_0.php:82
+#: ui/admin/upgrade/upgrade_2_0_0.php:190 ui/admin/view.php:191
+#: ui/forms/type/post.php:407
+msgid "Fields"
+msgstr "Поля"
+
+#: ui/admin/view.php:60 ui/forms/type/post.php:89
+msgid "Last Modified"
+msgstr "Остання зміна"
+
+#: ui/admin/view.php:51 ui/forms/type/post.php:80
+msgid "Created on"
+msgstr "Створено"
+
+#: includes/general.php:2635 includes/general.php:2654
+#: includes/general.php:2675
+msgid "NOTICE"
+msgstr "Примітка"
+
+#: includes/data.php:2084
+msgid "and"
+msgstr "та"
+
+#: components/Templates/includes/auto-template/Pods_Templates_Auto_Template_Settings.php:331
+msgid "Replace"
+msgstr "Замінити"
+
+#: components/Templates/includes/auto-template/Pods_Templates_Auto_Template_Settings.php:330
+msgid "Before"
+msgstr "Перед"
+
+#: components/Templates/includes/auto-template/Pods_Templates_Auto_Template_Settings.php:329
+msgid "After"
+msgstr "Після"
+
+#: components/Roles/Roles.php:92
+msgid "Capabilities"
+msgstr "Повноваження"
+
+#: components/Pages.php:413
+msgid "Page"
+msgstr "Сторінка"
+
+#: components/Pages.php:274
+msgid "Page Template"
+msgstr "Шаблон сторінки"
+
+#: components/Pages.php:204 src/Pods/Admin/Config/Pod.php:645
+#: ui/admin/setup-add.php:248
+msgid "Page Title"
+msgstr "Назва сторінки"
+
+#: includes/general.php:1120
+msgid "Find out more"
+msgstr "Дізнатися більше"
+
+#: ui/admin/view.php:124 ui/forms/type/post.php:230
+msgid "Previous %s"
+msgstr "Попередній %s"
+
+#: ui/admin/view.php:132 ui/forms/type/post.php:238
+msgid "Next %s"
+msgstr "Наступний %s"
+
+#: components/Builder/modules/list/PodsBuilderModuleList.php:117
+#: components/Builder/modules/list/PodsBuilderModuleList.php:134
+#: components/Builder/modules/single/PodsBuilderModuleSingle.php:121
+#: components/Builder/modules/single/PodsBuilderModuleSingle.php:138
+#: components/Templates/class-pods_templates.php:211
+#: src/Pods/Blocks/Types/Item_List.php:230
+#: src/Pods/Blocks/Types/Item_Single.php:192
+#: src/Pods/Blocks/Types/Related_Item_List.php:125 ui/admin/shortcode.php:397
+#: ui/admin/shortcode.php:413 ui/admin/widgets/list.php:57
+#: ui/admin/widgets/list.php:73 ui/admin/widgets/single.php:73
+#: ui/admin/widgets/single.php:89
+msgid "Template"
+msgstr "Шаблон"
+
+#: components/Advanced-Relationships.php:63
+msgid "Themes"
+msgstr "Теми"
+
+#: components/Builder/modules/form/PodsBuilderModuleForm.php:117
+#: ui/admin/shortcode.php:482 ui/admin/widgets/form.php:61
+msgid "Submit Label"
+msgstr "Ярлик підтвердження"
+
+#: classes/fields/wysiwyg.php:43 src/Pods/Admin/Config/Pod.php:963
+msgid "Editor"
+msgstr "Редактор"
+
+#: components/Migrate-ACF/ui/wizard.php:175
+#: components/Migrate-CPTUI/ui/wizard.php:174
+#: components/Migrate-Packages/ui/wizard.php:339
+#: components/Migrate-PHP/ui/wizard.php:188 components/Roles/ui/add.php:140
+#: ui/admin/setup-add.php:583
+msgid "Processing"
+msgstr "В обробці"
+
+#: components/Migrate-ACF/ui/wizard.php:175
+#: components/Migrate-CPTUI/ui/wizard.php:174 components/Roles/ui/add.php:140
+#: ui/admin/setup-add.php:583 ui/admin/upgrade/upgrade_2_0_0.php:272
+#: ui/admin/upgrade/upgrade_2_1_0.php:119
+msgid "Next Step"
+msgstr "Наступний крок"
+
+#: src/Pods/Whatsit/Storage/Collection.php:39
+msgid "Code"
+msgstr "Код"
+
+#: components/Builder/modules/list/PodsBuilderModuleList.php:169
+#: src/Pods/Blocks/Types/Item_List.php:270
+#: src/Pods/Blocks/Types/Related_Item_List.php:165 ui/admin/shortcode.php:458
+#: ui/admin/widgets/list.php:106
+msgid "Order By"
+msgstr "Сортувати за"
+
+#: components/Builder/modules/list/PodsBuilderModuleList.php:161
+#: src/Pods/Blocks/Types/Item_List.php:263
+#: src/Pods/Blocks/Types/Related_Item_List.php:158 ui/admin/shortcode.php:452
+#: ui/admin/widgets/list.php:100
+msgid "Limit"
+msgstr "Ліміт"
+
+#: components/Builder/modules/field/PodsBuilderModuleField.php:107
+#: components/Templates/includes/element-pod_reference-content.php:19
+#: components/Templates/includes/element-pod_reference.php:30
+#: ui/admin/shortcode.php:470 ui/admin/widgets/field.php:65
+msgid "Field"
+msgstr "Поле"
+
+#: components/Advanced-Relationships.php:77
+msgid "Sidebars"
+msgstr "Бічні колонки"
+
+#: classes/fields/pick.php:3970
+msgid "Wyoming"
+msgstr "Вайомінг"
+
+#: classes/fields/pick.php:3969
+msgid "Wisconsin"
+msgstr "Вісконсин"
+
+#: classes/fields/pick.php:3968
+msgid "West Virginia"
+msgstr "Західна Вірджинія"
+
+#: classes/fields/pick.php:3967
+msgid "Washington"
+msgstr "Вашингтон"
+
+#: classes/fields/pick.php:3966
+msgid "Virginia"
+msgstr "Вірджинія"
+
+#: classes/fields/pick.php:3965
+msgid "Vermont"
+msgstr "Вермонт"
+
+#: classes/fields/pick.php:3964
+msgid "Utah"
+msgstr "Юта"
+
+#: classes/fields/pick.php:3963
+msgid "Texas"
+msgstr "Техас"
+
+#: classes/fields/pick.php:3962
+msgid "Tennessee"
+msgstr "Теннессі"
+
+#: classes/fields/pick.php:3961
+msgid "South Dakota"
+msgstr "Південна Дакота"
+
+#: classes/fields/pick.php:3960
+msgid "South Carolina"
+msgstr "Південна Кароліна"
+
+#: classes/fields/pick.php:3959
+msgid "Rhode Island"
+msgstr "Род-Айленд"
+
+#: classes/fields/pick.php:3958
+msgid "Pennsylvania"
+msgstr "Пенсильванія"
+
+#: classes/fields/pick.php:3957
+msgid "Oregon"
+msgstr "Орегон"
+
+#: classes/fields/pick.php:3956
+msgid "Oklahoma"
+msgstr "Оклахома"
+
+#: classes/fields/pick.php:3955
+msgid "Ohio"
+msgstr "Огайо"
+
+#: classes/fields/pick.php:3954
+msgid "North Dakota"
+msgstr "Північна Дакота"
+
+#: classes/fields/pick.php:3953
+msgid "North Carolina"
+msgstr "Північна Кароліна"
+
+#: classes/fields/pick.php:3952
+msgid "New York"
+msgstr "Нью-Йорк"
+
+#: classes/fields/pick.php:3951
+msgid "New Mexico"
+msgstr "Нью-Мексико"
+
+#: classes/fields/pick.php:3950
+msgid "New Jersey"
+msgstr "Нью-Джерсі"
+
+#: classes/fields/pick.php:3948
+msgid "Nevada"
+msgstr "Невада"
+
+#: classes/fields/pick.php:3947
+msgid "Nebraska"
+msgstr "Небраска"
+
+#: classes/fields/pick.php:3946
+msgid "Montana"
+msgstr "Монтана"
+
+#: classes/fields/pick.php:3945
+msgid "Missouri"
+msgstr "Міссурі"
+
+#: classes/fields/pick.php:3944
+msgid "Mississippi"
+msgstr "Міссісіпі"
+
+#: classes/fields/pick.php:3943
+msgid "Minnesota"
+msgstr "Міннесота"
+
+#: classes/fields/pick.php:3942
+msgid "Michigan"
+msgstr "Мічиган"
+
+#: classes/fields/pick.php:3941
+msgid "Massachusetts"
+msgstr "Массачусетс"
+
+#: classes/fields/pick.php:3940
+msgid "Maryland"
+msgstr "Меріленд"
+
+#: classes/fields/pick.php:3939
+msgid "Maine"
+msgstr "Мен"
+
+#: classes/fields/pick.php:3938
+msgid "Louisiana"
+msgstr "Луїзіана"
+
+#: classes/fields/pick.php:3937
+msgid "Kentucky"
+msgstr "Кентуккі"
+
+#: classes/fields/pick.php:3936
+msgid "Kansas"
+msgstr "Канзас"
+
+#: classes/fields/pick.php:3935
+msgid "Iowa"
+msgstr "Айова"
+
+#: classes/fields/pick.php:3934
+msgid "Indiana"
+msgstr "Індіана"
+
+#: classes/fields/pick.php:3933
+msgid "Illinois"
+msgstr "Іллінойс"
+
+#: classes/fields/pick.php:3932
+msgid "Idaho"
+msgstr "Айдахо"
+
+#: classes/fields/pick.php:3931
+msgid "Hawaii"
+msgstr "Гаваї"
+
+#: classes/fields/pick.php:3929
+msgid "Florida"
+msgstr "Флорида"
+
+#: classes/fields/pick.php:3928
+msgid "District Of Columbia"
+msgstr "Федеральний округ Колумбія"
+
+#: classes/fields/pick.php:3927
+msgid "Delaware"
+msgstr "Делавер"
+
+#: classes/fields/pick.php:3926
+msgid "Connecticut"
+msgstr "Коннектикут"
+
+#: classes/fields/pick.php:3925
+msgid "Colorado"
+msgstr "Колорадо"
+
+#: classes/fields/pick.php:3924
+msgid "California"
+msgstr "Каліфорнія"
+
+#: classes/fields/pick.php:3923
+msgid "Arkansas"
+msgstr "Арканзас"
+
+#: classes/fields/pick.php:3922
+msgid "Arizona"
+msgstr "Арізона"
+
+#: classes/fields/pick.php:3921
+msgid "Alaska"
+msgstr "Аляска"
+
+#: classes/fields/pick.php:3920
+msgid "Alabama"
+msgstr "Алабама"
+
+#: classes/fields/pick.php:3896
+msgid "Zimbabwe"
+msgstr "Зімбабве"
+
+#: classes/fields/pick.php:3895
+msgid "Zambia"
+msgstr "Замбія"
+
+#: classes/fields/pick.php:3894
+msgid "Yemen"
+msgstr "Ємен"
+
+#: classes/fields/pick.php:3893
+msgid "Western Sahara"
+msgstr "Західна Сахара"
+
+#: classes/fields/pick.php:3892
+msgid "Wallis and Futuna"
+msgstr "Уолліс та Футуна"
+
+#: classes/fields/pick.php:3890
+msgid "Vietnam"
+msgstr "В'єтнам"
+
+#: classes/fields/pick.php:3889
+msgid "Venezuela"
+msgstr "Венесуела"
+
+#: classes/fields/pick.php:3887
+msgid "Vanuatu"
+msgstr "Вануату"
+
+#: classes/fields/pick.php:3886
+msgid "Uzbekistan"
+msgstr "Узбекистан"
+
+#: classes/fields/pick.php:3885
+msgid "Uruguay"
+msgstr "Уругвай"
+
+#: classes/fields/pick.php:3883
+msgid "United States"
+msgstr "США"
+
+#: classes/fields/pick.php:3882
+msgid "United Kingdom"
+msgstr "Великобританія"
+
+#: classes/fields/pick.php:3881
+msgid "United Arab Emirates"
+msgstr "Об'єднані Арабські Емірати"
+
+#: classes/fields/pick.php:3879
+msgid "Ukraine"
+msgstr "Україна"
+
+#: classes/fields/pick.php:3878
+msgid "Uganda"
+msgstr "Уганда"
+
+#: classes/fields/pick.php:3874
+msgid "Tuvalu"
+msgstr "Тувалу"
+
+#: classes/fields/pick.php:3873
+msgid "Turks and Caicos Islands"
+msgstr "Теркс і Кайкос острова"
+
+#: classes/fields/pick.php:3872
+msgid "Turkmenistan"
+msgstr "Туркменістан"
+
+#: classes/fields/pick.php:3871
+msgid "Turkey"
+msgstr "Туреччина"
+
+#: classes/fields/pick.php:3870
+msgid "Tunisia"
+msgstr "Туніс"
+
+#: classes/fields/pick.php:3869
+msgid "Trinidad and Tobago"
+msgstr "Тринідад і Тобаго"
+
+#: classes/fields/pick.php:3868
+msgid "Tonga"
+msgstr "Тонга"
+
+#: classes/fields/pick.php:3867
+msgid "Tokelau"
+msgstr "Токелау"
+
+#: classes/fields/pick.php:3866
+msgid "Togo"
+msgstr "Того"
+
+#: classes/fields/pick.php:3865
+msgid "Timor-Leste"
+msgstr "Тимор-Лешті"
+
+#: classes/fields/pick.php:3864
+msgid "Thailand"
+msgstr "Таїланд"
+
+#: classes/fields/pick.php:3863
+msgid "Tanzania"
+msgstr "Танзанія"
+
+#: classes/fields/pick.php:3862
+msgid "Tajikistan"
+msgstr "Таджикистан"
+
+#: classes/fields/pick.php:3861
+msgid "Taiwan"
+msgstr "Тайвань"
+
+#: classes/fields/pick.php:3860
+msgid "São Tomé and Príncipe"
+msgstr "Сан-Томе і Прінсіпі"
+
+#: classes/fields/pick.php:3859
+msgid "Syria"
+msgstr "Сирія"
+
+#: classes/fields/pick.php:3858
+msgid "Switzerland"
+msgstr "Швейцарія"
+
+#: classes/fields/pick.php:3857
+msgid "Sweden"
+msgstr "Швеція"
+
+#: classes/fields/pick.php:3856
+msgid "Swaziland"
+msgstr "Свазіленд"
+
+#: classes/fields/pick.php:3855
+msgid "Svalbard and Jan Mayen"
+msgstr "Шпіцберген і Ян-Маєн"
+
+#: classes/fields/pick.php:3854
+msgid "Suriname"
+msgstr "Сурінам"
+
+#: classes/fields/pick.php:3853
+msgid "Sudan"
+msgstr "Судан"
+
+#: classes/fields/pick.php:3852
+msgid "Sri Lanka"
+msgstr "Шрі Ланка"
+
+#: classes/fields/pick.php:3851
+msgid "Spain"
+msgstr "Іспанія"
+
+#: classes/fields/pick.php:3850
+msgid "South Korea"
+msgstr "Південна Корея"
+
+#: classes/fields/pick.php:3849
+msgid "South Georgia and the South Sandwich Islands"
+msgstr "Південна Джорджія та Південні Сандвічеві острови"
+
+#: classes/fields/pick.php:3848
+msgid "South Africa"
+msgstr "Південна Африка"
+
+#: classes/fields/pick.php:3847
+msgid "Somalia"
+msgstr "Сомалі"
+
+#: classes/fields/pick.php:3846
+msgid "Solomon Islands"
+msgstr "Соломонові острови"
+
+#: classes/fields/pick.php:3845
+msgid "Slovenia"
+msgstr "Словенія"
+
+#: classes/fields/pick.php:3844
+msgid "Slovakia"
+msgstr "Словаччина"
+
+#: classes/fields/pick.php:3842
+msgid "Sierra Leone"
+msgstr "Сьєрра-Леоне"
+
+#: classes/fields/pick.php:3841
+msgid "Seychelles"
+msgstr "Сейшельські острови"
+
+#: classes/fields/pick.php:3839
+msgid "Serbia"
+msgstr "Сербія"
+
+#: classes/fields/pick.php:3838
+msgid "Senegal"
+msgstr "Сенегал"
+
+#: classes/fields/pick.php:3837
+msgid "Saudi Arabia"
+msgstr "Саудівська Аравія"
+
+#: classes/fields/pick.php:3835
+msgid "Samoa"
+msgstr "Самоа"
+
+#: classes/fields/pick.php:3834
+msgid "Saint Vincent and the Grenadines"
+msgstr "Сент-Вінсент і Гренадіни"
+
+#: classes/fields/pick.php:3833
+msgid "Saint Pierre and Miquelon"
+msgstr "Сен-П'єр і Мікелон"
+
+#: classes/fields/pick.php:3831
+msgid "Saint Lucia"
+msgstr "Сент-Люсія"
+
+#: classes/fields/pick.php:3830
+msgid "Saint Kitts and Nevis"
+msgstr "Сент-Кітс і Невіс"
+
+#: components/Builder/modules/list/PodsBuilderModuleList.php:108
+#: components/Builder/modules/list/PodsBuilderModuleList.php:146
+#: components/Builder/modules/single/PodsBuilderModuleSingle.php:112
+#: components/Builder/modules/single/PodsBuilderModuleSingle.php:150
+#: src/Pods/Blocks/Types/Item_List.php:238
+#: src/Pods/Blocks/Types/Item_Single.php:200
+#: src/Pods/Blocks/Types/Related_Item_List.php:133 ui/admin/shortcode.php:400
+#: ui/admin/shortcode.php:422 ui/admin/widgets/list.php:60
+#: ui/admin/widgets/list.php:88 ui/admin/widgets/single.php:76
+#: ui/admin/widgets/single.php:98
+msgid "Custom Template"
+msgstr "Власний шаблон"
+
+#: classes/fields/pick.php:3829
+msgid "Saint Helena"
+msgstr "Острів Святої Єлени"
+
+#: classes/fields/pick.php:3836
+msgid "San Marino"
+msgstr "Сан-Маріно"
+
+#: classes/fields/pick.php:3843
+msgid "Singapore"
+msgstr "Сінгапур"
+
+#: classes/fields/pick.php:3949
+msgid "New Hampshire"
+msgstr "Нью-Гемпшир"
+
+#: classes/fields/pick.php:3891
+msgid "Wake Island"
+msgstr "Острів Вейк"
+
+#: classes/fields/pick.php:3897
+msgid "Åland Islands"
+msgstr "Аландські острови"
+
+#: classes/widgets/PodsWidgetForm.php:38 classes/widgets/PodsWidgetForm.php:59
+#: classes/widgets/PodsWidgetForm.php:74
+#: components/Builder/modules/form/PodsBuilderModuleForm.php:47
+#: components/Builder/modules/form/PodsBuilderModuleForm.php:145
+msgid "Submit"
+msgstr "Відправити"
+
+#: classes/fields/pick.php:731 components/Roles/Roles.php:94
+#: ui/admin/setup-add.php:419
+msgid "Users"
+msgstr "Користувачі"
+
+#: classes/fields/pick.php:810
+msgid "Countries"
+msgstr "Країни"
+
+#: classes/fields/pick.php:3827
+msgid "Réunion"
+msgstr "Реюньйон"
+
+#: classes/fields/pick.php:3826
+msgid "Rwanda"
+msgstr "Руанда"
+
+#: classes/fields/pick.php:3824
+msgid "Romania"
+msgstr "Румунія"
+
+#: classes/fields/pick.php:3823
+msgid "Qatar"
+msgstr "Катар"
+
+#: classes/fields/pick.php:3821
+msgid "Portugal"
+msgstr "Португалія"
+
+#: classes/fields/pick.php:3820
+msgid "Poland"
+msgstr "Польща"
+
+#: classes/fields/pick.php:3818
+msgid "Philippines"
+msgstr "Філіппіни"
+
+#: classes/fields/pick.php:3817
+msgid "Peru"
+msgstr "Перу"
+
+#: classes/fields/pick.php:3815
+msgid "Paraguay"
+msgstr "Парагвай"
+
+#: classes/fields/pick.php:3814
+msgid "Papua New Guinea"
+msgstr "Папуа-Нова Гвінея"
+
+#: classes/fields/pick.php:3812
+msgid "Panama"
+msgstr "Панама"
+
+#: classes/fields/pick.php:3810
+msgid "Palau"
+msgstr "Палау"
+
+#: classes/fields/pick.php:3809
+msgid "Pakistan"
+msgstr "Пакистан"
+
+#: classes/fields/pick.php:3807
+msgid "Oman"
+msgstr "Оман"
+
+#: classes/fields/pick.php:3806
+msgid "Norway"
+msgstr "Норвегія"
+
+#: classes/fields/pick.php:3805
+msgid "Northern Mariana Islands"
+msgstr "Північні Маріанські острови"
+
+#: classes/fields/pick.php:3803
+msgid "North Korea"
+msgstr "Північна Корея"
+
+#: classes/fields/pick.php:3801
+msgid "Niue"
+msgstr "Ніуе"
+
+#: classes/fields/pick.php:3800
+msgid "Nigeria"
+msgstr "Нігерія"
+
+#: classes/fields/pick.php:3799
+msgid "Niger"
+msgstr "Нігер"
+
+#: classes/fields/pick.php:3798
+msgid "Nicaragua"
+msgstr "Нікарагуа"
+
+#: classes/fields/pick.php:3797
+msgid "New Zealand"
+msgstr "Нова Зеландія"
+
+#: classes/fields/pick.php:3796
+msgid "New Caledonia"
+msgstr "Нова Каледонія"
+
+#: classes/fields/pick.php:3794
+msgid "Netherlands Antilles"
+msgstr "Нідерландські Антильські острови"
+
+#: classes/fields/pick.php:3793
+msgid "Netherlands"
+msgstr "Нідерланди"
+
+#: classes/fields/pick.php:3792
+msgid "Nepal"
+msgstr "Непал"
+
+#: classes/fields/pick.php:3791
+msgid "Nauru"
+msgstr "Науру"
+
+#: classes/fields/pick.php:3790
+msgid "Namibia"
+msgstr "Намібія"
+
+#: classes/fields/pick.php:3788
+msgid "Mozambique"
+msgstr "Мозамбік"
+
+#: classes/fields/pick.php:3787
+msgid "Morocco"
+msgstr "Марокко"
+
+#: classes/fields/pick.php:3785
+msgid "Montenegro"
+msgstr "Чорногорія"
+
+#: classes/fields/pick.php:3784
+msgid "Mongolia"
+msgstr "Монголія"
+
+#: classes/fields/pick.php:3783
+msgid "Monaco"
+msgstr "Монако"
+
+#: classes/fields/pick.php:3782
+msgid "Moldova"
+msgstr "Молдова"
+
+#: classes/fields/pick.php:3780
+msgid "Micronesia"
+msgstr "Мікронезія"
+
+#: classes/fields/pick.php:3779
+msgid "Mexico"
+msgstr "Мексика"
+
+#: classes/fields/pick.php:3777
+msgid "Mayotte"
+msgstr "Майотта"
+
+#: classes/fields/pick.php:3776
+msgid "Mauritius"
+msgstr "Маврикій"
+
+#: classes/fields/pick.php:3775
+msgid "Mauritania"
+msgstr "Мавританія"
+
+#: classes/fields/pick.php:3773
+msgid "Marshall Islands"
+msgstr "Маршаллові острови"
+
+#: classes/fields/pick.php:3772
+msgid "Malta"
+msgstr "Мальта"
+
+#: classes/fields/pick.php:3771
+msgid "Mali"
+msgstr "Малі"
+
+#: classes/fields/pick.php:3770
+msgid "Maldives"
+msgstr "Мальдіви"
+
+#: classes/fields/pick.php:3769
+msgid "Malaysia"
+msgstr "Малайзія"
+
+#: classes/fields/pick.php:3768
+msgid "Malawi"
+msgstr "Малаві"
+
+#: classes/fields/pick.php:3767
+msgid "Madagascar"
+msgstr "Мадагаскар"
+
+#: classes/fields/pick.php:3766
+msgid "Macedonia"
+msgstr "Македонія"
+
+#: classes/fields/pick.php:3764
+msgid "Luxembourg"
+msgstr "Люксембург"
+
+#: classes/fields/pick.php:3763
+msgid "Lithuania"
+msgstr "Литва"
+
+#: classes/fields/pick.php:3762
+msgid "Liechtenstein"
+msgstr "Ліхтенштейн"
+
+#: classes/fields/pick.php:3761
+msgid "Libya"
+msgstr "Лівія"
+
+#: classes/fields/pick.php:3760
+msgid "Liberia"
+msgstr "Ліберія"
+
+#: classes/fields/pick.php:3759
+msgid "Lesotho"
+msgstr "Лесото"
+
+#: classes/fields/pick.php:3758
+msgid "Lebanon"
+msgstr "Ліван"
+
+#: classes/fields/pick.php:3757
+msgid "Latvia"
+msgstr "Латвія"
+
+#: classes/fields/pick.php:3756
+msgid "Laos"
+msgstr "Лаос"
+
+#: classes/fields/pick.php:3755
+msgid "Kyrgyzstan"
+msgstr "Киргизія"
+
+#: classes/fields/pick.php:3754
+msgid "Kuwait"
+msgstr "Кувейт"
+
+#: classes/fields/pick.php:3753
+msgid "Kiribati"
+msgstr "Кірібаті"
+
+#: classes/fields/pick.php:3752
+msgid "Kenya"
+msgstr "Кенія"
+
+#: classes/fields/pick.php:3751
+msgid "Kazakhstan"
+msgstr "Казахстан"
+
+#: classes/fields/pick.php:3750
+msgid "Jordan"
+msgstr "Йорданія"
+
+#: classes/fields/pick.php:3748
+msgid "Jersey"
+msgstr "Джерсі"
+
+#: classes/fields/pick.php:3747
+msgid "Japan"
+msgstr "Японія"
+
+#: classes/fields/pick.php:3746
+msgid "Jamaica"
+msgstr "Ямайка"
+
+#: classes/fields/pick.php:3745
+msgid "Italy"
+msgstr "Італія"
+
+#: classes/fields/pick.php:3744
+msgid "Israel"
+msgstr "Ізраїль"
+
+#: classes/fields/pick.php:3743
+msgid "Isle of Man"
+msgstr "Острів Мен"
+
+#: classes/fields/pick.php:3742
+msgid "Ireland"
+msgstr "Ірландія"
+
+#: classes/fields/pick.php:3741
+msgid "Iraq"
+msgstr "Ірак"
+
+#: classes/fields/pick.php:3740
+msgid "Iran"
+msgstr "Іран"
+
+#: classes/fields/pick.php:3739
+msgid "Indonesia"
+msgstr "Індонезія"
+
+#: classes/fields/pick.php:3738
+msgid "India"
+msgstr "Індія"
+
+#: classes/fields/pick.php:3737
+msgid "Iceland"
+msgstr "Ісландія"
+
+#: classes/fields/pick.php:3736
+msgid "Hungary"
+msgstr "Угорщина"
+
+#: classes/fields/pick.php:3734
+msgid "Honduras"
+msgstr "Гондурас"
+
+#: classes/fields/pick.php:3733
+msgid "Heard Island and McDonald Islands"
+msgstr "Острів Херд і острови Макдональд"
+
+#: classes/fields/pick.php:3732
+msgid "Haiti"
+msgstr "Гаїті"
+
+#: classes/fields/pick.php:3730
+msgid "Guinea-Bissau"
+msgstr "Гвінея-Бісау"
+
+#: classes/fields/pick.php:3729
+msgid "Guinea"
+msgstr "Гвінея"
+
+#: classes/fields/pick.php:3727
+msgid "Guatemala"
+msgstr "Гватемала"
+
+#: classes/fields/pick.php:3726
+msgid "Guam"
+msgstr "Гуам"
+
+#: classes/fields/pick.php:3725
+msgid "Guadeloupe"
+msgstr "Гваделупа"
+
+#: classes/fields/pick.php:3724
+msgid "Grenada"
+msgstr "Гренада"
+
+#: classes/fields/pick.php:3723
+msgid "Greenland"
+msgstr "Ґренландія"
+
+#: classes/fields/pick.php:3722
+msgid "Greece"
+msgstr "Греція"
+
+#: classes/fields/pick.php:3721
+msgid "Gibraltar"
+msgstr "Гібралтар"
+
+#: classes/fields/pick.php:3720
+msgid "Ghana"
+msgstr "Гана"
+
+#: classes/fields/pick.php:3719
+msgid "Germany"
+msgstr "Німеччина"
+
+#: classes/fields/pick.php:3718 classes/fields/pick.php:3930
+msgid "Georgia"
+msgstr "Грузія"
+
+#: classes/fields/pick.php:3717
+msgid "Gambia"
+msgstr "Гамбія"
+
+#: classes/fields/pick.php:3716
+msgid "Gabon"
+msgstr "Габон"
+
+#: classes/fields/pick.php:3714
+msgid "French Southern Territories"
+msgstr "Французькі Південні Території"
+
+#: classes/fields/pick.php:3713
+msgid "French Polynesia"
+msgstr "Французька Полінезія"
+
+#: classes/fields/pick.php:3712
+msgid "French Guiana"
+msgstr "Французька Гвіана"
+
+#: classes/fields/pick.php:3711
+msgid "France"
+msgstr "Франція"
+
+#: classes/fields/pick.php:3710
+msgid "Finland"
+msgstr "Фінляндія"
+
+#: classes/fields/pick.php:3709
+msgid "Fiji"
+msgstr "Фіджі"
+
+#: classes/fields/pick.php:3708
+msgid "Faroe Islands"
+msgstr "Фарерські острови"
+
+#: classes/fields/pick.php:3707
+msgid "Falkland Islands"
+msgstr "Фолклендські острови"
+
+#: classes/fields/pick.php:3706
+msgid "Ethiopia"
+msgstr "Ефіопія"
+
+#: classes/fields/pick.php:3705
+msgid "Estonia"
+msgstr "Естонія"
+
+#: classes/fields/pick.php:3704
+msgid "Eritrea"
+msgstr "Еритрея"
+
+#: classes/fields/pick.php:3703
+msgid "Equatorial Guinea"
+msgstr "Екваторіальна Гвінея"
+
+#: classes/fields/pick.php:3702
+msgid "El Salvador"
+msgstr "Сальвадор"
+
+#: classes/fields/pick.php:3701
+msgid "Egypt"
+msgstr "Єгипет"
+
+#: classes/fields/pick.php:3700
+msgid "Ecuador"
+msgstr "Еквадор"
+
+#: classes/fields/pick.php:3697
+msgid "Dominican Republic"
+msgstr "Домініканська Республіка"
+
+#: classes/fields/pick.php:3695
+msgid "Djibouti"
+msgstr "Джибуті"
+
+#: classes/fields/pick.php:3694
+msgid "Denmark"
+msgstr "Данія"
+
+#: classes/fields/pick.php:3692
+msgid "Czech Republic"
+msgstr "Чеська Республіка"
+
+#: classes/fields/pick.php:3691
+msgid "Cyprus"
+msgstr "Кіпр"
+
+#: classes/fields/pick.php:3690
+msgid "Cuba"
+msgstr "Куба"
+
+#: classes/fields/pick.php:3689
+msgid "Croatia"
+msgstr "Хорватія"
+
+#: classes/fields/pick.php:3687
+msgid "Cook Islands"
+msgstr "Острови Кука"
+
+#: classes/fields/pick.php:3686
+msgid "Congo - Kinshasa"
+msgstr "Конго - Кіншаса"
+
+#: classes/fields/pick.php:3685
+msgid "Congo - Brazzaville"
+msgstr "Конго - Браззавіль"
+
+#: classes/fields/pick.php:3684
+msgid "Comoros"
+msgstr "Коморські острови"
+
+#: classes/fields/pick.php:3683
+msgid "Colombia"
+msgstr "Колумбія"
+
+#: classes/fields/pick.php:3681
+msgid "Christmas Island"
+msgstr "Острів Різдва"
+
+#: classes/fields/pick.php:3680
+msgid "China"
+msgstr "Китай"
+
+#: classes/fields/pick.php:3679
+msgid "Chile"
+msgstr "Чилі"
+
+#: classes/fields/pick.php:3678
+msgid "Chad"
+msgstr "Чад"
+
+#: classes/fields/pick.php:3677
+msgid "Central African Republic"
+msgstr "Центральноафриканська Республіка"
+
+#: classes/fields/pick.php:3676
+msgid "Cayman Islands"
+msgstr "Кайманові острови"
+
+#: classes/fields/pick.php:3675
+msgid "Cape Verde"
+msgstr "Кабо-Верде"
+
+#: classes/fields/pick.php:3673
+msgid "Canada"
+msgstr "Канада"
+
+#: classes/fields/pick.php:3672
+msgid "Cameroon"
+msgstr "Камерун"
+
+#: classes/fields/pick.php:3671
+msgid "Cambodia"
+msgstr "Камбоджа"
+
+#: classes/fields/pick.php:3670
+msgid "Burundi"
+msgstr "Бурунді"
+
+#: classes/fields/pick.php:3669
+msgid "Burkina Faso"
+msgstr "Буркіна-Фасо"
+
+#: classes/fields/pick.php:3668
+msgid "Bulgaria"
+msgstr "Болгарія"
+
+#: classes/fields/pick.php:3667
+msgid "Brunei"
+msgstr "Бруней"
+
+#: classes/fields/pick.php:3666
+msgid "British Virgin Islands"
+msgstr "Британські Віргінські Острови"
+
+#: classes/fields/pick.php:3665
+msgid "British Indian Ocean Territory"
+msgstr "Британська територія в Індійському океані"
+
+#: classes/fields/pick.php:3663
+msgid "Brazil"
+msgstr "Бразилія"
+
+#: classes/fields/pick.php:3662
+msgid "Bouvet Island"
+msgstr "Острів Буве́"
+
+#: classes/fields/pick.php:3661
+msgid "Botswana"
+msgstr "Ботсвана"
+
+#: classes/fields/pick.php:3660
+msgid "Bosnia and Herzegovina"
+msgstr "Боснія і Герцеговина"
+
+#: classes/fields/pick.php:3659
+msgid "Bolivia"
+msgstr "Болівія"
+
+#: classes/fields/pick.php:3658
+msgid "Bhutan"
+msgstr "Бутан"
+
+#: classes/fields/pick.php:3656
+msgid "Benin"
+msgstr "Бенин"
+
+#: classes/fields/pick.php:3655
+msgid "Belize"
+msgstr "Беліз"
+
+#: classes/fields/pick.php:3654
+msgid "Belgium"
+msgstr "Бельгія"
+
+#: classes/fields/pick.php:3653
+msgid "Belarus"
+msgstr "Білорусь"
+
+#: classes/fields/pick.php:3652
+msgid "Barbados"
+msgstr "Барбадос"
+
+#: classes/fields/pick.php:3651
+msgid "Bangladesh"
+msgstr "Бангладеш"
+
+#: classes/fields/pick.php:3650
+msgid "Bahrain"
+msgstr "Бахрейн"
+
+#: classes/fields/pick.php:3649
+msgid "Bahamas"
+msgstr "Багамські острови"
+
+#: classes/fields/pick.php:3648
+msgid "Azerbaijan"
+msgstr "Азербайджан"
+
+#: classes/fields/pick.php:3647
+msgid "Austria"
+msgstr "Австрія"
+
+#: classes/fields/pick.php:3646
+msgid "Australia"
+msgstr "Австралія"
+
+#: classes/fields/pick.php:3645
+msgid "Aruba"
+msgstr "Аруба"
+
+#: classes/fields/pick.php:3644
+msgid "Armenia"
+msgstr "Вірменія"
+
+#: classes/fields/pick.php:3643
+msgid "Argentina"
+msgstr "Аргентина"
+
+#: classes/fields/pick.php:3642
+msgid "Antigua and Barbuda"
+msgstr "Антигуа і Барбуда"
+
+#: classes/fields/pick.php:3640
+msgid "Anguilla"
+msgstr "Ангілья"
+
+#: classes/fields/pick.php:3639
+msgid "Angola"
+msgstr "Ангола"
+
+#: classes/fields/pick.php:3638
+msgid "Andorra"
+msgstr "Андорра"
+
+#: classes/fields/pick.php:3637
+msgid "American Samoa"
+msgstr "Американське Самоа"
+
+#: classes/fields/pick.php:3636
+msgid "Algeria"
+msgstr "Алжир"
+
+#: classes/fields/pick.php:3635
+msgid "Albania"
+msgstr "Албанія"
+
+#: classes/fields/pick.php:3634
+msgid "Afghanistan"
+msgstr "Афганістан"
+
+#: classes/fields/pick.php:775 src/Pods/Admin/Config/Pod.php:1009
+msgid "Post Formats"
+msgstr "Формат публікацій"
+
+#: classes/fields/pick.php:770
+msgid "Navigation Menus"
+msgstr "Меню навігації"
+
+#: classes/fields/pick.php:763
+msgid "Image Sizes"
+msgstr "Розміри зображень"
+
+#: classes/fields/pick.php:757 src/Pods/Admin/Config/Pod.php:994
+#: ui/admin/setup-add.php:420
+msgid "Comments"
+msgstr "Коментарі"
+
+#: classes/fields/pick.php:751 classes/PodsAPI.php:11954
+#: src/Pods/Admin/Config/Pod.php:1441 ui/admin/setup-add.php:418
+msgid "Media"
+msgstr "Медіафайли"
+
+#: classes/fields/pick.php:737
+msgid "User Roles"
+msgstr "Ролі користувачів"
+
+#: classes/fields/pick.php:663 src/Pods/Admin/Config/Pod.php:1423
+#: src/Pods/Admin/Config/Pod.php:1424
+msgid "Post Types"
+msgstr "Типи записів"
+
+#: classes/fields/pick.php:724 src/Pods/Admin/Config/Pod.php:1074
+#: src/Pods/Admin/Config/Pod.php:1075
+msgid "Taxonomies"
+msgstr "Таксономії"
+
+#: classes/fields/datetime.php:129 classes/fields/pick.php:590
+msgid "Custom"
+msgstr "Довільний"
+
+#: classes/fields/pick.php:3641
+msgid "Antarctica"
+msgstr "Антарктида"
+
+#: classes/fields/pick.php:3657
+msgid "Bermuda"
+msgstr "Бермудські Острови"
+
+#: classes/fields/pick.php:3688
+msgid "Costa Rica"
+msgstr "Коста-Ріка"
+
+#: classes/fields/pick.php:3696
+msgid "Dominica"
+msgstr "Домініка"
+
+#: classes/fields/pick.php:3728
+msgid "Guernsey"
+msgstr "Гернсі"
+
+#: classes/fields/pick.php:3731
+msgid "Guyana"
+msgstr "Гаяна"
+
+#: classes/fields/pick.php:3774
+msgid "Martinique"
+msgstr "Мартиніка"
+
+#: classes/fields/pick.php:3786
+msgid "Montserrat"
+msgstr "Монтсеррат"
+
+#: classes/fields/pick.php:3802
+msgid "Norfolk Island"
+msgstr "Острів Норфолк"
+
+#: classes/fields/pick.php:3825
+msgid "Russia"
+msgstr "Росія"
+
+#: classes/fields/pick.php:3822
+msgid "Puerto Rico"
+msgstr "Пуерто-Рико"
+
+#: classes/fields/pick.php:780
+msgid "Post Status"
+msgstr "Статус запису"
+
+#: classes/PodsAdmin.php:4387 classes/PodsUI.php:4567 includes/access.php:1873
+#: includes/access.php:1938 includes/access.php:1961
+#: src/Pods/Admin/Settings.php:208 src/Pods/Admin/Settings.php:235
+#: src/Pods/Admin/Settings.php:254 src/Pods/Admin/Settings.php:274
+#: src/Pods/Admin/Settings.php:297 src/Pods/Admin/Settings.php:316
+#: src/Pods/Admin/Settings.php:354
+msgid "Enable"
+msgstr "Увімкнути"
+
+#: classes/PodsAdmin.php:3725 src/Pods/Admin/Config/Field.php:147
+msgid "Description"
+msgstr "Опис"
+
+#: classes/fields/file.php:249 classes/fields/file.php:261
+#: ui/fields/attachment.php:124
+msgid "Add File"
+msgstr "Додати файл"
+
+#: classes/fields/boolean.php:54 classes/fields/boolean.php:223
+#: classes/fields/boolean.php:246 classes/PodsAdmin.php:4685
+#: classes/PodsAdmin.php:4689 classes/PodsAdmin.php:4697
+#: classes/PodsAdmin.php:4701 classes/PodsAdmin.php:4705
+#: classes/PodsAdmin.php:4709 classes/PodsAdmin.php:4713
+#: classes/PodsAdmin.php:4717 classes/PodsAdmin.php:4721
+#: classes/PodsAdmin.php:4725 classes/PodsAdmin.php:4729
+#: classes/PodsAdmin.php:4741 classes/PodsAdmin.php:4749
+#: classes/PodsAdmin.php:4753 classes/PodsAdmin.php:4757
+#: classes/PodsAdmin.php:4765 classes/PodsAdmin.php:4769
+#: classes/PodsAdmin.php:4773 classes/PodsAdmin.php:4777
+#: classes/PodsAdmin.php:4781 classes/PodsAdmin.php:4785
+#: classes/PodsAdmin.php:4838 classes/PodsUI.php:2929 classes/PodsUI.php:3367
+#: classes/PodsUI.php:3624 src/Pods/Whatsit/Block_Field.php:295
+msgid "Yes"
+msgstr "Так"
+
+#: classes/fields/boolean.php:59 classes/fields/boolean.php:224
+#: classes/fields/boolean.php:247 classes/PodsAdmin.php:4685
+#: classes/PodsAdmin.php:4689 classes/PodsAdmin.php:4697
+#: classes/PodsAdmin.php:4701 classes/PodsAdmin.php:4705
+#: classes/PodsAdmin.php:4709 classes/PodsAdmin.php:4713
+#: classes/PodsAdmin.php:4717 classes/PodsAdmin.php:4721
+#: classes/PodsAdmin.php:4725 classes/PodsAdmin.php:4729
+#: classes/PodsAdmin.php:4741 classes/PodsAdmin.php:4749
+#: classes/PodsAdmin.php:4753 classes/PodsAdmin.php:4757
+#: classes/PodsAdmin.php:4765 classes/PodsAdmin.php:4769
+#: classes/PodsAdmin.php:4773 classes/PodsAdmin.php:4777
+#: classes/PodsAdmin.php:4781 classes/PodsAdmin.php:4785
+#: classes/PodsAdmin.php:4838 classes/PodsUI.php:2930 classes/PodsUI.php:3368
+#: classes/PodsUI.php:3625 src/Pods/Whatsit/Block_Field.php:299
+msgid "No"
+msgstr "Ні"
+
+#. translators: %s: The singular item label.
+#: classes/PodsInit.php:2032 classes/PodsInit.php:2033
+#: classes/PodsInit.php:2034 classes/PodsInit.php:2066 classes/PodsUI.php:770
+#: classes/PodsUI.php:783 src/Pods/Admin/Config/Pod.php:255
+#: src/Pods/Admin/Config/Pod.php:263 ui/admin/view.php:34 ui/forms/form.php:130
+#: ui/forms/type/post.php:63
+msgid "View %s"
+msgstr "Дивитись %s"
+
+#: classes/fields/color.php:45 classes/fields/color.php:100
+#: classes/PodsUI.php:3526 classes/PodsUI.php:3585 classes/PodsUI.php:3634
+#: classes/PodsUI.php:3673 ui/fields/color.php:19
+msgid "Clear"
+msgstr "Очистити"
+
+#: classes/fields/pick.php:220
+msgid "Checkboxes"
+msgstr "чекбокси"
+
+#: classes/fields/phone.php:53
+msgid "International"
+msgstr "Міжнародна"
+
+#: classes/fields/time.php:97 classes/fields/time.php:118
+msgid "Time Format"
+msgstr "Формат часу"
+
+#: classes/fields/date.php:90
+msgid "Date Format"
+msgstr "Формат дати"
+
+#: classes/fields/link.php:46 classes/fields/phone.php:44
+#: classes/fields/website.php:43
+msgid "Format"
+msgstr "Формат"
+
+#: classes/fields/currency.php:69 classes/fields/number.php:49
+msgid "Slider"
+msgstr "Слайдер"
+
+#: classes/fields/boolean.php:206 classes/fields/color.php:132
+#: classes/fields/oembed.php:212 classes/fields/password.php:129
+#: classes/fields/text.php:195 classes/PodsI18n.php:147
+msgid "This field is required."
+msgstr "Це поле обов’язкове для заповнення."
+
+#: classes/fields/boolean.php:45 classes/fields/pick.php:183
+msgid "Radio Buttons"
+msgstr "радіо кнопка"
+
+#: classes/fields/file.php:248
+msgid "Add Button Text"
+msgstr "Додайте текст кнопки"
+
+#: classes/fields/file.php:152
+msgid "Media Library"
+msgstr "Медіа бібліотека"
+
+#: classes/PodsUI.php:4921
+msgid "Go to the last page"
+msgstr "Перейти до останньої сторінки"
+
+#: classes/PodsUI.php:4920
+msgid "Go to the next page"
+msgstr "Перейти до наступної сторінки"
+
+#: classes/PodsUI.php:4892 classes/PodsUI.php:4908
+msgid "of"
+msgstr "з"
+
+#: classes/PodsUI.php:4892
+msgid "Current page"
+msgstr "Поточна сторінка"
+
+#: classes/PodsUI.php:4888
+msgid "Go to the previous page"
+msgstr "Перейти до попередньої сторінки"
+
+#: classes/PodsUI.php:4887
+msgid "Go to the first page"
+msgstr "Перейти до першої сторінки"
+
+#: classes/PodsUI.php:4568 includes/access.php:1874 includes/access.php:1939
+#: includes/access.php:1962 includes/access.php:1984 includes/access.php:2011
+#: src/Pods/Admin/Settings.php:209 src/Pods/Admin/Settings.php:236
+#: src/Pods/Admin/Settings.php:255 src/Pods/Admin/Settings.php:275
+#: src/Pods/Admin/Settings.php:298 src/Pods/Admin/Settings.php:317
+#: src/Pods/Admin/Settings.php:355
+msgid "Disable"
+msgstr "Вимкнути"
+
+#: classes/PodsUI.php:3768
+msgid "No %s found"
+msgstr "Жодного %s не знайдено"
+
+#: classes/PodsUI.php:3386
+msgid "Remove Filter"
+msgstr "Видалити фільтр"
+
+#: classes/PodsUI.php:3300
+msgid "Add Filter"
+msgstr "Додати фільтр"
+
+#: classes/PodsUI.php:3261
+msgid "Reset"
+msgstr "Скинути"
+
+#: classes/PodsUI.php:3081
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: classes/PodsUI.php:3039
+msgid "Bulk Actions"
+msgstr "Групові дії"
+
+#: classes/PodsUI.php:1877 components/Roles/ui/edit.php:19
+msgid "created"
+msgstr "створено"
+
+#: classes/PodsUI.php:1875 components/Roles/ui/edit.php:16
+#: ui/admin/settings-settings.php:50
+msgid "saved"
+msgstr "збережено"
+
+#: classes/PodsUI.php:769 classes/PodsUI.php:781
+#: src/Pods/Admin/Config/Pod.php:230
+msgid "Duplicate %s"
+msgstr "Подвоювати %s"
+
+#: classes/PodsAdmin.php:1915 classes/PodsI18n.php:169 classes/PodsUI.php:757
+#: classes/PodsUI.php:760 classes/PodsUI.php:4460 includes/access.php:1916
+#: src/Pods/Admin/Config/Pod.php:248 src/Pods/Blocks/Types/View.php:167
+msgid "View"
+msgstr "Перегляд"
+
+#: classes/PodsInit.php:2067 classes/PodsUI.php:780
+#: src/Pods/Admin/Config/Pod.php:214
+msgid "Update %s"
+msgstr "Оновити %s"
+
+#: classes/PodsInit.php:2040 src/Pods/Admin/Config/Pod.php:361
+msgid "Parent %s:"
+msgstr "Батьківський %s:"
+
+#: classes/PodsInit.php:2039 classes/PodsInit.php:2063
+#: src/Pods/Admin/Config/Pod.php:343 src/Pods/Admin/Config/Pod.php:352
+msgid "Parent %s"
+msgstr "Батьківський %s"
+
+#: classes/PodsInit.php:2038
+msgid "No %s Found in Trash"
+msgstr "%s не знайдено у кошику"
+
+#: classes/PodsInit.php:2037 src/Pods/Admin/Config/Pod.php:375
+msgid "No %s Found"
+msgstr "Жодного %s не знайдено"
+
+#. Translators: %s stands for a name/identifier.
+#: classes/PodsI18n.php:176 classes/PodsInit.php:2036 classes/PodsInit.php:2060
+#: classes/PodsUI.php:772 src/Pods/Admin/Config/Pod.php:326
+msgid "Search %s"
+msgstr "Пошук %s"
+
+#: classes/PodsInit.php:2035 classes/PodsInit.php:2062
+#: src/Pods/Admin/Config/Pod.php:311
+msgid "All %s"
+msgstr "Всі %s"
+
+#: classes/PodsInit.php:2031 classes/PodsInit.php:2065
+#: classes/PodsInit.php:2699 classes/PodsUI.php:768
+#: src/Pods/Admin/Config/Pod.php:206
+msgid "Edit %s"
+msgstr "Редагувати %s"
+
+#: classes/PodsAdmin.php:283 classes/PodsAdmin.php:310
+#: classes/PodsAdmin.php:311 classes/PodsInit.php:2027
+#: classes/PodsInit.php:2028 classes/PodsInit.php:2068 classes/PodsUI.php:754
+#: classes/PodsUI.php:767 classes/PodsUI.php:778 classes/PodsUI.php:779
+msgid "Add New %s"
+msgstr "Додати нове %s"
+
+#. translators: Publish box date format, see http://php.net/date
+#: classes/PodsInit.php:1968 classes/PodsInit.php:1980 components/Pages.php:540
+#: components/Pages.php:552 components/Templates/Templates.php:288
+#: components/Templates/Templates.php:300 ui/admin/view.php:45
+#: ui/forms/type/post.php:74
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: classes/PodsInit.php:1958 components/Pages.php:530
+#: components/Templates/Templates.php:278
+msgid "Custom field deleted."
+msgstr "Користувацьке поле видалено."
+
+#: classes/PodsInit.php:2017 classes/PodsUI.php:729
+#: src/Pods/Admin/Config/Pod.php:166 src/Pods/Admin/Config/Pod.php:175
+#: src/Pods/Admin/Config/Pod.php:183 src/Pods/Admin/Config/Pod.php:192
+#: src/Pods/Admin/Config/Pod.php:208 src/Pods/Admin/Config/Pod.php:216
+#: src/Pods/Admin/Config/Pod.php:232 src/Pods/Admin/Config/Pod.php:241
+#: src/Pods/Admin/Config/Pod.php:257 src/Pods/Admin/Config/Pod.php:345
+#: src/Pods/Admin/Config/Pod.php:354 src/Pods/Admin/Config/Pod.php:363
+#: src/Pods/Admin/Config/Pod.php:377 src/Pods/Admin/Config/Pod.php:393
+#: src/Pods/Admin/Config/Pod.php:402 src/Pods/Admin/Config/Pod.php:411
+#: src/Pods/Admin/Config/Pod.php:420 src/Pods/Admin/Config/Pod.php:565
+#: src/Pods/Admin/Config/Pod.php:574 src/Pods/Admin/Config/Pod.php:583
+#: src/Pods/Admin/Config/Pod.php:592 src/Pods/Admin/Config/Pod.php:601
+#: src/Pods/Admin/Config/Pod.php:617
+msgid "Item"
+msgstr "Позиція"
+
+#: classes/PodsInit.php:1957 components/Pages.php:529
+#: components/Templates/Templates.php:277
+msgid "Custom field updated."
+msgstr "Користувацьке поле оновлено."
+
+#: classes/PodsAdmin.php:4155
+msgid "Access denied"
+msgstr "Доступ заборонено"
+
+#: classes/PodsAdmin.php:3748
+msgid "Integration"
+msgstr "Інтеграція"
+
+#: classes/PodsAdmin.php:3747 ui/admin/settings.php:27
+msgid "Tools"
+msgstr "Інструменти"
+
+#: classes/PodsAdmin.php:3621
+msgid "by %s"
+msgstr "Автор: %s"
+
+#: classes/PodsUI.php:3055 classes/PodsUI.php:4719
+msgid "Apply"
+msgstr "Застосувати"
+
+#: classes/PodsInit.php:2029 src/Pods/Admin/Config/Pod.php:181
+msgid "New %s"
+msgstr "Нов(а)ий %s"
+
+#: classes/PodsInit.php:2016 classes/PodsUI.php:730
+#: src/Pods/Admin/Config/Pod.php:265 src/Pods/Admin/Config/Pod.php:288
+#: src/Pods/Admin/Config/Pod.php:304 src/Pods/Admin/Config/Pod.php:313
+#: src/Pods/Admin/Config/Pod.php:336 src/Pods/Admin/Config/Pod.php:461
+#: src/Pods/Admin/Config/Pod.php:470 src/Pods/Admin/Config/Pod.php:479
+#: src/Pods/Admin/Config/Pod.php:488
+msgid "Items"
+msgstr "Позиції"
+
+#: classes/fields/file.php:1158 classes/fields/pick.php:3268
+msgid "Invalid field"
+msgstr "Неправильне поле"
+
+#: classes/PodsUI.php:3292 classes/PodsUI.php:3293 classes/PodsUI.php:3300
+#: classes/PodsUI.php:3381 classes/PodsUI.php:3442
+msgid "Advanced Filters"
+msgstr "Розширені фільтри"
+
+#: classes/PodsAdmin.php:3717 classes/PodsAdmin.php:3754
+msgid "Category"
+msgstr "Категорія"
+
+#: classes/PodsUI.php:4515
+msgid "Duplicate this item"
+msgstr "Дублювати цей елемент"
+
+#: classes/fields/boolean.php:44
+msgid "Checkbox"
+msgstr "Галочка"
+
+#: classes/fields/datetime.php:128 classes/fields/time.php:68
+msgid "24 hour"
+msgstr "24 години"
+
+#: classes/fields/file.php:81
+msgid "Multiple Files"
+msgstr "Кілька файлів"
+
+#: classes/fields/file.php:151
+msgid "Upload File"
+msgstr "Завантажити файл"
+
+#: classes/fields/boolean.php:46 classes/fields/pick.php:182
+msgid "Drop Down"
+msgstr "Випадаючий список"
+
+#: classes/fields/boolean.php:58
+msgid "No Label"
+msgstr "Немає мітки"
+
+#: classes/PodsAdmin.php:3746
+msgid "Field Types"
+msgstr "Типи полів"
+
+#: classes/PodsAdmin.php:3749
+msgid "Migration"
+msgstr "Міграція"
+
+#: classes/PodsInit.php:1959 classes/PodsInit.php:1974 components/Pages.php:531
+#: components/Pages.php:546 components/Templates/Templates.php:279
+#: components/Templates/Templates.php:294 src/Pods/Admin/Config/Pod.php:599
+msgid "%s updated."
+msgstr "%s оновлено."
+
+#. translators: %1$s: date and time of the revision, %2$s: the revision post
+#. title
+#. translators: %s: date and time of the revision
+#: classes/PodsInit.php:1961 components/Pages.php:533
+#: components/Templates/Templates.php:281
+msgid "%1$s restored to revision from %2$s"
+msgstr "%1$s відновлюється до перегляду з%2$s"
+
+#: classes/PodsInit.php:1975 components/Pages.php:547
+#: components/Templates/Templates.php:295
+msgid "%s published."
+msgstr "%s опубліковано."
+
+#: classes/PodsInit.php:2061 src/Pods/Admin/Config/Pod.php:334
+msgid "Popular %s"
+msgstr "Популярний %s"
+
+#: classes/PodsInit.php:2069 src/Pods/Admin/Config/Pod.php:190
+msgid "New %s Name"
+msgstr "Нове %s Ім'я"
+
+#: classes/PodsInit.php:2070 src/Pods/Admin/Config/Pod.php:527
+msgid "Separate %s with commas"
+msgstr "Розділити %s комами"
+
+#: classes/PodsInit.php:2071 src/Pods/Admin/Config/Pod.php:536
+msgid "Add or remove %s"
+msgstr "Додати або видалити %s"
+
+#: classes/PodsInit.php:2072 src/Pods/Admin/Config/Pod.php:545
+msgid "Choose from the most used %s"
+msgstr "Обрати з найбільш використовуваних %s"
+
+#: classes/PodsUI.php:766 src/Pods/Admin/Config/Pod.php:286
+msgid "Manage %s"
+msgstr "Керувати %s"
+
+#: classes/PodsAdmin.php:562 classes/PodsAdmin.php:583
+#: ui/admin/components-admin.php:16 ui/admin/settings-settings.php:97
+#: ui/admin/settings-settings.php:101 ui/admin/settings.php:26
+#: ui/admin/upgrade/upgrade_2_0_0.php:208
+msgid "Settings"
+msgstr "Налаштування"
+
+#: classes/PodsAdmin.php:956 classes/PodsAdmin.php:1384
+#: classes/PodsAdmin.php:1508 classes/PodsAdmin.php:1922
+#: src/Pods/Admin/Config/Pod.php:1650 src/Pods/Tools/Repair.php:402
+msgid "Type"
+msgstr "Тип"
+
+#: classes/Pods.php:4088 classes/PodsAdmin.php:797 classes/PodsForm.php:399
+#: ui/admin/components-admin.php:113
+msgid "Save Changes"
+msgstr "Зберегти зміни"
+
+#: classes/PodsAdmin.php:281 classes/PodsAdmin.php:355 classes/PodsI18n.php:171
+#: classes/PodsInit.php:2030 classes/PodsUI.php:755 classes/PodsUI.php:4488
+#: src/Pods/Admin/Config/Pod.php:199 src/Pods/Admin/Config/Pod.php:1584
+msgid "Edit"
+msgstr "Редагувати"
+
+#: classes/Pods.php:4585 classes/PodsAdmin.php:1346 classes/PodsUI.php:4544
+#: src/Pods/Admin/Config/Pod.php:1586 ui/admin/view.php:85
+#: ui/forms/type/post.php:134
+msgid "Delete"
+msgstr "Видалити"
+
+#: classes/PodsAdmin.php:1340 classes/PodsUI.php:756 classes/PodsUI.php:4516
+#: src/Pods/Admin/Config/Pod.php:223 src/Pods/Admin/Config/Pod.php:1585
+msgid "Duplicate"
+msgstr "Дублювати"
+
+#: classes/PodsAPI.php:939 classes/PodsAPI.php:950
+msgid "Closed"
+msgstr "Закрито"
+
+#: classes/Pods.php:3394
+msgid "&laquo; First"
+msgstr "&laquo; Перша"
+
+#: classes/PodsAdmin.php:568 classes/PodsAdmin.php:589
+msgid "Help"
+msgstr "Допомога"
+
+#: classes/Pods.php:3397
+msgid "Last &raquo;"
+msgstr "Остання &raquo;"
+
+#: classes/PodsAPI.php:938 classes/PodsAPI.php:949
+msgid "Open"
+msgstr "Відкрито"
+
+#: classes/Pods.php:4125
+msgid "Form submitted successfully"
+msgstr "Форму успішно відправлено"
+
+#: src/Pods/Admin/Config/Pod.php:55
+msgid "Labels"
+msgstr "Мітки"
+
+#: src/Pods/Admin/Config/Field.php:369 src/Pods/Admin/Config/Group.php:125
+msgid "Visibility"
+msgstr "Видимість"
+
+#: src/Pods/Admin/Config/Field.php:325
+msgid "Default Value"
+msgstr "Значення за замовчуванням"
+
+#: classes/PodsAdmin.php:3750 src/Pods/Admin/Config/Field.php:52
+#: src/Pods/Admin/Config/Group.php:24 src/Pods/Admin/Config/Group.php:209
+#: ui/admin/setup-add.php:306 ui/admin/setup-add.php:532
+msgid "Advanced"
+msgstr "Додатково"
+
+#: classes/Pods.php:4578 src/Pods/Admin/Config/Pod.php:1588
+msgid "Export"
+msgstr "Експорт"
+
+#: classes/PodsI18n.php:161 classes/PodsUI.php:758
+#: src/Pods/Admin/Config/Pod.php:295 src/Pods/Admin/Config/Pod.php:1587
+msgid "Reorder"
+msgstr "Впорядкувати"
+
+#: src/Pods/Admin/Config/Pod.php:1132 src/Pods/Admin/Config/Pod.php:1460
+#: ui/admin/setup-add.php:271
+msgid "Menu Location"
+msgstr "Область для меню"
+
+#: src/Pods/Admin/Config/Pod.php:896 src/Pods/Admin/Config/Pod.php:1311
+msgid "Rewrite"
+msgstr "Перезаписати"
+
+#: src/Pods/Admin/Config/Pod.php:880 src/Pods/Admin/Config/Pod.php:1303
+#: src/Pods/Admin/Config/Pod.php:1710
+msgid "Hierarchical"
+msgstr "Ієрархічна"
+
+#: src/Pods/Admin/Config/Pod.php:828 src/Pods/Admin/Config/Pod.php:1343
+msgid "User Capability"
+msgstr "Можливості користувача"
+
+#: classes/PodsAdmin.php:1457 classes/PodsAdmin.php:1687
+#: classes/PodsAdmin.php:2872 includes/access.php:1570
+#: src/Pods/Admin/Config/Pod.php:791 src/Pods/Admin/Config/Pod.php:810
+#: src/Pods/Admin/Config/Pod.php:1255 src/Pods/Admin/Config/Pod.php:1275
+msgid "Public"
+msgstr "Публічно"
+
+#: src/Pods/Admin/Config/Pod.php:708
+msgid "Menu Icon"
+msgstr "Іконка меню"
+
+#: src/Pods/Admin/Config/Pod.php:698 src/Pods/Admin/Config/Pod.php:1156
+#: src/Pods/Admin/Config/Pod.php:1480 src/Pods/Admin/Config/Pod.php:1553
+msgid "Menu Position"
+msgstr "Позиція меню"
+
+#: src/Pods/Admin/Config/Pod.php:652 src/Pods/Admin/Config/Pod.php:691
+#: src/Pods/Admin/Config/Pod.php:1125
+msgid "Menu Name"
+msgstr "Назва меню"
+
+#: src/Pods/Admin/Config/Pod.php:67
+msgid "Advanced Options"
+msgstr "Додаткові параметри"
+
+#: classes/PodsAdmin.php:550 classes/PodsAdmin.php:3704
+msgid "Components"
+msgstr "Компоненти"
+
+#: classes/PodsAdmin.php:351 classes/PodsAdmin.php:377 classes/PodsUI.php:753
+#: components/Roles/ui/edit.php:38 src/Pods/Admin/Config/Pod.php:279
+#: ui/admin/view.php:21 ui/forms/type/post.php:50
+msgid "Manage"
+msgstr "Керувати"
+
+#: classes/PodsAdmin.php:1299 src/Pods/Tools/Reset.php:249
+msgid "field"
+msgid_plural "fields"
+msgstr[0] "поле"
+msgstr[1] "поля"
+msgstr[2] "полів"
+
+#: classes/Pods.php:4477 src/Pods/Admin/Config/Pod.php:1637
+#: src/Pods/Tools/Repair.php:159 src/Pods/Tools/Repair.php:328
+#: src/Pods/Tools/Repair.php:404 src/Pods/Tools/Repair.php:603
+#: src/Pods/Tools/Repair.php:711 src/Pods/Tools/Repair.php:825
+#: src/Pods/Tools/Repair.php:895 src/Pods/Tools/Repair.php:1041
+msgid "ID"
+msgstr "ID"
+
+#: src/Pods/Admin/Config/Field.php:499 src/Pods/Admin/Config/Field.php:508
+#: src/Pods/Admin/Config/Group.php:92 src/Pods/Admin/Config/Group.php:100
+#: src/Pods/Admin/Config/Group.php:168 src/Pods/Admin/Config/Pod.php:143
+#: src/Pods/Admin/Config/Pod.php:150 src/Pods/Admin/Config/Pod.php:157
+#: src/Pods/Admin/Config/Pod.php:184 src/Pods/Admin/Config/Pod.php:193
+#: src/Pods/Admin/Config/Pod.php:200 src/Pods/Admin/Config/Pod.php:209
+#: src/Pods/Admin/Config/Pod.php:217 src/Pods/Admin/Config/Pod.php:224
+#: src/Pods/Admin/Config/Pod.php:233 src/Pods/Admin/Config/Pod.php:242
+#: src/Pods/Admin/Config/Pod.php:249 src/Pods/Admin/Config/Pod.php:258
+#: src/Pods/Admin/Config/Pod.php:266 src/Pods/Admin/Config/Pod.php:273
+#: src/Pods/Admin/Config/Pod.php:280 src/Pods/Admin/Config/Pod.php:289
+#: src/Pods/Admin/Config/Pod.php:296 src/Pods/Admin/Config/Pod.php:305
+#: src/Pods/Admin/Config/Pod.php:314 src/Pods/Admin/Config/Pod.php:320
+#: src/Pods/Admin/Config/Pod.php:329 src/Pods/Admin/Config/Pod.php:337
+#: src/Pods/Admin/Config/Pod.php:346 src/Pods/Admin/Config/Pod.php:355
+#: src/Pods/Admin/Config/Pod.php:364 src/Pods/Admin/Config/Pod.php:370
+#: src/Pods/Admin/Config/Pod.php:378 src/Pods/Admin/Config/Pod.php:385
+#: src/Pods/Admin/Config/Pod.php:394 src/Pods/Admin/Config/Pod.php:403
+#: src/Pods/Admin/Config/Pod.php:412 src/Pods/Admin/Config/Pod.php:421
+#: src/Pods/Admin/Config/Pod.php:428 src/Pods/Admin/Config/Pod.php:436
+#: src/Pods/Admin/Config/Pod.php:444 src/Pods/Admin/Config/Pod.php:452
+#: src/Pods/Admin/Config/Pod.php:462 src/Pods/Admin/Config/Pod.php:471
+#: src/Pods/Admin/Config/Pod.php:480 src/Pods/Admin/Config/Pod.php:489
+#: src/Pods/Admin/Config/Pod.php:496 src/Pods/Admin/Config/Pod.php:504
+#: src/Pods/Admin/Config/Pod.php:512 src/Pods/Admin/Config/Pod.php:520
+#: src/Pods/Admin/Config/Pod.php:530 src/Pods/Admin/Config/Pod.php:539
+#: src/Pods/Admin/Config/Pod.php:548 src/Pods/Admin/Config/Pod.php:557
+#: src/Pods/Admin/Config/Pod.php:566 src/Pods/Admin/Config/Pod.php:575
+#: src/Pods/Admin/Config/Pod.php:584 src/Pods/Admin/Config/Pod.php:593
+#: src/Pods/Admin/Config/Pod.php:602 src/Pods/Admin/Config/Pod.php:609
+#: src/Pods/Admin/Config/Pod.php:618 src/Pods/Admin/Config/Pod.php:646
+#: src/Pods/Admin/Config/Pod.php:653 src/Pods/Admin/Config/Pod.php:686
+#: src/Pods/Admin/Config/Pod.php:692 src/Pods/Admin/Config/Pod.php:716
+#: src/Pods/Admin/Config/Pod.php:723 src/Pods/Admin/Config/Pod.php:822
+#: src/Pods/Admin/Config/Pod.php:843 src/Pods/Admin/Config/Pod.php:921
+#: src/Pods/Admin/Config/Pod.php:929 src/Pods/Admin/Config/Pod.php:944
+#: src/Pods/Admin/Config/Pod.php:1126 src/Pods/Admin/Config/Pod.php:1133
+#: src/Pods/Admin/Config/Pod.php:1151 src/Pods/Admin/Config/Pod.php:1174
+#: src/Pods/Admin/Config/Pod.php:1181 src/Pods/Admin/Config/Pod.php:1188
+#: src/Pods/Admin/Config/Pod.php:1312 src/Pods/Admin/Config/Pod.php:1320
+#: src/Pods/Admin/Config/Pod.php:1336 src/Pods/Admin/Config/Pod.php:1364
+#: src/Pods/Admin/Config/Pod.php:1371 src/Pods/Admin/Config/Pod.php:1378
+#: src/Pods/Admin/Config/Pod.php:1385 src/Pods/Admin/Config/Pod.php:1448
+#: src/Pods/Admin/Config/Pod.php:1461 src/Pods/Admin/Config/Pod.php:1475
+#: src/Pods/Admin/Config/Pod.php:1518 src/Pods/Admin/Config/Pod.php:1530
+#: src/Pods/Admin/Config/Pod.php:1538 src/Pods/Admin/Config/Pod.php:1548
+#: src/Pods/Admin/Config/Pod.php:1579 src/Pods/Admin/Config/Pod.php:1602
+#: src/Pods/Admin/Config/Pod.php:1610 ui/fields/_label.php:15
+msgid "help"
+msgstr "допомога"
+
+#: classes/Pods.php:3544 classes/PodsI18n.php:173 classes/PodsUI.php:759
+#: classes/PodsUI.php:2993 classes/PodsUI.php:3268
+#: src/Pods/Admin/Config/Pod.php:319
+msgid "Search"
+msgstr "Пошук"
+
+#: classes/PodsAdmin.php:953 classes/PodsAdmin.php:1505
+#: classes/PodsAdmin.php:3709 classes/PodsUI.php:797
+#: components/Roles/Roles.php:91 components/Roles/ui/add.php:49
+#: src/Pods/Admin/Config/Field.php:136 src/Pods/Admin/Config/Group.php:99
+#: src/Pods/Admin/Config/Pod.php:1643 src/Pods/Tools/Repair.php:326
+#: src/Pods/Tools/Repair.php:400 src/Pods/Tools/Repair.php:823
+#: src/Pods/Tools/Repair.php:893 src/Pods/Tools/Repair.php:1039
+msgid "Name"
+msgstr "Ім'я"
+
+#: classes/PodsAdmin.php:277 classes/PodsAdmin.php:1382
+#: classes/PodsAdmin.php:1913 classes/PodsAdmin.php:3744
+msgid "All"
+msgstr "Все"
+
+#: classes/PodsAdmin.php:578 ui/admin/upgrade/upgrade_2_1_0.php:26
+msgid "Upgrade"
+msgstr "Оновлення"
+
+#: classes/fields/pick.php:295 classes/fields/pick.php:1041
+#: classes/PodsAdmin.php:357 classes/PodsAdmin.php:376
+#: classes/PodsAdmin.php:544 classes/PodsField.php:595 classes/PodsI18n.php:151
+#: src/Pods/Admin/Config/Field.php:258 src/Pods/Admin/Config/Pod.php:1583
+msgid "Add New"
+msgstr "Додати новий"
+
+#: classes/fields/email.php:143 classes/PodsAPI.php:9637
+msgid "%s is required"
+msgstr "%s обов’язково"
+
+#: src/Pods/Admin/Config/Field.php:305
+msgid "Visual"
+msgstr "Візуальний"
+
+#: src/Pods/Admin/Config/Pod.php:1570
+msgid "Header Icon"
+msgstr "Іконка хедера"
+
+#: classes/PodsAPI.php:11802
+msgid "Object not found"
+msgstr "Object не знайдено"
+
+#: src/Pods/Admin/Config/Field.php:317
+msgid "Values"
+msgstr "Значення"
+
+#: classes/PodsAdmin.php:950 classes/PodsAdmin.php:1502
+#: components/Roles/Roles.php:90 components/Roles/ui/add.php:40
+#: src/Pods/Admin/Config/Field.php:128 src/Pods/Admin/Config/Group.php:91
+#: src/Pods/Admin/Config/Pod.php:142
+msgid "Label"
+msgstr "Мітка"
+
+#: src/Pods/Admin/Config/Pod.php:664
+msgid "Post Type Description"
+msgstr "Опис типу записи"
+
+#: src/Pods/Admin/Config/Pod.php:943
+msgid "Default Status"
+msgstr "Початковий статус"

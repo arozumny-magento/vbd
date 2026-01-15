@@ -1,0 +1,69 @@
+# WordPress
+wp-config.php
+wp-config-sample.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/backup-db/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/cache/
+wp-content/cache/supercache/
+
+# Environment & Config
+.env
+.env.local
+.env.*.local
+*.env
+
+# Logs
+*.log
+error_log
+*.sql
+
+# IDE & Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Build artifacts
+*.map
+*.min.js
+*.min.css
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.zip
+*.tar.gz
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
+
+# WordPress specific
+wp-content/plugins/hello.php
+wp-content/plugins/akismet/
+
+# Custom (add project-specific ignores below)

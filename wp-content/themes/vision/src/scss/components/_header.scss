@@ -1,0 +1,83 @@
+header {
+  background: linear-gradient(to right, #fff 0%,#fff 50%,#F5F5F7 50.01%,#F5F5F7 100%);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #d0b135;
+  top: 20px;
+  left: 0;
+  pointer-events: none;
+  transform-origin: 100% 50%;
+  transform: scale3d(0, 1, 1);
+  transition: transform 0.3s;
+}
+
+.nav-link.active:before,
+.nav-link:focus:before,
+.nav-link:hover:before,
+.group:hover .nav-link:before {
+  transform-origin: 0% 50%;
+  transform: scale3d(1, 1, 1);
+}
+
+.link {
+  position: relative;
+}
+
+.link:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background: #d0b135;
+  top: 30px;
+  left: 0;
+  pointer-events: none;
+  transform-origin: 100% 50%;
+  transform: scale3d(0, 1, 1);
+  transition: transform 0.3s;
+}
+
+.link.active:before,
+.link:focus:before,
+.link:hover:before,
+.group:hover .link:before {
+  transform-origin: 0% 50%;
+  transform: scale3d(1, 1, 1);
+}
+
+.link-underline-animation,
+.sub-link {
+  position: relative;
+  display: inline-block;
+}
+
+.link-underline-animation::after {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: 0.25rem;
+  width: 100%;
+  transform-origin: bottom left;
+  --tw-scale-x: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  border-width: 0px;
+  content: '';
+  transition: transform 0.25s ease-out;
+}
+
+.link-underline-animation:hover::after {
+  left: 0px;
+  bottom: 0.25rem;
+  transform-origin: bottom right;
+  --tw-scale-x: 0;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}

@@ -1,0 +1,116 @@
+.article .intro {
+  margin-bottom: 2.5rem;
+  display: block;
+}
+
+.slides-container,
+.news-container {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.slides-container::-webkit-scrollbar,
+.news-container::-webkit-scrollbar {
+  display: none;
+}
+
+.slides-indicators {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 2.5rem;
+  margin-right: 2.5rem;
+  cursor: pointer;
+  opacity: 0.4;
+}
+
+.news-indicators {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  cursor: pointer;
+  opacity: 0.4 !important;
+}
+
+.slides-indicators:first-of-type,
+.news-indicators:first-of-type {
+  margin-left: 0px;
+}
+
+.slides-indicators.slick-current,
+.news-indicators.slick-current,
+.slides-indicators:hover,
+.news-indicators:hover {
+  opacity: 1 !important;
+}
+
+.path2 {
+  stroke-dasharray: 1120;
+  /*   stroke-dashoffset: 800; */
+  animation: draw1 5s linear alternate;
+}
+
+@keyframes draw1 {
+  from {
+    stroke-dashoffset: 1120;
+  }
+
+  to {
+    stroke-dashoffset: 2240;
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.counter,
+.js-counter {
+  margin-bottom: 1.25rem;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.flip-gif {
+  margin-bottom: 1rem;
+  height: 1rem;
+  width: 1rem;
+}
+
+.flip-gif.transformed {
+  --tw-rotate: 270;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.expertise p {
+  margin-bottom: 0.75rem;
+}
+
+.knowledgeitem .news-p-0 {
+  padding: 0px;
+}
+
+.knowledgeitem .news-p-0 h2 {
+  margin-bottom: 0.75rem;
+}
+
+.introduction ul, .introduction ol {
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  list-style-type: disc;
+  padding-inline-start: 2.5rem;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+.introduction p {
+  margin-bottom: 1.25rem;
+}

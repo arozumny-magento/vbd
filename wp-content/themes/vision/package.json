@@ -1,0 +1,22 @@
+{
+  "name": "vision-theme",
+  "version": "1.0.0",
+  "description": "Vision WordPress Theme - SCSS compilation",
+  "scripts": {
+    "build": "node build.js",
+    "build:css": "sass src/scss/main.scss assets/css/main.css --style=compressed --source-map",
+    "watch": "node watch.js",
+    "dev": "node watch.js"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "scss"
+  ],
+  "author": "Vision Business Development",
+  "license": "GPL-2.0",
+  "devDependencies": {
+    "chokidar": "^3.6.0",
+    "sass": "^1.77.0"
+  }
+}

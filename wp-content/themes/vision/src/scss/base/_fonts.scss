@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1 {
+  font-family: 'plaakRegular';
+}
+
+h2, h3, h4, button {
+  font-family: 'Inter';
+  letter-spacing: 1px;
+}
+
+h5 {
+  font-family: 'plaakRegular';
+  letter-spacing: 1px;
+}
+
+button {
+  font-family: 'Inter'!important;
+  letter-spacing: 1px!important;
+}
+
+.plaakRegular {
+  font-family: 'plaakRegular';
+  letter-spacing: 1px;
+}
+
+.\!Inter {
+  font-family: 'Inter' !important;
+  letter-spacing: 1px !important;
+}
+
+.Inter {
+  font-family: 'Inter';
+  letter-spacing: 1px;
+}
+
+.\!akkuratLight {
+  font-family: 'AkkuratLLSub-Light' !important;
+}
+
+.akkuratLight {
+  font-family: 'AkkuratLLSub-Light';
+}
+
+.\!akkuratRegular {
+  font-family: 'AkkuratLLWeb-Regular' !important;
+}
+
+.akkuratRegular {
+  font-family: 'AkkuratLLWeb-Regular';
+}
+
+header nav a,
+.location {
+  font-family: 'plaakRegular';
+  letter-spacing: 2px;
+}
+
+footer a {
+  font-family: 'AkkuratLLWeb-Regular';
+}
