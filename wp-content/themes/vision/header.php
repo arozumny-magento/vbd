@@ -9,6 +9,7 @@
 <body <?php body_class('body-padding-top home global'); ?> data-aos-easing="ease" data-aos-duration="1000" data-aos-delay="0">
 
 <header class="fixed inset-x-0 top-0 z-50 border-b border-solid border-slate-200 bg-white">
+
     <nav class="mx-auto px-6 pb-0 lg:px-20 bg-white" aria-label="Global">
         <div class="flex justify-between">
             <div class="py-1 lg:py-3 xl:py-5 bg-white flex justify-between items-center w-full xl:w-fit">

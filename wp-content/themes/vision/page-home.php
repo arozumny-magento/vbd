@@ -1,4 +1,7 @@
 <?php
+/**
+ * Template Name: Vision Home
+ */
 
 get_header();
 ?>
@@ -16,8 +19,6 @@ get_header();
                     </div>
                 </div>
             </div>
-
-
         </section>
 
         <div class="flex aspect-16/9 w-full media">
