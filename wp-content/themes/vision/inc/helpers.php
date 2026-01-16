@@ -11,10 +11,30 @@ if (!defined('ABSPATH')) {
 
 /**
  * Get language switcher links
+ * Integrates with Polylang if available
  *
  * @return array Array of language links
  */
 function vision_get_language_links() {
+    // If Polylang is active, use it
+    if (function_exists('pll_the_languages')) {
+        $languages = pll_the_languages(array('raw' => 1));
+        $current_lang = pll_current_language();
+        $formatted_languages = array();
+        
+        foreach ($languages as $lang) {
+            $formatted_languages[$lang['slug']] = array(
+                'url' => $lang['url'],
+                'code' => strtoupper($lang['slug']),
+                'name' => $lang['name'],
+                'active' => ($lang['current_lang'] == 1),
+            );
+        }
+        
+        return apply_filters('vision_language_links', $formatted_languages);
+    }
+    
+    // Fallback to default languages
     return apply_filters('vision_language_links', array(
         'en' => array(
             'url' => home_url('/'),
@@ -45,10 +65,18 @@ function vision_get_language_links() {
 
 /**
  * Get current language code
+ * Integrates with Polylang if available
  *
  * @return string Current language code
  */
 function vision_get_current_language() {
+    // If Polylang is active, use it
+    if (function_exists('pll_current_language')) {
+        $lang = pll_current_language();
+        return apply_filters('vision_current_language', $lang ? $lang : 'en');
+    }
+    
+    // Fallback to default
     return apply_filters('vision_current_language', 'en');
 }
 

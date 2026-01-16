@@ -1,0 +1,21 @@
+{
+  "name": "vbd-wordpress",
+  "version": "1.0.0",
+  "description": "WordPress site root - build scripts for Vision theme",
+  "scripts": {
+    "build": "cd wp-content/themes/vision && npm run build",
+    "build:css": "cd wp-content/themes/vision && npm run build:css",
+    "watch": "cd wp-content/themes/vision && npm run watch",
+    "dev": "cd wp-content/themes/vision && npm run dev",
+    "theme:install": "cd wp-content/themes/vision && npm install",
+    "theme:build": "cd wp-content/themes/vision && npm run build",
+    "theme:watch": "cd wp-content/themes/vision && npm run watch"
+  },
+  "keywords": [
+    "wordpress",
+    "theme",
+    "build"
+  ],
+  "author": "Vision Business Development",
+  "license": "GPL-2.0"
+}

@@ -10,117 +10,156 @@ get_header();
     <div class="umb-block-list">
         <section class="hero">
             <div class="relative isolate overflow-hidden bg-white">
-                <div class="mx-auto max-w-7xl px-6 py-8 lg:py-20 lg:px-20 lg:pb-10">
+                <div class="mx-auto max-w-7xl px-4 py-4 lg:py-10 lg:px-20 lg:pb-10">
                     <div class="mx-auto max-w-7xl text-center">
                         <div class="max-w-7xl font-normal text-dark-blue text-xl md:text-3xl lg:text-5xl uppercase text-left tracking-[.20em] aos-init aos-animate"
                              data-aos="fade-up" data-aos-delay="100"><h1 class="text-xl lg:text-4xl"></h1>
-                            <h1>Business Expansion under the New Investment Paradigm</h1>
+                            <h1><?php the_field('main_slogan') ?></h1>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="flex aspect-16/9 w-full media">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/hero-1920x600.jpeg" />
-            <!--        <video autoplay="true" loop="true" muted="true" class="w-auto min-w-full min-h-full max-w-none">-->
-            <!--            <source src="<?php echo get_template_directory_uri(); ?>/assets/hero_banner_1920x600_web2.mp4" type="video/mp4">-->
-            <!--            Your browser does not support the video tag.-->
-            <!--        </video>-->
+        <div class="flex aspect-16/9 w-full media hero-banner-block">
+            <?php
+                $heroBanner = get_field('hero_banner');
+            ?>
+            <?php if (isVideo($heroBanner)) :?>
+                    <video autoplay="true" loop="true" muted="true" class="w-auto min-w-full min-h-full max-w-none">
+                        <source src="<?php echo get_template_directory_uri(); ?>/assets/hero_banner_1920x600_web2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+            <?php else: ?>
+            <img src="<?php the_field('hero_banner') ?>" />
+            <?php endif; ?>
         </div>
 
         <div class="w-full relative content-grid EN">
             <div class="mx-auto md:grid grid-cols-2 gap-0 services">
 
-                <div class="bg-dark-blue English border-r border-b lg:border-b-0" style="border-color:#373b61;">
-                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl">
-                            <a href="https://visionbusinessdevelopment.com/services/fund-administration"
-                               class="flex flex-row gap-6 items-center">
-                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">
-                                    Saudi Market Entry</h3>
-                            </a>
-                        </div>
-                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                            Product Localization with In-Market Support
-                        </div>
-                    </div>
-                </div>
 
-                <div class="bg-light-blue English border-b" style="border-color:#373b61;">
-                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl" style="color: #00012e">
-                            <a href="https://visionbusinessdevelopment.com/services/private-clients"
-                               class="flex flex-row gap-6 items-center">
-                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2 after:bg-white">
-                                    Capital Access Advisory</h3>
-                            </a>
-                        </div>
-                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="color: #00012e">
-                            Adaptation of International Projects for Specific Regional Requirements
-                        </div>
-                    </div>
-                </div>
+                    <?php 
+                    if (have_rows('services')): 
+                        while (have_rows('services')) : the_row();
+                            
+                            // Get the left_block group as an array
+                            $left_block = get_sub_field('left_block');
+                            if ($left_block):
+                                $leftBlockTheme = isset($left_block['block_theme']) ? strtolower($left_block['block_theme']) : '';
+                                $leftHeader = isset($left_block['header']) ? $left_block['header'] : '';
+                                $leftText = isset($left_block['text']) ? $left_block['text'] : '';
+                                $leftLink = isset($left_block['link']) ? $left_block['link'] : '';
+                            endif;
+                            
+                            // Get the right_block group as an array
+                            $right_block = get_sub_field('right_block');
+                            if ($right_block):
+                                $rightBlockTheme = isset($right_block['block_theme']) ? strtolower($right_block['block_theme']) : '';
+                                $rightHeader = isset($right_block['header']) ? $right_block['header'] : '';
+                                $rightText = isset($right_block['text']) ? $right_block['text'] : '';
+                                $rightLink = isset($right_block['link']) ? $right_block['link'] : '';
+                            endif;
+                            ?>
 
-                <div class="bg-light-blue English border-b" style="border-color:#373b61;">
-                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl" style="color: #00012e">
-                            <a href="https://visionbusinessdevelopment.com/services/private-clients"
-                               class="flex flex-row gap-6 items-center">
-                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2 after:bg-white">
-                                    B2B Expansion Worldwide</h3>
-                            </a>
-                        </div>
-                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="color: #00012e">
-                            International Strategy Based on Cross-Country Specifics
-                        </div>
-                    </div>
-                </div>
+                            <div class="bg-<?=$leftBlockTheme?>-blue block-<?=$leftBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
+                                <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 6rem 6rem;">
+                                    <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
+                                        <a href="<?=$leftLink?>"
+                                           class="flex flex-row gap-6 items-center">
+                                            <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">
+                                                <?=$leftHeader?></h3>
+                                        </a>
+                                    </div>
+                                    <div class="lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="100">
+                                        <?=$leftText?>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="bg-dark-blue English border-r border-b lg:border-b-0" style="border-color:#373b61;">
-                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl">
-                            <a href="https://visionbusinessdevelopment.com/services/fund-administration"
-                               class="flex flex-row gap-6 items-center">
-                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">
-                                    Ukraine Investment</h3>
-                            </a>
-                        </div>
-                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                            In-Country Assistance for International Investors
-                        </div>
-                    </div>
-                </div>
+                            <div class="bg-<?=$rightBlockTheme?>-blue block-<?=$rightBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
+                                <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 6rem 6rem;">
+                                    <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
+                                        <a href="<?=$rightLink?>"
+                                           class="flex flex-row gap-6 items-center">
+                                            <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">
+                                                <?=$rightHeader?></h3>
+                                        </a>
+                                    </div>
+                                    <div class="lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="100">
+                                        <?=$rightText?>
+                                    </div>
+                                </div>
+                            </div>
 
-                <div class="bg-dark-blue English border-r border-b lg:border-b-0" style="border-color:#373b61;">
-                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl">
-                            <a href="https://visionbusinessdevelopment.com/services/fund-administration"
-                               class="flex flex-row gap-6 items-center">
-                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">
-                                    Investment Advisory</h3>
-                            </a>
-                        </div>
-                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-                            Investment Opportunities Across the World under the New Investment Paradigm
-                        </div>
-                    </div>
-                </div>
+                <?php
+                        endwhile; 
+                    else : 
+                        // No rows found
+                    endif; 
+                    ?>
 
-                <div class="bg-light-blue English border-b" style="border-color:#373b61;">
-                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl" style="color: #00012e">
-                            <a href="https://visionbusinessdevelopment.com/services/private-clients"
-                               class="flex flex-row gap-6 items-center">
-                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2 after:bg-white">
-                                    Asset Management</h3>
-                            </a>
-                        </div>
-                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="color: #00012e">
-                            Organizational Structures for Local Investment Oversight
-                        </div>
-                    </div>
-                </div>
+<!--                -->
+<!---->
+<!--                <div class="bg-light-blue English border-b" style="border-color:#373b61;">-->
+<!--                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">-->
+<!--                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl" style="color: #00012e">-->
+<!--                            <a href="https://visionbusinessdevelopment.com/services/private-clients"-->
+<!--                               class="flex flex-row gap-6 items-center">-->
+<!--                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2 after:bg-white">-->
+<!--                                    B2B Expansion Worldwide</h3>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="color: #00012e">-->
+<!--                            International Strategy Based on Cross-Country Specifics-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!---->
+<!--                <div class="bg-dark-blue English border-r border-b lg:border-b-0" style="border-color:#373b61;">-->
+<!--                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">-->
+<!--                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl">-->
+<!--                            <a href="https://visionbusinessdevelopment.com/services/fund-administration"-->
+<!--                               class="flex flex-row gap-6 items-center">-->
+<!--                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">-->
+<!--                                    Ukraine Investment</h3>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">-->
+<!--                            In-Country Assistance for International Investors-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!---->
+<!--                <div class="bg-dark-blue English border-r border-b lg:border-b-0" style="border-color:#373b61;">-->
+<!--                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">-->
+<!--                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl">-->
+<!--                            <a href="https://visionbusinessdevelopment.com/services/fund-administration"-->
+<!--                               class="flex flex-row gap-6 items-center">-->
+<!--                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">-->
+<!--                                    Investment Advisory</h3>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">-->
+<!--                            Investment Opportunities Across the World under the New Investment Paradigm-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!---->
+<!--                <div class="bg-light-blue English border-b" style="border-color:#373b61;">-->
+<!--                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">-->
+<!--                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl" style="color: #00012e">-->
+<!--                            <a href="https://visionbusinessdevelopment.com/services/private-clients"-->
+<!--                               class="flex flex-row gap-6 items-center">-->
+<!--                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2 after:bg-white">-->
+<!--                                    Asset Management</h3>-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="color: #00012e">-->
+<!--                            Organizational Structures for Local Investment Oversight-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
 

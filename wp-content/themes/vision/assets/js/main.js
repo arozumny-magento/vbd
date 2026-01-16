@@ -1,56 +1,32 @@
 /**
  * Vision Theme - Main JavaScript
+ * Alpine.js handles most interactive components (language switcher, mobile menu)
  */
 
 (function() {
     'use strict';
 
-    // Mobile menu toggle
-    const navToggler = document.querySelector('.nav-toggler');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    
-    if (navToggler && mobileMenu) {
-        navToggler.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-        });
-    }
-
-    // Language dropdown toggle
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    
-    dropdownToggles.forEach(function(toggle) {
-        toggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            const dropdown = this.nextElementSibling;
-            if (dropdown) {
-                dropdown.classList.toggle('hidden');
-            }
-        });
-    }
-
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.custom-dropdown')) {
-            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-                menu.classList.add('hidden');
-            });
-        }
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href !== '#' && href.length > 1) {
-                const target = document.querySelector(href);
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Alpine.js now handles:
+        // - Language switcher dropdown (x-data, x-show, @click.away)
+        // - Mobile menu toggle (custom event dispatch)
+        // - Mobile menu submenu navigation (x-data, x-show)
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.length > 1) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 }
-            }
+            });
         });
     });
 

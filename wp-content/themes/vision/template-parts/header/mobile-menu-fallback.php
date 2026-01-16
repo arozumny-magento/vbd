@@ -121,26 +121,34 @@ $mobile_items = apply_filters('vision_mobile_menu_items', array(
 </div>
 
 <?php foreach ($mobile_items as $key => $item) : ?>
-    <div class="nav-item-container">
-        <a 
-            href="<?php echo esc_url($item['url']); ?>"
-            class="nav-item text-white uppercase py-4 px-6 lg:px-12 border-b border-[#343A61] flex justify-between items-center hover:text-mid-blue"
-        >
-            <span><?php echo esc_html($item['label']); ?></span>
-            <?php if (!empty($item['children'])) : ?>
+    <div x-data="{ showSubmenu: false }" class="nav-item-container">
+        <?php if (!empty($item['children'])) : ?>
+            <button 
+                type="button"
+                @click="showSubmenu = true"
+                class="nav-item text-white uppercase py-4 px-6 lg:px-12 border-b border-[#343A61] flex justify-between items-center hover:text-mid-blue w-full text-left"
+            >
+                <span><?php echo esc_html($item['label']); ?></span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
                 </svg>
-            <?php endif; ?>
-        </a>
-        <?php if (!empty($item['children'])) : ?>
-            <div class="hidden sub-nav">
-                <div class="uppercase flex justify-between items-center text-mid-blue py-4 px-6 lg:px-12 border-b border-[#343A61] cursor-pointer back-btn">
+            </button>
+            <div 
+                x-show="showSubmenu"
+                x-transition
+                class="sub-nav"
+                style="display: none;"
+            >
+                <button 
+                    type="button"
+                    @click="showSubmenu = false"
+                    class="uppercase flex justify-between items-center text-mid-blue py-4 px-6 lg:px-12 border-b border-[#343A61] cursor-pointer back-btn w-full text-left"
+                >
                     <span><?php esc_html_e('Back', 'vision'); ?></span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 rotate-180" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"></path>
                     </svg>
-                </div>
+                </button>
                 <?php foreach ($item['children'] as $child) : ?>
                     <a 
                         href="<?php echo esc_url($child['url']); ?>"
@@ -153,6 +161,13 @@ $mobile_items = apply_filters('vision_mobile_menu_items', array(
                     </a>
                 <?php endforeach; ?>
             </div>
+        <?php else : ?>
+            <a 
+                href="<?php echo esc_url($item['url']); ?>"
+                class="nav-item text-white uppercase py-4 px-6 lg:px-12 border-b border-[#343A61] flex justify-between items-center hover:text-mid-blue"
+            >
+                <span><?php echo esc_html($item['label']); ?></span>
+            </a>
         <?php endif; ?>
     </div>
 <?php endforeach; ?>

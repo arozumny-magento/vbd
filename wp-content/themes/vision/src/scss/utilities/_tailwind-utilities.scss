@@ -820,6 +820,10 @@
   justify-content: space-between;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 .justify-items-start {
   justify-items: start;
 }
@@ -1803,13 +1807,6 @@ p {
   animation: bounce-right 1s infinite;
 }
 
-@media screen and (min-width:1024px) {
-  body.home h1, body.europe h1, body.amea h1, body.americas-caribbean h1 {
-    font-size: 3rem;
-    line-height: 1.5;
-  }
-}
-
 .regional-sub-nav + .umb-block-list {
   padding-top: 70px;
 }
@@ -2194,10 +2191,6 @@ body.zh p, body.zh h1, body.zh h2, body.zh h3, body.zh h4, body.zh h5, body.zh h
   -moz-user-select: none;
   user-select: none;
   max-width: 650px;
-  background-position-x: 95%;
-  background-position-y: 50%;
-  background-image: url('/assets/images/dropdown.svg') !important;
-  background-repeat: no-repeat;
 }
 
 .dropdown-selected {

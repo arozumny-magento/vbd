@@ -5,12 +5,14 @@
 @use 'base/reset';
 
 // Components
+@use 'components/variables';
 @use 'components/layout';
 @use 'components/header';
 @use 'components/prose';
 @use 'components/footer';
 @use 'components/forms';
 @use 'components/custom-styles';
+@use 'components/home';
 
 // Utilities
 @use 'utilities/tailwind-variables';

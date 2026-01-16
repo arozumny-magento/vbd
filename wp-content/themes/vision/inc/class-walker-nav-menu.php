@@ -33,9 +33,24 @@ class Vision_Walker_Nav_Menu extends Walker_Nav_Menu {
         }
         $indent = ($depth) ? str_repeat($t, $depth) : '';
 
+        $title = apply_filters('the_title', $item->title, $item->ID);
+        $title = apply_filters('nav_menu_item_title', $title, $item, $args, $depth);
+        
+        // Check if this is a logo menu item
+        $is_logo = (strtolower(trim($title)) === 'logo');
+
         $classes = empty($item->classes) ? array() : (array) $item->classes;
         $classes[] = 'menu-item-' . $item->ID;
-        $classes[] = 'group about-group';
+        
+        // Only add group classes if it's not a logo item
+        if (!$is_logo) {
+            $classes[] = 'group about-group';
+        }
+        
+        // Add logo-specific class
+        if ($is_logo) {
+            $classes[] = 'menu-item-logo';
+        }
 
         $args = apply_filters('nav_menu_item_args', $args, $item, $depth);
 
@@ -56,7 +71,13 @@ class Vision_Walker_Nav_Menu extends Walker_Nav_Menu {
             $atts['rel'] = $item->xfn;
         }
         $atts['href'] = !empty($item->url) ? $item->url : '';
-        $atts['class'] = 'uppercase text-sm font-normal leading-8 text-gray-900 nav-link';
+        
+        // Different classes for logo vs regular menu items
+        if ($is_logo) {
+            $atts['class'] = 'max-w-fit';
+        } else {
+            $atts['class'] = 'uppercase text-sm font-normal leading-8 text-gray-900 nav-link';
+        }
 
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args, $depth);
 
@@ -68,16 +89,27 @@ class Vision_Walker_Nav_Menu extends Walker_Nav_Menu {
             }
         }
 
-        $title = apply_filters('the_title', $item->title, $item->ID);
-        $title = apply_filters('nav_menu_item_title', $title, $item, $args, $depth);
-
         $item_output = isset($args->before) ? $args->before : '';
         $item_output .= '<a' . $attributes . '>';
-        $item_output .= (isset($args->link_before) ? $args->link_before : '') . $title . (isset($args->link_after) ? $args->link_after : '');
+        
+        // Check if this menu item is the logo (title = "Logo")
+        if ($is_logo) {
+            // Display logo image instead of text
+            $logo_url = vision_get_logo_url();
+            $logo_alt = vision_get_logo_alt();
+            $item_output .= '<span class="sr-only">' . esc_html(get_bloginfo('name')) . '</span>';
+            $item_output .= '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($logo_alt) . '"';
+            $item_output .= ' class="lg:-left-[45px] xl:-left-[15px] max-w-[170px] md:max-w-[200px] relative lg:max-w-[200px] xl:max-w-[200px]"';
+            $item_output .= ' width="200" height="auto" loading="eager" />';
+        } else {
+            // Display normal menu item text
+            $item_output .= (isset($args->link_before) ? $args->link_before : '') . $title . (isset($args->link_after) ? $args->link_after : '');
+        }
+        
         $item_output .= '</a>';
         
-        // Add dropdown menu if has children
-        if (in_array('menu-item-has-children', $classes)) {
+        // Add dropdown menu if has children (but not for logo items)
+        if (in_array('menu-item-has-children', $classes) && !$is_logo) {
             $item_output .= '<div class="hidden mx-auto w-screen group-hover:block absolute z-50 pt-[25px] inset-x-0 transform hover-nav">';
             $item_output .= '<div class="bg-light-blue text-dark-blue from-dark-blue-300 to-dark-blue-500">';
             $item_output .= '<div class="grid gap-0 grid-cols-3">';

@@ -24,6 +24,9 @@ function vision_setup() {
         'caption',
     ));
     
+    // We handle admin bar positioning with CSS, so we don't need theme support
+    // Removing theme support prevents the array offset error
+    
     // Register navigation menus
     register_nav_menus(array(
         'primary' => __('Primary Menu', 'vision'),
@@ -41,16 +44,81 @@ function vision_scripts() {
     // No need to enqueue it manually, but we can add it with a version for cache busting
     wp_enqueue_style('vision-style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version'));
     
-    // Enqueue JavaScript
-    wp_enqueue_script('vision-script', get_template_directory_uri() . '/assets/js/main.js', array(), wp_get_theme()->get('Version'), true);
+    // Add admin bar styles to ensure it's always visible and properly positioned
+    $admin_bar_css = '
+        /* Ensure admin bar is never hidden */
+        #wpadminbar,
+        #wpadminbar.hidden {
+            z-index: 999999 !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            min-width: 600px !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: 32px !important;
+        }
+        #wpadminbar * {
+            visibility: visible !important;
+        }
+        #wpadminbar .ab-item,
+        #wpadminbar .ab-empty-item,
+        #wpadminbar li {
+            display: block !important;
+            visibility: visible !important;
+        }
+        @media screen and (max-width: 782px) {
+            #wpadminbar,
+            #wpadminbar.hidden {
+                height: 46px !important;
+            }
+        }
+        /* Adjust header position when admin bar is present */
+        body.admin-bar header.fixed,
+        body.admin-bar .fixed.inset-x-0.top-0,
+        body.admin-bar header {
+            top: 32px !important;
+        }
+        @media screen and (max-width: 782px) {
+            body.admin-bar header.fixed,
+            body.admin-bar .fixed.inset-x-0.top-0,
+            body.admin-bar header {
+                top: 46px !important;
+            }
+        }
+    ';
+    wp_add_inline_style('vision-style', $admin_bar_css);
+    
+    // Enqueue Alpine.js (CDN version auto-initializes)
+    wp_enqueue_script('alpinejs', get_template_directory_uri() . '/assets/js/alpine.min.js', array(), '3.14.1', false);
+    wp_script_add_data('alpinejs', 'defer', true);
+    
+    // Enqueue JavaScript (depends on Alpine.js for some components)
+    wp_enqueue_script('vision-script', get_template_directory_uri() . '/assets/js/main.js', array('alpinejs'), wp_get_theme()->get('Version'), true);
     
     // Localize script for AJAX
     wp_localize_script('vision-script', 'visionAjax', array(
         'ajaxurl' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('vision-nonce'),
     ));
+    
+    // Add x-cloak CSS to prevent flash of unstyled content
+    $alpine_css = '[x-cloak] { display: none !important; }';
+    wp_add_inline_style('vision-style', $alpine_css);
 }
 add_action('wp_enqueue_scripts', 'vision_scripts');
+
+/**
+ * Remove default admin bar padding callback
+ * We handle positioning with CSS instead
+ */
+function vision_remove_admin_bar_bump() {
+    remove_action('wp_head', '_admin_bar_bump_cb');
+}
+add_action('wp_head', 'vision_remove_admin_bar_bump', 0);
 
 /**
  * Register Widget Areas
@@ -77,3 +145,9 @@ require_once get_template_directory() . '/inc/helpers.php';
  * Load custom walker
  */
 require_once get_template_directory() . '/inc/class-walker-nav-menu.php';
+
+
+function isVideo(string $url) {
+
+    return false;
+}

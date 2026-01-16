@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+main {
+    .umb-block-list {
+    margin-top: 126px;
+  }
+}
+
+@media screen and (min-width:1024px) {
+  body.home h1, body.europe h1, body.amea h1, body.americas-caribbean h1 {
+    font-size: 2.4rem;
+    line-height: 1.5;
+  }
+}
+
+
+@media screen and (min-width:1044px) {
+
+  .hero-banner-block {
+    max-height: 400px;
+  }
+}
+
+.block-light {
+  .block-header,
+  .block-text{
+    //color: red;
+    color: $color-dark-blue;
+  }
+}
+
+.block-dark {
+  .block-header,
+  .block-text{
+    //color: red;
+    color: $color-white;
+  }
+}
+

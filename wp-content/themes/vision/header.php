@@ -7,67 +7,42 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class('body-padding-top home global'); ?> data-aos-easing="ease" data-aos-duration="1000" data-aos-delay="0">
+    <?php wp_body_open(); ?>
 
-<header class="fixed inset-x-0 top-0 z-50 border-b border-solid border-slate-200 bg-white">
+<header class="fixed inset-x-0 top-0 z-50 border-b border-solid border-slate-200 bg-white admin-bar-offset">
 
     <nav class="mx-auto px-6 pb-0 lg:px-20 bg-white" aria-label="Global">
         <div class="flex justify-between">
             <div class="py-1 lg:py-3 xl:py-5 bg-white flex justify-between items-center w-full xl:w-fit">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="max-w-fit" rel="home">
+                <?php
+                // Logo in menu for desktop (via menu item with title "Logo")
+                // For mobile, show logo in header area
+                ?>
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="max-w-fit xl:hidden flex-shrink-0" rel="home">
                     <span class="sr-only"><?php echo esc_html(get_bloginfo('name')); ?></span>
                     <img src="<?php echo esc_url(vision_get_logo_url()); ?>" alt="<?php echo esc_attr(vision_get_logo_alt()); ?>"
                          class="lg:-left-[45px] xl:-left-[15px] max-w-[170px] md:max-w-[200px] relative lg:max-w-[200px] xl:max-w-[200px]"
                          width="200" height="auto" loading="eager">
                 </a>
-                <div class="xl:hidden flex items-center gap-2 md:gap-6 w-fit">
+                <div class="xl:hidden flex items-center gap-2 md:gap-6 flex-shrink-0">
                     <div class="block">
-
-
                         <div class="flex flex-row gap-2 md:gap-6 justify-between items-center relative">
-                            <!-- Language selector -->
-                            <div class="custom-dropdown relative inline-block w-full lg:w-auto">
-                                <!-- Toggle button -->
-                                <button type="button"
-                                        class="dropdown-toggle w-full bg-white text-dark-blue uppercase plaakBold py-4 px-1 md:px-4 flex justify-between items-center cursor-pointer gap-4">
-                                    <span class="border-b-4 border-b-bright-blue text-sm md:text-base">EN</span>
-                                    <svg id="language-picker-icon" xmlns="http://www.w3.org/2000/svg" width="9.719"
-                                         height="5.719" viewBox="0 0 9.719 5.719">
-                                        <path id="Path_3602" data-name="Path 3602" d="M.018-1.029l4.5,4.652,4.5-4.652"
-                                              transform="translate(0.342 1.377)" fill="none" stroke="#00022e"
-                                              stroke-width="1"></path>
-                                    </svg>
-                                </button>
-
-                                <!-- Dropdown menu -->
-                                <div class="dropdown-menu hidden absolute -left-[250px] md:-left-[120px] lg:-left-[120px] 2xl:-left-[81px] top-[63px] md:top-[65px] lg:top-[73px] xl:top-[85px] bg-dark-blue border-[#343A61] border z-50 shadow-lg w-[500px] md:w-96 px-6 py-4">
-                                    <p class="px-6 pt-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center plaakBold w-96 cursor-auto text-sm">
-                                        Select Language</p>
-                                    <?php
-                                    $language_links = vision_get_language_links();
-                                    $current_lang = vision_get_current_language();
-                                    foreach ($language_links as $lang_code => $lang_data) :
-                                        $is_active = ($lang_code === $current_lang);
-                                    ?>
-                                    <a href="<?php echo esc_url($lang_data['url']); ?>"
-                                       class="px-6 py-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center hover:text-bright-blue w-96 text-sm <?php echo $is_active ? 'opacity-50 !opacity-100' : 'opacity-50 hover:!opacity-100 hover:text-bright-blue'; ?>">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.122 11.294"
-                                             class="w-3 h-3 fill-current <?php echo $is_active ? 'fill-bright-blue' : ''; ?>">
-                                            <path d="M26.1,37.409,37.222,26.116H26.1Z"
-                                                  transform="translate(-26.1 -26.115)"></path>
-                                        </svg>
-                                        <span><?php echo esc_html($lang_data['name'] . ' | ' . $lang_data['code']); ?></span>
-                                    </a>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
+                            <?php get_template_part('template-parts/header/language-switcher'); ?>
                         </div>
                     </div>
-                    <button type="button"
-                            class="inline-flex items-center justify-center rounded-md p-2.5 text-dark-blue nav-toggler mt-0"
-                            data-culture="EN" data-region="global">
-                        <span class="sr-only">Open main menu</span>
+                    <button 
+                        type="button"
+                        x-data
+                        @click="$dispatch('toggle-mobile-menu')"
+                        class="inline-flex items-center justify-center rounded-md p-2.5 text-dark-blue nav-toggler mt-0 z-50 relative flex-shrink-0"
+                        aria-label="<?php esc_attr_e('Toggle mobile menu', 'vision'); ?>"
+                        aria-controls="mobile-menu"
+                        data-culture="<?php echo esc_attr(vision_get_current_language()); ?>" 
+                        data-region="global"
+                    >
+                        <span class="sr-only"><?php esc_html_e('Open main menu', 'vision'); ?></span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="41.557" height="16" viewBox="0 0 41.557 16"
-                             class="h-10 w-10">
+                             class="h-10 w-10" aria-hidden="true">
                             <line class="line1" id="Line_389" data-name="Line 389" x2="39.557"
                                   transform="translate(1 1)" fill="none" stroke="#00012E" stroke-linecap="round"
                                   stroke-width="2"></line>
@@ -83,296 +58,30 @@
             </div>
 
 
-            <div class="hidden xl:py-6 lg:px-8 bg-white border-r border-slate-200 xl:flex items-center justify-end w-full xl:gap-8">
-
-
-                <div class="group about-group">
-                    <a href="<?php echo esc_url(home_url('/about-us')); ?>"
-                       class="uppercase text-sm font-normal leading-8 text-gray-900 nav-link">About</a>
-                    <div class="hidden mx-auto w-screen group-hover:block absolute z-50 pt-[25px] inset-x-0 transform hover-nav">
-                        <div class="bg-light-blue text-dark-blue from-dark-blue-300 to-dark-blue-500">
-                            <div class="grid gap-0 grid-cols-3 ">
-                                <div class="px-20 py-20 flex flex-col justify-center global-reach-nav">
-                                    <div>
-                                        <h5 class="uppercase mb-5 block text-2xl">About</h5>
-                                        <p class="mb-5 text-lg">We are an international business advisory, incorporated in Abu Dhabi, United Arab Emirates, operating under the New Investment Paradigm.</p>
-                                        <p>The core of the concept is our focus on the essential sectors that continue growing even in the most turbulent regions and in the most critical times.</p>
-                                        <a href="<?php echo esc_url(home_url('/about-us')); ?>"
-                                           class="text-lg uppercase plaakRegular group transition-all duration-300 ease-in-out overflow-hidden inline-block w-auto link-underline-animation after:bg-bright-blue">
-                                            <span class="text-white block pb-1">Find out more</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-span-2 relative">
-                                    <div class="grid gap-0 grid-cols-2">
-                                        <div class="bg-light-blue border-l border-r border-t border-slate-200 grid">
-                                            <a href="<?php echo esc_url(home_url('/about-us/vision')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-slate-200  flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>Tactics</span>
-                                            </a>
-                                            <a href="<?php echo esc_url(home_url('/about-us/people')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-slate-200  flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>Online Visibility</span>
-                                            </a>
-                                            <a href="<?php echo esc_url(home_url('/about-us/careers')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-slate-200  flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>Strategies</span>
-                                            </a>
-                                            <a href="<?php echo esc_url(home_url('/about-us/our-community')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-slate-200 flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>Investment</span>
-                                            </a>
-                                        </div>
-                                        <div class="bg-light-blue">
-                                            <div class="nav-article">
-                                                <div class="max-h-[285px] overflow-hidden">
-                                                    <img src="<?php echo esc_url(vision_get_asset_url('mask-group-34.jpg')); ?>" alt="<?php echo esc_attr__('Mask Group 34', 'vision'); ?>"
-                                                         class="w-full h-full object-cover">
-                                                </div>
-                                                <div class="px-10 py-12">
-                                                    <p class="uppercase mb-4 plaakBold">Latest News</p>
-                                                    <p class="mb-4 text-lg">Ukraine–US Strategic Framework for Post-War Reconstruction</p>
-
-
-                                                    <a href="<?php echo esc_url(home_url('/knowledge/news/mauritius-key-measures-of-finance-act-2025')); ?>"
-                                                       class="text-sm uppercase plaakRegular group transition-all duration-300 ease-in-out overflow-hidden inline-block w-auto pb-1 link-underline-animation after:bg-bright-blue">
-                                                        <span class="text-white block pb-1">Read more</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <style>
-
-                    .group:hover .link-underline-animation::after {
-                        background-color: var(--region-color); /* dynamic color on hover */
-                    }
-                </style>
-
-
-                <div class="group about-group">
-                    <a href="<?php echo esc_url(home_url('/services')); ?>"
-                       class="uppercase text-sm font-normal leading-8 text-gray-900 nav-link">Services</a>
-                    <div class="hidden mx-auto w-screen group-hover:block absolute z-50 pt-[25px] inset-x-0 transform hover-nav">
-                        <div class="text-white bg-gradient-to-b from-dark-blue-300 to-dark-blue-500">
-                            <div class="grid gap-0 grid-cols-3 ">
-                                <div class="px-20 py-20 flex flex-col justify-center global-reach-nav">
-                                    <div>
-                                        <h5 class="uppercase mb-5 block text-2xl">Services</h5>
-                                        <p class="mb-5 text-lg">The Vision Business Development Saudi market expansion team has experience of assisting
-                                            B2B companies willing to get into the GCC markets since 2008. The initial business model that worked up until 2020
-                                            was to get clients in-person meetings with their potential clients and partners in the region to establish trust,
-                                            leading them to signing deals.</p>
-                                        <a href="<?php echo esc_url(home_url('/services')); ?>"
-                                           class="text-lg uppercase plaakRegular group transition-all duration-300 ease-in-out overflow-hidden inline-block w-auto link-underline-animation after:bg-bright-blue">
-                                            <span class="text-white block pb-1">Find out more</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-span-2 relative">
-                                    <div class="grid gap-0 grid-cols-2">
-                                        <div class="bg-dark-blue border-l border-r border-t border-[#343A61] grid">
-                                            <a href="<?php echo esc_url(home_url('/services/fund-administration')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-[#343A61] border-l-dark-blue flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>Saudi Market Entry</span>
-                                            </a>
-                                            <a href="<?php echo esc_url(home_url('/services/private-clients')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-[#343A61] border-l-dark-blue flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>B2B Expansion Worldwide</span>
-                                            </a>
-                                            <a href="<?php echo esc_url(home_url('/services/corporate-clients')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-[#343A61] border-l-dark-blue flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>Investment Strategy</span>
-                                            </a>
-                                            <a href="<?php echo esc_url(home_url('/services/marine')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-[#343A61] border-l-dark-blue flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>Ukraine Investment</span>
-                                            </a>
-                                        </div>
-                                        <div class="bg-dark-blue">
-                                            <div class="nav-article">
-                                                <div class="max-h-[285px] overflow-hidden">
-                                                    <img src="<?php echo esc_url(vision_get_asset_url('city-buildings.jpg')); ?>" alt="<?php echo esc_attr__('City Buildings', 'vision'); ?>"
-                                                         class="w-full h-full object-cover">
-                                                </div>
-                                                <div class="px-10 py-12">
-                                                    <p class="uppercase mb-4 plaakBold">Latest News</p>
-                                                    <p class="mb-4 text-lg">Mauritius Key Measures of Finance Act
-                                                        2025</p>
-
-
-                                                    <a href="<?php echo esc_url(home_url('/knowledge/news/mauritius-key-measures-of-finance-act-2025')); ?>"
-                                                       class="text-sm uppercase plaakRegular group transition-all duration-300 ease-in-out overflow-hidden inline-block w-auto pb-1 link-underline-animation after:bg-bright-blue">
-                                                        <span class="text-white block pb-1">Read full story</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <style>
-
-                    .group:hover .link-underline-animation::after {
-                        background-color: var(--region-color); /* dynamic color on hover */
-                    }
-                </style>
-
-
-                <div class="group about-group">
-                    <a href="#resources"
-                       class="uppercase text-sm font-normal leading-8 text-gray-900 nav-link">Resources</a>
-                    <div class="hidden mx-auto w-screen group-hover:block absolute z-50 pt-[25px] inset-x-0 transform hover-nav">
-                        <div class="text-white bg-gradient-to-b from-dark-blue-300 to-dark-blue-500">
-                            <div class="grid gap-0 grid-cols-3 ">
-                                <div class="px-20 py-20 flex flex-col justify-center global-reach-nav">
-                                    <div>
-                                        <h5 class="uppercase mb-5 block text-2xl">Resources</h5>
-                                        <p class="mb-5 text-lg">We have been present for more than 20 years in over half
-                                            of the jurisdictions in which we operate, developing a global knowledge base
-                                            that few can match.</p>
-                                        <a href="<?php echo esc_url(home_url('/knowledge')); ?>"
-                                           class="text-lg uppercase plaakRegular group transition-all duration-300 ease-in-out overflow-hidden inline-block w-auto link-underline-animation after:bg-bright-blue">
-                                            <span class="text-white block pb-1">Find out more</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-span-2 relative">
-                                    <div class="grid gap-0 grid-cols-2">
-                                        <div class="bg-dark-blue border-l border-r border-t border-[#343A61] grid">
-                                            <a href="<?php echo esc_url(home_url('/knowledge/news')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-[#343A61] border-l-dark-blue flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>News</span>
-                                            </a>
-                                            <a href="<?php echo esc_url(home_url('/knowledge/insights')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-[#343A61] border-l-dark-blue flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>Testimonials</span>
-                                            </a>
-                                            <a href="<?php echo esc_url(home_url('/knowledge/brochures-fact-sheets')); ?>"
-                                               class="uppercase p-10 border-b border-l-4 border-[#343A61] border-l-dark-blue flex justify-between items-center hover:border-l-[#2680EB]">
-                                                <span>Events</span>
-                                            </a>
-                                            <!--                                            <a href="<?php echo esc_url(home_url('/knowledge/awards-accolades')); ?>"-->
-                                            <!--                                               class="uppercase p-10 border-b border-l-4 border-[#343A61] border-l-dark-blue flex justify-between items-center hover:border-l-[#2680EB]">-->
-                                            <!--                                                <span>Awards &amp; Accolades</span>-->
-                                            <!--                                            </a>-->
-                                        </div>
-                                        <div class="bg-dark-blue">
-                                            <div class="nav-article">
-                                                <div class="max-h-[285px] overflow-hidden">
-                                                    <img src="<?php echo esc_url(vision_get_asset_url('about-our-leadership.jpeg')); ?>"
-                                                         alt="<?php echo esc_attr__('About Our Leadership', 'vision'); ?>" class="w-full h-full object-cover">
-                                                </div>
-                                                <div class="px-10 py-12">
-                                                    <p class="uppercase mb-4 plaakBold">Latest News</p>
-                                                    <p class="mb-4 text-lg">Mauritius Key Measures of Finance Act
-                                                        2025</p>
-
-
-                                                    <a href="<?php echo esc_url(home_url('/knowledge/news/mauritius-key-measures-of-finance-act-2025')); ?>"
-                                                       class="text-sm uppercase plaakRegular group transition-all duration-300 ease-in-out overflow-hidden inline-block w-auto pb-1 link-underline-animation after:bg-bright-blue">
-                                                        <span class="text-white block pb-1">Read full story</span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <style>
-
-                    .group:hover .link-underline-animation::after {
-                        background-color: var(--region-color); /* dynamic color on hover */
-                    }
-                </style>
-
-
-                <div class="group about-group">
-                    <a href="#partners"
-                       class="uppercase text-sm font-normal leading-8 text-gray-900 nav-link">Partners</a>
-                </div>
-
-
-                <div class="group about-group">
-                    <a href="#contact"
-                       class="uppercase text-sm font-normal leading-8 text-gray-900 nav-link">Contact</a>
-                </div>
-
-            </div>
+            <?php
+            /**
+             * Desktop Navigation
+             * Uses WordPress menu system with fallback to default menu
+             * 
+             * @since 1.0.0
+             */
+            if (has_nav_menu('primary')) {
+                wp_nav_menu(array(
+                    'theme_location' => 'primary',
+                    'container' => false,
+                    'menu_class' => 'hidden xl:py-6 lg:px-8 bg-white border-r border-slate-200 xl:flex items-center justify-around w-full xl:gap-8',
+                    'fallback_cb' => false,
+                    'walker' => new Vision_Walker_Nav_Menu(),
+                ));
+            } else {
+                // Fallback navigation if menu not set
+                get_template_part('template-parts/header/navigation-fallback');
+            }
+            ?>
             <div class="global bg-white hidden lg:py-6 relative xl:flex xl:items-center xl:justify-evenly xl:gap-10 xl:px-6 2xl:px-20">
-
-
                 <div class="flex flex-row gap-2 md:gap-6 justify-between items-center relative">
-                    <!-- Language selector -->
-                    <div class="custom-dropdown relative inline-block w-full lg:w-auto">
-                        <!-- Toggle button -->
-                        <button type="button"
-                                class="dropdown-toggle w-full bg-white text-dark-blue uppercase plaakBold py-4 px-1 md:px-4 flex justify-between items-center cursor-pointer gap-4">
-                            <span class="border-b-4 border-b-bright-blue text-sm md:text-base">EN</span>
-                            <svg id="language-picker-icon" xmlns="http://www.w3.org/2000/svg" width="9.719"
-                                 height="5.719" viewBox="0 0 9.719 5.719">
-                                <path id="Path_3602" data-name="Path 3602" d="M.018-1.029l4.5,4.652,4.5-4.652"
-                                      transform="translate(0.342 1.377)" fill="none" stroke="#00022e"
-                                      stroke-width="1"></path>
-                            </svg>
-                        </button>
-
-                        <!-- Dropdown menu -->
-                        <div class="dropdown-menu hidden absolute -left-[250px] md:-left-[120px] lg:-left-[120px] 2xl:-left-[81px] top-[63px] md:top-[65px] lg:top-[73px] xl:top-[85px] bg-dark-blue border-[#343A61] border z-50 shadow-lg w-[500px] md:w-96 px-6 py-4">
-                            <p class="px-6 pt-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center plaakBold w-96 cursor-auto text-sm">
-                                Select Language</p>
-                            <a href="<?php echo esc_url(home_url('/')); ?>"
-                               class="px-6 py-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center hover:text-bright-blue w-96 text-sm opacity-50 !opacity-100">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.122 11.294"
-                                     class="w-3 h-3 fill-current fill-bright-blue">
-                                    <path d="M26.1,37.409,37.222,26.116H26.1Z"
-                                          transform="translate(-26.1 -26.115)"></path>
-                                </svg>
-                                <span>English | EN</span>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/es')); ?>"
-                               class="px-6 py-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center hover:text-bright-blue w-96 text-sm opacity-50 hover:!opacity-100 hover:text-bright-blue">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.122 11.294"
-                                     class="w-3 h-3 fill-current ">
-                                    <path d="M26.1,37.409,37.222,26.116H26.1Z"
-                                          transform="translate(-26.1 -26.115)"></path>
-                                </svg>
-                                <span>Spanish | ES</span>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/pt')); ?>"
-                               class="px-6 py-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center hover:text-bright-blue w-96 text-sm opacity-50 hover:!opacity-100 hover:text-bright-blue">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.122 11.294"
-                                     class="w-3 h-3 fill-current ">
-                                    <path d="M26.1,37.409,37.222,26.116H26.1Z"
-                                          transform="translate(-26.1 -26.115)"></path>
-                                </svg>
-                                <span>Portuguese | PT</span>
-                            </a>
-                            <a href="<?php echo esc_url(home_url('/zh')); ?>"
-                               class="px-6 py-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center hover:text-bright-blue w-96 text-sm opacity-50 hover:!opacity-100 hover:text-bright-blue">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.122 11.294"
-                                     class="w-3 h-3 fill-current ">
-                                    <path d="M26.1,37.409,37.222,26.116H26.1Z"
-                                          transform="translate(-26.1 -26.115)"></path>
-                                </svg>
-                                <span>Chinese | ZH</span>
-                            </a>
-                        </div>
-                    </div>
+                    <?php get_template_part('template-parts/header/language-switcher'); ?>
                 </div>
-
             </div>
         </div>
     </nav>
