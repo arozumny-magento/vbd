@@ -61,18 +61,70 @@
             <?php
             /**
              * Desktop Navigation
-             * Uses WordPress menu system with fallback to default menu
+             * Uses WordPress menu system with Max Mega Menu support
              * 
              * @since 1.0.0
              */
             if (has_nav_menu('primary')) {
-                wp_nav_menu(array(
+                // Check if Max Mega Menu is enabled
+                $mega_menu_enabled = function_exists('max_mega_menu_is_enabled') && max_mega_menu_is_enabled('primary');
+                
+                $menu_args = array(
                     'theme_location' => 'primary',
                     'container' => false,
                     'menu_class' => 'hidden xl:py-6 lg:px-8 bg-white border-r border-slate-200 xl:flex items-center justify-around w-full xl:gap-8',
                     'fallback_cb' => false,
-                    'walker' => new Vision_Walker_Nav_Menu(),
-                ));
+                );
+                
+                // Only use custom walker if Max Mega Menu is not enabled
+                if (!$mega_menu_enabled) {
+                    $menu_args['walker'] = new Vision_Walker_Nav_Menu();
+                } else {
+                    // Apply same classes to Max Mega Menu via filters
+                    add_filter('megamenu_nav_menu_args', function($args, $menu_id, $location) use ($menu_args) {
+                        // Apply the same menu_class
+                        if (isset($menu_args['menu_class'])) {
+                            $args['menu_class'] = $menu_args['menu_class'] . ' ' . (isset($args['menu_class']) ? $args['menu_class'] : '');
+                        }
+                        return $args;
+                    }, 10, 3);
+                    
+                    // Add group and about-group classes to menu items (same as walker)
+                    add_filter('megamenu_nav_menu_css_class', function($classes, $item, $args) {
+                        $title = strtolower(trim($item->title));
+                        // Add group classes except for logo items
+                        if ($title !== 'logo') {
+                            $classes[] = 'group';
+                            $classes[] = 'about-group';
+                        } else {
+                            $classes[] = 'menu-item-logo';
+                        }
+                        return $classes;
+                    }, 10, 3);
+                    
+                    // Add nav-link class and typography classes to links (same as walker)
+                    add_filter('megamenu_nav_menu_link_attributes', function($atts, $item, $args) {
+                        $title = strtolower(trim($item->title));
+                        if ($title === 'logo') {
+                            // Logo item - same classes as walker
+                            if (isset($atts['class'])) {
+                                $atts['class'] .= ' max-w-fit';
+                            } else {
+                                $atts['class'] = 'max-w-fit';
+                            }
+                        } else {
+                            // Regular menu item - same classes as walker
+                            if (isset($atts['class'])) {
+                                $atts['class'] .= ' uppercase text-sm font-normal leading-8 text-gray-900 nav-link';
+                            } else {
+                                $atts['class'] = 'uppercase text-sm font-normal leading-8 text-gray-900 nav-link';
+                            }
+                        }
+                        return $atts;
+                    }, 10, 3);
+                }
+                
+                wp_nav_menu($menu_args);
             } else {
                 // Fallback navigation if menu not set
                 get_template_part('template-parts/header/navigation-fallback');

@@ -81,3 +81,59 @@ header {
   --tw-scale-x: 0;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+
+// Max Mega Menu - Apply exact same styles as regular menu
+#mega-menu-wrap-primary,
+.mega-menu-wrap {
+  // Apply wrapper container styles
+  @apply hidden;
+  
+  @media (min-width: 1280px) {
+    @apply flex;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  @apply bg-white border-r border-slate-200;
+  
+  .mega-menu {
+    // Apply menu list styles - exact same as regular menu
+    @apply flex items-center justify-around w-full;
+    gap: 2rem;
+    
+    // Menu items - apply same classes and styles
+    > li.mega-menu-item {
+      position: relative;
+      
+      // Top-level menu links - exact same classes as walker
+      > a.mega-menu-link {
+        // These classes come from the filter, but ensure they're applied
+        @apply uppercase text-sm font-normal leading-8 text-gray-900;
+        font-family: 'plaakRegular';
+        letter-spacing: 2px;
+        position: relative;
+        
+        // Nav-link underline animation (already defined above, but ensure it works)
+        // The .nav-link class is added via filter, so the existing CSS will apply
+      }
+      
+      // Logo item styling
+      &.menu-item-logo {
+        > a.mega-menu-link {
+          @apply max-w-fit;
+        }
+      }
+    }
+  }
+}
+
+// Ensure Max Mega Menu links get the same font styling as regular menu
+header nav .mega-menu-link {
+  font-family: 'plaakRegular';
+  letter-spacing: 2px;
+}
