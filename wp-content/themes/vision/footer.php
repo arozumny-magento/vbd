@@ -15,48 +15,7 @@
                         <h2>CONTACT US</h2>
                     </div>
 
-                    <div class="wpcf7 js" id="wpcf7-f7-o1" lang="en-US" dir="ltr" data-wpcf7-id="7">
-                        <div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
-                        <form action="/#wpcf7-f7-o1" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
-                            <fieldset class="hidden-fields-container"><input type="hidden" name="_wpcf7" value="7"><input type="hidden" name="_wpcf7_version" value="6.1.4"><input type="hidden" name="_wpcf7_locale" value="en_US"><input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f7-o1"><input type="hidden" name="_wpcf7_container_post" value="0"><input type="hidden" name="_wpcf7_posted_data_hash" value="">
-                            </fieldset>
-                            <div class="form-default">
-                                <div class="input-group">
-                                    <div class="input">
-                                        <span class="wpcf7-form-control-wrap" data-name="text-779"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required" aria-required="true" aria-invalid="false" placeholder="First Name" value="" type="text" name="text-779"></span>
-                                    </div>
-                                    <div class="input">
-                                        <span class="wpcf7-form-control-wrap" data-name="text-772"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-text" aria-invalid="false" placeholder="Last Name" value="" type="text" name="text-772"></span>
-                                    </div>
-                                </div>
-                                <div class="input">
-                                    <span class="wpcf7-form-control-wrap" data-name="email-323"><input size="40" maxlength="400" class="wpcf7-form-control wpcf7-email wpcf7-validates-as-required wpcf7-text wpcf7-validates-as-email" aria-required="true" aria-invalid="false" placeholder="Your E-Mail" value="" type="email" name="email-323"></span>
-                                </div>
-                                <div class="input">
-                                    <span class="wpcf7-form-control-wrap" data-name="textarea-123"><textarea cols="40" rows="10" maxlength="2000" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Write your message" name="textarea-123"></textarea></span>
-                                </div>
-                                <div class="checkbox">
-                                    <label for="checkbox-form">
-                                        <span>Please check your Inbox and Spam folders for the confirmation message after submitting your request.</span>
-                                    </label>
-                                </div>
-                                <div class="submit">
-                                    <button type="submit">
-                                        SEND
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 23.93 24.007">
-                                        <g id="Group_1490" data-name="Group 1490" transform="translate(6208.208 8977.801)">
-                                            <line id="Line_478" data-name="Line 478" y1="22.301" x2="22.222" transform="translate(-6207.5 -8976.801)" fill="none" stroke="#fff" stroke-width="2"></line>
-                                            <line id="Line_479" data-name="Line 479" x2="19" transform="translate(-6203.778 -8976.801)" fill="none" stroke="#fff" stroke-width="2"></line>
-                                            <line id="Line_480" data-name="Line 480" x2="19" transform="translate(-6185.278 -8977.301) rotate(90)" fill="none" stroke="#fff" stroke-width="2"></line>
-                                        </g>
-                                    </svg>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <input class="wpcf7-form-control wpcf7-hidden" value="" type="hidden" name="page_url"><div class="wpcf7-response-output" aria-hidden="true"></div>
-                        </form>
-                    </div>
+                    <?php echo do_shortcode('[contact-form-7 id="8a5b653" title="Contact form - Contact US"]'); ?>
                 </div>
             </div>
         </div>
