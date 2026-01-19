@@ -86,7 +86,7 @@ function vision_get_current_language() {
  * @return string Logo URL
  */
 function vision_get_logo_url() {
-    $logo_url = get_template_directory_uri() . '/assets/logo_gold.png';
+    $logo_url = get_template_directory_uri() . '/assets/logo_gold.svg';
     return apply_filters('vision_logo_url', $logo_url);
 }
 

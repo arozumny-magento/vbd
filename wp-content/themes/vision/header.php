@@ -122,6 +122,21 @@
                         }
                         return $atts;
                     }, 10, 3);
+                    
+                    // Replace logo menu item title with logo image for Max Mega Menu
+                    add_filter('megamenu_the_title', function($title, $item_id) {
+                        // Check if this is a logo menu item
+                        if (strtolower(trim($title)) === 'logo') {
+                            // Replace title with logo image
+                            $logo_url = vision_get_logo_url();
+                            $logo_alt = vision_get_logo_alt();
+                            $title = '<span class="sr-only">' . esc_html(get_bloginfo('name')) . '</span>';
+                            $title .= '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($logo_alt) . '"';
+                            $title .= ' class="relative max-h-[100px]"';
+                            $title .= ' width="100" height="auto" loading="eager" />';
+                        }
+                        return $title;
+                    }, 10, 2);
                 }
                 
                 wp_nav_menu($menu_args);
