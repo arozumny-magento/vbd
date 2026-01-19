@@ -1,12 +1,12 @@
 @use 'variables' as *;
 
 main {
-    .umb-block-list {
+  .umb-block-list {
     margin-top: 126px;
   }
 }
 
-@media screen and (min-width:1024px) {
+@media screen and (min-width: 1024px) {
   body.home h1, body.europe h1, body.amea h1, body.americas-caribbean h1 {
     font-size: 2.4rem;
     line-height: 1.5;
@@ -14,7 +14,7 @@ main {
 }
 
 
-@media screen and (min-width:1044px) {
+@media screen and (min-width: 1044px) {
 
   .hero-banner-block {
     max-height: 400px;
@@ -23,17 +23,42 @@ main {
 
 .block-light {
   .block-header,
-  .block-text{
-    //color: red;
+  .block-text {
     color: $color-dark-blue;
+  }
+
+  a.block-text {
+    &:after {
+      background-color: $color-dark-blue;
+    }
   }
 }
 
 .block-dark {
   .block-header,
-  .block-text{
-    //color: red;
+  .block-text {
+
     color: $color-white;
+  }
+
+  a.block-text {
+    &:after {
+      background-color: $color-white;
+    }
   }
 }
 
+.partners {
+  h3 {
+    color: $color-white;
+    font-size: 3rem;
+    margin: 2rem 0 -2rem;
+    width: 100%;
+    text-align: center
+  }
+}
+
+.news-container-nav {
+  display: flex;
+  justify-content: space-between;
+}

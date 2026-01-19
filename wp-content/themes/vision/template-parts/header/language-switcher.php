@@ -68,6 +68,7 @@ if (function_exists('pll_the_languages') && function_exists('pll_current_languag
 
     <div 
         x-show="open"
+        x-cloak
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0 scale-95"
         x-transition:enter-end="opacity-100 scale-100"
@@ -77,7 +78,6 @@ if (function_exists('pll_the_languages') && function_exists('pll_current_languag
         class="dropdown-menu absolute -left-[250px] md:-left-[120px] lg:-left-[120px] 2xl:-left-[81px] top-[63px] md:top-[65px] lg:top-[73px] xl:top-[85px] bg-dark-blue border-[#343A61] border z-50 shadow-lg w-[500px] md:w-96 px-6 py-4"
         role="menu"
         aria-label="<?php esc_attr_e('Language selection menu', 'vision'); ?>"
-        style="display: none;"
     >
         <p class="px-6 pt-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center plaakBold w-96 cursor-auto text-sm">
             <?php esc_html_e('Select Language', 'vision'); ?>

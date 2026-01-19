@@ -92,12 +92,31 @@ function vision_scripts() {
     ';
     wp_add_inline_style('vision-style', $admin_bar_css);
     
-    // Enqueue Alpine.js (CDN version auto-initializes)
+    // Enqueue Slick Slider CSS
+    wp_enqueue_style('slick-css', get_template_directory_uri() . '/assets/slick.css', array(), '1.8.1');
+    
+    // Enqueue jQuery (WordPress includes it, but we need to ensure it's loaded)
+    wp_enqueue_script('jquery');
+    
+    // Enqueue Slick Slider JS (depends on jQuery)
+    // Load in footer to ensure DOM is ready, but before our main script
+    $slick_path = get_template_directory_uri() . '/assets/slick.min.js';
+    wp_enqueue_script('slick-js', $slick_path, array('jquery'), '1.8.1', true);
+    
+    // Ensure Slick loads - add fallback if enqueue fails
+    add_action('wp_footer', function() use ($slick_path) {
+        if (!wp_script_is('slick-js', 'enqueued')) {
+            echo '<script src="' . esc_url($slick_path) . '"></script>' . "\n";
+        }
+    }, 5);
+    
+    // Enqueue Alpine.js (load in head with defer - this is the recommended approach)
+    // Defer ensures it waits for DOM to be ready, but loading in head ensures it's available early
     wp_enqueue_script('alpinejs', get_template_directory_uri() . '/assets/js/alpine.min.js', array(), '3.14.1', false);
     wp_script_add_data('alpinejs', 'defer', true);
     
-    // Enqueue JavaScript (depends on Alpine.js for some components)
-    wp_enqueue_script('vision-script', get_template_directory_uri() . '/assets/js/main.js', array('alpinejs'), wp_get_theme()->get('Version'), true);
+    // Enqueue JavaScript (depends on Alpine.js and Slick for some components)
+    wp_enqueue_script('vision-script', get_template_directory_uri() . '/assets/js/main.js', array('alpinejs', 'slick-js'), wp_get_theme()->get('Version'), true);
     
     // Localize script for AJAX
     wp_localize_script('vision-script', 'visionAjax', array(
@@ -151,3 +170,19 @@ function isVideo(string $url) {
 
     return false;
 }
+
+/**
+ * Register translatable strings for Polylang
+ * This makes strings available in Languages → String translations
+ */
+function vision_register_strings() {
+    if (function_exists('pll_register_string')) {
+        // Register theme strings for translation
+        pll_register_string('partners', 'PARTNERS', 'Vision Theme');
+        pll_register_string('read_more', 'Read More', 'Vision Theme');
+        pll_register_string('select_language', 'Select Language', 'Vision Theme');
+        pll_register_string('log_in', 'Log in', 'Vision Theme');
+        // Add more strings as needed
+    }
+}
+add_action('init', 'vision_register_strings');

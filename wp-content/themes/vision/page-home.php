@@ -37,8 +37,6 @@ get_header();
 
         <div class="w-full relative content-grid EN">
             <div class="mx-auto md:grid grid-cols-2 gap-0 services">
-
-
                     <?php 
                     if (have_rows('services')): 
                         while (have_rows('services')) : the_row();
@@ -99,81 +97,25 @@ get_header();
                     endif; 
                     ?>
 
-<!--                -->
-<!---->
-<!--                <div class="bg-light-blue English border-b" style="border-color:#373b61;">-->
-<!--                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">-->
-<!--                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl" style="color: #00012e">-->
-<!--                            <a href="https://visionbusinessdevelopment.com/services/private-clients"-->
-<!--                               class="flex flex-row gap-6 items-center">-->
-<!--                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2 after:bg-white">-->
-<!--                                    B2B Expansion Worldwide</h3>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="color: #00012e">-->
-<!--                            International Strategy Based on Cross-Country Specifics-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="bg-dark-blue English border-r border-b lg:border-b-0" style="border-color:#373b61;">-->
-<!--                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">-->
-<!--                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl">-->
-<!--                            <a href="https://visionbusinessdevelopment.com/services/fund-administration"-->
-<!--                               class="flex flex-row gap-6 items-center">-->
-<!--                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">-->
-<!--                                    Ukraine Investment</h3>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">-->
-<!--                            In-Country Assistance for International Investors-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="bg-dark-blue English border-r border-b lg:border-b-0" style="border-color:#373b61;">-->
-<!--                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">-->
-<!--                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl">-->
-<!--                            <a href="https://visionbusinessdevelopment.com/services/fund-administration"-->
-<!--                               class="flex flex-row gap-6 items-center">-->
-<!--                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">-->
-<!--                                    Investment Advisory</h3>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">-->
-<!--                            Investment Opportunities Across the World under the New Investment Paradigm-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!---->
-<!--                <div class="bg-light-blue English border-b" style="border-color:#373b61;">-->
-<!--                    <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 8.5rem 6rem;">-->
-<!--                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl" style="color: #00012e">-->
-<!--                            <a href="https://visionbusinessdevelopment.com/services/private-clients"-->
-<!--                               class="flex flex-row gap-6 items-center">-->
-<!--                                <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2 after:bg-white">-->
-<!--                                    Asset Management</h3>-->
-<!--                            </a>-->
-<!--                        </div>-->
-<!--                        <div class="lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200" style="color: #00012e">-->
-<!--                            Organizational Structures for Local Investment Oversight-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </div>
         </div>
 
         <!-- ABOUT US -->
+        <?php
+        $aboutUs = get_field('about_us');
+        $aboutUsStyle = $aboutUs['left_block']['style'] ? strtolower($aboutUs['left_block']['style']) : 'light';
+        $rightBlockStyle = $aboutUsStyle == 'light' ? 'dark' : 'light';
+        if ($aboutUs):
+        ?>
         <div class="w-full relative content-grid" id="about-us">
             <div class="mx-auto md:grid grid-cols-2 gap-0">
-
-                <div class="bg-light-blue English">
-                    <div class="text-white p-6 md:p-10 lg:px-20 lg:py-24 list-trident" style="color:black;">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate" data-aos="fade-up"
+                <div class="bg-<?=$aboutUsStyle?>-blue block-<?=$aboutUsStyle?>">
+                    <div class="p-6 md:p-10 lg:px-20 lg:py-24 list-trident" >
+                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header" data-aos="fade-up"
                              data-aos-delay="100">
-                            <h3 class="!text-xl !lg:text-3xl !plaakBold">About Vision Business Development</h3>
+                            <h3 class="!text-xl !lg:text-3xl !plaakBold"><?= $aboutUs['left_block']['header'] ?? '' ?></h3>
                         </div>
-                        <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+                        <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="200">
                             <p>Assistance to international companies in securing investment from leading funds, family offices, and institutional investors worldwide.</p>
                             <p>Support for companies in entering and growing in international markets through tailored go-to-market strategies, regulatory navigation, and strategic local partnerships.</p>
                             <p>Advisory for international investors and businesses in identifying, assessing, and accessing opportunities in international markets, aligning with their strategic and sectoral priorities.</p>
@@ -183,246 +125,169 @@ get_header();
                     </div>
                 </div>
 
-                <style>
-                    .links-icon-row img {
-                        max-width: 130px;
-                    }
-
-                    .links-icon-row {
-                        flex-direction: column;
-                        align-items: flex-start;
-                    }
-
-                    @media screen and (min-width: 1440px) {
-
-                        .links-icon-row {
-                            flex-direction: row;
-                            align-items: center;
-                        }
-
-                        .links-icon-row img {
-                            max-width: 130px;
-                        }
-                    }
-
-
-                </style>
-
-
-                <div class="bg-light-blue relative flex aspect-16/9">
-                    <img style="max-height: 100%" src="<?php echo get_template_directory_uri(); ?>/assets/about-us-bg.png" alt="City view" class="object-center object-cover w-full">
-                    <!--                <div class="absolute bottom-[1px] w-full h-2 z-30 aos-init aos-animate" data-aos="fade-in"-->
-                    <!--                     data-aos-delay="300">-->
-                    <!--                    <svg version="1.1" id="line_2" class="rotate-180" xmlns="http://www.w3.org/2000/svg"-->
-                    <!--                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="10"-->
-                    <!--                         xml:space="preserve">-->
-                    <!--                                    <path class="path2" fill="#f0f7ff" stroke-width="14" stroke="#f0f7ff"-->
-                    <!--                                          d="M0 0 l1120 0"></path>-->
-                    <!--                                </svg>-->
-                    <!--                </div>-->
+                <div class="bg-<?=$rightBlockStyle?>-blue block-<?=$rightBlockStyle?> relative flex aspect-16/9">
+                    <?php if(isset($aboutUs['right_block']['background'])):?>
+                    <img style="max-height: 100%" src="<?= $aboutUs['right_block']['background']?>" alt="About Us" class="object-center object-cover w-full">
+                    <?php endif;?>
                 </div>
-
-
-                <!-- NEWS -->
-                <div class="bg-dark-blue ">
-                    <div class="text-white p-6 md:p-10 lg:px-20 lg:py-24 list-trident">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate" data-aos="fade-up"
-                             data-aos-delay="100">
-                            <h3 class="!text-xl !lg:text-3xl !plaakBold">Where should exhibitions and conferences fit into your business development strategy?</h3>
-
-                        </div>
-                        <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                            <p>Exhibitions and conferences are a significant part of the business landscape in the UAE and Saudi Arabia. The UAE, long known as an international business hub, hosts numerous conferences and exhibitions across key industries.
-
-                                These events are considered among the most prominent global gatherings for specific sectors:
-                            </p>
-                            <p>
-                                Big5 Construction<br />
-                                Gitex<br />
-                                Seamless Middle East...</p>
-                        </div>
-
-
-                        <ul role="list" class="mt-0 space-y-2 !list-none !pl-0 aos-init aos-animate" data-aos="fade-up"
-                            data-aos-delay="300">
-                            <div class="flex flex-col lg:flex-row lg:items-center justify-between pt-0 lg:pt-5 gap-5 links-icon-row aos-init aos-animate"
-                                 data-aos="fade-up" data-aos-delay="300">
-                                <li><a href="https://visionbusinessdevelopment.com/knowledge/awards-accolades"
-                                       class=" text-sm lg:text-lg pb-1 link-underline-animation after:bg-white plaakBold">Read More</a></li>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-                <style>
-                    .links-icon-row img {
-                        max-width: 130px;
-                    }
-
-                    .links-icon-row {
-                        flex-direction: column;
-                        align-items: flex-start;
-                    }
-
-                    @media screen and (min-width: 1440px) {
-
-                        .links-icon-row {
-                            flex-direction: row;
-                            align-items: center;
-                        }
-
-                        .links-icon-row img {
-                            max-width: 130px;
-                        }
-                    }
-
-
-                </style>
-
-                <div class="bg-light-blue border-t border-bright-blue ">
-                    <div class="text-dark-blue p-6 md:p-10 lg:px-20 lg:py-24 list-trident">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate" data-aos="fade-up"
-                             data-aos-delay="100">
-                            <h3 class="!text-xl !lg:text-3xl !plaakBold">Ukraine–US Strategic Framework for Post-War Reconstruction</h3>
-
-                        </div>
-                        <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-                            <p>Reconstruction discussions between Ukraine and the United States are reaching a strategic level. The joint peace framework includes plans to mobilize $700–800 billion for Ukraine’s recovery and to develop a long-term economic roadmap through 2040.</p>
-                        </div>
-
-
-                        <ul role="list" class="mt-0 space-y-2 !list-none !pl-0 aos-init aos-animate" data-aos="fade-up"
-                            data-aos-delay="300">
-                            <div class="flex flex-col lg:flex-row lg:items-center justify-between pt-0 lg:pt-5 gap-5 links-icon-row aos-init aos-animate"
-                                 data-aos="fade-up" data-aos-delay="300">
-                                <li><a href="https://visionbusinessdevelopment.com/about-us/careers"
-                                       class="text-sm lg:text-lg pb-1 link-underline-animation after:bg-dark-blue plaakBold">Read More</a></li>
-
-
-                                <div class="icons-row flex flex-row gap-6 lg:gap-10 my-6 items-center">
-
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-                <style>
-                    .links-icon-row img {
-                        max-width: 130px;
-                    }
-
-                    .links-icon-row {
-                        flex-direction: column;
-                        align-items: flex-start;
-                    }
-
-                    @media screen and (min-width: 1440px) {
-
-                        .links-icon-row {
-                            flex-direction: row;
-                            align-items: center;
-                        }
-
-                        .links-icon-row img {
-                            max-width: 130px;
-                        }
-                    }
-
-
-                </style>
-
 
             </div>
         </div>
 
-        <div class="bg-dark-blue border-b border-t border-bright-blue partners" id="partners" style="">
-            <h3 style="color: #FFF; font-size: 3rem; margin: 2rem 0 -2rem; width: 100%; text-align: center">PARTNERS</h3>
-            <ul>
-                <li><a href="https://visionbusinessdevelopment.com/eyad/"><img src="<?php echo get_template_directory_uri(); ?>/assets/yad.webp" title="eyad"/></a></li>
-                <li><a href="https://visionbusinessdevelopment.com/eyad/"><img src="<?php echo get_template_directory_uri(); ?>/assets/csee.webp" title="eyad"/></a></li>
-                <li><a href="https://visionbusinessdevelopment.com/eyad/"><img src="<?php echo get_template_directory_uri(); ?>/assets/dixie.webp" title="eyad"/></a></li>
-                <li><a href="https://visionbusinessdevelopment.com/eyad/"><img src="<?php echo get_template_directory_uri(); ?>/assets/saaw.webp" title="eyad"/></a></li>
-                <li><a href="https://visionbusinessdevelopment.com/eyad/"><img src="<?php echo get_template_directory_uri(); ?>/assets/smth.webp" title="eyad"/></a></li>
-                <li><a href="https://visionbusinessdevelopment.com/eyad/"><img src="<?php echo get_template_directory_uri(); ?>/assets/yuoness.webp" title="eyad"/></a></li>
-                <li><a href="https://visionbusinessdevelopment.com/eyad/"><img src="<?php echo get_template_directory_uri(); ?>/assets/creative.webp" title="eyad"/></a></li>
-            </ul>
-        </div>
+        <?php endif; ?>
 
+        <!-- NEWS -->
+        <?php
+        // Get the latest 2 posts using WP_Query
+        $news_query = new WP_Query(array(
+            'posts_per_page' => 2,
+            'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'DESC'
+        ));
+        
+        if ($news_query->have_posts()) :
+            ?>
 
-        <div class="w-full relative">
+        <div class="w-full relative content-grid" id="news">
             <div class="mx-auto md:grid grid-cols-2 gap-0">
-                <div class="bg-white">
-                    <div class="text-dark-blue bg-light-blue p-6 md:p-10 lg:px-20 lg:py-24" style="padding: 3rem 6rem;">
-                        <div class="uppercase mb-10 news-container-nav slick-initialized slick-slider">
-                            <div class="slick-list draggable">
-                                <div class="slick-track"
-                                     style="opacity: 1; width: 100%; text-align: left; font-weight: bold; transform: translate3d(0px, 0px, 0px);"><span
-                                            class="text-lg whitespace-nowrap py-4 px-1 max-w-fit lg:text-xl active plaakBold news-indicators cursor-pointer slick-slide slick-current slick-active"
-                                            data-slick-index="0" aria-hidden="false" tabindex="0"
-                                            style="width: 278px;">Testimonials</span></div>
-                            </div>
+
+        <?php
+            $newsStyle = 'light';
+            while ($news_query->have_posts()) : $news_query->the_post();
+                $newsStyle = $newsStyle == 'light' ? 'dark' : 'light';
+                ?>
+
+                <div class="bg-<?=$newsStyle?>-blue block-<?=$newsStyle?> ">
+                    <div class="text-white p-6 md:p-10 lg:px-20 lg:py-24 list-trident">
+                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header" data-aos="fade-up"
+                             data-aos-delay="100">
+                            <h3 class="!text-xl !lg:text-3xl !plaakBold"><?php the_title() ?></h3>
 
                         </div>
-                        <div class="news-container slick-initialized slick-slider">
-                            <div class="slick-list draggable">
-                                <div class="slick-track" style="opacity: 1; width: 1192px;">
-                                    <div class="slide overflow-hidden slick-slide slick-current slick-active"
-                                         data-slick-index="0" aria-hidden="false" tabindex="0"
-                                         style="width: 596px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
-                                        <div class="mb-5 lg:mb-8 text-xl lg:text-3xl aos-init aos-animate"
-                                             data-aos="fade-up" data-aos-delay="100">
-                                            <h2 class="" style="margin-bottom: 1rem; font-size: 1.5rem">CMS Group</h2>
-                                            <h3 class="" style="font-size: 1.2rem;">
-                                                We worked with Konstantin Gridin in 2015-2017. He helped us design our market entry strategy to the UAE and Saudi Arabia and helped generate a number of client leads.</h3>
-                                        </div>
-                                        <div class="flex justify-end aos-init aos-animate" data-aos="fade-up"
-                                             data-aos-delay="300">
-                                            <a href="https://visionbusinessdevelopment.com/knowledge/news"
-                                               class="text-sm lg:text-lg uppercase text-dark-blue plaakBold group transition-all duration-300 ease-in-out"
-                                               tabindex="0">
-                                                <span class="text-dark-blue after:bg-dark-blue pb-2">Alexander Gorlov, Partner</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="slide overflow-hidden slick-slide" data-slick-index="1" aria-hidden="true"
-                                         tabindex="-1"
-                                         style="width: 596px; position: relative; left: -596px; top: 0px; z-index: 998; opacity: 0;">
-                                        <div class="mb-5 lg:mb-8 text-xl lg:text-3xl aos-init aos-animate"
-                                             data-aos="fade-up" data-aos-delay="100">
-                                            <h3 class="akkuratRegular">
-                                                Barbados: A Hub for Global Business</h3>
-                                        </div>
-                                        <div class="mb-4 lg:mb-10 lg:text-xl aos-init aos-animate" data-aos="fade-up"
-                                             data-aos-delay="200">
-                                            <p class="line-clamp-5">Barbados stands out among other Caribbean jurisdictions
-                                                for its extensive tax and&nbsp;investment treaty network. Combined with the
-                                                jurisdiction’s Regular Business Companies (RBC) regime, this makes Barbados
-                                                an attractive destination for international businesses and investors seeking
-                                                to streamline their activities.</p>
-                                        </div>
-
-                                        <div class="flex justify-between aos-init aos-animate" data-aos="fade-up"
-                                             data-aos-delay="300"><a
-                                                    href="https://visionbusinessdevelopment.com/knowledge/insights/barbados-a-hub-for-global-business"
-                                                    class="text-sm lg:text-lg uppercase text-dark-blue plaakBold group transition-all duration-300 ease-in-out"
-                                                    tabindex="-1">
-                                                <span class="text-dark-blue  after:bg-dark-blue  link-underline-animation pb-2">Read full story</span>
-                                            </a>
-                                            <a href="https://visionbusinessdevelopment.com/knowledge/insights"
-                                               class="text-sm lg:text-lg uppercase text-dark-blue plaakBold group transition-all duration-300 ease-in-out"
-                                               tabindex="-1">
-                                                <span class="text-dark-blue  after:bg-dark-blue  link-underline-animation pb-2">View all</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                        <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="200">
+                            <?php the_excerpt(); ?>
                         </div>
+                        <ul role="list" class="mt-0 space-y-2 !list-none !pl-0 aos-init aos-animate" data-aos="fade-up"
+                            data-aos-delay="300">
+                            <div class="flex flex-col lg:flex-row lg:items-center justify-between pt-0 lg:pt-5 gap-5 links-icon-row aos-init aos-animate"
+                                 data-aos="fade-up" data-aos-delay="300">
+                                <li><a href="<?= get_the_permalink() ?>"
+                                       class=" text-sm lg:text-lg pb-1 link-underline-animation plaakBold block-text">Read More</a></li>
+                            </div>
+                        </ul>
                     </div>
                 </div>
-                <div class="hidden md:block bg-white relative" style="max-height: 479px;">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/testimonials.png" alt="" class="w-full h-full object-cover">
+
+        <?php
+            endwhile;
+            wp_reset_postdata();
+            ?>
+            </div>
+        </div>
+        <?php endif; ?>
+
+
+        <?php
+            if (have_rows('partners')):
+        ?>
+         <!-- PARTNERS -->
+          <div class="bg-dark-blue border-b border-t border-bright-blue partners" id="partners" style="">
+             <h3><?php esc_html_e('PARTNERS', 'vision'); ?></h3>
+            <ul>
+                <?php  while (have_rows('partners')) : the_row(); ?>
+                <li><a href="<?= get_sub_field('link')?>"><img src="<?= get_sub_field('logo')?>" title="<?= get_sub_field('title')?>"/></a></li>
+        <?php endwhile; ?>
+            </ul>
+        </div>
+        <?php endif; ?>
+        <!-- END PARTNERS -->
+
+        <!-- TESTIMONIALS -->
+        <?php
+        $testimonials = new WP_Query(array(
+            'post_type' => 'testimonial',
+            'posts_per_page' => 4,
+            'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'DESC'
+        ));
+
+        // Testimonials slider configuration
+        $testimonials_slider_config = array(
+            'autoplay' => true,
+            'autoplaySpeed' => 5000, // 5 seconds
+            'arrows' => true,
+            'fade' => true,
+            'adaptiveHeight' => true,
+            'infinite' => $testimonials->found_posts > 1,
+            'dots' => false,
+            'pauseOnHover' => true,
+            'appendArrows' => '.testimonials-navigation',
+            'prevArrow' => '<button type="button" class="slick-prev" aria-label="Previous"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>',
+            'nextArrow' => '<button type="button" class="slick-next" aria-label="Next"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>'
+        );
+
+        if ($testimonials->have_posts()) :
+        $testimonialsSettings = get_field('testimonials_section');
+        ?>
+        <div class="w-full relative" id="testimonials">
+            <div class="mx-auto md:grid grid-cols-2 gap-0">
+                <div class="left-side bg-light-blue">
+                    <div class="text-dark-blue p-6 md:p-10 lg:px-20 lg:py-24" style="padding: 3rem 6rem;">
+                        <div class="uppercase mb-10 news-container-nav">
+                            <span class="text-lg whitespace-nowrap py-4 px-1 max-w-fit lg:text-xl" style="font-size: 1.5rem">Testimonials</span>
+                            <div class="testimonials-navigation flex justify-between items-center gap-4"></div>
+                        </div>
+                        <div class="testimonials-container">
+                            <?php while ($testimonials->have_posts()) : $testimonials->the_post(); ?>
+                            <div class="slide overflow-hidden">
+                                <div class="mb-5 lg:mb-8 text-xl lg:text-3xl aos-init aos-animate"
+                                     data-aos="fade-up" data-aos-delay="100">
+                                    <h2 class="" style="margin-bottom: 1rem; font-size: 1.5rem"><?= get_field('company')?></h2>
+                                    <h3 class="" style="font-size: 1.2rem;">
+                                        <?= get_field('feedback')?></h3>
+                                </div>
+                                <div class="flex justify-end aos-init aos-animate" data-aos="fade-up"
+                                     data-aos-delay="300">
+                                    <a href="<?= get_permalink()?>"
+                                       class="text-sm lg:text-lg uppercase text-dark-blue plaakBold group transition-all duration-300 ease-in-out">
+                                        <span class="text-dark-blue after:bg-dark-blue pb-2"><?= get_field('testimonial_author')?></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php endwhile; 
+                            wp_reset_postdata(); ?>
+                        </div>
+                        
+                        <script>
+                        // Initialize testimonials slider with configuration
+                        jQuery(document).ready(function($) {
+                            if ($('.testimonials-container').length && typeof $.fn.slick !== 'undefined') {
+                                const $testimonialsContainer = $('.testimonials-container');
+                                
+                                // Check if already initialized
+                                if ($testimonialsContainer.hasClass('slick-initialized')) {
+                                    return;
+                                }
+                                
+                                const slideCount = $testimonialsContainer.find('.slide').length;
+                                
+                                if (slideCount > 0) {
+                                    const config = <?php echo json_encode($testimonials_slider_config); ?>;
+                                    // Override infinite based on actual slide count
+                                    config.infinite = slideCount > 1;
+                                    
+                                    $testimonialsContainer.slick(config);
+                                }
+                            }
+                        });
+                        </script>
+                    </div>
+                </div>
+                <div class="hidden md:block bg-white relative right-side" style="max-height: 100%">
+                    <?php if (isset($testimonialsSettings['right_block'])): ?>
+                    <img src="<?= $testimonialsSettings['right_block']['background']?>" alt="" class="w-full object-cover">
                     <div class="absolute bottom-[1px] w-full h-2 z-30 aos-init aos-animate" data-aos="fade-in"
                          data-aos-delay="300">
                         <svg version="1.1" id="line_2" class="rotate-180" xmlns="http://www.w3.org/2000/svg"
@@ -432,10 +297,12 @@ get_header();
                                           d="M0 0 l1120 0"></path>
                                 </svg>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
-
+        <?php endif; ?>
+        <!-- END TESTIMONIALS -->
     </div>
 </main>
 
@@ -581,6 +448,8 @@ get_header();
 <!--<script type="module" src="--><?php //echo get_template_directory_uri(); ?><!--/assets/custom.js"></script>-->
 
 <script async="async" type="application/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/eloisa.js"></script>
+
+<?php wp_footer(); ?>
 
 <div id="quick-start-container"></div>
 </body>

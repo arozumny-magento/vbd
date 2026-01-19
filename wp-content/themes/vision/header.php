@@ -21,8 +21,8 @@
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="max-w-fit xl:hidden flex-shrink-0" rel="home">
                     <span class="sr-only"><?php echo esc_html(get_bloginfo('name')); ?></span>
                     <img src="<?php echo esc_url(vision_get_logo_url()); ?>" alt="<?php echo esc_attr(vision_get_logo_alt()); ?>"
-                         class="lg:-left-[45px] xl:-left-[15px] max-w-[170px] md:max-w-[200px] relative lg:max-w-[200px] xl:max-w-[200px]"
-                         width="200" height="auto" loading="eager">
+                         class="md:max-w-[200px] relative lg:max-w-[200px] xl:max-w-[200px]"
+                         width="200" height="auto">
                 </a>
                 <div class="xl:hidden flex items-center gap-2 md:gap-6 flex-shrink-0">
                     <div class="block">

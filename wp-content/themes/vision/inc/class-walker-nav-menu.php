@@ -99,7 +99,7 @@ class Vision_Walker_Nav_Menu extends Walker_Nav_Menu {
             $logo_alt = vision_get_logo_alt();
             $item_output .= '<span class="sr-only">' . esc_html(get_bloginfo('name')) . '</span>';
             $item_output .= '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($logo_alt) . '"';
-            $item_output .= ' class="lg:-left-[45px] xl:-left-[15px] max-w-[170px] md:max-w-[200px] relative lg:max-w-[200px] xl:max-w-[200px]"';
+            $item_output .= ' class="max-w-[170px] md:max-w-[200px] relative lg:max-w-[200px] xl:max-w-[200px]"';
             $item_output .= ' width="200" height="auto" loading="eager" />';
         } else {
             // Display normal menu item text
