@@ -2003,7 +2003,8 @@ form div.lp-form-field {
 }
 
 form p {
-  font-family: 'AkkuratLLWeb-Regular' !important;
+  padding: 0;
+  margin: 0;
 }
 
 form *[data-layout="true"] {
@@ -2182,7 +2183,6 @@ body.zh p, body.zh h1, body.zh h2, body.zh h3, body.zh h4, body.zh h5, body.zh h
 }
 
 .custom-dropdown {
-  position: relative;
   display: inline-block;
   width: 100%;
   cursor: pointer;

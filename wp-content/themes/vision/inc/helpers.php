@@ -112,15 +112,20 @@ function vision_get_social_links() {
             'label' => __('LinkedIn', 'vision'),
             'icon' => 'linkedin',
         ),
-        'twitter' => array(
-            'url' => 'https://x.com/TridentTrustInt',
-            'label' => __('X (Twitter)', 'vision'),
-            'icon' => 'twitter',
+        'instagram' => array(
+            'url' => '#',
+            'label' => __('Instagram', 'vision'),
+            'icon' => 'instagram',
         ),
-        'wechat' => array(
-            'url' => home_url('/follow-us-on-wechat'),
-            'label' => __('WeChat', 'vision'),
-            'icon' => 'wechat',
+        'facebook' => array(
+            'url' => '#',
+            'label' => __('Facebook', 'vision'),
+            'icon' => 'facebook',
+        ),
+        'youtube' => array(
+            'url' => '#',
+            'label' => __('YouTube', 'vision'),
+            'icon' => 'youtube',
         ),
     ));
 }

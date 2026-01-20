@@ -1,7 +1,8 @@
 .services > div:hover {
   cursor: pointer;
 }
-.services > div:hover .aos-animate{
+
+.services > div:hover .aos-animate {
   color: #d0b135 !important;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -33,7 +34,8 @@
   display: flex;
   flex-wrap: wrap;
 }
-.partners ul li{
+
+.partners ul li {
   padding: 3.5rem 1.5rem;
   width: 25%;
   display: flex;
@@ -41,7 +43,7 @@
   align-items: center;
 }
 
-.partners ul li:hover{
+.partners ul li:hover {
   opacity: 0.7;
   cursor: pointer;
 }
@@ -53,21 +55,33 @@
 .footer-bottom {
   display: flex;
 }
+
 .footer-bottom > div {
   display: flex;
   width: 33.33333%;
 }
 
-.footer-bottom .social {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+.footer-bottom {
+  .social {
+    display: flex;
+    justify-content: end;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2rem;
+
+    > div {
+      order: 2;
+    }
+  }
+
+  .footer-menu {
+    order: 1;
+    display: flex;
+    gap: 1rem;
+    color: #FFF;
+  }
 }
-.footer-bottom .footer-menu {
-  display: flex;
-  gap: 1rem;
-  color: #FFF;
-}
+
 
 .footer-bottom .footer-menu a:hover {
   border-bottom: 1px solid #FFF;
@@ -78,10 +92,12 @@
   justify-content: center;
   align-items: flex-end;
 }
+
 .footer-logo img {
   max-height: 150px;
   margin-bottom: -3rem;
 }
+
 .footer-bottom .social > div {
   display: flex;
   gap: 1rem;
@@ -129,8 +145,4 @@
 
 h1, h2, h3, h4, h5, h6, p {
   font-family: "Inter", sans-serif;
-}
-
-.about-group > div {
-  padding-top: 44px !Important;
 }

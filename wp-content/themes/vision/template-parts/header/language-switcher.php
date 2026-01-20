@@ -32,7 +32,7 @@ if (function_exists('pll_the_languages') && function_exists('pll_current_languag
 <div 
     x-data="{ open: false }"
     @click.away="open = false"
-    class="custom-dropdown relative inline-block w-full lg:w-auto"
+    class="custom-dropdown inline-block w-full lg:w-auto"
 >
     <button 
         type="button"
@@ -75,13 +75,13 @@ if (function_exists('pll_the_languages') && function_exists('pll_current_languag
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
-        class="dropdown-menu absolute -left-[250px] md:-left-[120px] lg:-left-[120px] 2xl:-left-[81px] top-[63px] md:top-[65px] lg:top-[73px] xl:top-[85px] bg-dark-blue border-[#343A61] border z-50 shadow-lg w-[500px] md:w-96 px-6 py-4"
+        class="dropdown-menu absolute bg-dark-blue border-[#343A61] border z-50 shadow-lg w-[500px] md:w-96 px-6 py-4"
         role="menu"
         aria-label="<?php esc_attr_e('Language selection menu', 'vision'); ?>"
     >
-        <p class="px-6 pt-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center plaakBold w-96 cursor-auto text-sm">
-            <?php esc_html_e('Select Language', 'vision'); ?>
-        </p>
+<!--        <p class="px-6 pt-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center plaakBold w-96 cursor-auto text-sm">-->
+<!--            --><?php //esc_html_e('Select Language', 'vision'); ?>
+<!--        </p>-->
         <?php if (function_exists('pll_the_languages')) : ?>
             <?php foreach ($languages as $lang) : 
                 $is_active = ($lang['current_lang'] == 1);
@@ -90,7 +90,7 @@ if (function_exists('pll_the_languages') && function_exists('pll_current_languag
             ?>
                 <a 
                     href="<?php echo esc_url($lang['url']); ?>"
-                    class="px-6 py-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center hover:text-bright-blue w-96 text-sm <?php echo $is_active ? 'opacity-100' : 'opacity-50 hover:!opacity-100'; ?>"
+                    class="px-6 py-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center text-sm <?php echo $is_active ? 'opacity-100' : 'opacity-50 hover:!opacity-100'; ?>"
                     role="menuitem"
                     hreflang="<?php echo esc_attr($lang['slug']); ?>"
                 >

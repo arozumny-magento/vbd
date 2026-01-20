@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 header {
   background: linear-gradient(to right, #fff 0%,#fff 50%,#F5F5F7 50.01%,#F5F5F7 100%);
 }
@@ -82,58 +84,59 @@ header {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-// Max Mega Menu - Apply exact same styles as regular menu
-#mega-menu-wrap-primary,
-.mega-menu-wrap {
-  // Apply wrapper container styles
-  @apply hidden;
+
+// Ensure Max Mega Menu links get the same font styling as regular menu
+header nav .mega-menu-link {
+  font-family: 'Times';
+  letter-spacing: 2px;
+}
+
+.top-header {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  border-bottom: 1px solid $color-slate-200;
+  background: $color-white;
+}
+
+.header-social {
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
-  @media (min-width: 1280px) {
-    @apply flex;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-  }
-  
-  @media (min-width: 1024px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-  
-  @apply bg-white border-r border-slate-200;
-  
-  .mega-menu {
-    // Apply menu list styles - exact same as regular menu
-    @apply flex items-center justify-around w-full;
-    gap: 2rem;
+  .header-social-link {
+    color: $color-dark-blue;
+    transition: opacity 0.3s ease;
     
-    // Menu items - apply same classes and styles
-    > li.mega-menu-item {
-      position: relative;
-      
-      // Top-level menu links - exact same classes as walker
-      > a.mega-menu-link {
-        // These classes come from the filter, but ensure they're applied
-        @apply uppercase text-sm font-normal leading-8 text-gray-900;
-        font-family: 'plaakRegular';
-        letter-spacing: 2px;
-        position: relative;
-        
-        // Nav-link underline animation (already defined above, but ensure it works)
-        // The .nav-link class is added via filter, so the existing CSS will apply
-      }
-      
-      // Logo item styling
-      &.menu-item-logo {
-        > a.mega-menu-link {
-          @apply max-w-fit;
-        }
-      }
+    &:hover {
+      opacity: 0.8;
+    }
+    
+    svg {
+      fill: currentColor;
+      stroke: currentColor;
     }
   }
 }
 
-// Ensure Max Mega Menu links get the same font styling as regular menu
-header nav .mega-menu-link {
-  font-family: 'plaakRegular';
-  letter-spacing: 2px;
+.language-switcher {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+
+  .dropdown-menu {
+    top: 160px;
+    right: 0;
+    left: auto;
+    width: 250px;
+
+    a {
+      &:hover {
+        color: $color-gold;
+      }
+    }
+  }
 }

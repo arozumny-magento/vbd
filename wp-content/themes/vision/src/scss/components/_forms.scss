@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .form-group {
   color: #f0f7ff;
   padding: 2rem 6rem;
@@ -38,9 +40,8 @@
 }
 
 .form-default button {
-  background: #00012e;
-  background: linear-gradient(90deg, #00012e 0%, #00000e 100%);
-  color: #FFF;
+  background: $color-light-blue;
+  color: $color-dark-blue;
   text-transform: uppercase;
   display: flex;
   width: 180px;
