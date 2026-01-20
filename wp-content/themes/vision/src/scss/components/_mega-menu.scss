@@ -18,10 +18,12 @@ nav {
       gap: 2rem;
       position: unset;
 
+      > li.mega-menu-item,
       > li.mega-menu-item.mega-current-menu-item {
         width: 135px;
         display: flex;
         justify-content: center;
+        color: $color-dark-blue;
 
         &.menu-item-logo {
           a:before {
@@ -55,7 +57,10 @@ nav {
             transition: transform 0.3s;
           }
 
-          &:hover {
+          &:hover,
+          &:focus {
+            background: none;
+            color: $color-dark-blue;
             transition: 0.35s ease;
 
             &:before {
@@ -170,3 +175,58 @@ nav {
   }
 }
 
+@media screen and (max-width: 1024px) {
+  header {
+    nav {
+      .mega-close {
+        display: none !important;
+      }
+
+      #mega-menu-wrap-primary #mega-menu-primary {
+
+        > li.mega-menu-megamenu > ul.mega-sub-menu {
+          padding: 0;
+          background: none;
+          border: none;
+
+          .mega-menu-column:first-child,
+          .mega-menu-column:last-child {
+            display: none;
+          }
+
+          .mega-menu-column .menu-sub-menu-about-container .menu li {
+            a {
+              padding: .2rem 2rem;
+              color: $color-white;
+              border: none;
+              font-size: .75rem;
+            }
+          }
+        }
+
+        > li.mega-current-menu-item,
+        > li.mega-menu-item {
+          width: 100% !important;
+          padding: .5rem 0;
+          display: flex;
+          flex-direction: column;
+
+          &.menu-item-logo {
+            max-width: 135px;
+          }
+
+          > a.mega-menu-link {
+            display: flex;
+            font-size: 1rem;
+            line-height: 1;
+            color: $color-white !important;
+
+            &:before {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -111,38 +111,70 @@
   font-size: .8rem;
 }
 
-/*p {*/
-/*  !* animation-name: text-appear; @keyframes defined below *!*/
-/*  !* animation-timing-function: ease-in; standard should be linear *!*/
-/*  !* animation-fill-mode: both; keeps animated values forwards and backwards *!*/
-/*  animation: text-appear ease-in both;*/
-/*  animation-timeline: view(); !* applies animation state relative to viewport *!*/
-/*  animation-range: 0vh 30vh; !* set 0% and 100% positions *!*/
-/*}*/
+.footer-bottom{
 
-/*@prefers-reduced-motion {*/
-/*  p {*/
-/*    animation: none;*/
-/*  }*/
-/*}*/
+  .copyright {
+    .social-icons {
+      display: none;
+    }
+  }
+}
 
+@media screen and (max-width: 1024px) {
+  footer {
+    padding-bottom: 1rem !important;
+  }
 
-/*@keyframes image-appear {*/
-/*  from {*/
-/*    filter: saturate(0) contrast(4) brightness(.1) blur(3px);*/
-/*    opacity: 0;*/
-/*    scale: .95;*/
-/*    translate: 0 4rem;*/
-/*  }*/
-/*}*/
+  .contact {
+    .form-group {
+      padding: 3rem;
 
-/*@keyframes text-appear {*/
-/*  from {*/
-/*    opacity: 0;*/
-/*    translate: 0 8rem;*/
-/*  }*/
-/*}*/
+      .title-default {
+        margin-bottom: 2rem;
+      }
 
-h1, h2, h3, h4, h5, h6, p {
-  font-family: "Inter", sans-serif;
+      button {
+        width: 100%;
+        max-width: 400px;
+      }
+    }
+  }
+
+  .footer-bottom{
+    flex-direction: column;
+
+    .social {
+
+      .footer-menu {
+        margin: 1rem 0 1.5rem;
+        width: 100%;
+        justify-content: center;
+      }
+      .social-icons {
+        display: none;
+      }
+    }
+
+    > div {
+      width: 100%;
+      align-items: center;
+    }
+
+    .footer-logo {
+      img {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    .copyright {
+      padding: 0 1rem;
+      justify-content: space-between;
+      opacity: .8;
+
+      .social-icons {
+        display: flex;
+        gap: 0.5rem;
+      }
+    }
+  }
 }

@@ -11,7 +11,10 @@
 
 <header class="top-header admin-bar-offset">
     <div class="header-social">
-        <div class="flex justify-center gap-4">
+        <a class="mobile-logo" href="/">
+            <img src="<?= vision_get_logo_url() ?>" alt="<?= vision_get_logo_alt()?> " title="<?= esc_html(get_bloginfo('name')) ?>"/>
+        </a>
+        <div class="flex justify-center gap-4 social-links">
             <?php
             $social_links = vision_get_social_links();
             foreach ($social_links as $key => $social) :

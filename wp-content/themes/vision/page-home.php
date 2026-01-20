@@ -35,7 +35,7 @@ get_header();
             <?php endif; ?>
         </div>
 
-        <div class="w-full relative content-grid EN">
+        <div class="w-full relative content-grid EN" id="services">
             <div class="mx-auto md:grid grid-cols-2 gap-0 services">
                     <?php 
                     if (have_rows('services')): 
@@ -61,7 +61,7 @@ get_header();
                             ?>
 
                             <div class="bg-<?=$leftBlockTheme?>-blue block-<?=$leftBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
-                                <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 6rem 6rem;">
+                                <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident">
                                     <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
                                         <a href="<?=$leftLink?>"
                                            class="flex flex-row gap-6 items-center">
@@ -76,7 +76,7 @@ get_header();
                             </div>
 
                             <div class="bg-<?=$rightBlockTheme?>-blue block-<?=$rightBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
-                                <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 6rem 6rem;">
+                                <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident">
                                     <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
                                         <a href="<?=$rightLink?>"
                                            class="flex flex-row gap-6 items-center">
@@ -231,10 +231,10 @@ get_header();
         if ($testimonials->have_posts()) :
         $testimonialsSettings = get_field('testimonials_section');
         ?>
-        <div class="w-full relative" id="testimonials">
+        <div class="w-full relative testimonials" id="testimonials">
             <div class="mx-auto md:grid grid-cols-2 gap-0">
                 <div class="left-side bg-light-blue">
-                    <div class="text-dark-blue p-6 md:p-10 lg:px-20 lg:py-24" style="padding: 3rem 6rem;">
+                    <div class="text-dark-blue p-6 md:p-10 lg:px-20 lg:py-24">
                         <div class="uppercase mb-10 news-container-nav">
                             <span class="text-lg whitespace-nowrap py-4 px-1 max-w-fit lg:text-xl" style="font-size: 1.5rem">Testimonials</span>
                             <div class="testimonials-navigation flex justify-between items-center gap-4"></div>
