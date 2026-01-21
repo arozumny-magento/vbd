@@ -29,12 +29,12 @@ if ($elementor_active) {
 
             <div class="w-full relative" >
                 <div class="mx-auto md:grid grid-cols-2 overflow-hidden gap-0">
-                    <div class="bg-light-blue" style="padding: 6rem;">
+                    <div class="bg-lightblue" style="padding: 6rem;">
                         <h1 style="text-align: left"><?php the_title() ?></h1>
                     </div>
 
                     <?php if (has_post_thumbnail()) : ?>
-                    <div class="hidden md:block bg-white relative" style="max-height: 600px;">
+                    <div class="hidden md:block bg-white relative" style="max-height: 310px;">
                         <img src="<?php the_post_thumbnail_url('large'); ?>" alt="" class="w-full h-full object-cover">
                         <div class="absolute bottom-[1px] w-full h-2 z-30 aos-init aos-animate" data-aos="fade-in" data-aos-delay="300">
                             <svg version="1.1" id="line_2" class="rotate-180" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="10" xml:space="preserve">
