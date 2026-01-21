@@ -1,3 +1,5 @@
+@use 'variables' as *;
+
 .services > div:hover {
   cursor: pointer;
 }
@@ -31,12 +33,13 @@
 }
 
 .partners ul {
+  padding: 2rem 0;
   display: flex;
   flex-wrap: wrap;
 }
 
 .partners ul li {
-  padding: 3.5rem 1.5rem;
+  padding: 2.2rem 1.2rem;
   width: 25%;
   display: flex;
   justify-content: center;
@@ -78,13 +81,13 @@
     order: 1;
     display: flex;
     gap: 1rem;
-    color: #FFF;
+    color: $color-dark-blue;
   }
 }
 
 
 .footer-bottom .footer-menu a:hover {
-  border-bottom: 1px solid #FFF;
+  border-bottom: 1px solid $color-dark-blue;
 }
 
 .footer-logo {
@@ -104,7 +107,7 @@
 }
 
 .copyright {
-  color: #FFF;
+  color: $color-dark-blue;
   display: flex;
   justify-content: end;
   align-items: flex-end;
@@ -112,7 +115,15 @@
 }
 
 .footer-bottom{
+  .social-icons {
+    a {
+      color: $color-dark-blue;
 
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
   .copyright {
     .social-icons {
       display: none;

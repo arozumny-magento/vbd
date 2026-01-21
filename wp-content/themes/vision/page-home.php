@@ -4,8 +4,19 @@
  */
 
 get_header();
-?>
 
+// Check if Elementor is being used for this page
+$elementor_active = class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor(get_the_ID());
+
+if ($elementor_active) {
+    // Elementor template - let Elementor handle the content
+    while (have_posts()) :
+        the_post();
+        the_content();
+    endwhile;
+} else {
+    // Fallback to custom template
+    ?>
 <main>
     <div class="umb-block-list">
         <section class="hero">
@@ -31,73 +42,8 @@ get_header();
                         Your browser does not support the video tag.
                     </video>
             <?php else: ?>
-            <img src="<?php the_field('hero_banner') ?>" />
+                <div class="hero-banner-img" style="background-image: url('<?php the_field('hero_banner') ?>')"></div>
             <?php endif; ?>
-        </div>
-
-        <div class="w-full relative content-grid EN" id="services">
-            <div class="mx-auto md:grid grid-cols-2 gap-0 services">
-                    <?php 
-                    if (have_rows('services')): 
-                        while (have_rows('services')) : the_row();
-                            
-                            // Get the left_block group as an array
-                            $left_block = get_sub_field('left_block');
-                            if ($left_block):
-                                $leftBlockTheme = isset($left_block['block_theme']) ? strtolower($left_block['block_theme']) : '';
-                                $leftHeader = isset($left_block['header']) ? $left_block['header'] : '';
-                                $leftText = isset($left_block['text']) ? $left_block['text'] : '';
-                                $leftLink = isset($left_block['link']) ? $left_block['link'] : '';
-                            endif;
-                            
-                            // Get the right_block group as an array
-                            $right_block = get_sub_field('right_block');
-                            if ($right_block):
-                                $rightBlockTheme = isset($right_block['block_theme']) ? strtolower($right_block['block_theme']) : '';
-                                $rightHeader = isset($right_block['header']) ? $right_block['header'] : '';
-                                $rightText = isset($right_block['text']) ? $right_block['text'] : '';
-                                $rightLink = isset($right_block['link']) ? $right_block['link'] : '';
-                            endif;
-                            ?>
-
-                            <div class="bg-<?=$leftBlockTheme?>-blue block-<?=$leftBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
-                                <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident">
-                                    <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
-                                        <a href="<?=$leftLink?>"
-                                           class="flex flex-row gap-6 items-center">
-                                            <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">
-                                                <?=$leftHeader?></h3>
-                                        </a>
-                                    </div>
-                                    <div class="lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="100">
-                                        <?=$leftText?>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-<?=$rightBlockTheme?>-blue block-<?=$rightBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
-                                <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident">
-                                    <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
-                                        <a href="<?=$rightLink?>"
-                                           class="flex flex-row gap-6 items-center">
-                                            <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">
-                                                <?=$rightHeader?></h3>
-                                        </a>
-                                    </div>
-                                    <div class="lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="100">
-                                        <?=$rightText?>
-                                    </div>
-                                </div>
-                            </div>
-
-                <?php
-                        endwhile; 
-                    else : 
-                        // No rows found
-                    endif; 
-                    ?>
-
-            </div>
         </div>
 
         <!-- ABOUT US -->
@@ -116,90 +62,120 @@ get_header();
                             <h3 class="!text-xl !lg:text-3xl !plaakBold"><?= $aboutUs['left_block']['header'] ?? '' ?></h3>
                         </div>
                         <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="200">
-                            <p>Assistance to international companies in securing investment from leading funds, family offices, and institutional investors worldwide.</p>
-                            <p>Support for companies in entering and growing in international markets through tailored go-to-market strategies, regulatory navigation, and strategic local partnerships.</p>
-                            <p>Advisory for international investors and businesses in identifying, assessing, and accessing opportunities in international markets, aligning with their strategic and sectoral priorities.</p>
-                            <p>Backed by over 15 years of hands-on experience in business development, government relations, and cross-border investment advisory.</p>
+                            <?= wpautop($aboutUs['left_block']['description'] ?? '') ?>
                         </div>
-
                     </div>
                 </div>
 
-                <div class="bg-<?=$rightBlockStyle?>-blue block-<?=$rightBlockStyle?> relative flex aspect-16/9">
-                    <?php if(isset($aboutUs['right_block']['background'])):?>
-                    <img style="max-height: 100%" src="<?= $aboutUs['right_block']['background']?>" alt="About Us" class="object-center object-cover w-full">
-                    <?php endif;?>
+                <div class="bg-lightblue block-<?=$aboutUsStyle?>">
+                    <div class="p-6 md:p-10 lg:px-20 lg:py-24 list-trident" >
+                        <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="200">
+                            <?= wpautop($aboutUs['right_block']['description'] ?? '') ?>
+                        </div>
+                    </div>
                 </div>
+
+<!--                <div class="bg---><?php //=$rightBlockStyle?><!---blue block---><?php //=$rightBlockStyle?><!-- relative flex aspect-16/9">-->
+<!--                    --><?php //if(isset($aboutUs['right_block']['background'])):?>
+<!--                    <img style="max-height: 100%" src="--><?php //= $aboutUs['right_block']['background']?><!--" alt="About Us" class="object-center object-cover w-full">-->
+<!--                    --><?php //endif;?>
+<!--                </div>-->
 
             </div>
         </div>
-
         <?php endif; ?>
+        <!-- END ABOUT US -->
 
-        <!-- NEWS -->
-        <?php
-        // Get the latest 2 posts using WP_Query
-        $news_query = new WP_Query(array(
-            'posts_per_page' => 2,
-            'post_status' => 'publish',
-            'orderby' => 'date',
-            'order' => 'DESC'
-        ));
-        
-        if ($news_query->have_posts()) :
-            ?>
+        <!-- SERVICES -->
+        <div class="w-full relative content-grid EN" id="services">
+            <div class="mx-auto md:grid grid-cols-2 gap-0 services">
+                <?php
+                if (have_rows('services')):
+                    while (have_rows('services')) : the_row();
 
-        <div class="w-full relative content-grid" id="news">
-            <div class="mx-auto md:grid grid-cols-2 gap-0">
+                        // Get the left_block group as an array
+                        $left_block = get_sub_field('left_block');
+                        if ($left_block):
+                            $leftBlockTheme = isset($left_block['block_theme']) ? strtolower($left_block['block_theme']) : '';
+                            $leftHeader = isset($left_block['header']) ? $left_block['header'] : '';
+                            $leftText = isset($left_block['text']) ? $left_block['text'] : '';
+                            $leftLink = isset($left_block['link']) ? $left_block['link'] : '';
+                        endif;
 
-        <?php
-            $newsStyle = 'light';
-            while ($news_query->have_posts()) : $news_query->the_post();
-                $newsStyle = $newsStyle == 'light' ? 'dark' : 'light';
+                        // Get the right_block group as an array
+                        $right_block = get_sub_field('right_block');
+                        if ($right_block):
+                            $rightBlockTheme = isset($right_block['block_theme']) ? strtolower($right_block['block_theme']) : '';
+                            $rightHeader = isset($right_block['header']) ? $right_block['header'] : '';
+                            $rightText = isset($right_block['text']) ? $right_block['text'] : '';
+                            $rightLink = isset($right_block['link']) ? $right_block['link'] : '';
+                        endif;
+                        ?>
+
+                        <div class="bg-<?=$leftBlockTheme?>-blue block-<?=$leftBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
+                            <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident">
+                                <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
+                                    <a href="<?=$leftLink?>"
+                                       class="flex flex-row gap-6 items-center">
+                                        <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">
+                                            <?=$leftHeader?></h3>
+                                    </a>
+                                </div>
+                                <div class="flex flex-col justify-between gap-20">
+                                    <div class="lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="100">
+                                        <?=$leftText?>
+                                    </div>
+                                    <a href="<?=$leftLink?>"
+                                       class="read-more text-sm uppercase group transition-all duration-300 ease-in-out overflow-hidden inline pb-1 link-underline-animation after:bg-bright-blue">
+                                        <span class="block pb-1">Read more</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-<?=$rightBlockTheme?>-blue block-<?=$rightBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
+                            <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident">
+                                <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
+                                    <a href="<?=$rightLink?>"
+                                       class="flex flex-row gap-6 items-center">
+                                        <h3 class="!text-xl !lg:text-3xl !plaakBold uppercase pb-2  after:bg-white">
+                                            <?=$rightHeader?></h3>
+                                    </a>
+                                </div>
+
+                                <div class="flex flex-col justify-between gap-20">
+                                    <div class="lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="100">
+                                        <?=$rightText?>
+                                    </div>
+                                    <a href="<?=$rightLink?>"
+                                       class="read-more text-sm uppercase group transition-all duration-300 ease-in-out overflow-hidden inline pb-1 link-underline-animation after:bg-bright-blue">
+                                        <span class="block pb-1">Read more</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php
+                    endwhile;
+                else :
+                    // No rows found
+                endif;
                 ?>
 
-                <div class="bg-<?=$newsStyle?>-blue block-<?=$newsStyle?> ">
-                    <div class="text-white p-6 md:p-10 lg:px-20 lg:py-24 list-trident">
-                        <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header" data-aos="fade-up"
-                             data-aos-delay="100">
-                            <h3 class="!text-xl !lg:text-3xl !plaakBold"><?php the_title() ?></h3>
-
-                        </div>
-                        <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="200">
-                            <?php the_excerpt(); ?>
-                        </div>
-                        <ul role="list" class="mt-0 space-y-2 !list-none !pl-0 aos-init aos-animate" data-aos="fade-up"
-                            data-aos-delay="300">
-                            <div class="flex flex-col lg:flex-row lg:items-center justify-between pt-0 lg:pt-5 gap-5 links-icon-row aos-init aos-animate"
-                                 data-aos="fade-up" data-aos-delay="300">
-                                <li><a href="<?= get_the_permalink() ?>"
-                                       class=" text-sm lg:text-lg pb-1 link-underline-animation plaakBold block-text">Read More</a></li>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-
-        <?php
-            endwhile;
-            wp_reset_postdata();
-            ?>
             </div>
         </div>
-        <?php endif; ?>
+        <!-- END SERVICES -->
 
-
-        <?php
-            if (have_rows('partners')):
-        ?>
-         <!-- PARTNERS -->
-          <div class="bg-dark-blue border-b border-t border-bright-blue partners" id="partners" style="">
-             <h3><?php esc_html_e('PARTNERS', 'vision'); ?></h3>
-            <ul>
-                <?php  while (have_rows('partners')) : the_row(); ?>
-                <li><a href="<?= get_sub_field('link')?>"><img src="<?= get_sub_field('logo')?>" title="<?= get_sub_field('title')?>"/></a></li>
-        <?php endwhile; ?>
-            </ul>
-        </div>
+        <!-- PARTNERS -->
+        <?php if (have_rows('partners')): ?>
+            <div class="bg-dark-blue border-b border-t border-bright-blue partners" id="partners" style="">
+                <h3><?php esc_html_e('PARTNERS', 'vision'); ?></h3>
+                <ul>
+                    <?php  while (have_rows('partners')) : the_row(); ?>
+                        <li><a href="<?= get_sub_field('link')?>"><img src="<?= get_sub_field('logo')?>" title="<?= get_sub_field('title')?>"/></a></li>
+                    <?php endwhile; ?>
+                </ul>
+            </div>
         <?php endif; ?>
         <!-- END PARTNERS -->
 
@@ -231,6 +207,59 @@ get_header();
         if ($testimonials->have_posts()) :
         $testimonialsSettings = get_field('testimonials_section');
         ?>
+
+        <!-- TESTIMONIALS 1 -->
+        <div class="w-full relative content-grid" id="testimonials1">
+            <div class="mx-auto md:grid grid-cols-2 gap-0 testimonials-one">
+                <?php
+                    while ($testimonials->have_posts()) : $testimonials->the_post();
+                        ?>
+                        <div class="block-light" >
+                            <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-10 list-trident">
+                                <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
+                                    <a href="<?=$leftLink?>"
+                                       class="flex flex-row gap-6 items-center">
+                                        <h3 class="!text-xl !lg:text-3xl uppercase pb-2  after:bg-white">
+                                            <?= get_field('company')?></h3>
+                                    </a>
+                                </div>
+                                <div class="flex flex-col justify-between gap-20">
+                                    <div class="lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="100">
+                                        <?= wpautop(get_field('feedback'))?>
+                                    </div>
+                                    <div class="testimonial-author text-sm uppercase flex flex-col gap-2 align-end pb-1">
+                                        <?php
+                                        $testimonial_logo = get_field('testimonial_logo');
+                                        $logo_url = '';
+                                        if ($testimonial_logo) {
+                                            if (is_array($testimonial_logo)) {
+                                                // Return format is "Image Array"
+                                                $logo_url = $testimonial_logo['url'] ?? '';
+                                            } elseif (is_numeric($testimonial_logo)) {
+                                                // Return format is "Image ID"
+                                                $logo_url = wp_get_attachment_image_url($testimonial_logo, 'full');
+                                            } else {
+                                                // Return format is "Image URL"
+                                                $logo_url = $testimonial_logo;
+                                            }
+                                        }
+                                        if ($logo_url) :
+                                        ?>
+                                        <span class="testimonial-logo"><img src="<?= esc_url($logo_url) ?>" alt="<?= esc_attr(get_field('testimonial_author') ?: '') ?>" /></span>
+                                        <?php endif; ?>
+                                        <span class="block pb-1"><?= get_field('testimonial_author')?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php
+                    endwhile;
+                ?>
+
+            </div>
+        </div>
+        <!-- END TESTIMONIALS 1 -->
+
         <div class="w-full relative testimonials" id="testimonials">
             <div class="mx-auto md:grid grid-cols-2 gap-0">
                 <div class="left-side bg-light-blue">
@@ -242,14 +271,14 @@ get_header();
                         <div class="testimonials-container">
                             <?php while ($testimonials->have_posts()) : $testimonials->the_post(); ?>
                             <div class="slide overflow-hidden">
-                                <div class="mb-5 lg:mb-8 text-xl lg:text-3xl aos-init aos-animate"
-                                     data-aos="fade-up" data-aos-delay="100">
+                                        <div class="mb-5 lg:mb-8 text-xl lg:text-3xl aos-init aos-animate"
+                                             data-aos="fade-up" data-aos-delay="100">
                                     <h2 class="" style="margin-bottom: 1rem; font-size: 1.5rem"><?= get_field('company')?></h2>
-                                    <h3 class="" style="font-size: 1.2rem;">
+                                            <h3 class="" style="font-size: 1.2rem;">
                                         <?= get_field('feedback')?></h3>
-                                </div>
-                                <div class="flex justify-end aos-init aos-animate" data-aos="fade-up"
-                                     data-aos-delay="300">
+                                        </div>
+                                        <div class="flex justify-end aos-init aos-animate" data-aos="fade-up"
+                                             data-aos-delay="300">
                                     <a href="<?= get_permalink()?>"
                                        class="text-sm lg:text-lg uppercase text-dark-blue plaakBold group transition-all duration-300 ease-in-out">
                                         <span class="text-dark-blue after:bg-dark-blue pb-2"><?= get_field('testimonial_author')?></span>
@@ -303,7 +332,59 @@ get_header();
         </div>
         <?php endif; ?>
         <!-- END TESTIMONIALS -->
-    </div>
-</main>
 
-<?php get_footer(); ?>
+        <!-- NEWS -->
+        <?php
+        // Get the latest 2 posts using WP_Query
+        $news_query = new WP_Query(array(
+            'posts_per_page' => 2,
+            'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'DESC'
+        ));
+
+        if ($news_query->have_posts()) :
+            ?>
+            <div class="w-full relative content-grid" id="news">
+                <div class="mx-auto md:grid grid-cols-2 gap-0">
+                    <?php
+                    $newsStyle = 'light';
+                    while ($news_query->have_posts()) : $news_query->the_post();
+                        $newsStyle = $newsStyle == 'light' ? 'dark' : 'light';
+                        ?>
+
+                        <div class="bg-<?=$newsStyle?>-blue block-<?=$newsStyle?> ">
+                            <div class="text-white p-6 md:p-10 lg:px-20 lg:py-24 list-trident">
+                                <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header" data-aos="fade-up"
+                                     data-aos-delay="100">
+                                    <h3 class="!text-xl !lg:text-3xl !plaakBold"><?php the_title() ?></h3>
+
+                                </div>
+                                <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="200">
+                                    <?php the_excerpt(); ?>
+                                </div>
+                                <ul role="list" class="mt-0 space-y-2 !list-none !pl-0 aos-init aos-animate" data-aos="fade-up"
+                                    data-aos-delay="300">
+                                    <div class="flex flex-col lg:flex-row lg:items-center justify-between pt-0 lg:pt-5 gap-5 links-icon-row aos-init aos-animate"
+                                         data-aos="fade-up" data-aos-delay="300">
+                                        <li><a href="<?= get_the_permalink() ?>"
+                                               class=" text-sm lg:text-lg pb-1 link-underline-animation plaakBold block-text">Read More</a></li>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+
+                    <?php
+                    endwhile;
+                    wp_reset_postdata();
+                    ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <!-- END NEWS -->
+
+        </div>
+    </main>
+    <?php
+}
+get_footer(); ?>

@@ -134,12 +134,13 @@ header nav .mega-menu-link {
   justify-content: center;
 
   .dropdown-menu {
-    top: 160px;
+    top: 104px;
     right: 0;
     left: auto;
     width: 250px;
 
     a {
+      color: $color-dark-blue;
       &:hover {
         color: $color-gold;
       }
@@ -192,7 +193,8 @@ header nav .mega-menu-link {
       display: block;
 
       img {
-        max-height: 100px;
+        max-height: 80px;
+        padding: .5rem 0;
       }
     }
   }

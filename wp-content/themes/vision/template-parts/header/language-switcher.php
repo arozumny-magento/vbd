@@ -75,13 +75,10 @@ if (function_exists('pll_the_languages') && function_exists('pll_current_languag
         x-transition:leave="transition ease-in duration-150"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-95"
-        class="dropdown-menu absolute bg-dark-blue border-[#343A61] border z-50 shadow-lg w-[500px] md:w-96 px-6 py-4"
+        class="dropdown-menu absolute bg-light-blue border-[#e2e8f0] border border-t-0 z-50 shadow-lg w-[500px] md:w-96 px-6 py-4"
         role="menu"
         aria-label="<?php esc_attr_e('Language selection menu', 'vision'); ?>"
     >
-<!--        <p class="px-6 pt-4 text-white uppercase flex flex-row justify-start gap-8 flex-nowrap items-center plaakBold w-96 cursor-auto text-sm">-->
-<!--            --><?php //esc_html_e('Select Language', 'vision'); ?>
-<!--        </p>-->
         <?php if (function_exists('pll_the_languages')) : ?>
             <?php foreach ($languages as $lang) : 
                 $is_active = ($lang['current_lang'] == 1);
@@ -94,17 +91,6 @@ if (function_exists('pll_the_languages') && function_exists('pll_current_languag
                     role="menuitem"
                     hreflang="<?php echo esc_attr($lang['slug']); ?>"
                 >
-                    <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        viewBox="0 0 11.122 11.294"
-                        class="w-3 h-3 fill-current <?php echo $is_active ? 'fill-bright-blue' : ''; ?>"
-                        aria-hidden="true"
-                    >
-                        <path 
-                            d="M26.1,37.409,37.222,26.116H26.1Z"
-                            transform="translate(-26.1 -26.115)"
-                        />
-                    </svg>
                     <span><?php echo esc_html($lang_name . ' | ' . $lang_code); ?></span>
                 </a>
             <?php endforeach; ?>
@@ -116,17 +102,6 @@ if (function_exists('pll_the_languages') && function_exists('pll_current_languag
                     role="menuitem"
                     hreflang="<?php echo esc_attr($lang_code); ?>"
                 >
-                    <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        viewBox="0 0 11.122 11.294"
-                        class="w-3 h-3 fill-current <?php echo $lang_data['active'] ? 'fill-bright-blue' : ''; ?>"
-                        aria-hidden="true"
-                    >
-                        <path 
-                            d="M26.1,37.409,37.222,26.116H26.1Z"
-                            transform="translate(-26.1 -26.115)"
-                        />
-                    </svg>
                     <span><?php echo esc_html($lang_data['name'] . ' | ' . $lang_data['code']); ?></span>
                 </a>
             <?php endforeach; ?>
