@@ -6,13 +6,24 @@
  */
 
 get_header();
-?>
 
-    <main id="main" class="site-main">
-<?php
-while (have_posts()) :
-    the_post();
+// Check if Elementor is being used for this post
+$elementor_active = class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor(get_the_ID());
+
+if ($elementor_active) {
+    // Elementor template - let Elementor handle the content
+    while (have_posts()) :
+        the_post();
+        the_content();
+    endwhile;
+} else {
+    // Fallback to custom template
     ?>
+    <main id="main" class="site-main">
+    <?php
+    while (have_posts()) :
+        the_post();
+        ?>
 
         <div class="umb-block-list">
 
@@ -179,10 +190,9 @@ while (have_posts()) :
                 </div>
             </div>
         </div>
-<?php endwhile ?>
-
+    <?php endwhile; ?>
     </main>
-
-<?php
+    <?php
+}
 //get_sidebar();
 get_footer();

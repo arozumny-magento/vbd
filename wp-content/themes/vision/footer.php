@@ -1,13 +1,8 @@
-<footer class="bg-dark-blue-500 pb-8 md-pb-0 relative" aria-labelledby="footer-heading">
+<footer class="bg-white pb-8 md-pb-0 relative" aria-labelledby="footer-heading">
     <div class="w-full relative contact" id="contact">
         <div class="mx-auto md:grid grid-cols-2 overflow-hidden gap-0">
             <div class="hidden md:block bg-white relative" style="max-height: 600px;">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/pexels-olly.jpg" alt="" class="w-full h-full object-cover">
-                <div class="absolute bottom-[1px] w-full h-2 z-30 aos-init aos-animate" data-aos="fade-in" data-aos-delay="300">
-                    <svg version="1.1" id="line_2" class="rotate-180" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="10" xml:space="preserve">
-                                    <path class="path2" fill="#f0f7ff" stroke-width="14" stroke="#f0f7ff" d="M0 0 l1120 0"></path>
-                                </svg>
-                </div>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/contact_us.jpg" alt="" class="w-full h-full object-cover">
             </div>
             <div class="bg-dark-blue">
                 <div class="form-group">
@@ -22,7 +17,7 @@
     </div>
 
     <!-- FOOTER BOTTOM! -->
-    <div class="mx-auto md:px-6 md:py-8 lg:px-20 border-t border-bright-blue">
+    <div class="mx-auto md:px-6 md:py-8 lg:px-20 ">
         <div class="footer-bottom">
             <div class="social">
                 <div class="flex social-icons">
@@ -30,8 +25,7 @@
                     $social_links = vision_get_social_links();
                     foreach ($social_links as $key => $social) :
                     ?>
-                        <a href="<?php echo esc_url($social['url']); ?>" target="_blank" rel="noopener noreferrer"
-                           class="text-white hover:text-bright-blue">
+                        <a href="<?php echo esc_url($social['url']); ?>" target="_blank" rel="noopener noreferrer">
                             <span class="sr-only"><?php echo esc_html($social['label']); ?></span>
                             <?php if ($key === 'linkedin') : ?>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20.15" height="20.105" viewBox="0 0 20.15 20.105">
@@ -68,7 +62,7 @@
                 </ul>
             </div>
             <div class="footer-logo">
-                <a href="<?php echo esc_url(home_url('/')); ?>" ><img src="<?php echo get_template_directory_uri(); ?>/assets/vision_logo_white.svg" alt="Vision Business Development"></a>
+                <a href="<?php echo esc_url(home_url('/')); ?>" ><img src="<?php echo get_template_directory_uri(); ?>/assets/logo_gold.svg" alt="Vision Business Development"></a>
             </div>
 
             <div class="copyright">

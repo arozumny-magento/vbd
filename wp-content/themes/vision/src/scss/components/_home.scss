@@ -2,8 +2,14 @@
 
 main {
   .umb-block-list {
-    margin-top: 150px;
+    margin-top: 104px;
   }
+}
+
+.hero-banner-img {
+  background-position: center center;
+  height: 400px;
+  width: 100%;
 }
 
 @media screen and (min-width: 1024px) {
@@ -16,16 +22,31 @@ main {
 
 
 @media screen and (min-width: 1044px) {
-
   .hero-banner-block {
     max-height: 400px;
   }
 }
 
+.block-dark,
+.block-light {
+  .block-header{
+    font-weight: 600;
+  }
+}
+
+.bg-lightblue {
+  background-color: $color-light-blue;
+}
+
 .block-light {
   .block-header,
+  .read-more,
   .block-text {
     color: $color-dark-blue;
+
+    &:after {
+      background-color: $color-dark-blue;
+    }
   }
 
   a.block-text {
@@ -35,11 +56,36 @@ main {
   }
 }
 
+.testimonials-one {
+  > div {
+    background-color: $color-white;
+    &:nth-child(2),
+    &:nth-child(3) {
+      background-color: $color-light-blue;
+    }
+  }
+
+  .testimonial-logo {
+    img {
+      max-width: 50px;
+    }
+  }
+
+  .testimonial-author {
+    color: $color-dark-blue;
+    align-items: end;
+  }
+}
+
 .block-dark {
   .block-header,
+  .read-more,
   .block-text {
-
     color: $color-white;
+
+    &:after {
+      background-color: $color-white;
+    }
   }
 
   a.block-text {
@@ -50,9 +96,11 @@ main {
 }
 
 .partners {
+  padding: 0 8rem;
+
   h3 {
     color: $color-white;
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 2rem 0 -2rem;
     width: 100%;
     text-align: center
@@ -68,8 +116,12 @@ main {
   .block-light,
   .block-dark {
     > div {
-      padding: 6rem;
+      padding: 4rem 6rem;
     }
+  }
+
+  .read-more {
+    width: fit-content;
   }
 }
 
