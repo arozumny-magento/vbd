@@ -3,10 +3,29 @@
  * Alpine.js handles most interactive components (language switcher, mobile menu)
  */
 
+// Immediate test - should run as soon as script loads
+console.log('Vision Theme: main.js file is loading...');
+
 (function($) {
     'use strict';
+    
+    console.log('Vision Theme: jQuery wrapper function executing, jQuery available:', typeof $ !== 'undefined');
+    
+    // Verify jQuery is available
+    if (typeof $ === 'undefined' || typeof jQuery === 'undefined') {
+        console.error('Vision Theme: jQuery is not loaded');
+        // Try to use global jQuery
+        if (typeof jQuery !== 'undefined') {
+            $ = jQuery;
+            console.log('Vision Theme: Using global jQuery');
+        } else {
+            console.error('Vision Theme: jQuery not found, script will not work');
+            return;
+        }
+    }
 
     $(document).ready(function() {
+        console.log('Vision Theme: main.js loaded and ready, jQuery version:', $.fn.jquery);
         // Alpine.js now handles:
         // - Language switcher dropdown (x-data, x-show, @click.away)
         // - Mobile menu toggle (custom event dispatch)
@@ -65,20 +84,6 @@
         
         // Testimonials slider is now initialized inline in page-home.php with configuration
         // No need to initialize here - it's handled in the template
-        
-        // Smooth scroll for anchor links
-        $('a[href^="#"]').on('click', function(e) {
-            const href = $(this).attr('href');
-            if (href !== '#' && href.length > 1) {
-                const target = $(href);
-                if (target.length) {
-                    e.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: target.offset().top
-                    }, 600);
-                }
-            }
-        });
     });
 
 })(jQuery);

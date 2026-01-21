@@ -91,6 +91,12 @@ header nav .mega-menu-link {
   letter-spacing: 2px;
 }
 
+// Smooth scroll for mega-menu-link anchor links
+.mega-menu-link[href^="#"] {
+  // Enable smooth scroll behavior
+  scroll-behavior: smooth;
+}
+
 .top-header {
   width: 100%;
   display: flex;

@@ -115,8 +115,9 @@ function vision_scripts() {
     wp_enqueue_script('alpinejs', get_template_directory_uri() . '/assets/js/alpine.min.js', array(), '3.14.1', false);
     wp_script_add_data('alpinejs', 'defer', true);
     
-    // Enqueue JavaScript (depends on Alpine.js and Slick for some components)
-    wp_enqueue_script('vision-script', get_template_directory_uri() . '/assets/js/main.js', array('alpinejs', 'slick-js'), wp_get_theme()->get('Version'), true);
+    // Enqueue JavaScript (depends on jQuery, Alpine.js and Slick for some components)
+    wp_enqueue_script('vision-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'alpinejs', 'slick-js'), wp_get_theme()->get('Version'), true);
+    
     
     // Localize script for AJAX
     wp_localize_script('vision-script', 'visionAjax', array(
@@ -127,6 +128,41 @@ function vision_scripts() {
     // Add x-cloak CSS to prevent flash of unstyled content
     $alpine_css = '[x-cloak] { display: none !important; }';
     wp_add_inline_style('vision-style', $alpine_css);
+    
+    // Add dynamic scroll-margin-top for anchor targets
+    add_action('wp_footer', function() {
+        ?>
+        <script>
+        // Set scroll-margin-top dynamically based on header height
+        (function() {
+            function setScrollMargin() {
+                let offset = 0;
+                const header = document.querySelector('.top-header');
+                if (header) {
+                    offset += header.offsetHeight || 0;
+                }
+                const adminBar = document.getElementById('wpadminbar');
+                if (adminBar && adminBar.offsetParent !== null) {
+                    offset += adminBar.offsetHeight || 0;
+                }
+                
+                // Apply to all elements with IDs (anchor targets)
+                document.querySelectorAll('[id]').forEach(function(el) {
+                    el.style.scrollMarginTop = offset + 'px';
+                });
+            }
+            
+            // Set on load and resize
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setScrollMargin);
+            } else {
+                setScrollMargin();
+            }
+            window.addEventListener('resize', setScrollMargin);
+        })();
+        </script>
+        <?php
+    }, 1);
 }
 add_action('wp_enqueue_scripts', 'vision_scripts');
 
