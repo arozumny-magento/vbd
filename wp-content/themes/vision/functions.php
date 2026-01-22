@@ -352,3 +352,30 @@ function vision_register_strings() {
     }
 }
 add_action('init', 'vision_register_strings');
+
+/**
+ * Add social icons to mega menu as last item (mobile only)
+ */
+function vision_add_social_to_mega_menu($items, $args) {
+    // Only add to primary menu location
+    if ($args->theme_location !== 'primary') {
+        return $items;
+    }
+    
+    // Check if Max Mega Menu is enabled
+    if (!function_exists('max_mega_menu_is_enabled') || !max_mega_menu_is_enabled('primary')) {
+        return $items;
+    }
+    
+    // Add social icons as last menu item (mobile only)
+    $social_html = '<li class="mega-menu-item mega-menu-mobile-social xl:hidden">';
+    $social_html .= '<div class="mega-menu-link mega-menu-mobile-social-container">';
+    ob_start();
+    renderSocial('dark', 24, ['linkedin', 'instagram', 'facebook', 'youtube'], 'mega-menu-social-link');
+    $social_html .= ob_get_clean();
+    $social_html .= '</div>';
+    $social_html .= '</li>';
+    
+    return $items . $social_html;
+}
+add_filter('wp_nav_menu_items', 'vision_add_social_to_mega_menu', 10, 2);

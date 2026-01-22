@@ -84,6 +84,47 @@ console.log('Vision Theme: main.js file is loading...');
         
         // Testimonials slider is now initialized inline in page-home.php with configuration
         // No need to initialize here - it's handled in the template
+        
+        // Add social icons to mega menu on mobile
+        function addSocialToMegaMenu() {
+            const $megaMenu = $('#mega-menu-primary');
+            const $template = $('#mega-menu-social-template');
+            
+            if ($megaMenu.length && $template.length && !$megaMenu.find('.mega-menu-mobile-social').length) {
+                // Check if we're on mobile (window width < 1280px)
+                if ($(window).width() < 1280) {
+                    // Create social icons container
+                    const $socialItem = $('<li class="mega-menu-item mega-menu-mobile-social xl:hidden"></li>');
+                    const $socialContainer = $('<div class="mega-menu-link mega-menu-mobile-social-container"></div>');
+                    
+                    // Clone social icons from template
+                    $socialContainer.html($template.html());
+                    $socialItem.append($socialContainer);
+                    $megaMenu.append($socialItem);
+                }
+            }
+        }
+        
+        // Run on page load and after Max Mega Menu initializes
+        addSocialToMegaMenu();
+        
+        // Also run after a short delay to ensure Max Mega Menu is fully loaded
+        setTimeout(addSocialToMegaMenu, 500);
+        setTimeout(addSocialToMegaMenu, 1000);
+        
+        // Re-run on window resize
+        let resizeTimer;
+        $(window).on('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Remove existing social item if switching to desktop
+                if ($(window).width() >= 1280) {
+                    $('#mega-menu-primary .mega-menu-mobile-social').remove();
+                } else {
+                    addSocialToMegaMenu();
+                }
+            }, 100);
+        });
     });
 
 })(jQuery);

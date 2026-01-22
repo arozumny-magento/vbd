@@ -965,6 +965,33 @@ nav .testimonial-megamenu-item > div {
   header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link:before {
     display: none;
   }
+  header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-current-menu-item.mega-menu-mobile-social,
+  header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-menu-mobile-social {
+    order: 999;
+    width: 100% !important;
+    padding: 1.5rem 0;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-current-menu-item.mega-menu-mobile-social .mega-menu-mobile-social-container,
+  header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-menu-mobile-social .mega-menu-mobile-social-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 0;
+    background: none;
+  }
+  header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-current-menu-item.mega-menu-mobile-social .mega-menu-mobile-social-container .mega-menu-social-link,
+  header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-menu-mobile-social .mega-menu-mobile-social-container .mega-menu-social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media screen and (min-width: 1280px) {
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-mobile-social {
+    display: none !important;
+  }
 }
 .prose {
   color: #00012E;
