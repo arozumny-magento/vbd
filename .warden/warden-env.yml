@@ -1,0 +1,10 @@
+services:
+  php-fpm:
+    volumes:
+      - ${PWD}/.warden/php/99-upload-size.ini:/etc/php.d/99-upload-size.ini:ro
+  php-debug:
+    volumes:
+      - ${PWD}/.warden/php/99-upload-size.ini:/etc/php.d/99-upload-size.ini:ro
+  nginx:
+    volumes:
+      - ${PWD}/.warden/nginx/upload-size.conf:/etc/nginx/conf.d/upload-size.conf:ro
