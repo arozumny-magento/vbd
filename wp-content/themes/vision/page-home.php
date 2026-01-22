@@ -53,7 +53,7 @@ if ($elementor_active) {
         $rightBlockStyle = $aboutUsStyle == 'light' ? 'dark' : 'light';
         if ($aboutUs):
         ?>
-        <div class="w-full relative content-grid" id="about-us">
+        <div class="w-full relative content-grid" id="about">
             <div class="mx-auto md:grid grid-cols-2 gap-0">
                 <div class="bg-<?=$aboutUsStyle?>-blue block-<?=$aboutUsStyle?>">
                     <div class="p-6 md:p-10 lg:px-20 lg:py-24 list-trident" >
@@ -166,19 +166,6 @@ if ($elementor_active) {
         </div>
         <!-- END SERVICES -->
 
-        <!-- PARTNERS -->
-        <?php if (have_rows('partners')): ?>
-            <div class="bg-dark-blue border-b border-t border-bright-blue partners" id="partners" style="">
-                <h3><?php esc_html_e('PARTNERS', 'vision'); ?></h3>
-                <ul>
-                    <?php  while (have_rows('partners')) : the_row(); ?>
-                        <li><a href="<?= get_sub_field('link')?>"><img src="<?= get_sub_field('logo')?>" title="<?= get_sub_field('title')?>"/></a></li>
-                    <?php endwhile; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
-        <!-- END PARTNERS -->
-
         <!-- TESTIMONIALS -->
         <?php
         $testimonials = new WP_Query(array(
@@ -209,7 +196,7 @@ if ($elementor_active) {
         ?>
 
         <!-- TESTIMONIALS 1 -->
-        <div class="w-full relative content-grid" id="testimonials1">
+        <div class="w-full relative content-grid" id="testimonials">
             <div class="mx-auto md:grid grid-cols-2 gap-0 testimonials-one">
                 <?php
                     while ($testimonials->have_posts()) : $testimonials->the_post();
@@ -260,7 +247,7 @@ if ($elementor_active) {
         </div>
         <!-- END TESTIMONIALS 1 -->
 
-        <div class="w-full relative testimonials" id="testimonials">
+        <div class="w-full relative testimonials" style="display: none;">
             <div class="mx-auto md:grid grid-cols-2 gap-0">
                 <div class="left-side bg-light-blue">
                     <div class="text-dark-blue p-6 md:p-10 lg:px-20 lg:py-24">
@@ -333,6 +320,19 @@ if ($elementor_active) {
         <?php endif; ?>
         <!-- END TESTIMONIALS -->
 
+        <!-- PARTNERS -->
+        <?php if (have_rows('partners')): ?>
+            <div class="bg-dark-blue border-b border-t border-bright-blue partners" id="partners" style="">
+                <h3><?php esc_html_e('PARTNERS', 'vision'); ?></h3>
+                <ul>
+                    <?php  while (have_rows('partners')) : the_row(); ?>
+                        <li><a href="<?= get_sub_field('link')?>"><img src="<?= get_sub_field('logo')?>" title="<?= get_sub_field('title')?>"/></a></li>
+                    <?php endwhile; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+        <!-- END PARTNERS -->
+
         <!-- NEWS -->
         <?php
         // Get the latest 2 posts using WP_Query
@@ -345,7 +345,7 @@ if ($elementor_active) {
 
         if ($news_query->have_posts()) :
             ?>
-            <div class="w-full relative content-grid" id="news">
+            <div class="w-full relative content-grid" id="updates">
                 <div class="mx-auto md:grid grid-cols-2 gap-0">
                     <?php
                     $newsStyle = 'light';

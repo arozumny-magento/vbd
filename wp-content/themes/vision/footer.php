@@ -23,17 +23,24 @@
                 <div class="flex social-icons">
                     <?php renderSocial('dark', 20, ['linkedin', 'instagram', 'facebook', 'youtube']); ?>
                 </div>
-                <ul class="footer-menu">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Resources</a></li>
-                    <li><a href="#">Partners</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+                <?php
+                if (has_nav_menu('footer')) {
+                    wp_nav_menu(array(
+                        'theme_location' => 'footer',
+                        'container' => false,
+                        'menu_class' => 'footer-menu',
+                        'fallback_cb' => false,
+                    ));
+                }
+                ?>
             </div>
+            <?php 
+            $footer_logo_url = vision_get_footer_logo_url();
+            if ($footer_logo_url) : ?>
             <div class="footer-logo">
-                <a href="<?php echo esc_url(home_url('/')); ?>" ><img src="<?php echo get_template_directory_uri(); ?>/assets/logo_gold.svg" alt="Vision Business Development"></a>
+                <a href="<?php echo esc_url(home_url('/')); ?>" ><img src="<?php echo esc_url($footer_logo_url); ?>" alt="Vision Business Development"></a>
             </div>
+            <?php endif; ?>
 
             <div class="copyright">
                 <div class="flex social-icons">

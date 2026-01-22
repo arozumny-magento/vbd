@@ -101,6 +101,86 @@ function vision_get_logo_alt() {
 }
 
 /**
+ * Get header logo URL from ACF options
+ * Path: header (group) → main_logo (image type)
+ *
+ * @return string|false Logo URL or false if not set
+ */
+function vision_get_header_logo_url() {
+    if (!function_exists('get_field')) {
+        return false;
+    }
+    
+    $header_config = get_field('header', 'option');
+    
+    if (!$header_config || !isset($header_config['main_logo'])) {
+        return false;
+    }
+    
+    $logo = $header_config['main_logo'];
+    
+    // Handle ACF image field formats: ID, array, or URL
+    if (is_numeric($logo)) {
+        // It's an attachment ID
+        $logo_url = wp_get_attachment_image_url($logo, 'full');
+        return $logo_url ? $logo_url : false;
+    } elseif (is_array($logo)) {
+        // It's an array with 'url' key
+        if (isset($logo['url'])) {
+            return $logo['url'];
+        } elseif (isset($logo['ID'])) {
+            $logo_url = wp_get_attachment_image_url($logo['ID'], 'full');
+            return $logo_url ? $logo_url : false;
+        }
+    } elseif (is_string($logo) && !empty($logo)) {
+        // It's already a URL string
+        return $logo;
+    }
+    
+    return false;
+}
+
+/**
+ * Get footer logo URL from ACF options
+ * Path: footer (group) → main_logo (image type)
+ *
+ * @return string|false Logo URL or false if not set
+ */
+function vision_get_footer_logo_url() {
+    if (!function_exists('get_field')) {
+        return false;
+    }
+    
+    $footer_config = get_field('footer', 'option');
+    
+    if (!$footer_config || !isset($footer_config['logo'])) {
+        return false;
+    }
+    
+    $logo = $footer_config['logo'];
+    
+    // Handle ACF image field formats: ID, array, or URL
+    if (is_numeric($logo)) {
+        // It's an attachment ID
+        $logo_url = wp_get_attachment_image_url($logo, 'full');
+        return $logo_url ? $logo_url : false;
+    } elseif (is_array($logo)) {
+        // It's an array with 'url' key
+        if (isset($logo['url'])) {
+            return $logo['url'];
+        } elseif (isset($logo['ID'])) {
+            $logo_url = wp_get_attachment_image_url($logo['ID'], 'full');
+            return $logo_url ? $logo_url : false;
+        }
+    } elseif (is_string($logo) && !empty($logo)) {
+        // It's already a URL string
+        return $logo;
+    }
+    
+    return false;
+}
+
+/**
  * Get social media links
  *
  * @return array Array of social media links
@@ -174,26 +254,65 @@ function renderSocial($style = 'dark', $size = 20, $iconsList = array(), $link_c
         $iconsList = array('linkedin', 'instagram', 'youtube', 'facebook');
     }
 
-
-    // Get social links - using '#' as default URL for now
-    $social_links = array(
-        'instagram' => array(
+    // Get social links from ACF options page
+    // Structure: social (group) -> [platform] (group) -> link (url field)
+    $social_links = array();
+    
+    if (function_exists('get_field')) {
+        $social_config = get_field('social', 'option');
+        
+        if ($social_config && is_array($social_config)) {
+            $platforms = array('instagram', 'facebook', 'linkedin', 'youtube');
+            
+            foreach ($platforms as $platform) {
+                if (isset($social_config[$platform]) && is_array($social_config[$platform])) {
+                    $platform_data = $social_config[$platform];
+                    
+                    // Check if link field exists and is not empty
+                    if (isset($platform_data['link']) && !empty($platform_data['link'])) {
+                        // Set proper label for each platform
+                        $labels = array(
+                            'instagram' => __('Instagram', 'vision'),
+                            'facebook' => __('Facebook', 'vision'),
+                            'linkedin' => __('LinkedIn', 'vision'),
+                            'youtube' => __('YouTube', 'vision'),
+                        );
+                        
+                        $social_links[$platform] = array(
+                            'url' => esc_url($platform_data['link']),
+                            'label' => isset($labels[$platform]) ? $labels[$platform] : ucfirst($platform),
+                        );
+                    }
+                }
+            }
+        }
+    }
+    
+    // Set defaults with '#' if ACF fields are not set
+    if (!isset($social_links['instagram'])) {
+        $social_links['instagram'] = array(
             'url' => '#',
             'label' => __('Instagram', 'vision'),
-        ),
-        'facebook' => array(
+        );
+    }
+    if (!isset($social_links['facebook'])) {
+        $social_links['facebook'] = array(
             'url' => '#',
             'label' => __('Facebook', 'vision'),
-        ),
-        'linkedin' => array(
+        );
+    }
+    if (!isset($social_links['linkedin'])) {
+        $social_links['linkedin'] = array(
             'url' => '#',
             'label' => __('LinkedIn', 'vision'),
-        ),
-        'youtube' => array(
+        );
+    }
+    if (!isset($social_links['youtube'])) {
+        $social_links['youtube'] = array(
             'url' => '#',
             'label' => __('YouTube', 'vision'),
-        ),
-    );
+        );
+    }
     
     // Define SVG icons
     $svg_icons = array(
@@ -211,13 +330,13 @@ function renderSocial($style = 'dark', $size = 20, $iconsList = array(), $link_c
         if (!isset($svg_icons[$icon_key])) {
             continue;
         }
-        
+
         // Get URL from ACF data
         $url = isset($social_links[$icon_key]['url']) ? $social_links[$icon_key]['url'] : '';
         $label = isset($social_links[$icon_key]['label']) ? $social_links[$icon_key]['label'] : ucfirst($icon_key);
         
-        // Skip if URL is empty
-        if (empty($url)) {
+        // Skip if URL is empty or is a placeholder
+        if (empty($url) || $url === '#') {
             continue;
         }
         
@@ -226,8 +345,8 @@ function renderSocial($style = 'dark', $size = 20, $iconsList = array(), $link_c
         if (!empty($link_class)) {
             $classes .= ' ' . esc_attr($link_class);
         }
-        
         ?>
+
         <a href="<?php echo esc_url($url); ?>" target="_blank" rel="noopener noreferrer" class="<?php echo $classes; ?>">
             <span class="sr-only"><?php echo esc_html($label); ?></span>
             <?php echo $svg_icons[$icon_key]; ?>

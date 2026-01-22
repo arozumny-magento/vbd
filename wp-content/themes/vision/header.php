@@ -11,12 +11,16 @@
 
 <header class="top-header admin-bar-offset">
     <div class="header-social">
+                                    <?php
+        $header_logo_url = vision_get_header_logo_url();
+        if ($header_logo_url) : ?>
         <a class="mobile-logo" href="/">
-            <img src="<?= vision_get_logo_url() ?>" alt="<?= vision_get_logo_alt()?> " title="<?= esc_html(get_bloginfo('name')) ?>"/>
+            <img src="<?= esc_url($header_logo_url) ?>" alt="<?= vision_get_logo_alt()?> " title="<?= esc_html(get_bloginfo('name')) ?>"/>
         </a>
+        <?php endif; ?>
         <div class="flex justify-center gap-4 social-links">
             <?php renderSocial('dark', 20, ['linkedin', 'youtube'], 'header-social-link'); ?>
-        </div>
+                                </div>
                             </div>
     <nav class="" aria-label="Global">
             <?php
@@ -89,12 +93,17 @@
                         // Check if this is a logo menu item
                         if (strtolower(trim($title)) === 'logo') {
                             // Replace title with logo image
-                            $logo_url = vision_get_logo_url();
-                            $logo_alt = vision_get_logo_alt();
-                            $title = '<span class="sr-only">' . esc_html(get_bloginfo('name')) . '</span>';
-                            $title .= '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($logo_alt) . '"';
-                            $title .= ' class="relative logo"';
-                            $title .= ' width="auto" height="auto" loading="eager" />';
+                            $logo_url = vision_get_header_logo_url();
+                            if ($logo_url) {
+                                $logo_alt = vision_get_logo_alt();
+                                $title = '<span class="sr-only">' . esc_html(get_bloginfo('name')) . '</span>';
+                                $title .= '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($logo_alt) . '"';
+                                $title .= ' class="relative logo"';
+                                $title .= ' width="auto" height="auto" loading="eager" />';
+                            } else {
+                                // If no logo, return empty string to hide the menu item
+                                $title = '';
+                            }
                         }
                         return $title;
                     }, 10, 2);
@@ -107,12 +116,12 @@
             }
             ?>
     </nav>
-    
+
     <!-- Hidden template for mega menu social icons (mobile only) -->
     <div id="mega-menu-social-template" style="display: none;">
         <?php renderSocial('dark', 24, ['linkedin', 'instagram', 'facebook', 'youtube'], 'mega-menu-social-link'); ?>
-    </div>
-    
+                        </div>
+
     <div class="language-switcher">
         <div class="flex flex-row gap-2 md:gap-6 justify-between items-center">
             <?php get_template_part('template-parts/header/language-switcher'); ?>

@@ -9,9 +9,12 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$logo_url = vision_get_logo_url();
+$logo_url = vision_get_header_logo_url();
 $logo_alt = vision_get_logo_alt();
 $home_url = esc_url(home_url('/'));
+
+// Only render if logo URL is available
+if ($logo_url) :
 ?>
 
 <a 
@@ -30,3 +33,5 @@ $home_url = esc_url(home_url('/'));
         loading="eager"
     />
 </a>
+
+<?php endif; ?>

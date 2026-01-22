@@ -95,12 +95,17 @@ class Vision_Walker_Nav_Menu extends Walker_Nav_Menu {
         // Check if this menu item is the logo (title = "Logo")
         if ($is_logo) {
             // Display logo image instead of text
-            $logo_url = vision_get_logo_url();
-            $logo_alt = vision_get_logo_alt();
-            $item_output .= '<span class="sr-only">' . esc_html(get_bloginfo('name')) . '</span>';
-            $item_output .= '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($logo_alt) . '"';
-            $item_output .= ' class="max-w-[170px] md:max-w-[200px] relative lg:max-w-[200px] xl:max-w-[200px]"';
-            $item_output .= ' width="200" height="auto" loading="eager" />';
+            $logo_url = vision_get_header_logo_url();
+            if ($logo_url) {
+                $logo_alt = vision_get_logo_alt();
+                $item_output .= '<span class="sr-only">' . esc_html(get_bloginfo('name')) . '</span>';
+                $item_output .= '<img src="' . esc_url($logo_url) . '" alt="' . esc_attr($logo_alt) . '"';
+                $item_output .= ' class="max-w-[170px] md:max-w-[200px] relative lg:max-w-[200px] xl:max-w-[200px]"';
+                $item_output .= ' width="200" height="auto" loading="eager" />';
+            } else {
+                // If no logo, don't render the menu item
+                return '';
+            }
         } else {
             // Display normal menu item text
             $item_output .= (isset($args->link_before) ? $args->link_before : '') . $title . (isset($args->link_after) ? $args->link_after : '');
