@@ -23,6 +23,12 @@
                 <div class="flex social-icons">
                     <?php renderSocial('dark', 20, ['linkedin', 'instagram', 'facebook', 'youtube']); ?>
                 </div>
+            </div>
+            <?php 
+            $footer_logo_url = vision_get_footer_logo_url();
+            if ($footer_logo_url) : ?>
+            <div class="footer-logo">
+                <a href="<?php echo esc_url(home_url('/')); ?>" ><img src="<?php echo esc_url($footer_logo_url); ?>" alt="Vision Business Development"></a>
                 <?php
                 if (has_nav_menu('footer')) {
                     wp_nav_menu(array(
@@ -33,12 +39,6 @@
                     ));
                 }
                 ?>
-            </div>
-            <?php 
-            $footer_logo_url = vision_get_footer_logo_url();
-            if ($footer_logo_url) : ?>
-            <div class="footer-logo">
-                <a href="<?php echo esc_url(home_url('/')); ?>" ><img src="<?php echo esc_url($footer_logo_url); ?>" alt="Vision Business Development"></a>
             </div>
             <?php endif; ?>
 

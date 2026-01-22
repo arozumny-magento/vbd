@@ -93,12 +93,15 @@
 .footer-logo {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+
+  margin-bottom: -2rem;
 }
 
 .footer-logo img {
-  max-height: 100px;
-  margin-bottom: -2rem;
+  max-height: 85px;
 }
 
 .footer-bottom .social > div {
@@ -172,8 +175,11 @@
     }
 
     .footer-logo {
+      .footer-menu {
+        display: none;
+      }
       img {
-        margin-bottom: 1.5rem;
+        margin: 1.5rem 0 3.5rem;
       }
     }
 

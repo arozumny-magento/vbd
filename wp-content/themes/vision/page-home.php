@@ -195,7 +195,7 @@ if ($elementor_active) {
         $testimonialsSettings = get_field('testimonials_section');
         ?>
 
-        <!-- TESTIMONIALS 1 -->
+        <!-- TESTIMONIALS BLOCKS -->
         <div class="w-full relative content-grid" id="testimonials">
             <div class="mx-auto md:grid grid-cols-2 gap-0 testimonials-one">
                 <?php
@@ -203,18 +203,16 @@ if ($elementor_active) {
                         ?>
                         <div class="block-light" >
                             <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-10 list-trident">
-                                <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
-                                    <a href="<?=$leftLink?>"
-                                       class="flex flex-row gap-6 items-center">
-                                        <h3 class="!text-xl !lg:text-3xl uppercase pb-2  after:bg-white">
-                                            <?= get_field('company')?></h3>
-                                    </a>
-                                </div>
-                                <div class="flex flex-col justify-between gap-20">
-                                    <div class="lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="100">
-                                        <?= wpautop(get_field('feedback'))?>
+                                <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header flex justify-between">
+                                    <div>
+                                        <a href="<?=$leftLink?>"
+                                           class="flex flex-row gap-6 items-center">
+                                            <h3 class="!text-xl !lg:text-3xl uppercase pb-2  after:bg-white">
+                                                <?= get_field('company')?></h3>
+                                        </a>
+                                        <span class="testimonial-author text-sm capitalize font-normal block pb-1"><?= get_field('testimonial_author')?></span>
                                     </div>
-                                    <div class="testimonial-author text-sm uppercase flex flex-col gap-2 align-end pb-1">
+                                    <div>
                                         <?php
                                         $testimonial_logo = get_field('testimonial_logo');
                                         $logo_url = '';
@@ -231,10 +229,14 @@ if ($elementor_active) {
                                             }
                                         }
                                         if ($logo_url) :
-                                        ?>
-                                        <span class="testimonial-logo"><img src="<?= esc_url($logo_url) ?>" alt="<?= esc_attr(get_field('testimonial_author') ?: '') ?>" /></span>
+                                            ?>
+                                            <span class="testimonial-logo"><img src="<?= esc_url($logo_url) ?>" alt="<?= esc_attr(get_field('testimonial_author') ?: '') ?>" /></span>
                                         <?php endif; ?>
-                                        <span class="block pb-1"><?= get_field('testimonial_author')?></span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col justify-between gap-20">
+                                    <div class="lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="100">
+                                        <?= wpautop(get_field('feedback'))?>
                                     </div>
                                 </div>
                             </div>
@@ -245,8 +247,9 @@ if ($elementor_active) {
 
             </div>
         </div>
-        <!-- END TESTIMONIALS 1 -->
+        <!-- END TESTIMONIALS BLOCKS -->
 
+        <!-- TESTIMONIALS SLIDER -->
         <div class="w-full relative testimonials" style="display: none;">
             <div class="mx-auto md:grid grid-cols-2 gap-0">
                 <div class="left-side bg-light-blue">
@@ -317,6 +320,7 @@ if ($elementor_active) {
                 </div>
             </div>
         </div>
+        <!-- TESTIMONIALS SLIDER END -->
         <?php endif; ?>
         <!-- END TESTIMONIALS -->
 
