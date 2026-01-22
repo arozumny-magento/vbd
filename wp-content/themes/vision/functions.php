@@ -76,55 +76,7 @@ function vision_scripts() {
     // WordPress automatically loads style.css from theme root
     // No need to enqueue it manually, but we can add it with a version for cache busting
     wp_enqueue_style('vision-style', get_stylesheet_uri(), array(), wp_get_theme()->get('Version'));
-    
-    // Add admin bar styles to ensure it's always visible and properly positioned
-    $admin_bar_css = '
-        /* Ensure admin bar is never hidden */
-        #wpadminbar,
-        #wpadminbar.hidden {
-            z-index: 999999 !important;
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100% !important;
-            min-width: 600px !important;
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
-            height: 32px !important;
-        }
-        #wpadminbar * {
-            visibility: visible !important;
-        }
-        #wpadminbar .ab-item,
-        #wpadminbar .ab-empty-item,
-        #wpadminbar li {
-            display: block !important;
-            visibility: visible !important;
-        }
-        @media screen and (max-width: 782px) {
-            #wpadminbar,
-            #wpadminbar.hidden {
-                height: 46px !important;
-            }
-        }
-        /* Adjust header position when admin bar is present */
-        body.admin-bar header.fixed,
-        body.admin-bar .fixed.inset-x-0.top-0,
-        body.admin-bar header {
-            top: 32px !important;
-        }
-        @media screen and (max-width: 782px) {
-            body.admin-bar header.fixed,
-            body.admin-bar .fixed.inset-x-0.top-0,
-            body.admin-bar header {
-                top: 46px !important;
-            }
-        }
-    ';
-    wp_add_inline_style('vision-style', $admin_bar_css);
-    
+
     // Enqueue Slick Slider CSS
     wp_enqueue_style('slick-css', get_template_directory_uri() . '/assets/slick.css', array(), '1.8.1');
     
