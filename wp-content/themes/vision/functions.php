@@ -332,8 +332,78 @@ require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/class-walker-nav-menu.php';
 
 
+/**
+ * Check if a URL is a video file or video hosting service
+ * 
+ * @param string $url The URL to check (can be image or video URL)
+ * @return bool True if the URL is a video, false otherwise
+ */
 function isVideo(string $url) {
+    // Return false if URL is empty
+    if (empty($url)) {
+        return false;
+    }
 
+    // Remove query strings and fragments for cleaner checking
+    $clean_url = preg_replace('/[?#].*$/', '', $url);
+    
+    // Get file extension from URL
+    $path = parse_url($clean_url, PHP_URL_PATH);
+    $extension = $path ? strtolower(pathinfo($path, PATHINFO_EXTENSION)) : '';
+    
+    // Check for common video file extensions
+    $video_extensions = array(
+        'mp4', 'webm', 'ogv', 'ogg', 'mov', 'avi', 'mkv', 'flv', 
+        'wmv', 'm4v', '3gp', '3g2', 'asf', 'rm', 'rmvb', 'vob'
+    );
+    
+    if (in_array($extension, $video_extensions, true)) {
+        return true;
+    }
+    
+    // Use WordPress function if available (includes: mp4, m4v, webm, ogv, flv)
+    if (function_exists('wp_get_video_extensions')) {
+        $wp_video_extensions = wp_get_video_extensions();
+        if (in_array($extension, $wp_video_extensions, true)) {
+            return true;
+        }
+    }
+    
+    // Check for video hosting services
+    $video_hosts = array(
+        'youtube.com',
+        'youtu.be',
+        'vimeo.com',
+        'dailymotion.com',
+        'dai.ly',
+        'facebook.com/video',
+        'instagram.com',
+        'tiktok.com',
+        'twitch.tv',
+        'wistia.com'
+    );
+    
+    $host = parse_url($clean_url, PHP_URL_HOST);
+    if ($host) {
+        $host = strtolower($host);
+        foreach ($video_hosts as $video_host) {
+            if (strpos($host, $video_host) !== false) {
+                return true;
+            }
+        }
+    }
+    
+    // Check MIME type if URL is a local WordPress attachment
+    if (function_exists('attachment_url_to_postid')) {
+        $attachment_id = attachment_url_to_postid($url);
+        if ($attachment_id) {
+            $mime_type = get_post_mime_type($attachment_id);
+            if ($mime_type && strpos($mime_type, 'video/') === 0) {
+                return true;
+            }
+        }
+    }
+    
     return false;
 }
 

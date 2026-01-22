@@ -38,7 +38,7 @@ if ($elementor_active) {
             ?>
             <?php if (isVideo($heroBanner)) :?>
                     <video autoplay="true" loop="true" muted="true" class="w-auto min-w-full min-h-full max-w-none">
-                        <source src="<?php echo get_template_directory_uri(); ?>/assets/hero_banner_1920x600_web2.mp4" type="video/mp4">
+                        <source src="<?php the_field('hero_banner') ?>" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
             <?php else: ?>

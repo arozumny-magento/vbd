@@ -1882,11 +1882,6 @@ main .umb-block-list {
     text-align: center;
   }
 }
-@media screen and (min-width: 1044px) {
-  .hero-banner-block {
-    max-height: 400px;
-  }
-}
 .block-dark .block-header,
 .block-light .block-header {
   font-weight: 600;
