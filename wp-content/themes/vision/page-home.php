@@ -21,7 +21,7 @@ if ($elementor_active) {
     <div class="umb-block-list">
         <section class="hero">
             <div class="relative isolate overflow-hidden bg-white">
-                <div class="mx-auto max-w-7xl px-4 py-4 lg:py-10 lg:px-20 lg:pb-10">
+                <div class="mx-auto max-w-7xl px-4 py-4 lg:px-20" style="padding: 2rem 4rem">
                     <div class="mx-auto max-w-7xl text-center">
                         <div class="max-w-7xl font-normal text-dark-blue text-xl md:text-3xl lg:text-5xl uppercase text-left tracking-[.20em] aos-init aos-animate"
                              data-aos="fade-up" data-aos-delay="100"><h1 class="text-xl lg:text-4xl"></h1>
@@ -36,13 +36,18 @@ if ($elementor_active) {
             <?php
                 $heroBanner = get_field('hero_banner');
             ?>
-            <?php if (isVideo($heroBanner)) :?>
-                    <video autoplay="true" loop="true" muted="true" class="w-auto min-w-full min-h-full max-w-none">
-                        <source src="<?php the_field('hero_banner') ?>" type="video/mp4">
+            <?php if (isset($heroBanner)) :?>
+                    <video
+                            autoplay="true"
+                            loop="true"
+                            muted="true"
+                            class="w-auto min-w-full min-h-full max-w-none"
+                            poster="<?= $heroBanner['background'] ?? '' ?>"
+                            src="<?= $heroBanner['video'] ?>" type="video/mp4"
+                    >
+                        <source src="<?= $heroBanner['video'] ?>" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-            <?php else: ?>
-                <div class="hero-banner-img" style="background-image: url('<?php the_field('hero_banner') ?>')"></div>
             <?php endif; ?>
         </div>
 
@@ -56,7 +61,7 @@ if ($elementor_active) {
         <div class="w-full relative content-grid" id="about">
             <div class="mx-auto md:grid grid-cols-2 gap-0">
                 <div class="bg-<?=$aboutUsStyle?>-blue block-<?=$aboutUsStyle?>">
-                    <div class="p-6 md:p-10 lg:px-20 lg:py-24 list-trident" >
+                    <div class="p-6 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 4rem 6rem">
                         <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header" data-aos="fade-up"
                              data-aos-delay="100">
                             <h3 class="!text-xl !lg:text-3xl !plaakBold"><?= $aboutUs['left_block']['header'] ?? '' ?></h3>
@@ -68,7 +73,7 @@ if ($elementor_active) {
                 </div>
 
                 <div class="bg-lightblue block-<?=$aboutUsStyle?>">
-                    <div class="p-6 md:p-10 lg:px-20 lg:py-24 list-trident" >
+                    <div class="p-6 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 4rem 6rem">
                         <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate block-text" data-aos="fade-up" data-aos-delay="200">
                             <?= wpautop($aboutUs['right_block']['description'] ?? '') ?>
                         </div>
@@ -112,7 +117,7 @@ if ($elementor_active) {
                         endif;
                         ?>
 
-                        <div class="bg-<?=$leftBlockTheme?>-blue block-<?=$leftBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
+                        <div class="bg-<?=$leftBlockTheme?>-blue block-<?=$leftBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;" onclick="location.href='<?=$leftLink?>'">
                             <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident">
                                 <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
                                     <a href="<?=$leftLink?>"
@@ -133,7 +138,7 @@ if ($elementor_active) {
                             </div>
                         </div>
 
-                        <div class="bg-<?=$rightBlockTheme?>-blue block-<?=$rightBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;">
+                        <div class="bg-<?=$rightBlockTheme?>-blue block-<?=$rightBlockTheme?> English border-r border-b lg:border-b-0" style="border-color:#373b61;" onclick="location.href='<?=$rightLink?>'">
                             <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-24 list-trident">
                                 <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header">
                                     <a href="<?=$rightLink?>"
@@ -202,7 +207,7 @@ if ($elementor_active) {
                     while ($testimonials->have_posts()) : $testimonials->the_post();
                         ?>
                         <div class="block-light" >
-                            <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-10 list-trident">
+                            <div class="text-white p-6 py-10 md:p-10 lg:px-20 lg:py-10 list-trident" style="padding: 4rem 6rem">
                                 <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header flex justify-between">
                                     <div>
                                         <a href="<?=$leftLink?>"
@@ -327,7 +332,7 @@ if ($elementor_active) {
         <!-- PARTNERS -->
         <?php if (have_rows('partners')): ?>
             <div class="bg-dark-blue border-b border-t border-bright-blue partners" id="partners" style="">
-                <h3><?php esc_html_e('PARTNERS', 'vision'); ?></h3>
+                <h3 style="font-weight: 500"><?php esc_html_e('PARTNERS', 'vision'); ?></h3>
                 <ul>
                     <?php  while (have_rows('partners')) : the_row(); ?>
                         <li><a href="<?= get_sub_field('link')?>"><img src="<?= get_sub_field('logo')?>" title="<?= get_sub_field('title')?>"/></a></li>
@@ -357,8 +362,8 @@ if ($elementor_active) {
                         $newsStyle = $newsStyle == 'light' ? 'dark' : 'light';
                         ?>
 
-                        <div class="bg-<?=$newsStyle?>-blue block-<?=$newsStyle?> ">
-                            <div class="text-white p-6 md:p-10 lg:px-20 lg:py-24 list-trident">
+                        <div class="bg-<?=$newsStyle?>-blue block-<?=$newsStyle?> cursor-pointer" onclick="location.href='<?= get_the_permalink() ?>'">
+                            <div class="text-white p-6 md:p-10 lg:px-20 lg:py-24 list-trident" style="padding: 4rem 6rem">
                                 <div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header" data-aos="fade-up"
                                      data-aos-delay="100">
                                     <h3 class="!text-xl !lg:text-3xl !plaakBold"><?php the_title() ?></h3>

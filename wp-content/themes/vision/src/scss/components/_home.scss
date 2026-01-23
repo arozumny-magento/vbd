@@ -8,15 +8,16 @@ main {
 
 .hero-banner-img {
   background-position: center center;
-  height: 400px;
-  width: 100%;
+  height: auto;
+  width: auto;
 }
 
 @media screen and (min-width: 1024px) {
   body.home h1, body.europe h1, body.amea h1, body.americas-caribbean h1 {
-    font-size: 2.4rem;
+    font-size: 2rem;
     line-height: 1.5;
     text-align: center;
+    font-weight: 500;
   }
 }
 
@@ -38,6 +39,7 @@ main {
     color: $color-dark-blue;
 
     &:after {
+      display: none;
       background-color: $color-dark-blue;
     }
   }
@@ -45,6 +47,13 @@ main {
   a.block-text {
     &:after {
       background-color: $color-dark-blue;
+    }
+  }
+
+  &:hover {
+    color: $color-gold;
+    a.read-more {
+      color: $color-gold;
     }
   }
 }
@@ -77,6 +86,7 @@ main {
     color: $color-white;
 
     &:after {
+      display: none;
       background-color: $color-white;
     }
   }
@@ -84,6 +94,13 @@ main {
   a.block-text {
     &:after {
       background-color: $color-white;
+    }
+  }
+
+  &:hover {
+    color: $color-gold;
+    a.read-more {
+      color: $color-gold;
     }
   }
 }

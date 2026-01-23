@@ -134,7 +134,7 @@ header nav .mega-menu-link {
   justify-content: center;
 
   .dropdown-menu {
-    top: 104px;
+    top: $desktop-header-height;
     right: 0;
     left: auto;
     width: 250px;
@@ -147,6 +147,7 @@ header nav .mega-menu-link {
     }
   }
 }
+
 
 .mobile-logo {
   display: none;

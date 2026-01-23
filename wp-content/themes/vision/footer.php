@@ -1,13 +1,13 @@
 <footer class="bg-white pb-8 md-pb-0 relative" aria-labelledby="footer-heading">
     <div class="w-full relative contact" id="contact">
         <div class="mx-auto md:grid grid-cols-2 overflow-hidden gap-0">
-            <div class="hidden md:block bg-white relative" style="max-height: 600px;">
+            <div class="hidden md:block bg-white relative" style="max-height: 640px">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/contact_us.jpg" alt="" class="w-full h-full object-cover">
             </div>
             <div class="bg-dark-blue">
                 <div class="form-group">
-                    <div class="title-default">
-                        <h2>CONTACT US</h2>
+                    <div class="title-default" style="margin-bottom: 1.5rem">
+                        <h2 style="font-weight: 500">CONTACT US</h2>
                     </div>
 
                     <?php echo do_shortcode('[contact-form-7 id="8a5b653" title="Contact form - Contact US"]'); ?>
