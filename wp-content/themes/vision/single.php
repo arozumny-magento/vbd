@@ -29,7 +29,7 @@ if ($elementor_active) {
 
             <div class="w-full relative" >
                 <div class="mx-auto md:grid grid-cols-2 overflow-hidden gap-0">
-                    <div class="bg-lightblue" style="padding: 6rem;">
+                    <div class="bg-lightblue flex justify-center items-center" style="padding: 5rem;">
                         <h1 style="text-align: left"><?php the_title() ?></h1>
                     </div>
 

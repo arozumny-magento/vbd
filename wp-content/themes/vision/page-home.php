@@ -19,6 +19,7 @@ if ($elementor_active) {
     ?>
 <main>
     <div class="umb-block-list">
+        <!-- HERO SECTION -->
         <section class="hero">
             <div class="relative isolate overflow-hidden bg-white">
                 <div class="mx-auto max-w-7xl px-4 py-4 lg:px-20" style="padding: 2rem 4rem">
@@ -31,7 +32,6 @@ if ($elementor_active) {
                 </div>
             </div>
         </section>
-
         <div class="flex aspect-16/9 w-full media hero-banner-block">
             <?php
                 $heroBanner = get_field('hero_banner');
@@ -50,6 +50,7 @@ if ($elementor_active) {
                     </video>
             <?php endif; ?>
         </div>
+        <!-- END HERO SECTION -->
 
         <!-- ABOUT US -->
         <?php
