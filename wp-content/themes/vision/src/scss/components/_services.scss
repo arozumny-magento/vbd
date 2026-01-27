@@ -1,0 +1,29 @@
+@use 'variables' as *;
+
+.asset-container,
+.expected-results-container {
+  .block {
+    padding: 4rem 6rem;
+  }
+
+  .block-light {
+    background: $color-light-blue;
+    color: $color-dark-blue;
+  }
+
+  .block-dark {
+    background: $color-dark-blue;
+    color: $color-white;
+  }
+}
+
+.expected-results-container {
+  .block-light {
+    background: $color-white;
+  }
+}
+
+
+@media screen and (max-width: 1024px) {
+
+}

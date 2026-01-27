@@ -22,7 +22,7 @@ if ($elementor_active) {
         <!-- HERO SECTION -->
         <section class="hero">
             <div class="relative isolate overflow-hidden bg-white">
-                <div class="mx-auto max-w-7xl px-4 py-4 lg:px-20" style="padding: 2rem 4rem">
+                <div class="hero-wrapper">
                     <div class="mx-auto max-w-7xl text-center">
                         <div class="max-w-7xl font-normal text-dark-blue text-xl md:text-3xl lg:text-5xl uppercase text-left tracking-[.20em] aos-init aos-animate"
                              data-aos="fade-up" data-aos-delay="100"><h1 class="text-xl lg:text-4xl"></h1>

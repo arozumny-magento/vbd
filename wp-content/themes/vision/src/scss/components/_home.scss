@@ -2,7 +2,13 @@
 
 main {
   .umb-block-list {
-    margin-top: 104px;
+    margin-top: $desktop-header-height;
+
+    .hero-wrapper {
+      padding: 1.4rem 4rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
   }
 }
 
@@ -143,6 +149,30 @@ main {
   }
 }
 
+.info-section {
+  .content-text {
+    padding: 4rem 6rem;
+
+    &.block-dark {
+      color: $color-white;
+      background-color: $color-dark-blue;
+    }
+
+    .heading {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 2.5rem;
+      padding: 1rem 0;
+    }
+
+    .full-text {
+      font-size: 20px;
+    }
+
+  }
+}
+
 @media screen and (max-width: 768px) {
   .services {
     display: flex;
@@ -191,9 +221,7 @@ main {
         width: 50%;
       }
     }
-  }
-
-  .testimonials {
+  }  .testimonials {
     .left-side {
       > div {
         padding: 3rem;
