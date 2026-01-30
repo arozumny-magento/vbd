@@ -739,7 +739,7 @@ nav #mega-menu-wrap-primary #mega-menu-primary {
 }
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item,
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item {
-  width: 135px;
+  width: 140px;
   display: flex;
   justify-content: center;
   color: #00012E;
@@ -2217,12 +2217,77 @@ main .umb-block-list .hero-wrapper {
   color: #00012E;
 }
 
+.content-grid.key-grid .block,
+.project-grid .block {
+  padding: 4rem 6rem;
+}
+.content-grid.key-grid,
+.project-grid {
+  /* Light background (positions: 1, 4, 5) */
+}
+.content-grid.key-grid .block:nth-child(6n+1),
+.content-grid.key-grid .block:nth-child(6n+4),
+.content-grid.key-grid .block:nth-child(6n+5),
+.project-grid .block:nth-child(6n+1),
+.project-grid .block:nth-child(6n+4),
+.project-grid .block:nth-child(6n+5) {
+  background: #f0f7ff;
+  color: #00012E;
+}
+.content-grid.key-grid .block:nth-child(6n+1) .block-text,
+.content-grid.key-grid .block:nth-child(6n+1) .block-header,
+.content-grid.key-grid .block:nth-child(6n+4) .block-text,
+.content-grid.key-grid .block:nth-child(6n+4) .block-header,
+.content-grid.key-grid .block:nth-child(6n+5) .block-text,
+.content-grid.key-grid .block:nth-child(6n+5) .block-header,
+.project-grid .block:nth-child(6n+1) .block-text,
+.project-grid .block:nth-child(6n+1) .block-header,
+.project-grid .block:nth-child(6n+4) .block-text,
+.project-grid .block:nth-child(6n+4) .block-header,
+.project-grid .block:nth-child(6n+5) .block-text,
+.project-grid .block:nth-child(6n+5) .block-header {
+  color: #00012E;
+}
+.content-grid.key-grid,
+.project-grid {
+  /* white background (positions: 2, 3, 6) */
+}
+.content-grid.key-grid .block:nth-child(6n+2),
+.content-grid.key-grid .block:nth-child(6n+3),
+.content-grid.key-grid .block:nth-child(6n+6),
+.project-grid .block:nth-child(6n+2),
+.project-grid .block:nth-child(6n+3),
+.project-grid .block:nth-child(6n+6) {
+  background: #FFF;
+  color: #00012E;
+}
+.content-grid.key-grid .block:nth-child(6n+2) .block-text,
+.content-grid.key-grid .block:nth-child(6n+2) .block-header,
+.content-grid.key-grid .block:nth-child(6n+3) .block-text,
+.content-grid.key-grid .block:nth-child(6n+3) .block-header,
+.content-grid.key-grid .block:nth-child(6n+6) .block-text,
+.content-grid.key-grid .block:nth-child(6n+6) .block-header,
+.project-grid .block:nth-child(6n+2) .block-text,
+.project-grid .block:nth-child(6n+2) .block-header,
+.project-grid .block:nth-child(6n+3) .block-text,
+.project-grid .block:nth-child(6n+3) .block-header,
+.project-grid .block:nth-child(6n+6) .block-text,
+.project-grid .block:nth-child(6n+6) .block-header {
+  color: #00012E;
+}
+
+.project-grid .block:hover .block-text,
+.project-grid .block:hover .block-header {
+  transition: all 0.2s ease-in-out;
+  color: #d0b135;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
   gap: 5px;
   justify-content: center;
-  margin: 0 0 2rem;
+  margin: 1rem;
 }
 .nav-links .page-numbers {
   width: 42px;
@@ -2403,15 +2468,18 @@ main .umb-block-list .hero-wrapper {
 }
 
 .asset-container .block,
+.presentation-for .block,
 .expected-results-container .block {
   padding: 4rem 6rem;
 }
 .asset-container .block-light,
+.presentation-for .block-light,
 .expected-results-container .block-light {
   background: #f0f7ff;
   color: #00012E;
 }
 .asset-container .block-dark,
+.presentation-for .block-dark,
 .expected-results-container .block-dark {
   background: #00012E;
   color: #FFF;
@@ -2419,6 +2487,14 @@ main .umb-block-list .hero-wrapper {
 
 .expected-results-container .block-light {
   background: #FFF;
+}
+
+.presentation-for .block-light {
+  background: #f0f7ff;
+}
+
+.event-over {
+  color: #be1d1d;
 }
 
 *, ::before, ::after {

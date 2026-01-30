@@ -1,6 +1,7 @@
 @use 'variables' as *;
 
 .asset-container,
+.presentation-for,
 .expected-results-container {
   .block {
     padding: 4rem 6rem;
@@ -20,6 +21,12 @@
 .expected-results-container {
   .block-light {
     background: $color-white;
+  }
+}
+
+.presentation-for {
+  .block-light {
+    background: $color-light-blue;
   }
 }
 

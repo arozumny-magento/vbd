@@ -401,3 +401,18 @@ function vision_add_social_to_mega_menu($items, $args) {
     return $items . $social_html;
 }
 add_filter('wp_nav_menu_items', 'vision_add_social_to_mega_menu', 10, 2);
+
+// Add language class to the body
+function add_language_body_class($classes) {
+    // Get the current language (returns short language code like "en", "uk", etc.)
+    $current_language = get_bloginfo('language');
+
+    // Map the current language to a specific class
+    if ($current_language) {
+        $language_code = substr($current_language, 0, 2); // Take the first two letters of the language, e.g., "en"
+        $classes[] = 'language-' . $language_code;
+    }
+
+    return $classes;
+}
+add_filter('body_class', 'add_language_body_class');
