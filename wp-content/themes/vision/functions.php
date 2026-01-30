@@ -416,3 +416,14 @@ function add_language_body_class($classes) {
     return $classes;
 }
 add_filter('body_class', 'add_language_body_class');
+
+function enqueue_custom_scripts() {
+    wp_enqueue_script(
+        'menu-actions',
+        get_template_directory_uri() . '/path-to-js/menu-actions.js',
+        array(), // Dependencies (if needed)
+        '1.0.0',
+        true // Load in footer
+    );
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');

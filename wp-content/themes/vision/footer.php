@@ -7,7 +7,7 @@
             <div class="bg-dark-blue">
                 <div class="form-group">
                     <div class="title-default" style="margin-bottom: 1.5rem">
-                        <h2 style="font-weight: 500">CONTACT US</h2>
+                        <h2 style="font-weight: 500"><?php pll_e('CONTACT US') ?></h2>
                     </div>
 
                     <?php echo do_shortcode('[contact-form-7 id="8a5b653" title="Contact form - Contact US"]'); ?>

@@ -189,10 +189,27 @@ main {
   }
 }
 
-@media screen and (max-width: 1024px) {
-  main .umb-block-list {
-    margin-top: 100px;
+.content-grid {
+  .list-trident {
+    padding: 4rem 6rem;
   }
+}
+
+@media screen and (max-width: 1024px) {
+  .content-grid {
+    .list-trident {
+      padding: 2rem;
+    }
+  }
+
+  main .umb-block-list {
+    margin-top: 81px;
+
+    .hero-wrapper {
+      padding: 1rem;
+    }
+  }
+
 
   .hero {
     h1 {

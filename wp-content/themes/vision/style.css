@@ -927,8 +927,22 @@ nav .testimonial-megamenu-item > div {
 }
 
 @media screen and (max-width: 1024px) {
-  header nav .mega-close {
-    display: none !important;
+  header nav #mega-menu-wrap-primary .mega-menu-toggle.mega-menu-open ~ button.mega-close {
+    background: url("./assets/menu-close.svg") no-repeat center center;
+    background-size: contain;
+    left: unset;
+    right: 0.2rem;
+    top: 0.2rem;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.5s forwards;
+  }
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  header nav #mega-menu-wrap-primary .mega-menu-toggle.mega-menu-open ~ button.mega-close:before {
+    opacity: 0;
   }
   header nav #mega-menu-wrap-primary #mega-menu-primary {
     justify-content: start;
@@ -1687,7 +1701,7 @@ tfoot td:first-child):not(:where([class~=not-prose] *)) {
     padding-bottom: 1rem !important;
   }
   .contact .form-group {
-    padding: 3rem;
+    padding: 2rem;
   }
   .contact .form-group .title-default {
     margin-bottom: 2rem;
@@ -2101,9 +2115,19 @@ main .umb-block-list .hero-wrapper {
     order: 3;
   }
 }
+.content-grid .list-trident {
+  padding: 4rem 6rem;
+}
+
 @media screen and (max-width: 1024px) {
+  .content-grid .list-trident {
+    padding: 2rem;
+  }
   main .umb-block-list {
-    margin-top: 100px;
+    margin-top: 81px;
+  }
+  main .umb-block-list .hero-wrapper {
+    padding: 1rem;
   }
   .hero h1 {
     text-align: center;
@@ -2495,6 +2519,18 @@ main .umb-block-list .hero-wrapper {
 
 .event-over {
   color: #be1d1d;
+}
+
+.language-uk .hero-wrapper > div {
+  max-width: 65rem;
+}
+
+.language-ar {
+  border: 1px solid blue;
+}
+.language-ar .language-switcher .dropdown-menu {
+  right: unset;
+  left: 0;
 }
 
 *, ::before, ::after {

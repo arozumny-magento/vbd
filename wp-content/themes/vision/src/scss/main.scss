@@ -19,6 +19,9 @@
 @use 'components/services';
 @use 'components/events';
 
+@use 'components/language-uk';
+@use 'components/language-ar';
+
 
 // Utilities
 @use 'utilities/tailwind-variables';

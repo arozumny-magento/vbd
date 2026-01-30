@@ -245,12 +245,31 @@ nav {
 }
 
 @media screen and (max-width: 1024px) {
+
   header {
     nav {
-      .mega-close {
-        display: none !important;
-      }
 
+      #mega-menu-wrap-primary .mega-menu-toggle.mega-menu-open ~ button.mega-close {
+        background: url('./assets/menu-close.svg') no-repeat center center;
+        background-size: contain;
+        left: unset;
+        right: .2rem;
+        top: .2rem;
+
+        opacity: 0; // Ensure it’s hidden initially
+        animation: fadeIn 0.5s ease 0.5s forwards; // 0.5s delay before it appears
+
+        @keyframes fadeIn {
+          to {
+            opacity: 1; // Fully visible after the animation
+          }
+        }
+
+
+        &:before {
+          opacity: 0;
+        }
+      }
       #mega-menu-wrap-primary #mega-menu-primary {
         justify-content: start;
 

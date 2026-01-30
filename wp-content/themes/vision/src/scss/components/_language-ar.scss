@@ -1,0 +1,9 @@
+@use 'variables' as *;
+
+.language-ar {
+border: 1px solid blue;
+  .language-switcher .dropdown-menu {
+    right: unset;
+    left: 0;
+  }
+}

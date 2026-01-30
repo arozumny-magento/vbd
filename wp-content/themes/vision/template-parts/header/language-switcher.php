@@ -43,7 +43,7 @@ if (function_exists('pll_the_languages') && function_exists('pll_current_languag
         aria-label="<?php esc_attr_e('Select Language', 'vision'); ?>"
     >
         <span class="border-b-4 border-b-bright-blue text-sm md:text-base">
-            <?php echo esc_html($current_lang_code); ?>
+            <?php echo esc_html($current_lang); ?>
         </span>
         <svg 
             xmlns="http://www.w3.org/2000/svg" 

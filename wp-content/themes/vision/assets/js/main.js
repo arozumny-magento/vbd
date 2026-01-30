@@ -30,7 +30,13 @@ console.log('Vision Theme: main.js file is loading...');
         // - Language switcher dropdown (x-data, x-show, @click.away)
         // - Mobile menu toggle (custom event dispatch)
         // - Mobile menu submenu navigation (x-data, x-show)
-        
+
+        // Remove mega-menu-open class on click
+        $('.mega-menu-wrap').on('click', '.mega-menu-item',function (e) {
+            $('.mega-close').click();
+        });
+
+
         // Debug: Check if Slick is loaded
         if (typeof $.fn.slick === 'undefined') {
             console.warn('Slick slider not loaded. Checking script tag...');

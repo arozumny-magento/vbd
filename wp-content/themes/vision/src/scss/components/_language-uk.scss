@@ -1,0 +1,10 @@
+@use 'variables' as *;
+
+
+.language-uk {
+  .hero-wrapper {
+    > div {
+      max-width: 65rem;
+    }
+  }
+}
