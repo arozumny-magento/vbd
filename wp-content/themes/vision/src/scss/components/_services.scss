@@ -16,11 +16,16 @@
     background: $color-dark-blue;
     color: $color-white;
   }
+
+  .block-dark,
+  .block-light {
+    background-size: cover;
+  }
 }
 
-.expected-results-container {
-  .block-light {
-    background: $color-white;
+.content-grid {
+  div {
+    background-size: cover;
   }
 }
 

@@ -2373,7 +2373,7 @@ main .umb-block-list .hero-wrapper {
 }
 .leadership-row {
   max-width: 100%;
-  margin-top: 45px;
+  margin: 45px 0;
 }
 .leadership-row .default__container {
   display: grid;
@@ -2508,9 +2508,17 @@ main .umb-block-list .hero-wrapper {
   background: #00012E;
   color: #FFF;
 }
-
+.asset-container .block-dark,
+.asset-container .block-light,
+.presentation-for .block-dark,
+.presentation-for .block-light,
+.expected-results-container .block-dark,
 .expected-results-container .block-light {
-  background: #FFF;
+  background-size: cover;
+}
+
+.content-grid div {
+  background-size: cover;
 }
 
 .presentation-for .block-light {

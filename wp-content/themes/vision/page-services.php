@@ -66,7 +66,7 @@ if ($elementor_active) {
                                     $blockStyle = strtolower(get_sub_field('block_style')) ?? 'light';
                                     ?>
                                     <?php if (!get_sub_field('descr')): ?>
-                                        <div class="hidden md:block bg-white relative" style="width: 100%; height: 100%; background: url('<?=get_sub_field('image')?>') center;">
+                                        <div class="hidden md:block bg-white relative" style="width: 100%; height: 100%; background-image: url('<?=get_sub_field('image')?>');">
                                         </div>
                                     <?php else: ?>
                                     <div class="block block-<?=$blockStyle?>">
@@ -115,7 +115,7 @@ if ($elementor_active) {
                                     $blockStyle = strtolower(get_sub_field('block_style')) ?? 'light';
                                     ?>
                                     <?php if (!get_sub_field('descr')): ?>
-                                        <div class="hidden md:block bg-white relative" style="width: 100%; height: 100%; background: url('<?=get_sub_field('image')?>') center;">
+                                        <div class="hidden md:block bg-white relative" style="width: 100%; height: 100%; background-image: url('<?=get_sub_field('image')?>');">
                                         </div>
                                     <?php else: ?>
                                         <div class="block block-<?=$blockStyle?>">
