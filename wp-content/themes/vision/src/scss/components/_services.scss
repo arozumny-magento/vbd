@@ -30,12 +30,69 @@
 }
 
 .presentation-for {
+  .block {
+    width: 20%;
+  }
   .block-light {
     background: $color-light-blue;
   }
 }
 
+.hero-banner-img {
+  height: 400px;
+  background-size: cover;
+  background-position: center center;
+}
+
+
 
 @media screen and (max-width: 1024px) {
+  .hero-banner-img {
+    height: 250px;
+    background-size: cover;
+    background-position: center center;
+  }
 
+  .umb-block-list {
+    .asset-container .block,
+    .presentation-for .block,
+    .info-section .content-text,
+    .content-grid.key-grid .block,
+    .project-grid .block,
+    .expected-results-container .block {
+      padding: 2rem;
+    }
+  }
+
+  .presentation-for {
+    > div {
+      flex-direction: column;
+    }
+    .block {
+      width: 100%;
+    }
+  }
+
+  .category,
+  .archive {
+    .content-grid.key-grid .block,
+    .project-grid .block {
+      padding:  0;
+      background: $color-light-blue;
+      .block-header,
+      .block-text {
+        color: $color-dark-blue ;
+      }
+
+
+      &:nth-child(even) {
+        background: $color-dark-blue;
+
+        .block-header,
+        .block-text {
+          color: $color-white;
+        }
+      }
+    }
+  }
 }

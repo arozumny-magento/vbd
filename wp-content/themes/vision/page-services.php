@@ -39,7 +39,7 @@ if ($elementor_active) {
                     </div>
                 </section>
                 <div class="flex aspect-16/9 w-full media hero-banner-img"
-                     style="background: url('<?php the_post_thumbnail_url() ?>') center; min-height: 400px;">
+                     style="background-image: url('<?php the_post_thumbnail_url() ?>');">
                 </div>
                 <!-- END HERO SECTION -->
 
@@ -65,7 +65,7 @@ if ($elementor_active) {
                                 <?php
                                     $blockStyle = strtolower(get_sub_field('block_style')) ?? 'light';
                                     ?>
-                                    <?php if (!get_sub_field('descr')): ?>
+                                    <?php if (!get_sub_field('descr') && !get_sub_field('title') ): ?>
                                         <div class="hidden md:block bg-white relative" style="width: 100%; height: 100%; background-image: url('<?=get_sub_field('image')?>');">
                                         </div>
                                     <?php else: ?>
@@ -114,7 +114,7 @@ if ($elementor_active) {
                                     <?php
                                     $blockStyle = strtolower(get_sub_field('block_style')) ?? 'light';
                                     ?>
-                                    <?php if (!get_sub_field('descr')): ?>
+                                    <?php if (!get_sub_field('descr') && !get_sub_field('title') ): ?>
                                         <div class="hidden md:block bg-white relative" style="width: 100%; height: 100%; background-image: url('<?=get_sub_field('image')?>');">
                                         </div>
                                     <?php else: ?>

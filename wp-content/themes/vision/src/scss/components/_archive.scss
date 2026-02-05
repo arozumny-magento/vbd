@@ -142,6 +142,66 @@
   }
 }
 
+.content-grid.key-grid {
+
+  /* Light background (positions: 1, 4, 5) */
+  .block:nth-child(6n+1),
+  .block:nth-child(6n+4),
+  .block:nth-child(6n+5) {
+    background: $color-dark-blue;
+    color: $color-white;
+
+    .block-text,
+    .block-header {
+      color: $color-white;
+    }
+  }
+
+  /* white background (positions: 2, 3, 6) */
+  .block:nth-child(6n+2),
+  .block:nth-child(6n+3),
+  .block:nth-child(6n+6) {
+    background: $color-light-blue;
+    color: $color-dark-blue;
+
+    .block-text,
+    .block-header {
+      color: $color-dark-blue;
+    }
+  }
+}
+
+.content-grid.project-grid.events-grid {
+  a:nth-child(6n+1),
+  a:nth-child(6n+4),
+  a:nth-child(6n+5) {
+    .block {
+      background: $color-light-blue;
+      color: $color-dark-blue;
+
+      .block-text,
+      .block-header {
+        color: $color-dark-blue;
+      }
+    }
+  }
+
+  /* white background (positions: 2, 3, 6) */
+  a:nth-child(6n+2),
+  a:nth-child(6n+3),
+  a:nth-child(6n+6) {
+    .block {
+      background: $color-white;
+      color: $color-dark-blue;
+
+      .block-text,
+      .block-header {
+        color: $color-dark-blue;
+      }
+    }
+  }
+}
+
 .project-grid {
   .block {
     &:hover {
@@ -231,6 +291,36 @@
 
       .txt {
         padding: 1rem 0;
+      }
+    }
+  }
+
+
+  .content-grid.project-grid.events-grid {
+    a:nth-child(even) {
+      .block {
+        padding: 2rem;
+        background: $color-light-blue;
+        color: $color-dark-blue;
+
+        .block-text,
+        .block-header {
+          color: $color-dark-blue;
+        }
+      }
+    }
+
+    /* white background (positions: 2, 3, 6) */
+    a:nth-child(odd) {
+      .block {
+        padding: 2rem;
+        background: $color-white;
+        color: $color-dark-blue;
+
+        .block-text,
+        .block-header {
+          color: $color-dark-blue;
+        }
       }
     }
   }

@@ -140,3 +140,11 @@
     }
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .leadership-row {
+    .row {
+      grid-template-columns: 1fr;
+    }
+  }
+}

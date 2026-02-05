@@ -7,4 +7,13 @@
       max-width: 65rem;
     }
   }
+
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item,
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item {
+    width: 148px;
+
+    &.menu-item-logo {
+      width: 120px;
+    }
+  }
 }

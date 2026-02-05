@@ -31,10 +31,21 @@ console.log('Vision Theme: main.js file is loading...');
         // - Mobile menu toggle (custom event dispatch)
         // - Mobile menu submenu navigation (x-data, x-show)
 
-        // Remove mega-menu-open class on click
-        $('.mega-menu-wrap').on('click', '.mega-menu-item',function (e) {
-            $('.mega-close').click();
-        });
+        if ($(window).width() < 1024) {
+            // Remove mega-menu-open class on click
+            $('.mega-menu-wrap').on('click', '.mega-menu-item', function (e) {
+                $(this).addClass('opened');
+
+
+                if (!$(this).hasClass('mega-menu-item-has-children')) {
+                    $('.mega-close').click();
+                }
+                // if ($(this).hasClass('mega-toggle-on')) {
+                //     console.log('mega-toggle-on');
+                //     $('.mega-close').click();
+                // }
+            });
+        }
 
 
         // Debug: Check if Slick is loaded

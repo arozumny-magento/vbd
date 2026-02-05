@@ -82,6 +82,7 @@
     display: flex;
     gap: 1rem;
     color: $color-dark-blue;
+    white-space: nowrap;
   }
 }
 
@@ -117,6 +118,13 @@
   font-size: .8rem;
 }
 
+.contact-background {
+  height: 100%;
+  background-color: $color-dark-blue;
+  background-position: center;
+  background-size: cover;
+}
+
 .footer-bottom{
   .social-icons {
     a {
@@ -130,6 +138,16 @@
   .copyright {
     .social-icons {
       display: none;
+    }
+  }
+}
+
+.form-group {
+  .title-default {
+    margin-bottom: 1.5rem;
+
+    h2 {
+      font-weight: 500;
     }
   }
 }

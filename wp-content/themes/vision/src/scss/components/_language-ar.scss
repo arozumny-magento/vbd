@@ -1,9 +1,61 @@
 @use 'variables' as *;
 
 .language-ar {
-border: 1px solid blue;
+  direction: rtl;
+
   .language-switcher .dropdown-menu {
     right: unset;
     left: 0;
+  }
+
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link {
+    font-size: 1.2rem;
+  }
+
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu .mega-menu-column:nth-child(2) {
+    border-left: 1px solid $color-slate-200;
+    border-right: none;
+    direction: rtl;
+    text-align: right;
+
+    .mega-block-title {
+      direction: rtl;
+      text-align: right;
+    }
+  }
+
+  #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column-standard h4.mega-block-title,
+  #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item h4.mega-block-title {
+    direction: rtl;
+    text-align: right;
+  }
+
+  .form-group {
+    .title-default {
+      direction: rtl;
+    }
+
+    .input-group {
+      .input {
+        order: 2;
+
+        &:nth-child(2) {
+          order: 1;
+        }
+      }
+    }
+
+    .checkbox,
+    .submit,
+    input,
+    textarea {
+      direction: rtl;
+    }
+  }
+
+
+  .\!text-xl {
+    font-size: 1.5rem !important;
   }
 }

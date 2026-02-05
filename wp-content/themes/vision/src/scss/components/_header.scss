@@ -200,28 +200,3 @@ header nav .mega-menu-link {
     }
   }
 }
-
-@media screen and (min-width: 1025px) and (max-width: 1200px) {
-  nav {
-    #mega-menu-wrap-primary #mega-menu-primary {
-      gap: 1rem !important;
-
-      > li.mega-menu-item,
-      > li.mega-menu-item.mega-current-menu-item {
-        width: 100px !important;
-
-        > a.mega-menu-link {
-          font-size: .8rem !important;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (min-width: 1200px) and (max-width: 1400px) {
-  nav {
-    #mega-menu-wrap-primary #mega-menu-primary {
-      gap: 1rem !important;
-    }
-  }
-}

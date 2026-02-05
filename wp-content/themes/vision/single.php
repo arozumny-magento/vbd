@@ -29,8 +29,8 @@ if ($elementor_active) {
 
             <div class="w-full relative" >
                 <div class="mx-auto md:grid grid-cols-2 overflow-hidden gap-0">
-                    <div class="bg-lightblue flex justify-center items-start flex-col" style="padding: 5rem;">
-                        <h1 style="text-align: left"><?php the_title() ?></h1>
+                    <div class="bg-lightblue flex justify-center items-start flex-col p-6 md:p-10 lg:py-20 lg:px-20">
+                        <h1 class="w-full text-3xl text-center md:text-sm text-left"><?php the_title() ?></h1>
                         <?php if (has_category('project')) : ?>
                             <div class="default__container mt-8">
                                 <div class="project-columns__post flex flex-col gap-2">
@@ -48,7 +48,7 @@ if ($elementor_active) {
                     </div>
 
                     <?php if (has_post_thumbnail()) : ?>
-                    <div class="hidden md:block bg-white relative" style="max-height: 310px;">
+                    <div class="block bg-white relative" style="max-height: 310px;">
                         <img src="<?php the_post_thumbnail_url('large'); ?>" alt="" class="w-full h-full object-cover">
                     </div>
                     <?php endif; ?>

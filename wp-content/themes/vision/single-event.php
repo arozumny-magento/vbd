@@ -11,15 +11,14 @@ $current_lang = pll_current_language();
 ?>
     <main id="main" class="site-main">
 <?php if (have_rows('langing_page')): ?>
-    <?php while (have_rows('langing_page')):
-    the_row(); ?>
+    <?php while (have_rows('langing_page')): the_row(); ?>
 
     <?php if (get_row_layout() == 'Home_Hero'): ?>
     <div class="umb-block-list">
 
     <div class="w-full relative">
         <div class="mx-auto md:grid grid-cols-2 overflow-hidden gap-0">
-            <div class="bg-lightblue flex flex-col justify-between items-start gap-8" style="padding: 5rem;">
+            <div class="bg-lightblue flex flex-col justify-between items-start gap-8 p-6 md:p-10 lg:py-20 lg:px-20">
                 <h1 style="text-align: left"><?php the_sub_field('hero_h1'); ?></h1>
                 <div>
                     <div class="text-xl flex gap-2 mb-2">
@@ -37,7 +36,7 @@ $current_lang = pll_current_language();
                     </div>
                 </div>
             </div>
-            <div class="hidden md:block bg-white relative" style="max-height: 350px;">
+            <div class="block bg-white relative" style="max-height: 350px;">
                 <img src="<?php the_sub_field('hero_image'); ?>" alt="" class="w-full h-full object-cover">
             </div>
         </div>
@@ -123,8 +122,7 @@ $current_lang = pll_current_language();
                     <?php
                     $blockStyle = $blockStyle == 'light' ? 'dark' : 'light';
                     ?>
-                    <div class="bg-light-blue justify-center flex items-center block-<?= $blockStyle ?>"
-                         style="padding: 4rem 2rem; width: 20%;">
+                    <div class="bg-light-blue justify-center flex items-center block  block-<?= $blockStyle ?>">
                         <h3 class="!text-xl !lg:text-3xl uppercase pb-2 text-center">
                             <?php the_sub_field('block_title'); ?></h3>
                     </div>
@@ -168,7 +166,6 @@ $current_lang = pll_current_language();
         </div>
     <?php endif; ?>
     <!-- END SPEAKERS SECTION -->
-
 
     <?php if (get_row_layout() == 'Agenda_Home'): ?>
         <section class="hero mt-16">
@@ -224,5 +221,6 @@ $current_lang = pll_current_language();
 
     <?php endwhile; ?>
 <?php endif; ?>
+
 
 <?php get_footer(); ?>
