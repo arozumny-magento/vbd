@@ -25,10 +25,37 @@
     }
   }
 
+  nav .testimonial-megamenu-item,
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item .textwidget,
   #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column-standard h4.mega-block-title,
   #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item h4.mega-block-title {
     direction: rtl;
     text-align: right;
+  }
+
+  #updates {
+    direction: ltr;
+
+    .block-dark {
+      background-color: $color-light-blue;
+      color: $color-dark-blue;
+
+      .block-header,
+      .read-more,
+      .block-text {
+        color: $color-dark-blue;
+      }
+    }
+    .block-light {
+      background-color: $color-dark-blue;
+      color: $color-white;
+
+      .block-header,
+      .read-more,
+      .block-text {
+        color: $color-white;
+      }
+    }
   }
 
   .form-group {

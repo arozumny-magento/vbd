@@ -2280,6 +2280,10 @@ main .umb-block-list .hero-wrapper {
   max-width: 10rem;
 }
 
+.news-archive__navigation {
+  padding-bottom: 2rem;
+}
+
 .archive-page__section {
   margin-top: 5rem;
 }
@@ -2782,6 +2786,15 @@ main .umb-block-list .hero-wrapper {
   color: #be1d1d;
 }
 
+.event-template-default h1 {
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  font-weight: 700;
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+}
+
 .language-uk .hero-wrapper > div {
   max-width: 65rem;
 }
@@ -2815,10 +2828,33 @@ main .umb-block-list .hero-wrapper {
   direction: rtl;
   text-align: right;
 }
+.language-ar nav .testimonial-megamenu-item,
+.language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item .textwidget,
 .language-ar #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column-standard h4.mega-block-title,
 .language-ar #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu li.mega-menu-column > ul.mega-sub-menu > li.mega-menu-item h4.mega-block-title {
   direction: rtl;
   text-align: right;
+}
+.language-ar #updates {
+  direction: ltr;
+}
+.language-ar #updates .block-dark {
+  background-color: #f0f7ff;
+  color: #00012E;
+}
+.language-ar #updates .block-dark .block-header,
+.language-ar #updates .block-dark .read-more,
+.language-ar #updates .block-dark .block-text {
+  color: #00012E;
+}
+.language-ar #updates .block-light {
+  background-color: #00012E;
+  color: #FFF;
+}
+.language-ar #updates .block-light .block-header,
+.language-ar #updates .block-light .read-more,
+.language-ar #updates .block-light .block-text {
+  color: #FFF;
 }
 .language-ar .form-group .title-default {
   direction: rtl;

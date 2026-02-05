@@ -14,7 +14,7 @@
                                     <?php
         $header_logo_url = vision_get_header_logo_url();
         if ($header_logo_url) : ?>
-        <a class="mobile-logo" href="/">
+        <a class="mobile-logo" href="<?php echo esc_url(home_url('/')); ?>">
             <img src="<?= esc_url($header_logo_url) ?>" alt="<?= vision_get_logo_alt()?> " title="<?= esc_html(get_bloginfo('name')) ?>"/>
         </a>
         <?php endif; ?>
