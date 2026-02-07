@@ -2,10 +2,36 @@
 
 .language-ar {
   direction: rtl;
+  font-family: 'Tajawal', sans-serif;
+
+  h1, h2, h3, h4, h5, button,
+  header nav a,
+  header nav .mega-menu-link,
+  footer a,
+  .location,
+  .plaakRegular,
+  .Inter,
+  .\!Inter,
+  .akkuratLight,
+  .\!akkuratLight,
+  .akkuratRegular,
+  .\!akkuratRegular {
+    font-family: 'Tajawal', sans-serif;
+  }
 
   .language-switcher .dropdown-menu {
     right: unset;
     left: 0;
+  }
+
+
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item,
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item {
+    width: 145px;
+  }
+    nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link {
+    font-family: 'Tajawal', sans-serif;
   }
 
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,

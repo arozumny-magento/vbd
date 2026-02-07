@@ -12,7 +12,7 @@ Tags: lightweight, clean, modern, responsive
 */
 
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
 html {
   scroll-behavior: smooth;
 }
@@ -2813,10 +2813,33 @@ main .umb-block-list .hero-wrapper {
 
 .language-ar {
   direction: rtl;
+  font-family: "Tajawal", sans-serif;
+}
+.language-ar h1, .language-ar h2, .language-ar h3, .language-ar h4, .language-ar h5, .language-ar button,
+.language-ar header nav a,
+.language-ar header nav .mega-menu-link,
+.language-ar footer a,
+.language-ar .location,
+.language-ar .plaakRegular,
+.language-ar .Inter,
+.language-ar .\!Inter,
+.language-ar .akkuratLight,
+.language-ar .\!akkuratLight,
+.language-ar .akkuratRegular,
+.language-ar .\!akkuratRegular {
+  font-family: "Tajawal", sans-serif;
 }
 .language-ar .language-switcher .dropdown-menu {
   right: unset;
   left: 0;
+}
+.language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item,
+.language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item {
+  width: 145px;
+}
+.language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,
+.language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link {
+  font-family: "Tajawal", sans-serif;
 }
 .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,
 .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link {
