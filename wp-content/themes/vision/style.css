@@ -488,6 +488,10 @@ video {
   display: none;
 }
 
+.full-text ul {
+  list-style: disc;
+}
+
 .container {
   width: 100%;
 }

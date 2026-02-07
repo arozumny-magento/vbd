@@ -16,7 +16,7 @@ $current_lang = pll_current_language();
                     <div class="mx-auto md:grid grid-cols-2 gap-0 overflow-hidden">
                         <div class="content-text block-<?= strtolower($vision['left_block']['style']) ?>">
                             <div class="heading"><?= $vision['left_block']['header'] ?></div>
-                            <div class="full-text"><?= $vision['left_block']['description'] ?></div>
+                            <div class="full-text"><?= wpautop($vision['left_block']['description']) ?></div>
                         </div>
                         <div class="hidden md:block bg-white relative" style="max-height: 100%;">
                             <img src="<?= $vision['right_block']['background_image'] ?>" alt=""
@@ -38,7 +38,7 @@ $current_lang = pll_current_language();
                         </div>
                         <div class="content-text block-<?= strtolower($mission['right_block']['style']) ?>">
                             <div class="heading"><?= $mission['right_block']['header'] ?></div>
-                            <div class="full-text"><?= $mission['right_block']['description'] ?></div>
+                            <div class="full-text"><?= wpautop($mission['right_block']['description']) ?></div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ $current_lang = pll_current_language();
                     <div class="mx-auto md:grid grid-cols-2 gap-0 overflow-hidden">
                         <div class="content-text block-<?= strtolower($values['left_block']['style']) ?>">
                             <div class="heading"><?= $values['left_block']['header'] ?></div>
-                            <div class="full-text"><?= $values['left_block']['description'] ?></div>
+                            <div class="full-text"><?= wpautop($values['left_block']['description']) ?></div>
                         </div>
                         <div class="hidden md:block bg-white relative" style="max-height: 100%;">
                             <img src="<?= $values['right_block']['background_image'] ?>" alt=""

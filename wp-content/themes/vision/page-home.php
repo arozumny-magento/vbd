@@ -360,6 +360,7 @@ if ($elementor_active) {
             // Get the latest 2 posts using WP_Query
             $news_query = new WP_Query(array(
                 'posts_per_page' => 2,
+                'category_name' => 'updates',
                 'post_status' => 'publish',
                 'orderby' => 'date',
                 'order' => 'DESC'

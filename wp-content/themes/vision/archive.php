@@ -16,7 +16,12 @@ $current_lang = pll_current_language();
         </div>
     </div>
 
-<?php if (single_cat_title('', false) === 'Projects' || single_cat_title('', false) === 'مشاريع'): ?>
+<?php if (
+        single_cat_title('', false) === 'Projects' ||
+        single_cat_title('', false) === 'مشاريع' ||
+        single_cat_title('', false) === 'Проєкти'
+): ?>
+
     <div class="w-full relative content-grid project-grid">
         <div class="mx-auto md:grid grid-cols-2 gap-0">
             <?php while (have_posts()) : the_post(); ?>
