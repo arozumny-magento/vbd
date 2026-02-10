@@ -648,7 +648,7 @@ header nav .mega-menu-link {
   justify-content: center;
 }
 .language-switcher .dropdown-menu {
-  top: 112px;
+  top: 132px;
   right: 0;
   left: auto;
   width: 250px;
@@ -658,6 +658,10 @@ header nav .mega-menu-link {
 }
 .language-switcher .dropdown-menu a:hover {
   color: #d0b135;
+}
+
+body.is-internal-page .hero-wrapper h1 {
+  font-weight: 600;
 }
 
 .mobile-logo {
@@ -706,7 +710,7 @@ header nav .mega-menu-link {
 nav {
   width: 80%;
   margin: 0 auto;
-  padding: 0.75rem 0;
+  padding: 0.75rem 0 1rem;
   background: #FFF;
   display: flex;
   justify-content: center;
@@ -732,8 +736,8 @@ nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-
 }
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo,
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo {
-  width: 120px;
-  margin-bottom: -0.8rem;
+  width: 130px;
+  margin-bottom: -1.4rem;
 }
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo a:before,
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo a:before {
@@ -742,7 +746,7 @@ nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link {
   font-family: "Times";
-  padding: 0;
+  padding: 0.6rem 0;
   justify-content: center;
   height: auto;
   background: none;
@@ -759,7 +763,7 @@ nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-
   width: 100%;
   height: 3px;
   background: #d0b135;
-  top: 20px;
+  top: 30px;
   left: 0;
   pointer-events: none;
   transform-origin: 100% 50%;
@@ -776,6 +780,15 @@ nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link:hover:before, nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link:focus:before,
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link:hover:before,
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link:focus:before {
+  transform-origin: 0 50%;
+  transform: scale3d(1, 1, 1);
+}
+nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item,
+nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item {
+  /* Keep hover effect when scrolled to this section (active section) */
+}
+nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-menu-item-active-section > a.mega-menu-link:before,
+nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.mega-menu-item-active-section > a.mega-menu-link:before {
   transform-origin: 0% 50%;
   transform: scale3d(1, 1, 1);
 }
@@ -787,7 +800,7 @@ nav {
 }
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu {
   background: #FFF;
-  top: 112px;
+  top: 132px;
   border-bottom: 1px solid #e2e8f0;
 }
 nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu .mega-sub-menu {
@@ -816,6 +829,7 @@ nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega
   border-right: 1px solid #e2e8f0;
   display: flex;
   font-size: 1rem;
+  font-weight: 600;
   text-transform: uppercase;
   position: relative;
 }
@@ -1041,7 +1055,7 @@ nav .testimonial-megamenu-item > div {
   header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-current-menu-item,
   header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item {
     width: 100% !important;
-    padding: 0.5rem 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
     order: 2;
@@ -1071,6 +1085,7 @@ nav .testimonial-megamenu-item > div {
   header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link {
     display: flex;
     font-size: 1rem;
+    padding: 0.6rem 0;
     line-height: 1;
     color: #00012E !important;
   }
@@ -1178,6 +1193,12 @@ nav .testimonial-megamenu-item > div {
     margin-top: 1rem;
   }
 }
+/* Current page gold line on internal pages (e.g. /updates/) – top level so body wraps nav */
+body.is-internal-page nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link:before {
+  transform-origin: 0% 50%;
+  transform: scale3d(1, 1, 1);
+}
+
 .prose {
   color: #00012E;
   max-width: 65ch;
@@ -1897,7 +1918,7 @@ tfoot td:first-child):not(:where([class~=not-prose] *)) {
   height: 55px;
   border-radius: 5px;
   gap: 7px;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 18px;
 }
 
@@ -2070,8 +2091,15 @@ h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 1.25rem;
 }
 
+body {
+  color: #00012E;
+}
+
+main .hero h1 {
+  font-weight: 600;
+}
 main .umb-block-list {
-  margin-top: 112px;
+  margin-top: 132px;
 }
 main .umb-block-list .hero-wrapper {
   padding: 1.4rem 4rem;
@@ -2085,12 +2113,19 @@ main .umb-block-list .hero-wrapper {
   width: auto;
 }
 
+.block-text ul {
+  margin-bottom: 1.25rem;
+}
+.block-text ul li {
+  margin-bottom: 0.5rem;
+}
+
 @media screen and (min-width: 1024px) {
-  body.home h1, body.europe h1, body.amea h1, body.americas-caribbean h1 {
+  body.home h1 {
     font-size: 2rem;
     line-height: 1.5;
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
   }
 }
 .block-dark .block-header,
@@ -2103,12 +2138,10 @@ main .umb-block-list .hero-wrapper {
 }
 
 .block-light .block-header,
-.block-light .read-more,
 .block-light .block-text {
   color: #00012E;
 }
 .block-light .block-header:after,
-.block-light .read-more:after,
 .block-light .block-text:after {
   display: none;
   background-color: #00012E;
@@ -2116,11 +2149,104 @@ main .umb-block-list .hero-wrapper {
 .block-light a.block-text:after {
   background-color: #00012E;
 }
+.block-light .read-more {
+  color: #00012E;
+}
 .block-light:hover {
   color: #d0b135;
 }
 .block-light:hover a.read-more {
   color: #d0b135;
+}
+
+.block-light .read-more,
+.project-grid .block .read-more,
+.block-dark .read-more {
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.block-light .read-more:before, .block-light .read-more:after,
+.project-grid .block .read-more:before,
+.project-grid .block .read-more:after,
+.block-dark .read-more:before,
+.block-dark .read-more:after {
+  content: "" !important;
+  box-sizing: inherit;
+  position: absolute;
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+.block-light .read-more:before,
+.project-grid .block .read-more:before,
+.block-dark .read-more:before {
+  top: 0;
+  left: 0;
+}
+.block-light .read-more:after,
+.project-grid .block .read-more:after,
+.block-dark .read-more:after {
+  bottom: 0;
+  right: 0;
+}
+.block-light .read-more:after,
+.project-grid .block .read-more:after,
+.block-dark .read-more:after {
+  top: 0;
+  left: 0;
+}
+.block-light:hover .read-more,
+.project-grid .block:hover .read-more,
+.block-dark:hover .read-more {
+  transition: color 0.15s;
+  color: #d0b135;
+}
+.block-light:hover .read-more:before, .block-light:hover .read-more:after,
+.project-grid .block:hover .read-more:before,
+.project-grid .block:hover .read-more:after,
+.block-dark:hover .read-more:before,
+.block-dark:hover .read-more:after {
+  width: 100%;
+  height: 100%;
+}
+.block-light:hover .read-more:before,
+.project-grid .block:hover .read-more:before,
+.block-dark:hover .read-more:before {
+  border-top-color: #d0b135;
+  border-right-color: #d0b135;
+  transition: width 0.15s ease-out, height 0.15s ease-out 0.15s;
+}
+.block-light:hover .read-more:after,
+.project-grid .block:hover .read-more:after,
+.block-dark:hover .read-more:after {
+  border-bottom-color: #d0b135;
+  border-left-color: #d0b135;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+}
+.block-light:hover .read-more:after,
+.project-grid .block:hover .read-more:after,
+.block-dark:hover .read-more:after {
+  top: 0;
+  left: 0;
+}
+.block-light:hover .read-more:before,
+.project-grid .block:hover .read-more:before,
+.block-dark:hover .read-more:before {
+  border-top-color: #d0b135;
+  border-right-color: #d0b135;
+}
+.block-light:hover .read-more:after,
+.project-grid .block:hover .read-more:after,
+.block-dark:hover .read-more:after {
+  border-bottom-color: #d0b135;
+  border-left-color: #d0b135;
+  transition: height 0.15s ease-out, width 0.15s ease-out 0.15s;
 }
 
 .testimonials-one > div {
@@ -2138,12 +2264,10 @@ main .umb-block-list .hero-wrapper {
 }
 
 .block-dark .block-header,
-.block-dark .read-more,
 .block-dark .block-text {
   color: #FFF;
 }
 .block-dark .block-header:after,
-.block-dark .read-more:after,
 .block-dark .block-text:after {
   display: none;
   background-color: #FFF;
@@ -2195,10 +2319,11 @@ main .umb-block-list .hero-wrapper {
 }
 .info-section .content-text .heading {
   font-size: 1.25rem;
+  line-height: 1.75rem;
   text-transform: uppercase;
   font-weight: bold;
-  margin-bottom: 2.5rem;
-  padding: 1rem 0;
+  margin-bottom: 2rem;
+  padding: 0;
 }
 .info-section .content-text .full-text {
   font-size: 20px;
@@ -2230,6 +2355,16 @@ main .umb-block-list .hero-wrapper {
   main .umb-block-list .hero-wrapper {
     padding: 1rem;
   }
+  .page-template-vision-mission-values .info-section > div > div {
+    display: flex;
+    flex-direction: column;
+  }
+  .page-template-vision-mission-values .info-section .image-block {
+    order: 1;
+  }
+  .page-template-vision-mission-values .info-section .content-text {
+    order: 2;
+  }
   .hero h1 {
     text-align: center;
   }
@@ -2254,7 +2389,7 @@ main .umb-block-list .hero-wrapper {
   }
 }
 .search-page__wrapper {
-  margin-top: 112px;
+  margin-top: 132px;
   color: #FFF;
   background: #00012E;
   padding: 4.5rem;
@@ -2475,7 +2610,6 @@ main .umb-block-list .hero-wrapper {
 .project-grid .block:hover .block-text,
 .project-grid .block:hover .block-header {
   transition: all 0.2s ease-in-out;
-  color: #d0b135;
 }
 
 .nav-links {
@@ -2732,6 +2866,12 @@ main .umb-block-list .hero-wrapper {
   background-position: center center;
 }
 
+.single-post__content .panel-column .title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
 @media screen and (max-width: 1024px) {
   .hero-banner-img {
     height: 250px;
@@ -2816,6 +2956,7 @@ main .umb-block-list .hero-wrapper {
   font-family: "Tajawal", sans-serif;
 }
 .language-ar h1, .language-ar h2, .language-ar h3, .language-ar h4, .language-ar h5, .language-ar button,
+.language-ar h6, .language-ar p,
 .language-ar header nav a,
 .language-ar header nav .mega-menu-link,
 .language-ar footer a,
@@ -2829,9 +2970,22 @@ main .umb-block-list .hero-wrapper {
 .language-ar .\!akkuratRegular {
   font-family: "Tajawal", sans-serif;
 }
+.language-ar.home h1 {
+  font-size: 2.8rem;
+}
+.language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo,
+.language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo {
+  width: 130px;
+}
+.language-ar .read-more {
+  font-size: 1rem;
+}
 .language-ar .language-switcher .dropdown-menu {
   right: unset;
   left: 0;
+}
+.language-ar .info-section .content-text .heading {
+  font-size: 1.8rem;
 }
 .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item,
 .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item {
@@ -2900,6 +3054,18 @@ main .umb-block-list .hero-wrapper {
 }
 .language-ar .\!text-xl {
   font-size: 1.5rem !important;
+}
+@media screen and (max-width: 1024px) {
+  .language-ar header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu ul.menu li {
+    padding: 0.2rem 5rem 0.2rem 0;
+  }
+  .language-ar header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu ul.menu li a {
+    font-size: 1.25rem !important;
+  }
+  .language-ar .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,
+  .language-ar .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link {
+    font-size: 1.5rem !important;
+  }
 }
 
 *, ::before, ::after {
@@ -4931,7 +5097,7 @@ p {
 }
 
 .content-grid li {
-  padding-top: 0.5rem;
+  padding-top: 0;
 }
 
 .bg-lime .slick-dots li button {

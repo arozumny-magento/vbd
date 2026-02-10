@@ -39,6 +39,9 @@ $current_lang = pll_current_language();
                                 <h3 class="uppercase !text-xl !lg:text-3xl font-bold">
                                     <?php the_field('type') ?></h3>
                             </div>
+                            <div>
+                                <span class="pb-1 read-more text-sm uppercase pb-1 "><?php pll_e('Read More'); ?></span>
+                            </div>
                         </div>
                     </a>
                 </div>

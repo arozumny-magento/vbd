@@ -1,6 +1,14 @@
 @use 'variables' as *;
 
+body {
+  color: $color-dark-blue;
+}
 main {
+
+  .hero h1 {
+    font-weight: 600;
+  }
+
   .umb-block-list {
     margin-top: $desktop-header-height;
 
@@ -18,18 +26,28 @@ main {
   width: auto;
 }
 
+.block-text {
+  ul {
+    margin-bottom: 1.25rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
 @media screen and (min-width: 1024px) {
-  body.home h1, body.europe h1, body.amea h1, body.americas-caribbean h1 {
+  body.home h1 {
     font-size: 2rem;
     line-height: 1.5;
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
   }
 }
 
 .block-dark,
 .block-light {
-  .block-header{
+  .block-header {
     font-weight: 600;
   }
 }
@@ -40,7 +58,6 @@ main {
 
 .block-light {
   .block-header,
-  .read-more,
   .block-text {
     color: $color-dark-blue;
 
@@ -56,10 +73,107 @@ main {
     }
   }
 
+  .read-more {
+    color: $color-dark-blue;
+  }
+
   &:hover {
     color: $color-gold;
+
     a.read-more {
       color: $color-gold;
+    }
+  }
+}
+
+.block-light,
+.project-grid .block,
+.block-dark {
+  .read-more {
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: .5rem 1rem;
+    display: inline-block;
+
+    // Required, since we're setting absolute on pseudo-elements
+    position: relative;
+    vertical-align: middle;
+
+    &:before,
+    &:after {
+      content: '' !important;
+      box-sizing: inherit;
+      position: absolute;
+      border: 2px solid transparent;
+      width: 0;
+      height: 0;
+    }
+
+    &:before {
+      top: 0;
+      left: 0;
+    }
+
+    // And this the bottom & left borders (expands left, then up)
+    &:after {
+      bottom: 0;
+      right: 0;
+    }
+
+    &:after {
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &:hover {
+    .read-more {
+      transition: color 0.15s;
+      color: $color-gold;
+      // Hover styles
+      &:before,
+      &:after {
+        width: 100%;
+        height: 100%;
+      }
+
+      &:before {
+        border-top-color: $color-gold; // Make borders visible
+        border-right-color: $color-gold;
+        transition: width 0.15s ease-out, // Width expands first
+        height 0.15s ease-out 0.15s; // And then height
+      }
+
+      &:after {
+        border-bottom-color: $color-gold; // Make borders visible
+        border-left-color: $color-gold;
+        transition: border-color 0s ease-out 0.5s, // Wait for ::before to finish before showing border
+        width 0.25s ease-out 0.5s, // And then exanding width
+        height 0.25s ease-out 0.75s; // And finally height
+      }
+
+      // Start ::after in same position as ::before
+      &:after {
+        top: 0;
+        left: 0;
+      }
+
+
+      // Change colors
+      &:before {
+        border-top-color: $color-gold;
+        border-right-color: $color-gold;
+      }
+
+      &:after {
+        border-bottom-color: $color-gold;
+        border-left-color: $color-gold;
+        transition: // Animate height first, then width
+                height 0.15s ease-out,
+                width 0.15s ease-out 0.15s;
+      }
     }
   }
 }
@@ -67,6 +181,7 @@ main {
 .testimonials-one {
   > div {
     background-color: $color-white;
+
     &:nth-child(2),
     &:nth-child(3) {
       background-color: $color-light-blue;
@@ -87,7 +202,6 @@ main {
 
 .block-dark {
   .block-header,
-  .read-more,
   .block-text {
     color: $color-white;
 
@@ -105,6 +219,7 @@ main {
 
   &:hover {
     color: $color-gold;
+
     a.read-more {
       color: $color-gold;
     }
@@ -112,7 +227,9 @@ main {
 }
 
 .partners {
-  padding: 0 8rem;  h3 {
+  padding: 0 8rem;
+
+  h3 {
     color: $color-white;
     font-size: 2rem;
     margin: 2rem 0 -2rem;
@@ -124,7 +241,9 @@ main {
 .news-container-nav {
   display: flex;
   justify-content: space-between;
-}.services {
+}
+
+.services {
   .block-light,
   .block-dark {
     > div {
@@ -156,10 +275,11 @@ main {
 
     .heading {
       font-size: 1.25rem;
+      line-height: 1.75rem;
       text-transform: uppercase;
       font-weight: bold;
-      margin-bottom: 2.5rem;
-      padding: 1rem 0;
+      margin-bottom: 2rem;
+      padding: 0;
     }
 
     .full-text {
@@ -178,6 +298,7 @@ main {
       &:nth-child(3) {
         order: 4;
       }
+
       &:nth-child(4) {
         order: 3;
       }
@@ -197,7 +318,6 @@ main {
       padding: 2rem;
     }
   }
-
   main .umb-block-list {
     margin-top: 81px;
 
@@ -206,10 +326,26 @@ main {
     }
   }
 
+  .page-template-vision-mission-values {
+    .info-section {
+      > div {
+        > div {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .image-block {
+        order: 1;
+      }
+      .content-text {
+        order: 2;
+      }
+    }
+  }
 
   .hero {
     h1 {
-     text-align: center;
+      text-align: center;
     }
   }
 
@@ -224,15 +360,20 @@ main {
 
   .partners {
     padding: 2rem 0;
+
     h3 {
-      margin-bottom:-1rem
-    }    ul {
+      margin-bottom: -1rem
+    }
+
+    ul {
       justify-content: center;
+
       li {
         width: 50%;
       }
     }
-  }  .testimonials {
+  }
+  .testimonials {
     .left-side {
       > div {
         padding: 3rem;

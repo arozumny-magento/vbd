@@ -1,10 +1,12 @@
 @use 'variables' as *;
 
+
 .language-ar {
   direction: rtl;
   font-family: 'Tajawal', sans-serif;
 
   h1, h2, h3, h4, h5, button,
+  h6, p,
   header nav a,
   header nav .mega-menu-link,
   footer a,
@@ -19,11 +21,28 @@
     font-family: 'Tajawal', sans-serif;
   }
 
+  &.home h1 {
+    font-size: 2.8rem;
+  }
+
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo,
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo
+  {
+    width: 130px;
+  }
+
+  .read-more {
+    font-size: 1rem;
+  }
+
   .language-switcher .dropdown-menu {
     right: unset;
     left: 0;
   }
 
+  .info-section .content-text .heading {
+    font-size: 1.8rem;
+  }
 
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item,
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item {
@@ -110,5 +129,20 @@
 
   .\!text-xl {
     font-size: 1.5rem !important;
+  }
+
+  @media screen and (max-width: 1024px) {
+    header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu ul.menu li {
+      padding: 0.2rem 5rem 0.2rem 0;
+    }
+
+    header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu ul.menu li a {
+      font-size: 1.25rem !important;
+    }
+
+    .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,
+    .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link {
+      font-size: 1.5rem !important;
+    }
   }
 }

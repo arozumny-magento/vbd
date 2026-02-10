@@ -136,7 +136,7 @@ if ($elementor_active) {
                                                  data-aos-delay="100">
                                                 <?= $leftText ?>
                                             </div>
-                                            <span class="block pb-1 read-more text-sm uppercase group transition-all duration-300 ease-in-out overflow-hidden inline pb-1 link-underline-animation after:bg-bright-blue"><?php pll_e('Read More'); ?></span>
+                                            <span class="block pb-1 read-more draw meet text-sm uppercase pb-1 "><?php pll_e('Read More'); ?></span>
                                         </div>
                                     </div>
                                 </a>
@@ -157,7 +157,7 @@ if ($elementor_active) {
                                                  data-aos-delay="100">
                                                 <?= $rightText ?>
                                             </div>
-                                            <span class="block pb-1 read-more text-sm uppercase group transition-all duration-300 ease-in-out overflow-hidden inline pb-1 link-underline-animation after:bg-bright-blue"><?php pll_e('Read More'); ?></span>
+                                            <span class="block pb-1 read-more draw meet text-sm uppercase pb-1 "><?php pll_e('Read More'); ?></span>
                                         </div>
                                     </div>
                                 </a>
@@ -359,6 +359,7 @@ if ($elementor_active) {
             <?php
             // Get the latest 2 posts using WP_Query
             $news_query = new WP_Query(array(
+                'lang' => 'eng',
                 'posts_per_page' => 2,
                 'category_name' => 'updates',
                 'post_status' => 'publish',
@@ -369,13 +370,16 @@ if ($elementor_active) {
             if ($news_query->have_posts()) :
                 ?>
                 <div class="w-full relative content-grid" id="updates">
+                    <?php
+                    $newsStyle = 'dark';
+                    $i = pll_current_language() === 'ara' ? 0 : 1;
+                    while ($news_query->have_posts()) : $news_query->the_post();
+                        $newsStyle = $newsStyle == 'light' ? 'dark' : 'light';
+                        ?>
                     <div class="mx-auto md:grid grid-cols-2 gap-0">
-                        <?php
-                        $newsStyle = 'light';
-                        while ($news_query->have_posts()) : $news_query->the_post();
-                            $newsStyle = $newsStyle == 'light' ? 'dark' : 'light';
-                            ?>
-
+                            <div class="bg-<?= $newsStyle ?>-blue block-<?= $newsStyle ?> cursor-pointer" style="background-image: url('<?= get_the_post_thumbnail_url(get_the_ID(), 'full') ?>'); background-size: cover; background-position: center center; height: 100%; <?= $i%2 == 0? 'order:1' : '' ?>"
+                                 onclick="location.href='<?= get_the_permalink() ?>'">
+                            </div>
                             <div class="bg-<?= $newsStyle ?>-blue block-<?= $newsStyle ?> cursor-pointer"
                                  onclick="location.href='<?= get_the_permalink() ?>'">
                                 <a href="<?= get_the_permalink() ?>" style="display: flex; padding:0; margin: 0;">
@@ -394,18 +398,18 @@ if ($elementor_active) {
                                             <div class="flex flex-col lg:flex-row lg:items-center justify-between pt-0 lg:pt-5 gap-5 links-icon-row aos-init aos-animate"
                                                  data-aos="fade-up" data-aos-delay="300">
 
-                                                <span class="text-sm lg:text-lg pb-1 link-underline-animation plaakBold block-text"><?php pll_e('Read More'); ?></span>
+                                                <span class="block pb-1 read-more text-sm uppercase pb-1 "><?php pll_e('Read More'); ?></span>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
-
-                        <?php
-                        endwhile;
-                        wp_reset_postdata();
-                        ?>
                     </div>
+                    <?php
+                    $i++;
+                    endwhile;
+                    wp_reset_postdata();
+                    ?>
                 </div>
             <?php endif; ?>
             <!-- END NEWS -->

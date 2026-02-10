@@ -48,7 +48,7 @@ if ($events->have_posts()) : ?>
                             <div class="mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header">
                                 <h3 class="uppercase !text-xl !lg:text-3xl font-bold"><?php the_title() ?> <?= $evenEnded ?></h3>
                             </div>
-                            <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate block-text gap-4 flex flex-col"
+                            <div class="mb-3 lg:text-lg aos-init aos-animate block-text gap-4 flex flex-col"
                                  data-aos="fade-up"
                                  data-aos-delay="200">
                                 <div class="text-xl flex gap-2">
@@ -63,6 +63,10 @@ if ($events->have_posts()) : ?>
                                         <path d="M20 20h-4v-4h4v4zm-6-10h-4v4h4v-4zm6 0h-4v4h4v-4zm-12 6h-4v4h4v-4zm6 0h-4v4h4v-4zm-6-6h-4v4h4v-4zm16-8v22h-24v-22h3v1c0 1.103.897 2 2 2s2-.897 2-2v-1h10v1c0 1.103.897 2 2 2s2-.897 2-2v-1h3zm-2 6h-20v14h20v-14zm-2-7c0-.552-.447-1-1-1s-1 .448-1 1v2c0 .552.447 1 1 1s1-.448 1-1v-2zm-14 2c0 .552-.447 1-1 1s-1-.448-1-1v-2c0-.552.447-1 1-1s1 .448 1 1v2z"/>
                                     </svg>
                                     <span class="font-bold"><?php the_field('event_date_time') ?></span>
+                                </div>
+
+                                <div class="mt-8">
+                                    <span class="pb-1 read-more text-sm uppercase"><?php pll_e('Read More'); ?></span>
                                 </div>
                             </div>
                         </div>

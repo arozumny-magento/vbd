@@ -7,7 +7,7 @@
             <div class="bg-dark-blue">
                 <div class="form-group">
                     <?php
-                    if (have_rows('langing_page')):
+                    if (have_rows('langing_page') && !is_page('events')):
                         while (have_rows('langing_page')): the_row();
                             if (get_row_layout() == 'Register_Block'):
                                 $eventContact = get_sub_field('contact_form_short_code');

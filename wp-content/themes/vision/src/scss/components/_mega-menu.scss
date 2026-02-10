@@ -3,7 +3,7 @@
 nav {
   width: 80%;
   margin: 0 auto;
-  padding: .75rem 0;
+  padding: .75rem 0 1rem;
   background: $color-white;
   display: flex;
   justify-content: center;
@@ -28,8 +28,8 @@ nav {
         color: $color-dark-blue;
 
         &.menu-item-logo {
-          width: 120px;
-          margin-bottom: -.8rem;
+          width: 130px;
+          margin-bottom: -1.4rem;
 
           a:before {
             display: none;
@@ -38,7 +38,7 @@ nav {
 
         > a.mega-menu-link {
           font-family: "Times";
-          padding: 0;
+          padding: 0.6rem 0;
           justify-content: center;
           height: auto;
           background: none;
@@ -53,8 +53,8 @@ nav {
             position: absolute;
             width: 100%;
             height: 3px;
-            background: #d0b135;
-            top: 20px;
+            background: $color-gold;
+            top: 30px;
             left: 0;
             pointer-events: none;
             transform-origin: 100% 50%;
@@ -69,10 +69,16 @@ nav {
             transition: 0.35s ease;
 
             &:before {
-              transform-origin: 0% 50%;
+              transform-origin: 0 50%;
               transform: scale3d(1, 1, 1);
             }
           }
+        }
+
+        /* Keep hover effect when scrolled to this section (active section) */
+        &.mega-menu-item-active-section > a.mega-menu-link:before {
+          transform-origin: 0% 50%;
+          transform: scale3d(1, 1, 1);
         }
       }
     }
@@ -121,6 +127,7 @@ nav {
             border-right: 1px solid $color-slate-200;
             display: flex;
             font-size: 1rem;
+            font-weight: 600;
             text-transform: uppercase;
             position: relative;
 
@@ -385,7 +392,7 @@ nav {
         > li.mega-current-menu-item,
         > li.mega-menu-item {
           width: 100% !important;
-          padding: .5rem 0;
+          padding: 0;
           display: flex;
           flex-direction: column;
           order: 2;
@@ -414,6 +421,7 @@ nav {
           > a.mega-menu-link {
             display: flex;
             font-size: 1rem;
+            padding: .6rem 0;
             line-height: 1;
             color: $color-dark-blue !important;
 
@@ -568,4 +576,10 @@ nav {
       margin-top: 1rem;
     }
   }
+}
+
+/* Current page gold line on internal pages (e.g. /updates/) – top level so body wraps nav */
+body.is-internal-page nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link:before {
+  transform-origin: 0% 50%;
+  transform: scale3d(1, 1, 1);
 }

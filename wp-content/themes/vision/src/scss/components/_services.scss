@@ -44,7 +44,15 @@
   background-position: center center;
 }
 
-
+.single-post__content {
+  .panel-column {
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
 
 @media screen and (max-width: 1024px) {
   .hero-banner-img {

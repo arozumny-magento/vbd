@@ -141,9 +141,18 @@ header nav .mega-menu-link {
 
     a {
       color: $color-dark-blue;
+
       &:hover {
         color: $color-gold;
       }
+    }
+  }
+}
+
+body.is-internal-page {
+  .hero-wrapper {
+    h1 {
+      font-weight: 600;
     }
   }
 }

@@ -145,6 +145,151 @@ function vision_scripts() {
             }
             window.addEventListener('resize', setScrollMargin);
         })();
+
+        // Keep menu hover effect (gold line) when scrolled to the linked section
+        (function() {
+            var menuWrap = document.querySelector('nav #mega-menu-wrap-primary #mega-menu-primary');
+            if (!menuWrap) return;
+
+            var topLevelItems = menuWrap.querySelectorAll('#mega-menu-primary > li.mega-menu-item');
+            var anchorItems = [];
+            var updatesMenuItem = null;
+            topLevelItems.forEach(function(li) {
+                var link = li.querySelector('a.mega-menu-link');
+                if (!link) return;
+                var href = link.getAttribute('href');
+                if (!href) return;
+                var pathname = '';
+                try { pathname = new URL(href, window.location.origin).pathname; } catch (e) { pathname = href; }
+                var pathNorm = pathname.replace(/\/$/, '') || '/';
+                if (pathNorm === '/updates' || pathNorm.endsWith('/updates')) {
+                    updatesMenuItem = { li: li, link: link };
+                }
+                var hashIndex = href.indexOf('#');
+                if (hashIndex === -1) return;
+                var id = href.slice(hashIndex + 1);
+                if (!id) return;
+                anchorItems.push({ li: li, link: link, id: id });
+            });
+            if (!anchorItems.length && !updatesMenuItem) return;
+
+            function isFrontPage() {
+                var path = window.location.pathname || '/';
+                return path === '/' || path === '';
+            }
+
+            function getHeaderOffset() {
+                var header = document.querySelector('.top-header');
+                return (header && header.offsetHeight) ? header.offsetHeight : 0;
+            }
+
+            function setActiveBySection() {
+                var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                var headerOffset = getHeaderOffset();
+                var threshold = headerOffset + 100;
+
+                var activeId = null;
+                var activeTop = -1;
+
+                anchorItems.forEach(function(item) {
+                    var section = document.getElementById(item.id);
+                    if (!section) return;
+
+                    var rect = section.getBoundingClientRect();
+                    var sectionTop = rect.top + scrollY;
+
+                    if (scrollY >= sectionTop - threshold && sectionTop > activeTop) {
+                        activeTop = sectionTop;
+                        activeId = item.id;
+                    }
+                });
+
+                if (isFrontPage() && updatesMenuItem && document.getElementById('updates')) {
+                    var updatesSection = document.getElementById('updates');
+                    var rect = updatesSection.getBoundingClientRect();
+                    var sectionTop = rect.top + scrollY;
+                    if (scrollY >= sectionTop - threshold && sectionTop > activeTop) {
+                        activeTop = sectionTop;
+                        activeId = 'updates';
+                    }
+                }
+
+                anchorItems.forEach(function(item) {
+                    if (item.id === activeId) {
+                        item.li.classList.add('mega-menu-item-active-section');
+                    } else {
+                        item.li.classList.remove('mega-menu-item-active-section');
+                    }
+                });
+                if (updatesMenuItem) {
+                    if (activeId === 'updates') {
+                        updatesMenuItem.li.classList.add('mega-menu-item-active-section');
+                    } else {
+                        updatesMenuItem.li.classList.remove('mega-menu-item-active-section');
+                    }
+                }
+            }
+
+            function setActiveById(id) {
+                anchorItems.forEach(function(item) {
+                    if (item.id === id) {
+                        item.li.classList.add('mega-menu-item-active-section');
+                    } else {
+                        item.li.classList.remove('mega-menu-item-active-section');
+                    }
+                });
+                if (updatesMenuItem) {
+                    if (id === 'updates') {
+                        updatesMenuItem.li.classList.add('mega-menu-item-active-section');
+                    } else {
+                        updatesMenuItem.li.classList.remove('mega-menu-item-active-section');
+                    }
+                }
+            }
+
+            anchorItems.forEach(function(item) {
+                item.link.addEventListener('click', function() {
+                    setActiveById(item.id);
+                });
+            });
+            if (updatesMenuItem) {
+                updatesMenuItem.link.addEventListener('click', function() {
+                    setActiveById('updates');
+                });
+            }
+
+            // Hash in URL (e.g. after click or page load with #section)
+            function onHashChange() {
+                var hash = window.location.hash;
+                var id = hash ? hash.slice(1) : null;
+                if (id) setActiveById(id);
+                else setActiveBySection();
+            }
+
+            var ticking = false;
+            function onScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(function() {
+                        setActiveBySection();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            function init() {
+                setActiveBySection();
+                if (window.location.hash) onHashChange();
+                window.addEventListener('scroll', onScroll, { passive: true });
+                window.addEventListener('hashchange', onHashChange);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
         </script>
         <?php
     }, 1);
@@ -411,6 +556,11 @@ function add_language_body_class($classes) {
     if ($current_language) {
         $language_code = substr($current_language, 0, 2); // Take the first two letters of the language, e.g., "en"
         $classes[] = 'language-' . $language_code;
+    }
+
+    // Internal page (not front) – for menu current-item gold line
+    if (!is_front_page()) {
+        $classes[] = 'is-internal-page';
     }
 
     return $classes;
