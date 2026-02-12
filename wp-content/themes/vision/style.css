@@ -36,8 +36,8 @@ h5 {
 }
 
 button {
-  font-family: "Inter" !important;
-  letter-spacing: 1px !important;
+  font-family: "Inter";
+  letter-spacing: 1px;
 }
 
 .plaakRegular {
@@ -682,13 +682,13 @@ body.is-internal-page .hero-wrapper h1 {
     display: none;
   }
   header nav {
-    width: auto;
+    width: 66px;
     order: 3;
     margin: 0;
   }
   header .language-switcher {
+    width: 66px;
     order: 1;
-    width: auto;
   }
   header .language-switcher .dropdown-menu {
     right: unset;
@@ -2948,7 +2948,7 @@ main .umb-block-list .hero-wrapper {
 }
 .language-uk nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo,
 .language-uk nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo {
-  width: 120px;
+  width: 130px;
 }
 
 .language-ar {
@@ -2970,12 +2970,23 @@ main .umb-block-list .hero-wrapper {
 .language-ar .\!akkuratRegular {
   font-family: "Tajawal", sans-serif;
 }
-.language-ar.home h1 {
-  font-size: 2.8rem;
+.language-ar .dropdown-toggle {
+  font-family: "Inter", sans-serif;
+}
+@media screen and (min-width: 1024px) {
+  .language-ar.home h1 {
+    font-size: 2.8rem;
+  }
 }
 .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo,
 .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo {
   width: 130px;
+}
+@media screen and (min-width: 1024px) {
+  .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu .menu-sub-menu-about-ara-container .menu li a,
+  .language-ar nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu .menu-services-sub-menu-ara-container .menu li a {
+    font-size: 1.25rem;
+  }
 }
 .language-ar .read-more {
   font-size: 1rem;
@@ -3037,6 +3048,11 @@ main .umb-block-list .hero-wrapper {
 .language-ar #updates .block-light .block-text {
   color: #FFF;
 }
+.language-ar .form-default button {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: "Tajawal", sans-serif;
+}
 .language-ar .form-group .title-default {
   direction: rtl;
 }
@@ -3058,6 +3074,10 @@ main .umb-block-list .hero-wrapper {
 @media screen and (max-width: 1024px) {
   .language-ar header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu ul.menu li {
     padding: 0.2rem 5rem 0.2rem 0;
+  }
+  .language-ar.home h1 {
+    font-size: 1.8rem;
+    line-height: 150%;
   }
   .language-ar header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu ul.menu li a {
     font-size: 1.25rem !important;

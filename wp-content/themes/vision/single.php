@@ -55,7 +55,6 @@ if ($elementor_active) {
                 </div>
             </div>
 
-
             <div class="w-full relative" >
                 <div class="card-grid relative bg-white p-6 md:p-10 lg:py-20 lg:px-20 white-bg">
                     <div class="max-auto text-xl" style="max-width: 1024px; margin: 0 auto">
@@ -94,7 +93,6 @@ if ($elementor_active) {
                                             </div>
                                         </div>
                                     <?php } ?>
-                                    <?php the_content(); ?>
                                 </div>
                             </div>
                         </div>

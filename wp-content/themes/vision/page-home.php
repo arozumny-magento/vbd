@@ -41,6 +41,7 @@ if ($elementor_active) {
                             autoplay="true"
                             loop="true"
                             muted="true"
+                            disablepictureinpicture="true"
                             class="w-auto min-w-full min-h-full max-w-none"
                             poster="<?= $heroBanner['background'] ?? '' ?>"
                             src="<?= $heroBanner['video'] ?>" type="video/mp4"
@@ -371,7 +372,7 @@ if ($elementor_active) {
                 ?>
                 <div class="w-full relative content-grid" id="updates">
                     <?php
-                    $newsStyle = 'dark';
+                    $newsStyle = pll_current_language() === 'ara' ?  'light' : 'dark';
                     $i = pll_current_language() === 'ara' ? 0 : 1;
                     while ($news_query->have_posts()) : $news_query->the_post();
                         $newsStyle = $newsStyle == 'light' ? 'dark' : 'light';

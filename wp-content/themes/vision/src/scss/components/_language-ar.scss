@@ -21,14 +21,27 @@
     font-family: 'Tajawal', sans-serif;
   }
 
+  .dropdown-toggle {
+    font-family: 'Inter', sans-serif;;
+  }
+
   &.home h1 {
-    font-size: 2.8rem;
+    @media screen and (min-width: 1024px) {
+      font-size: 2.8rem;
+    }
   }
 
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo,
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo
   {
     width: 130px;
+  }
+
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu .menu-sub-menu-about-ara-container .menu li a,
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu .menu-services-sub-menu-ara-container .menu li a {
+    @media screen and (min-width: 1024px) {
+      font-size: 1.25rem;
+    }
   }
 
   .read-more {
@@ -102,6 +115,11 @@
       }
     }
   }
+  .form-default button {
+    font-size: 1.3rem;
+    font-weight: 700;
+    font-family: 'Tajawal', sans-serif;
+  }
 
   .form-group {
     .title-default {
@@ -134,6 +152,11 @@
   @media screen and (max-width: 1024px) {
     header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu ul.menu li {
       padding: 0.2rem 5rem 0.2rem 0;
+    }
+
+    &.home h1 {
+        font-size: 1.8rem;
+        line-height: 150%;
     }
 
     header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu ul.menu li a {
