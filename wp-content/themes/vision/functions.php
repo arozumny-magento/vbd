@@ -453,6 +453,116 @@ require_once get_template_directory() . '/inc/helpers.php';
  */
 require_once get_template_directory() . '/inc/class-walker-nav-menu.php';
 
+/**
+ * Load admin style settings
+ */
+require_once get_template_directory() . '/inc/admin-settings.php';
+
+/**
+ * Output dynamic CSS from Vision Style Settings
+ */
+function vision_output_style_settings_css() {
+    $opt = vision_get_style_settings();
+    $main_color = $opt['main_color'];
+    $main_website_color = isset($opt['main_website_color']) ? $opt['main_website_color'] : '#00012E';
+    // Main page: always the same (light preset as default)
+    $body_bg = $opt['theme_light_bg'];
+    $body_text = $opt['theme_light_text'];
+    $theme_white_bg = $opt['theme_white_bg'];
+    $theme_white_text = $opt['theme_white_text'];
+    $theme_light_bg = $opt['theme_light_bg'];
+    $theme_light_text = $opt['theme_light_text'];
+    $theme_dark_bg = $opt['theme_dark_bg'];
+    $theme_dark_text = $opt['theme_dark_text'];
+
+    $format_size = function ($v) {
+        $v = trim((string) $v);
+        if ($v === '') {
+            return '1rem';
+        }
+        if ($v === '16') {
+            return '1rem';
+        }
+        if (is_numeric($v)) {
+            return $v . 'rem';
+        }
+        if (preg_match('/^[\d.]+rem$/i', $v)) {
+            return $v;
+        }
+        if (preg_match('/^[\d.]+em$/i', $v)) {
+            return $v;
+        }
+        if (preg_match('/^[\d.]+px$/i', $v)) {
+            return (string) round((float) $v / 16, 4) . 'rem';
+        }
+        return $v . 'rem';
+    };
+    $format_weight = function ($v) {
+        $v = trim((string) $v);
+        if ($v === '' || ! preg_match('/^(100|200|300|400|500|600|700|800|900)$/', $v)) {
+            return '400';
+        }
+        return $v;
+    };
+    ?>
+    <style id="vision-style-settings-css">
+    :root {
+        --vision-main-color: <?php echo esc_attr($main_color); ?>;
+        --vision-main-website-color: <?php echo esc_attr($main_website_color); ?>;
+        --vision-theme-white-bg: <?php echo esc_attr($theme_white_bg); ?>;
+        --vision-theme-white-text: <?php echo esc_attr($theme_white_text); ?>;
+        --vision-theme-light-bg: <?php echo esc_attr($theme_light_bg); ?>;
+        --vision-theme-light-text: <?php echo esc_attr($theme_light_text); ?>;
+        --vision-theme-dark-bg: <?php echo esc_attr($theme_dark_bg); ?>;
+        --vision-theme-dark-text: <?php echo esc_attr($theme_dark_text); ?>;
+    }
+    body { background-color: <?php echo esc_attr($body_bg); ?>; color: <?php echo esc_attr($body_text); ?>; }
+    .vision-block-theme-white { background-color: var(--vision-theme-white-bg); color: var(--vision-theme-white-text); }
+    .vision-block-theme-light { background-color: var(--vision-theme-light-bg); color: var(--vision-theme-light-text); }
+    .vision-block-theme-dark { background-color: var(--vision-theme-dark-bg); color: var(--vision-theme-dark-text); }
+    <?php
+    foreach (array('en', 'ar', 'uk') as $lang) {
+        $main_size = $format_size($opt["font_{$lang}_main_size"]);
+        $main_lh = $opt["font_{$lang}_main_line_height"];
+        $main_weight = $format_weight($opt["font_{$lang}_main_weight"] ?? '400');
+        $selector = $lang === 'en' ? 'body, body.language-en' : "body.language-{$lang}";
+        echo $selector . ' { font-size: ' . esc_attr($main_size) . '; line-height: ' . esc_attr($main_lh) . '; font-weight: ' . esc_attr($main_weight) . "; }\n";
+        $block_size = $format_size($opt["font_{$lang}_block_heading_size"]);
+        $block_lh = $opt["font_{$lang}_block_heading_line_height"];
+        $block_weight = $format_weight($opt["font_{$lang}_block_heading_weight"] ?? '600');
+        echo $selector . ' .vision-block-heading { font-size: ' . esc_attr($block_size) . '; line-height: ' . esc_attr($block_lh) . '; font-weight: ' . esc_attr($block_weight) . "; }\n";
+        for ($i = 1; $i <= 6; $i++) {
+            $h_size = $format_size($opt["font_{$lang}_h{$i}_size"]);
+            $h_lh = $opt["font_{$lang}_h{$i}_line_height"];
+            $h_weight = $format_weight($opt["font_{$lang}_h{$i}_weight"] ?? '600');
+            echo $selector . " h{$i} { font-size: " . esc_attr($h_size) . "; line-height: " . esc_attr($h_lh) . "; font-weight: " . esc_attr($h_weight) . "; }\n";
+        }
+    }
+    echo "@media (max-width: 767px) {\n";
+    foreach (array('en', 'ar', 'uk') as $lang) {
+        $main_size = $format_size($opt["font_{$lang}_main_size_mobile"] ?? $opt["font_{$lang}_main_size"]);
+        $main_lh = $opt["font_{$lang}_main_line_height_mobile"] ?? $opt["font_{$lang}_main_line_height"];
+        $main_weight = $format_weight($opt["font_{$lang}_main_weight_mobile"] ?? '400');
+        $selector = $lang === 'en' ? 'body, body.language-en' : "body.language-{$lang}";
+        echo "  " . $selector . ' { font-size: ' . esc_attr($main_size) . '; line-height: ' . esc_attr($main_lh) . '; font-weight: ' . esc_attr($main_weight) . "; }\n";
+        $block_size = $format_size($opt["font_{$lang}_block_heading_size_mobile"] ?? $opt["font_{$lang}_block_heading_size"]);
+        $block_lh = $opt["font_{$lang}_block_heading_line_height_mobile"] ?? $opt["font_{$lang}_block_heading_line_height"];
+        $block_weight = $format_weight($opt["font_{$lang}_block_heading_weight_mobile"] ?? '600');
+        echo "  " . $selector . ' .vision-block-heading { font-size: ' . esc_attr($block_size) . '; line-height: ' . esc_attr($block_lh) . '; font-weight: ' . esc_attr($block_weight) . "; }\n";
+        for ($i = 1; $i <= 6; $i++) {
+            $h_size = $format_size($opt["font_{$lang}_h{$i}_size_mobile"] ?? $opt["font_{$lang}_h{$i}_size"]);
+            $h_lh = $opt["font_{$lang}_h{$i}_line_height_mobile"] ?? $opt["font_{$lang}_h{$i}_line_height"];
+            $h_weight = $format_weight($opt["font_{$lang}_h{$i}_weight_mobile"] ?? '600');
+            echo "  " . $selector . " h{$i} { font-size: " . esc_attr($h_size) . "; line-height: " . esc_attr($h_lh) . "; font-weight: " . esc_attr($h_weight) . "; }\n";
+        }
+    }
+    echo "}\n";
+    ?>
+    </style>
+    <?php
+}
+add_action('wp_head', 'vision_output_style_settings_css', 5);
+
 
 /**
  * Check if a URL is a video file or video hosting service

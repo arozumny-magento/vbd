@@ -1724,6 +1724,7 @@ tfoot td:first-child):not(:where([class~=not-prose] *)) {
   padding: 2rem 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .partners ul li {
@@ -1768,6 +1769,9 @@ tfoot td:first-child):not(:where([class~=not-prose] *)) {
   gap: 1rem;
   color: #00012E;
   white-space: nowrap;
+}
+.footer-bottom .footer-menu li {
+  list-style: none;
 }
 
 .footer-bottom .footer-menu a:hover {

@@ -101,82 +101,84 @@ function vision_get_logo_alt() {
 }
 
 /**
- * Get header logo URL from ACF options
- * Path: header (group) → main_logo (image type)
+ * Get header logo URL from Theme Style Settings or ACF options
  *
  * @return string|false Logo URL or false if not set
  */
 function vision_get_header_logo_url() {
+    $opt = vision_get_style_settings();
+    if (!empty($opt['header_logo'])) {
+        $url = wp_get_attachment_image_url($opt['header_logo'], 'full');
+        if ($url) {
+            return $url;
+        }
+    }
+
     if (!function_exists('get_field')) {
         return false;
     }
-    
     $header_config = get_field('header', 'option');
-    
     if (!$header_config || !isset($header_config['main_logo'])) {
         return false;
     }
-    
     $logo = $header_config['main_logo'];
-    
-    // Handle ACF image field formats: ID, array, or URL
     if (is_numeric($logo)) {
-        // It's an attachment ID
         $logo_url = wp_get_attachment_image_url($logo, 'full');
         return $logo_url ? $logo_url : false;
-    } elseif (is_array($logo)) {
-        // It's an array with 'url' key
+    }
+    if (is_array($logo)) {
         if (isset($logo['url'])) {
             return $logo['url'];
-        } elseif (isset($logo['ID'])) {
+        }
+        if (isset($logo['ID'])) {
             $logo_url = wp_get_attachment_image_url($logo['ID'], 'full');
             return $logo_url ? $logo_url : false;
         }
-    } elseif (is_string($logo) && !empty($logo)) {
-        // It's already a URL string
+    }
+    if (is_string($logo) && !empty($logo)) {
         return $logo;
     }
-    
     return false;
 }
 
 /**
- * Get footer logo URL from ACF options
- * Path: footer (group) → main_logo (image type)
+ * Get footer logo URL from Theme Style Settings or ACF options
  *
  * @return string|false Logo URL or false if not set
  */
 function vision_get_footer_logo_url() {
+    $opt = vision_get_style_settings();
+    if (!empty($opt['footer_logo'])) {
+        $url = wp_get_attachment_image_url($opt['footer_logo'], 'full');
+        if ($url) {
+            return $url;
+        }
+    }
+
     if (!function_exists('get_field')) {
         return false;
     }
-    
     $footer_config = get_field('footer', 'option');
-    
     if (!$footer_config || !isset($footer_config['logo'])) {
         return false;
     }
-    
     $logo = $footer_config['logo'];
-    
-    // Handle ACF image field formats: ID, array, or URL
     if (is_numeric($logo)) {
-        // It's an attachment ID
         $logo_url = wp_get_attachment_image_url($logo, 'full');
         return $logo_url ? $logo_url : false;
-    } elseif (is_array($logo)) {
-        // It's an array with 'url' key
+    }
+    if (is_array($logo)) {
         if (isset($logo['url'])) {
             return $logo['url'];
-        } elseif (isset($logo['ID'])) {
+        }
+        if (isset($logo['ID'])) {
             $logo_url = wp_get_attachment_image_url($logo['ID'], 'full');
             return $logo_url ? $logo_url : false;
         }
-    } elseif (is_string($logo) && !empty($logo)) {
-        // It's already a URL string
+    }
+    if (is_string($logo) && !empty($logo)) {
         return $logo;
     }
-    
     return false;
 }
 
@@ -254,41 +256,45 @@ function renderSocial($style = 'dark', $size = 20, $iconsList = array(), $link_c
         $iconsList = array('linkedin', 'instagram', 'youtube', 'facebook');
     }
 
-    // Get social links from ACF options page
-    // Structure: social (group) -> [platform] (group) -> link (url field)
     $social_links = array();
-    
+    $labels = array(
+        'instagram' => __('Instagram', 'vision'),
+        'facebook'  => __('Facebook', 'vision'),
+        'linkedin'  => __('LinkedIn', 'vision'),
+        'youtube'   => __('YouTube', 'vision'),
+    );
+
+    // Theme Style Settings (Vision Style page) take precedence
+    $opt = vision_get_style_settings();
+    foreach (array('instagram', 'youtube', 'linkedin', 'facebook') as $platform) {
+        $key = 'social_' . $platform;
+        if (!empty($opt[$key])) {
+            $social_links[$platform] = array(
+                'url'   => esc_url($opt[$key]),
+                'label' => $labels[$platform],
+            );
+        }
+    }
+
+    // Fallback: ACF options
     if (function_exists('get_field')) {
         $social_config = get_field('social', 'option');
-        
         if ($social_config && is_array($social_config)) {
-            $platforms = array('instagram', 'facebook', 'linkedin', 'youtube');
-            
-            foreach ($platforms as $platform) {
-                if (isset($social_config[$platform]) && is_array($social_config[$platform])) {
-                    $platform_data = $social_config[$platform];
-                    
-                    // Check if link field exists and is not empty
-                    if (isset($platform_data['link']) && !empty($platform_data['link'])) {
-                        // Set proper label for each platform
-                        $labels = array(
-                            'instagram' => __('Instagram', 'vision'),
-                            'facebook' => __('Facebook', 'vision'),
-                            'linkedin' => __('LinkedIn', 'vision'),
-                            'youtube' => __('YouTube', 'vision'),
-                        );
-                        
-                        $social_links[$platform] = array(
-                            'url' => esc_url($platform_data['link']),
-                            'label' => isset($labels[$platform]) ? $labels[$platform] : ucfirst($platform),
-                        );
-                    }
+            foreach (array('instagram', 'facebook', 'linkedin', 'youtube') as $platform) {
+                if (isset($social_links[$platform])) {
+                    continue;
+                }
+                if (isset($social_config[$platform]) && is_array($social_config[$platform]) && !empty($social_config[$platform]['link'])) {
+                    $social_links[$platform] = array(
+                        'url'   => esc_url($social_config[$platform]['link']),
+                        'label' => $labels[$platform],
+                    );
                 }
             }
         }
     }
-    
-    // Set defaults with '#' if ACF fields are not set
+
+    // Set defaults with '#' if not set
     if (!isset($social_links['instagram'])) {
         $social_links['instagram'] = array(
             'url' => '#',

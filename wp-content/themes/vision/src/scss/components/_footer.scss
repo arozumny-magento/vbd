@@ -36,6 +36,7 @@
   padding: 2rem 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .partners ul li {
@@ -83,6 +84,10 @@
     gap: 1rem;
     color: $color-dark-blue;
     white-space: nowrap;
+
+    li {
+      list-style: none;
+    }
   }
 }
 
