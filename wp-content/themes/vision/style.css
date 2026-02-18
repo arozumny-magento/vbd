@@ -2815,6 +2815,10 @@ main .umb-block-list .hero-wrapper {
   gap: 5px;
   justify-content: flex-start;
   margin-top: 20px;
+  padding: 0;
+}
+.social-mobile li {
+  list-style: none;
 }
 .social-mobile a {
   width: 30px;

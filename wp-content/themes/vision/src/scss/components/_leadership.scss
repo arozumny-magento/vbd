@@ -127,6 +127,12 @@
   gap:5px;
   justify-content: flex-start;
   margin-top: 20px;
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+
 
   a {
     width: 30px;
