@@ -1,0 +1,50 @@
+// 9. Partner internal
+@use '../components/variables' as *;
+
+body.vision-page-partner-internal {
+  main .umb-block-list {
+    margin-top: $desktop-header-height;
+  }
+
+  .hero-banner-img {
+    height: 400px;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .asset-container,
+  .presentation-for,
+  .expected-results-container {
+    .block {
+      padding: 4rem 6rem;
+    }
+    .block-light {
+      background: $color-light-blue;
+      color: $color-dark-blue;
+    }
+    .block-dark {
+      background: $color-dark-blue;
+      color: $color-white;
+    }
+    .block-dark,
+    .block-light {
+      background-size: cover;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    main .umb-block-list {
+      margin-top: 81px;
+    }
+    .hero-banner-img {
+      height: 250px;
+      background-size: cover;
+      background-position: center center;
+    }
+    .umb-block-list .asset-container .block,
+    .umb-block-list .presentation-for .block,
+    .umb-block-list .expected-results-container .block {
+      padding: 2rem;
+    }
+  }
+}

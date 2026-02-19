@@ -702,6 +702,68 @@ function add_language_body_class($classes) {
 }
 add_filter('body_class', 'add_language_body_class');
 
+/**
+ * Add vision-page-{type} body class for SCSS page-specific styling.
+ * 1 Main, 2 Vision Mission, 3 Projects, 4 Project internal, 5 Events, 6 Event internal,
+ * 7 Core Team, 8 Service internal, 9 Partner internal, 10 Updates, 11 Update internal.
+ */
+function vision_page_type_body_class($classes) {
+    if (is_front_page()) {
+        $classes[] = 'vision-page-main';
+        return $classes;
+    }
+    if (is_page_template('pages/vision-mission-values.php')) {
+        $classes[] = 'vision-page-vision-mission';
+        return $classes;
+    }
+    $cat_slug = is_category() ? get_queried_object()->slug ?? '' : '';
+    if (is_category() && in_array($cat_slug, array('project', 'projects'), true)) {
+        $classes[] = 'vision-page-projects';
+        return $classes;
+    }
+    if (is_single() && (has_category('project') || has_category('projects'))) {
+        $classes[] = 'vision-page-project-internal';
+        return $classes;
+    }
+    if (is_page_template('pages/events-page.php')) {
+        $classes[] = 'vision-page-events';
+        return $classes;
+    }
+    if (is_singular('event')) {
+        $classes[] = 'vision-page-event-internal';
+        return $classes;
+    }
+    if (is_page_template('pages/leadership-page.php')) {
+        $classes[] = 'vision-page-core-team';
+        return $classes;
+    }
+    if (is_singular('service')) {
+        $classes[] = 'vision-page-service-internal';
+        return $classes;
+    }
+    if (is_singular('partner')) {
+        $classes[] = 'vision-page-partner-internal';
+        return $classes;
+    }
+    if (is_single() && get_post_type() === 'post') {
+        $classes[] = 'vision-page-update-internal';
+        return $classes;
+    }
+    if (is_home() || (is_archive() && get_post_type() === 'post')) {
+        $classes[] = 'vision-page-updates';
+        return $classes;
+    }
+    // Service internal / Partner internal might be regular pages (no CPT)
+    if (is_page()) {
+        $obj = get_queried_object();
+        if ($obj && isset($obj->post_name) && in_array($obj->post_name, array('service', 'partner'), true)) {
+            $classes[] = 'vision-page-' . $obj->post_name . '-internal';
+        }
+    }
+    return $classes;
+}
+add_filter('body_class', 'vision_page_type_body_class');
+
 function enqueue_custom_scripts() {
     wp_enqueue_script(
         'menu-actions',

@@ -1,0 +1,212 @@
+// 10. Updates (blog / news archive)
+@use '../components/variables' as *;
+
+body.vision-page-updates {
+  .search-page__wrapper {
+    margin-top: $desktop-header-height;
+    color: $color-white;
+    background: $color-dark-blue;
+    padding: 4.5rem;
+
+    .title-page__default {
+      display: flex;
+      > div {
+        width: 50%;
+      }
+    }
+    form {
+      display: flex;
+      gap: 1rem;
+      input, textarea {
+        background: #fff;
+        border: 2px solid #00012e;
+        color: #00012e;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        width: 100%;
+      }
+      > label {
+        width: 100%;
+      }
+      [type="submit"] {
+        max-width: 10rem;
+      }
+    }
+  }
+
+  .news-archive__navigation {
+    padding-bottom: 2rem;
+  }
+
+  .archive-page__section {
+    margin-top: 5rem;
+    .default__container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 35px;
+      .column a {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .img {
+          display: block;
+          width: 100%;
+          border-radius: 0;
+          background-size: cover !important;
+          background-position: center center !important;
+        }
+        .txt {
+          padding: 25px 45px;
+          .author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            .author-image img {
+              display: block;
+              width: 50px;
+              border-radius: 25px;
+            }
+            .author-descr {
+              .author-descr__name {
+                color: $color-dark-blue;
+                display: block;
+                font-size: 14px;
+                text-transform: uppercase;
+              }
+              .author-descr__time {
+                display: block;
+                opacity: 0.5;
+                font-size: 11px;
+              }
+            }
+          }
+          .txt-content .txt-content__main .txt-content__title {
+            font-size: 20px;
+            margin-top: 25px;
+            display: block;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: $color-dark-blue;
+          }
+        }
+      }
+    }
+  }
+
+  .content-grid.key-grid,
+  .project-grid {
+    .block {
+      padding: 4rem 6rem;
+    }
+  }
+
+  .content-grid.key-grid {
+    .block:nth-child(6n+1),
+    .block:nth-child(6n+4),
+    .block:nth-child(6n+5) {
+      background: $color-dark-blue;
+      color: $color-white;
+      .block-text,
+      .block-header {
+        color: $color-white;
+      }
+    }
+    .block:nth-child(6n+2),
+    .block:nth-child(6n+3),
+    .block:nth-child(6n+6) {
+      background: $color-light-blue;
+      color: $color-dark-blue;
+      .block-text,
+      .block-header {
+        color: $color-dark-blue;
+      }
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    margin: 1rem;
+    .page-numbers {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      background: $color-light-blue;
+    }
+    .current {
+      background: $color-dark-blue;
+      color: $color-white;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .search-page__wrapper {
+      margin-top: 81px;
+      color: #fff;
+      background: #00012e;
+      padding: 2rem;
+      .title-page__default {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        > div {
+          width: 100%;
+        }
+        h1 {
+          font-size: 1.5rem;
+          text-align: center;
+        }
+      }
+      form {
+        gap: 0.2rem;
+        [type="submit"] {
+          max-width: 6rem;
+        }
+      }
+    }
+    .archive-page__section {
+      margin: 2rem;
+      .default__container {
+        padding: 0;
+      }
+      .row .column a {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        .img {
+          min-height: 170px;
+          border-radius: 0;
+        }
+        .txt {
+          padding: 1rem 0;
+        }
+      }
+    }
+    .content-grid.key-grid .block,
+    .project-grid .block {
+      padding: 0;
+      background: $color-light-blue;
+      .block-header,
+      .block-text {
+        color: $color-dark-blue;
+      }
+      &:nth-child(even) {
+        background: $color-dark-blue;
+        .block-header,
+        .block-text {
+          color: $color-white;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+// 6. Event internal (single event)
+@use '../components/variables' as *;
+
+body.vision-page-event-internal {
+  .event-over {
+    color: $color-red-error;
+  }
+
+  .event-template-default {
+    h1 {
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+      font-weight: 700;
+      font-size: 1.4rem;
+      padding: 0.5rem 0;
+    }
+  }
+}

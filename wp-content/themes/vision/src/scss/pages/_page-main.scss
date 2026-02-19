@@ -1,0 +1,170 @@
+// 1. Main (homepage)
+@use '../components/variables' as *;
+
+body.vision-page-main {
+  main {
+    .hero h1 {
+      font-weight: 600;
+    }
+    .umb-block-list {
+      margin-top: $desktop-header-height;
+      .hero-wrapper {
+        padding: 1.4rem 4rem;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .hero-banner-img {
+    background-position: center center;
+    height: auto;
+    width: auto;
+  }
+
+  @media screen and (min-width: 1024px) {
+    h1 {
+      font-size: 2rem;
+      line-height: 1.5;
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+
+  .testimonials-one {
+    > div {
+      background-color: $color-white;
+      &:nth-child(2),
+      &:nth-child(3) {
+        background-color: $color-light-blue;
+      }
+    }
+    .testimonial-logo img {
+      max-width: 50px;
+    }
+    .testimonial-author {
+      color: $color-dark-blue;
+      align-items: end;
+    }
+  }
+
+  .partners {
+    padding: 0 8rem;
+    h3 {
+      color: $color-white;
+      font-size: 2rem;
+      margin: 2rem 0 -2rem;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .news-container-nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .services {
+    .block-light,
+    .block-dark {
+      > div {
+        padding: 4rem 6rem;
+      }
+    }
+    .read-more {
+      width: fit-content;
+    }
+  }
+
+  .testimonials {
+    .left-side > div {
+      padding: 3rem 6rem;
+    }
+  }
+
+  .info-section {
+    .content-text {
+      padding: 4rem 6rem;
+      &.block-dark {
+        color: $color-white;
+        background-color: $color-dark-blue;
+      }
+      .heading {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: 2rem;
+        padding: 0;
+      }
+      .full-text {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .content-grid .list-trident {
+    padding: 4rem 6rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .services {
+      display: flex;
+      flex-direction: column;
+      > div {
+        &:nth-child(3) {
+          order: 4;
+        }
+        &:nth-child(4) {
+          order: 3;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    main .umb-block-list {
+      margin-top: 81px;
+      .hero-wrapper {
+        padding: 1rem;
+      }
+    }
+    .content-grid .list-trident {
+      padding: 2rem;
+    }
+    .info-section > div > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .info-section .image-block {
+      order: 1;
+    }
+    .info-section .content-text {
+      order: 2;
+    }
+    .hero h1 {
+      text-align: center;
+    }
+    .services .block-light,
+    .services .block-dark {
+      > div {
+        padding: 4rem 3rem;
+      }
+    }
+    .partners {
+      padding: 2rem 0;
+      h3 {
+        margin-bottom: -1rem;
+      }
+      ul {
+        justify-content: center;
+        li {
+          width: 50%;
+        }
+      }
+    }
+    .testimonials .left-side > div {
+      padding: 3rem;
+    }
+  }
+}
