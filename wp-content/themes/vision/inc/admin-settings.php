@@ -79,7 +79,42 @@ function vision_get_style_settings_defaults() {
         'font_uk_h4_size_mobile' => '1.5', 'font_uk_h4_line_height_mobile' => '1.3', 'font_uk_h4_weight_mobile' => '600',
         'font_uk_h5_size_mobile' => '1.25', 'font_uk_h5_line_height_mobile' => '1.3', 'font_uk_h5_weight_mobile' => '600',
         'font_uk_h6_size_mobile' => '1', 'font_uk_h6_line_height_mobile' => '1.3', 'font_uk_h6_weight_mobile' => '600',
+        'block_hover_effect' => 'color-fade',
+        'contact_form_shortcode'   => '[contact-form-7 id="8a5b653" title="Contact form - Contact US"]',
+        'contact_form_bg_color'    => '#00012E',
+        'contact_form_image'       => 0,
     ));
+}
+
+/**
+ * Available block hover effects (for dropdown and CSS)
+ */
+function vision_get_block_hover_effects() {
+    return array(
+        'none'             => __('None', 'vision'),
+        'color-fade'       => __('Color fade (to accent)', 'vision'),
+        'gradient-shift'   => __('Gradient shift', 'vision'),
+        'underline-reveal' => __('Underline reveal', 'vision'),
+        'glow'             => __('Glow', 'vision'),
+        'shine-sweep'      => __('Shine sweep', 'vision'),
+        'fill-from-left'   => __('Fill from left', 'vision'),
+        'lighten'          => __('Subtle lighten', 'vision'),
+        'accent-underline' => __('Accent underline', 'vision'),
+        'double-tone'      => __('Double tone', 'vision'),
+    );
+}
+
+/**
+ * Get CSS class to add to a block wrapper for the configured hover effect.
+ * Use with theme class, e.g. class="vision-block-theme-light <?php echo esc_attr( vision_get_block_hover_effect_class() ); ?>"
+ */
+function vision_get_block_hover_effect_class() {
+    $opt = vision_get_style_settings();
+    $effect = isset($opt['block_hover_effect']) ? $opt['block_hover_effect'] : 'color-fade';
+    if ($effect === 'none') {
+        return '';
+    }
+    return 'vision-block-hover-effect--' . $effect;
 }
 
 /**
@@ -119,6 +154,9 @@ function vision_sanitize_style_settings($input) {
 
     $out['header_logo']       = isset($input['header_logo']) ? absint($input['header_logo']) : 0;
     $out['footer_logo']       = isset($input['footer_logo']) ? absint($input['footer_logo']) : 0;
+    $out['contact_form_shortcode'] = isset($input['contact_form_shortcode']) ? sanitize_text_field($input['contact_form_shortcode']) : $defaults['contact_form_shortcode'];
+    $out['contact_form_bg_color']  = isset($input['contact_form_bg_color']) ? sanitize_hex_color($input['contact_form_bg_color']) : $defaults['contact_form_bg_color'];
+    $out['contact_form_image']     = isset($input['contact_form_image']) ? absint($input['contact_form_image']) : 0;
     $out['social_instagram']  = isset($input['social_instagram']) ? esc_url_raw(trim($input['social_instagram'])) : '';
     $out['social_youtube']    = isset($input['social_youtube']) ? esc_url_raw(trim($input['social_youtube'])) : '';
     $out['social_linkedin']  = isset($input['social_linkedin']) ? esc_url_raw(trim($input['social_linkedin'])) : '';
@@ -145,6 +183,11 @@ function vision_sanitize_style_settings($input) {
     $out['theme_light_text'] = isset($input['theme_light_text']) ? sanitize_hex_color($input['theme_light_text']) : $defaults['theme_light_text'];
     $out['theme_dark_bg']    = isset($input['theme_dark_bg']) ? sanitize_hex_color($input['theme_dark_bg']) : $defaults['theme_dark_bg'];
     $out['theme_dark_text']  = isset($input['theme_dark_text']) ? sanitize_hex_color($input['theme_dark_text']) : $defaults['theme_dark_text'];
+
+    $effects = array_keys(vision_get_block_hover_effects());
+    $out['block_hover_effect'] = isset($input['block_hover_effect']) && in_array($input['block_hover_effect'], $effects, true)
+        ? $input['block_hover_effect']
+        : $defaults['block_hover_effect'];
 
     foreach (array('en', 'ar', 'uk') as $lang) {
         $out["font_{$lang}_main_size"] = isset($input["font_{$lang}_main_size"]) ? sanitize_text_field($input["font_{$lang}_main_size"]) : $defaults["font_{$lang}_main_size"];
@@ -226,22 +269,42 @@ function vision_render_style_settings_page() {
     $opt = vision_get_style_settings();
     $header_logo_url = $opt['header_logo'] ? wp_get_attachment_image_url($opt['header_logo'], 'medium') : '';
     $footer_logo_url = $opt['footer_logo'] ? wp_get_attachment_image_url($opt['footer_logo'], 'medium') : '';
+    $contact_form_image_url = !empty($opt['contact_form_image']) ? wp_get_attachment_image_url($opt['contact_form_image'], 'medium') : '';
 
     $active_tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'general';
-    if (!in_array($active_tab, array('general', 'eng', 'ukr', 'ara'), true)) {
+    if (!in_array($active_tab, array('general', 'blocks-style', 'eng', 'ukr', 'ara'), true)) {
         $active_tab = 'general';
     }
     $active_subtab = (isset($_GET['subtab']) && $_GET['subtab'] === 'mobile') ? 'mobile' : 'desktop';
 
     wp_enqueue_style('wp-color-picker');
     wp_enqueue_script('wp-color-picker');
-    wp_add_inline_script('wp-color-picker', 'jQuery(function($){ $(".vision-color-picker").wpColorPicker(); });');
+    wp_add_inline_script('wp-color-picker', "jQuery(function($){
+        $('.vision-color-picker').wpColorPicker({
+            change: function() {
+                var \$input = $(this);
+                if (!\$input.hasClass('vision-theme-color-input')) return;
+                var block = \$input.data('demo-block');
+                var prop = \$input.data('demo-property');
+                var val = \$input.val();
+                if (!block || !val) return;
+                var \$block = $('.' + block);
+                if (prop === 'bg') {
+                    \$block.css('background-color', val);
+                } else {
+                    \$block.css('color', val);
+                    \$block.find('h3, p').css('color', val);
+                }
+            }
+        });
+    });");
     ?>
     <div class="wrap vision-settings-wrap">
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 
         <nav class="nav-tab-wrapper vision-nav-tabs" aria-label="<?php esc_attr_e('Secondary menu', 'vision'); ?>">
             <a href="<?php echo esc_url(admin_url('options-general.php?page=vision-style-settings&tab=general')); ?>" class="nav-tab <?php echo $active_tab === 'general' ? 'nav-tab-active' : ''; ?>"><?php esc_html_e('General', 'vision'); ?></a>
+            <a href="<?php echo esc_url(admin_url('options-general.php?page=vision-style-settings&tab=blocks-style')); ?>" class="nav-tab <?php echo $active_tab === 'blocks-style' ? 'nav-tab-active' : ''; ?>"><?php esc_html_e('Blocks Style', 'vision'); ?></a>
             <a href="<?php echo esc_url(admin_url('options-general.php?page=vision-style-settings&tab=eng')); ?>" class="nav-tab <?php echo $active_tab === 'eng' ? 'nav-tab-active' : ''; ?>"><?php esc_html_e('ENG', 'vision'); ?></a>
             <a href="<?php echo esc_url(admin_url('options-general.php?page=vision-style-settings&tab=ukr')); ?>" class="nav-tab <?php echo $active_tab === 'ukr' ? 'nav-tab-active' : ''; ?>"><?php esc_html_e('UKR', 'vision'); ?></a>
             <a href="<?php echo esc_url(admin_url('options-general.php?page=vision-style-settings&tab=ara')); ?>" class="nav-tab <?php echo $active_tab === 'ara' ? 'nav-tab-active' : ''; ?>"><?php esc_html_e('ARA', 'vision'); ?></a>
@@ -252,7 +315,7 @@ function vision_render_style_settings_page() {
 
             <!-- Tab: General -->
             <div class="vision-tab-panel" id="vision-tab-general" data-tab="general" style="<?php echo $active_tab !== 'general' ? ' display:none;' : ''; ?>">
-                <h2 class="title"><?php esc_html_e('Logos', 'vision'); ?></h2>
+                <h2 class="title"><?php esc_html_e('Header', 'vision'); ?></h2>
                 <table class="form-table" role="presentation">
                     <tr>
                         <th scope="row"><?php esc_html_e('Header logo', 'vision'); ?></th>
@@ -265,6 +328,45 @@ function vision_render_style_settings_page() {
                             </p>
                         </td>
                     </tr>
+                </table>
+
+                <h2 class="title"><?php esc_html_e('Main', 'vision'); ?></h2>
+                <table class="form-table" role="presentation">
+                    <tr>
+                        <th scope="row"><?php esc_html_e('Social links', 'vision'); ?></th>
+                        <td>
+                            <table class="form-table" role="presentation" style="margin:0;">
+                                <?php
+                                $socials = array(
+                                    'social_instagram' => __('Instagram URL', 'vision'),
+                                    'social_youtube'   => __('YouTube URL', 'vision'),
+                                    'social_linkedin'  => __('LinkedIn URL', 'vision'),
+                                    'social_facebook'  => __('Facebook URL', 'vision'),
+                                );
+                                foreach ($socials as $key => $label) :
+                                    ?>
+                                    <tr>
+                                        <td style="padding:0 0 8px 0;"><label for="vision_<?php echo esc_attr($key); ?>"><?php echo esc_html($label); ?></label></td>
+                                        <td style="padding:0 0 8px 0;"><input type="url" id="vision_<?php echo esc_attr($key); ?>" name="<?php echo esc_attr(VISION_SETTINGS_OPTION . '[' . $key . ']'); ?>" value="<?php echo esc_attr($opt[$key]); ?>" class="regular-text" placeholder="https://" /></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php esc_html_e('Styles', 'vision'); ?></th>
+                        <td>
+                            <p><label><?php esc_html_e('Main website color', 'vision'); ?></label><br />
+                            <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[main_website_color]" value="<?php echo esc_attr($opt['main_website_color']); ?>" class="vision-color-picker" data-default-color="#00012E" /></p>
+                            <p><label><?php esc_html_e('Accent color', 'vision'); ?></label><br />
+                            <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[main_color]" value="<?php echo esc_attr($opt['main_color']); ?>" class="vision-color-picker" data-default-color="#d0b135" /></p>
+                            <p class="description"><?php esc_html_e('Primary brand and gold/accent for links, buttons, highlights.', 'vision'); ?></p>
+                        </td>
+                    </tr>
+                </table>
+
+                <h2 class="title"><?php esc_html_e('Footer', 'vision'); ?></h2>
+                <table class="form-table" role="presentation">
                     <tr>
                         <th scope="row"><?php esc_html_e('Footer logo', 'vision'); ?></th>
                         <td>
@@ -276,69 +378,176 @@ function vision_render_style_settings_page() {
                             </p>
                         </td>
                     </tr>
-                </table>
-
-                <h2 class="title"><?php esc_html_e('Social links', 'vision'); ?></h2>
-                <table class="form-table" role="presentation">
-                    <?php
-                    $socials = array(
-                        'social_instagram' => __('Instagram URL', 'vision'),
-                        'social_youtube'   => __('YouTube URL', 'vision'),
-                        'social_linkedin' => __('LinkedIn URL', 'vision'),
-                        'social_facebook' => __('Facebook URL', 'vision'),
-                    );
-                    foreach ($socials as $key => $label) :
-                        ?>
-                        <tr>
-                            <th scope="row"><label for="vision_<?php echo esc_attr($key); ?>"><?php echo esc_html($label); ?></label></th>
-                            <td><input type="url" id="vision_<?php echo esc_attr($key); ?>" name="<?php echo esc_attr(VISION_SETTINGS_OPTION . '[' . $key . ']'); ?>" value="<?php echo esc_attr($opt[$key]); ?>" class="regular-text" placeholder="https://" /></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
-
-                <h2 class="title"><?php esc_html_e('Styles', 'vision'); ?></h2>
-                <table class="form-table" role="presentation">
                     <tr>
-                        <th scope="row"><?php esc_html_e('Main website color', 'vision'); ?></th>
+                        <th scope="row"><label for="vision_contact_form_shortcode"><?php esc_html_e('Contact form shortcode', 'vision'); ?></label></th>
                         <td>
-                            <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[main_website_color]" value="<?php echo esc_attr($opt['main_website_color']); ?>" class="vision-color-picker" data-default-color="#00012E" />
-                            <p class="description"><?php esc_html_e('Primary brand color (e.g. text, backgrounds).', 'vision'); ?></p>
+                            <input type="text" id="vision_contact_form_shortcode" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[contact_form_shortcode]" value="<?php echo esc_attr($opt['contact_form_shortcode']); ?>" class="large-text" placeholder="[contact-form-7 id=&quot;123&quot; title=&quot;Contact&quot;]" />
+                            <p class="description"><?php esc_html_e('e.g. Contact Form 7 shortcode. Used in the footer contact section.', 'vision'); ?></p>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><?php esc_html_e('Accent color', 'vision'); ?></th>
+                        <th scope="row"><?php esc_html_e('Contact form background color', 'vision'); ?></th>
                         <td>
-                            <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[main_color]" value="<?php echo esc_attr($opt['main_color']); ?>" class="vision-color-picker" data-default-color="#d0b135" />
-                            <p class="description"><?php esc_html_e('Gold/accent for links, buttons, highlights.', 'vision'); ?></p>
+                            <input type="text" id="vision_contact_form_bg_color" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[contact_form_bg_color]" value="<?php echo esc_attr($opt['contact_form_bg_color']); ?>" class="vision-color-picker" data-default-color="#00012E" />
+                            <p class="description"><?php esc_html_e('Background of the footer contact form area.', 'vision'); ?></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php esc_html_e('Contact form image', 'vision'); ?></th>
+                        <td>
+                            <input type="hidden" id="vision_contact_form_image" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[contact_form_image]" value="<?php echo esc_attr($opt['contact_form_image']); ?>" />
+                            <img id="vision_contact_form_image_preview" src="<?php echo esc_url($contact_form_image_url); ?>" style="max-width:200px;<?php echo $contact_form_image_url ? '' : ' display:none;'; ?>" alt="" />
+                            <p>
+                                <button type="button" class="button vision-upload-logo" data-input="vision_contact_form_image" data-preview="vision_contact_form_image_preview"><?php esc_html_e('Select image', 'vision'); ?></button>
+                                <button type="button" class="button vision-remove-logo" data-input="vision_contact_form_image" data-preview="vision_contact_form_image_preview"><?php esc_html_e('Remove', 'vision'); ?></button>
+                            </p>
+                            <p class="description"><?php esc_html_e('Background image for the contact section (left side).', 'vision'); ?></p>
                         </td>
                     </tr>
                 </table>
+            </div>
 
-                <h3><?php esc_html_e('Block theme presets (background &amp; text)', 'vision'); ?></h3>
+            <!-- Tab: Blocks Style -->
+            <div class="vision-tab-panel" id="vision-tab-blocks-style" data-tab="blocks-style" style="<?php echo $active_tab !== 'blocks-style' ? ' display:none;' : ''; ?>">
+                <h2 class="title"><?php esc_html_e('Block theme presets', 'vision'); ?></h2>
                 <p class="description"><?php esc_html_e('Each block can use one of these presets (white, light, or dark) via its own settings. The main page style stays the same.', 'vision'); ?></p>
                 <table class="form-table" role="presentation">
                     <tr>
                         <th scope="row"><?php esc_html_e('White preset', 'vision'); ?></th>
                         <td>
-                            <label><?php esc_html_e('Block background', 'vision'); ?></label> <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_white_bg]" value="<?php echo esc_attr($opt['theme_white_bg']); ?>" class="vision-color-picker" />
-                            <label style="margin-left:1em"><?php esc_html_e('Text', 'vision'); ?></label> <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_white_text]" value="<?php echo esc_attr($opt['theme_white_text']); ?>" class="vision-color-picker" />
+                            <label><?php esc_html_e('Block background', 'vision'); ?></label> <input type="text" id="vision_theme_white_bg" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_white_bg]" value="<?php echo esc_attr($opt['theme_white_bg']); ?>" class="vision-color-picker vision-theme-color-input" data-demo-block="vision-demo-white" data-demo-property="bg" />
+                            <label style="margin-left:1em"><?php esc_html_e('Text', 'vision'); ?></label> <input type="text" id="vision_theme_white_text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_white_text]" value="<?php echo esc_attr($opt['theme_white_text']); ?>" class="vision-color-picker vision-theme-color-input" data-demo-block="vision-demo-white" data-demo-property="text" />
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><?php esc_html_e('Light preset', 'vision'); ?></th>
                         <td>
-                            <label><?php esc_html_e('Block background', 'vision'); ?></label> <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_light_bg]" value="<?php echo esc_attr($opt['theme_light_bg']); ?>" class="vision-color-picker" />
-                            <label style="margin-left:1em"><?php esc_html_e('Text', 'vision'); ?></label> <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_light_text]" value="<?php echo esc_attr($opt['theme_light_text']); ?>" class="vision-color-picker" />
+                            <label><?php esc_html_e('Block background', 'vision'); ?></label> <input type="text" id="vision_theme_light_bg" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_light_bg]" value="<?php echo esc_attr($opt['theme_light_bg']); ?>" class="vision-color-picker vision-theme-color-input" data-demo-block="vision-demo-light" data-demo-property="bg" />
+                            <label style="margin-left:1em"><?php esc_html_e('Text', 'vision'); ?></label> <input type="text" id="vision_theme_light_text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_light_text]" value="<?php echo esc_attr($opt['theme_light_text']); ?>" class="vision-color-picker vision-theme-color-input" data-demo-block="vision-demo-light" data-demo-property="text" />
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><?php esc_html_e('Dark preset', 'vision'); ?></th>
                         <td>
-                            <label><?php esc_html_e('Block background', 'vision'); ?></label> <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_dark_bg]" value="<?php echo esc_attr($opt['theme_dark_bg']); ?>" class="vision-color-picker" />
-                            <label style="margin-left:1em"><?php esc_html_e('Text', 'vision'); ?></label> <input type="text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_dark_text]" value="<?php echo esc_attr($opt['theme_dark_text']); ?>" class="vision-color-picker" />
+                            <label><?php esc_html_e('Block background', 'vision'); ?></label> <input type="text" id="vision_theme_dark_bg" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_dark_bg]" value="<?php echo esc_attr($opt['theme_dark_bg']); ?>" class="vision-color-picker vision-theme-color-input" data-demo-block="vision-demo-dark" data-demo-property="bg" />
+                            <label style="margin-left:1em"><?php esc_html_e('Text', 'vision'); ?></label> <input type="text" id="vision_theme_dark_text" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[theme_dark_text]" value="<?php echo esc_attr($opt['theme_dark_text']); ?>" class="vision-color-picker vision-theme-color-input" data-demo-block="vision-demo-dark" data-demo-property="text" />
                         </td>
                     </tr>
                 </table>
+
+                <h2 class="title"><?php esc_html_e('Block hover effect', 'vision'); ?></h2>
+                <table class="form-table" role="presentation">
+                    <tr>
+                        <th scope="row"><label for="vision_block_hover_effect"><?php esc_html_e('On hover effect for block', 'vision'); ?></label></th>
+                        <td>
+                            <select id="vision_block_hover_effect" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[block_hover_effect]" class="vision-hover-effect-select">
+                                <?php
+                                foreach (vision_get_block_hover_effects() as $value => $label) {
+                                    echo '<option value="' . esc_attr($value) . '" ' . selected($opt['block_hover_effect'], $value, false) . '>' . esc_html($label) . '</option>';
+                                }
+                                ?>
+                            </select>
+                            <p class="description"><?php esc_html_e('Text color effect when hovering over content blocks. Preview below.', 'vision'); ?></p>
+                        </td>
+                    </tr>
+                </table>
+
+                <h3><?php esc_html_e('Preview: hover over each block to see the effect', 'vision'); ?></h3>
+                <?php
+                $hover_effect = $opt['block_hover_effect'];
+                $main_color = $opt['main_color'];
+                $theme_light_bg = $opt['theme_light_bg'];
+                $theme_light_text = $opt['theme_light_text'];
+                $theme_dark_bg = $opt['theme_dark_bg'];
+                $theme_dark_text = $opt['theme_dark_text'];
+                $theme_white_bg = $opt['theme_white_bg'];
+                $theme_white_text = $opt['theme_white_text'];
+                ?>
+                <style id="vision-hover-demo-css">
+                .vision-hover-demo-block { padding: 1.5rem; margin-bottom: 1rem; border: 1px solid rgba(0,0,0,.1); border-radius: 6px; cursor: default; transition: color .35s ease, background-color .35s ease, box-shadow .35s ease; }
+                .vision-hover-demo-block h3 { margin: 0 0 .75rem; font-size: 1.25rem; transition: color .35s ease, background .35s ease, background-size .35s ease, box-shadow .35s ease, text-shadow .35s ease, -webkit-background-clip .35s; }
+                .vision-hover-demo-block p { margin: 0; font-size: 14px; line-height: 1.5; transition: color .35s ease, background .35s ease, background-size .35s ease, box-shadow .35s ease, text-shadow .35s ease, -webkit-background-clip .35s; }
+                .vision-hover-demo-block.vision-demo-light { background: <?php echo esc_attr($theme_light_bg); ?>; color: <?php echo esc_attr($theme_light_text); ?>; }
+                .vision-hover-demo-block.vision-demo-light h3,
+                .vision-hover-demo-block.vision-demo-light p { color: <?php echo esc_attr($theme_light_text); ?>; }
+                .vision-hover-demo-block.vision-demo-dark { background: <?php echo esc_attr($theme_dark_bg); ?>; color: <?php echo esc_attr($theme_dark_text); ?>; }
+                .vision-hover-demo-block.vision-demo-dark h3,
+                .vision-hover-demo-block.vision-demo-dark p { color: <?php echo esc_attr($theme_dark_text); ?>; }
+                .vision-hover-demo-block.vision-demo-white { background: <?php echo esc_attr($theme_white_bg); ?>; color: <?php echo esc_attr($theme_white_text); ?>; }
+                .vision-hover-demo-block.vision-demo-white h3,
+                .vision-hover-demo-block.vision-demo-white p { color: <?php echo esc_attr($theme_white_text); ?>; }
+                .vision-hover-demo-block.vision-hover-effect--color-fade:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--color-fade:hover p { color: <?php echo esc_attr($main_color); ?> !important; }
+                .vision-hover-demo-block.vision-hover-effect--gradient-shift:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--gradient-shift:hover p { background: linear-gradient(135deg, <?php echo esc_attr($main_color); ?> 0%, <?php echo esc_attr($theme_light_text); ?> 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; }
+                .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--gradient-shift:hover h3,
+                .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--gradient-shift:hover p { background: linear-gradient(135deg, <?php echo esc_attr($main_color); ?> 0%, <?php echo esc_attr($theme_dark_text); ?> 100%); -webkit-background-clip: text; background-clip: text; }
+                .vision-hover-demo-block.vision-hover-effect--underline-reveal:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--underline-reveal:hover p { box-shadow: 0 2px 0 0 <?php echo esc_attr($main_color); ?>; color: <?php echo esc_attr($main_color); ?> !important; }
+                .vision-hover-demo-block.vision-hover-effect--glow:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--glow:hover p { text-shadow: 0 0 12px <?php echo esc_attr($main_color); ?>66, 0 0 24px <?php echo esc_attr($main_color); ?>44; color: <?php echo esc_attr($main_color); ?> !important; }
+                .vision-hover-demo-block.vision-hover-effect--shine-sweep:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--shine-sweep:hover p { background: linear-gradient(110deg, transparent 40%, <?php echo esc_attr($main_color); ?> 50%, transparent 60%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover { position: relative; }
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover p { color: <?php echo esc_attr($theme_dark_bg); ?> !important; }
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: <?php echo esc_attr($main_color); ?>; opacity: 1; z-index: 0; border-radius: 5px; }
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left { position: relative; }
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: <?php echo esc_attr($main_color); ?>; opacity: 0; transition: width .35s ease, opacity .35s ease; z-index: 0; border-radius: 5px; }
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover::before { width: 100%; opacity: 1; }
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left h3,
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left p { position: relative; z-index: 1; }
+                .vision-hover-demo-block.vision-hover-effect--lighten:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--lighten:hover p { filter: brightness(1.25); color: <?php echo esc_attr($main_color); ?> !important; }
+                .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--lighten:hover h3,
+                .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--lighten:hover p { filter: brightness(1.4); }
+                .vision-hover-demo-block.vision-hover-effect--accent-underline:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--accent-underline:hover p { border-bottom: 2px solid <?php echo esc_attr($main_color); ?>; color: <?php echo esc_attr($main_color); ?> !important; padding-bottom: 2px; display: inline-block; }
+                .vision-hover-demo-block.vision-demo-light.vision-hover-effect--double-tone:hover h3,
+                .vision-hover-demo-block.vision-demo-light.vision-hover-effect--double-tone:hover p { background: linear-gradient(90deg, <?php echo esc_attr($main_color); ?> 50%, <?php echo esc_attr($theme_light_text); ?> 50%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }
+                .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--double-tone:hover h3,
+                .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--double-tone:hover p { background: linear-gradient(90deg, <?php echo esc_attr($main_color); ?> 50%, <?php echo esc_attr($theme_dark_text); ?> 50%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }
+                .vision-hover-demo-block.vision-demo-white.vision-hover-effect--double-tone:hover h3,
+                .vision-hover-demo-block.vision-demo-white.vision-hover-effect--double-tone:hover p { background: linear-gradient(90deg, <?php echo esc_attr($main_color); ?> 50%, <?php echo esc_attr($theme_white_text); ?> 50%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }
+                </style>
+                <div class="vision-hover-demo-blocks" style="max-width: 640px;">
+                    <div class="vision-hover-demo-block vision-demo-light vision-hover-effect--<?php echo esc_attr($hover_effect); ?>" data-base-class="vision-demo-light">
+                        <h3><?php esc_html_e('Light theme', 'vision'); ?></h3>
+                        <p><?php esc_html_e('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 'vision'); ?></p>
+                    </div>
+                    <div class="vision-hover-demo-block vision-demo-dark vision-hover-effect--<?php echo esc_attr($hover_effect); ?>" data-base-class="vision-demo-dark">
+                        <h3><?php esc_html_e('Dark theme', 'vision'); ?></h3>
+                        <p><?php esc_html_e('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 'vision'); ?></p>
+                    </div>
+                    <div class="vision-hover-demo-block vision-demo-white vision-hover-effect--<?php echo esc_attr($hover_effect); ?>" data-base-class="vision-demo-white">
+                        <h3><?php esc_html_e('White theme', 'vision'); ?></h3>
+                        <p><?php esc_html_e('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 'vision'); ?></p>
+                    </div>
+                </div>
+                <script>
+                jQuery(function($) {
+                    var $select = $('#vision_block_hover_effect');
+                    var $blocks = $('.vision-hover-demo-block');
+                    $select.on('change', function() {
+                        var effect = $(this).val();
+                        var effectClass = 'vision-hover-effect--' + effect;
+                        $blocks.each(function() {
+                            var $b = $(this);
+                            $b.removeClass(function(i, c) { return (c.match(/\bvision-hover-effect--\S+/g) || []).join(' '); });
+                            $b.addClass(effectClass);
+                        });
+                    });
+                    function visionUpdateDemoFromInput($input) {
+                        var block = $input.data('demo-block');
+                        var prop = $input.data('demo-property');
+                        var val = $input.val();
+                        if (!block || !val) return;
+                        var $block = $('.' + block);
+                        if (prop === 'bg') { $block.css('background-color', val); } else { $block.css('color', val); $block.find('h3, p').css('color', val); }
+                    }
+                    $('.vision-theme-color-input').on('change input', function() { visionUpdateDemoFromInput($(this)); });
+                });
+                </script>
             </div>
 
             <?php

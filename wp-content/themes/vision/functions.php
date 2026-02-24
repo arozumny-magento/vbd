@@ -521,6 +521,55 @@ function vision_output_style_settings_css() {
     .vision-block-theme-light { background-color: var(--vision-theme-light-bg); color: var(--vision-theme-light-text); }
     .vision-block-theme-dark { background-color: var(--vision-theme-dark-bg); color: var(--vision-theme-dark-text); }
     <?php
+    $block_hover = isset($opt['block_hover_effect']) ? $opt['block_hover_effect'] : 'color-fade';
+    if ($block_hover !== 'none' && function_exists('vision_get_block_hover_effects') && array_key_exists($block_hover, vision_get_block_hover_effects())) {
+        $base = '.vision-block-hover-effect--' . esc_attr($block_hover);
+        $sel = $base . ':hover';
+        $targets = '.vision-block-heading, h1, h2, h3, h4, h5, h6, p';
+        $transition = 'transition: color .35s ease, background .35s ease, background-size .35s ease, box-shadow .35s ease, text-shadow .35s ease, filter .35s ease;';
+        echo "{$base} {$targets} { {$transition} }\n";
+        switch ($block_hover) {
+            case 'color-fade':
+                echo "{$sel} {$targets} { color: var(--vision-main-color) !important; }\n";
+                break;
+            case 'gradient-shift':
+                echo "{$sel}:not(.vision-block-theme-dark) {$targets} { background: linear-gradient(135deg, var(--vision-main-color) 0%, var(--vision-theme-light-text) 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
+                echo "{$sel}.vision-block-theme-dark {$targets} { background: linear-gradient(135deg, var(--vision-main-color) 0%, var(--vision-theme-dark-text) 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
+                break;
+            case 'underline-reveal':
+                echo "{$sel} {$targets} { box-shadow: 0 2px 0 0 var(--vision-main-color); color: var(--vision-main-color) !important; }\n";
+                break;
+            case 'glow':
+                echo "{$sel} {$targets} { text-shadow: 0 0 12px rgba(208,177,53,.4), 0 0 24px rgba(208,177,53,.25); color: var(--vision-main-color) !important; }\n";
+                break;
+            case 'shine-sweep':
+                echo "{$base} {$targets} { background: linear-gradient(110deg, transparent 40%, var(--vision-main-color) 50%, transparent 60%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
+                echo "{$sel} {$targets} { background-position: 0 0; }\n";
+                break;
+            case 'fill-from-left':
+                echo "{$base} { position: relative; }\n";
+                echo "{$base}::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--vision-main-color); opacity: 0; transition: width .35s ease, opacity .35s ease; z-index: 0; border-radius: 4px; }\n";
+                echo "{$sel}::before { width: 100%; opacity: 1; }\n";
+                echo "{$base} {$targets} { position: relative; z-index: 1; }\n";
+                echo "{$sel} {$targets} { color: var(--vision-main-website-color) !important; }\n";
+                break;
+            case 'lighten':
+                echo "{$sel} {$targets} { filter: brightness(1.25); color: var(--vision-main-color) !important; }\n";
+                echo "{$sel}.vision-block-theme-dark {$targets} { filter: brightness(1.4); }\n";
+                break;
+            case 'accent-underline':
+                echo "{$sel} {$targets} { border-bottom: 2px solid var(--vision-main-color); color: var(--vision-main-color) !important; padding-bottom: 2px; display: inline-block; }\n";
+                break;
+            case 'double-tone':
+                echo "{$base}.vision-block-theme-light {$targets}, {$base}.vision-block-theme-white {$targets} { background: linear-gradient(90deg, var(--vision-main-color) 50%, var(--vision-theme-light-text) 50%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
+                echo "{$sel}.vision-block-theme-light {$targets}, {$sel}.vision-block-theme-white {$targets} { background-position: 0 0; }\n";
+                echo "{$base}.vision-block-theme-dark {$targets} { background: linear-gradient(90deg, var(--vision-main-color) 50%, var(--vision-theme-dark-text) 50%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
+                echo "{$sel}.vision-block-theme-dark {$targets} { background-position: 0 0; }\n";
+                break;
+        }
+    }
+    ?>
+    <?php
     foreach (array('en', 'ar', 'uk') as $lang) {
         $main_size = $format_size($opt["font_{$lang}_main_size"]);
         $main_lh = $opt["font_{$lang}_main_line_height"];

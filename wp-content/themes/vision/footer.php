@@ -1,10 +1,17 @@
+<?php
+$vision_opt = function_exists('vision_get_style_settings') ? vision_get_style_settings() : array();
+$contact_form_shortcode = isset($vision_opt['contact_form_shortcode']) && $vision_opt['contact_form_shortcode'] !== '' ? $vision_opt['contact_form_shortcode'] : '[contact-form-7 id="8a5b653" title="Contact form - Contact US"]';
+$contact_form_bg = isset($vision_opt['contact_form_bg_color']) ? esc_attr($vision_opt['contact_form_bg_color']) : '#00012E';
+$contact_form_img_id = isset($vision_opt['contact_form_image']) ? (int) $vision_opt['contact_form_image'] : 0;
+$contact_form_img_url = $contact_form_img_id ? wp_get_attachment_image_url($contact_form_img_id, 'full') : get_template_directory_uri() . '/assets/contact_us.jpg';
+?>
 <footer class="bg-white pb-8 md-pb-0 relative" aria-labelledby="footer-heading">
     <div class="w-full relative contact" id="contact">
         <div class="mx-auto md:grid grid-cols-2 overflow-hidden gap-0">
-            <div class="hidden md:block bg-white relative contact-background" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/contact_us.jpg');">
+            <div class="hidden md:block bg-white relative contact-background" style="background-image: url('<?php echo esc_url($contact_form_img_url); ?>');">
 
             </div>
-            <div class="bg-dark-blue">
+            <div class="bg-dark-blue" style="background-color: <?php echo $contact_form_bg; ?>;">
                 <div class="form-group">
                     <?php
                     if (have_rows('langing_page') && !is_page('events')):
@@ -17,8 +24,8 @@
 
                     if (isset($eventContact)) :
                         echo do_shortcode($eventContact);
-                    else:
-                        echo do_shortcode('[contact-form-7 id="8a5b653" title="Contact form - Contact US"]');
+                    else :
+                        echo do_shortcode($contact_form_shortcode);
                     endif;
                     ?>
                 </div>
