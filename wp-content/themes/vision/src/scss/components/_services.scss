@@ -1,0 +1,106 @@
+@use 'variables' as *;
+
+.asset-container,
+.presentation-for,
+.expected-results-container {
+  .block {
+    padding: 4rem 6rem;
+  }
+
+  .block-light {
+    background: $color-light-blue;
+    color: $color-dark-blue;
+  }
+
+  .block-dark {
+    background: $color-dark-blue;
+    color: $color-white;
+  }
+
+  .block-dark,
+  .block-light {
+    background-size: cover;
+  }
+}
+
+.content-grid {
+  div {
+    background-size: cover;
+  }
+}
+
+.presentation-for {
+  .block {
+    width: 20%;
+  }
+  .block-light {
+    background: $color-light-blue;
+  }
+}
+
+.hero-banner-img {
+  height: 400px;
+  background-size: cover;
+  background-position: center center;
+}
+
+.single-post__content {
+  .panel-column {
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .hero-banner-img {
+    height: 250px;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  .umb-block-list {
+    .asset-container .block,
+    .presentation-for .block,
+    .info-section .content-text,
+    .content-grid.key-grid .block,
+    .project-grid .block,
+    .expected-results-container .block {
+      padding: 2rem;
+    }
+  }
+
+  .presentation-for {
+    > div {
+      flex-direction: column;
+    }
+    .block {
+      width: 100%;
+    }
+  }
+
+  .category,
+  .archive {
+    .content-grid.key-grid .block,
+    .project-grid .block {
+      padding:  0;
+      background: $color-light-blue;
+      .block-header,
+      .block-text {
+        color: $color-dark-blue ;
+      }
+
+
+      &:nth-child(even) {
+        background: $color-dark-blue;
+
+        .block-header,
+        .block-text {
+          color: $color-white;
+        }
+      }
+    }
+  }
+}

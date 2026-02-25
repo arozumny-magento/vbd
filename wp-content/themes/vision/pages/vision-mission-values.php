@@ -18,7 +18,7 @@ $current_lang = pll_current_language();
                             <div class="heading"><?= $vision['left_block']['header'] ?></div>
                             <div class="full-text"><?= wpautop($vision['left_block']['description']) ?></div>
                         </div>
-                        <div class="block bg-white relative image-block" style="max-height: 100%;">
+                        <div class="block relative image-block" style="max-height: 100%;">
                             <img src="<?= $vision['right_block']['background_image'] ?>" alt=""
                                  class="w-full h-full object-cover">
                         </div>
@@ -32,7 +32,7 @@ $current_lang = pll_current_language();
             <div class="w-full relative info-section">
                 <div class="w-full relative">
                     <div class="mx-auto md:grid grid-cols-2 gap-0 overflow-hidden">
-                        <div class="block bg-white relative image-block" style="max-height: 100%;">
+                        <div class="block relative image-block" style="max-height: 100%;">
                             <img src="<?= $mission['left_block']['background_image'] ?>" alt=""
                                  class="w-full h-full object-cover">
                         </div>

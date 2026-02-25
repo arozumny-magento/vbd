@@ -1,0 +1,383 @@
+@use 'variables' as *;
+
+body {
+  color: $color-dark-blue;
+}
+main {
+
+  .hero h1 {
+    font-weight: 600;
+  }
+
+  .umb-block-list {
+    margin-top: $desktop-header-height;
+
+    .hero-wrapper {
+      padding: 1.4rem 4rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.hero-banner-img {
+  background-position: center center;
+  height: auto;
+  width: auto;
+}
+
+.block-text {
+  ul {
+    margin-bottom: 1.25rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body.home h1 {
+    font-size: 2rem;
+    line-height: 1.5;
+    text-align: center;
+    font-weight: 600;
+  }
+}
+
+.block-dark,
+.block-light {
+  .block-header {
+    font-weight: 600;
+  }
+}
+
+.bg-lightblue {
+  background-color: $color-light-blue;
+}
+
+.block-light {
+  .block-header,
+  .block-text {
+    color: $color-dark-blue;
+
+    &:after {
+      display: none;
+      background-color: $color-dark-blue;
+    }
+  }
+
+  a.block-text {
+    &:after {
+      background-color: $color-dark-blue;
+    }
+  }
+
+  .read-more {
+    color: $color-dark-blue;
+  }
+
+  &:hover {
+    color: $color-gold;
+
+    a.read-more {
+      color: $color-gold;
+    }
+  }
+}
+
+.block-light,
+.project-grid .block,
+.block-dark {
+  .read-more {
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: .5rem 1rem;
+    display: inline-block;
+
+    // Required, since we're setting absolute on pseudo-elements
+    position: relative;
+    vertical-align: middle;
+
+    &:before,
+    &:after {
+      content: '' !important;
+      box-sizing: inherit;
+      position: absolute;
+      border: 2px solid transparent;
+      width: 0;
+      height: 0;
+    }
+
+    &:before {
+      top: 0;
+      left: 0;
+    }
+
+    // And this the bottom & left borders (expands left, then up)
+    &:after {
+      bottom: 0;
+      right: 0;
+    }
+
+    &:after {
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &:hover {
+    .read-more {
+      transition: color 0.15s;
+      color: $color-gold;
+      // Hover styles
+      &:before,
+      &:after {
+        width: 100%;
+        height: 100%;
+      }
+
+      &:before {
+        border-top-color: $color-gold; // Make borders visible
+        border-right-color: $color-gold;
+        transition: width 0.15s ease-out, // Width expands first
+        height 0.15s ease-out 0.15s; // And then height
+      }
+
+      &:after {
+        border-bottom-color: $color-gold; // Make borders visible
+        border-left-color: $color-gold;
+        transition: border-color 0s ease-out 0.5s, // Wait for ::before to finish before showing border
+        width 0.25s ease-out 0.5s, // And then exanding width
+        height 0.25s ease-out 0.75s; // And finally height
+      }
+
+      // Start ::after in same position as ::before
+      &:after {
+        top: 0;
+        left: 0;
+      }
+
+
+      // Change colors
+      &:before {
+        border-top-color: $color-gold;
+        border-right-color: $color-gold;
+      }
+
+      &:after {
+        border-bottom-color: $color-gold;
+        border-left-color: $color-gold;
+        transition: // Animate height first, then width
+                height 0.15s ease-out,
+                width 0.15s ease-out 0.15s;
+      }
+    }
+  }
+}
+
+.testimonials-one {
+  > div {
+    background-color: $color-white;
+
+    &:nth-child(2),
+    &:nth-child(3) {
+      background-color: $color-light-blue;
+    }
+  }
+
+  .testimonial-logo {
+    img {
+      max-width: 50px;
+    }
+  }
+
+  .testimonial-author {
+    color: $color-dark-blue;
+    align-items: end;
+  }
+}
+
+.block-dark {
+  .block-header,
+  .block-text {
+    color: $color-white;
+
+    &:after {
+      display: none;
+      background-color: $color-white;
+    }
+  }
+
+  a.block-text {
+    &:after {
+      background-color: $color-white;
+    }
+  }
+
+  &:hover {
+    color: $color-gold;
+
+    a.read-more {
+      color: $color-gold;
+    }
+  }
+}
+
+.partners {
+  padding: 0 8rem;
+
+  h3 {
+    color: $color-white;
+    font-size: 2rem;
+    margin: 2rem 0 -2rem;
+    width: 100%;
+    text-align: center
+  }
+}
+
+.news-container-nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.services {
+  .block-light,
+  .block-dark {
+    > div {
+      padding: 4rem 6rem;
+    }
+  }
+
+  .read-more {
+    width: fit-content;
+  }
+}
+
+.testimonials {
+  .left-side {
+    > div {
+      padding: 3rem 6rem;
+    }
+  }
+}
+
+.info-section {
+  .content-text {
+    padding: 4rem 6rem;
+
+    &.block-dark {
+      color: $color-white;
+      background-color: $color-dark-blue;
+    }
+
+    .heading {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      text-transform: uppercase;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      padding: 0;
+    }
+
+    .full-text {
+      font-size: 20px;
+    }
+
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .services {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+      &:nth-child(3) {
+        order: 4;
+      }
+
+      &:nth-child(4) {
+        order: 3;
+      }
+    }
+  }
+}
+
+.content-grid {
+  .list-trident {
+    padding: 4rem 6rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .content-grid {
+    .list-trident {
+      padding: 2rem;
+    }
+  }
+  main .umb-block-list {
+    margin-top: 81px;
+
+    .hero-wrapper {
+      padding: 1rem;
+    }
+  }
+
+  .page-template-vision-mission-values {
+    .info-section {
+      > div {
+        > div {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .image-block {
+        order: 1;
+      }
+      .content-text {
+        order: 2;
+      }
+    }
+  }
+
+  .hero {
+    h1 {
+      text-align: center;
+    }
+  }
+
+  .services {
+    .block-light,
+    .block-dark {
+      > div {
+        padding: 4rem 3rem;
+      }
+    }
+  }
+
+  .partners {
+    padding: 2rem 0;
+
+    h3 {
+      margin-bottom: -1rem
+    }
+
+    ul {
+      justify-content: center;
+
+      li {
+        width: 50%;
+      }
+    }
+  }
+  .testimonials {
+    .left-side {
+      > div {
+        padding: 3rem;
+      }
+    }
+  }
+}

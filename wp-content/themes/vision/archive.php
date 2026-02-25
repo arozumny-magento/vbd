@@ -25,7 +25,7 @@ $current_lang = pll_current_language();
     <div class="w-full relative content-grid project-grid">
         <div class="mx-auto md:grid grid-cols-2 gap-0">
             <?php while (have_posts()) : the_post(); ?>
-                <div class="block cursor-pointer" style="padding: 0;">
+                <div class="block cursor-pointer">
                     <a href="<?= get_the_permalink() ?>" style="display: flex; padding:0; margin: 0;">
                         <div class="list-trident">
                             <div class="mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header">

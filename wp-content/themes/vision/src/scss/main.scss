@@ -4,7 +4,7 @@
 // Base styles
 @use 'base/reset';
 
-// Components (global)
+// Components
 @use 'components/variables';
 @use 'components/layout';
 @use 'components/header';
@@ -13,23 +13,15 @@
 @use 'components/footer';
 @use 'components/forms';
 @use 'components/custom-styles';
-@use 'components/shared-blocks';
-
-// Page-specific (1:1 with page/post type)
-@use 'pages/page-main';
-@use 'pages/page-vision-mission';
-@use 'pages/page-projects';
-@use 'pages/page-project-internal';
-@use 'pages/page-events';
-@use 'pages/page-event-internal';
-@use 'pages/page-core-team';
-@use 'pages/page-service-internal';
-@use 'pages/page-partner-internal';
-@use 'pages/page-updates';
-@use 'pages/page-update-internal';
+@use 'components/home';
+@use 'components/archive';
+@use 'components/leadership';
+@use 'components/services';
+@use 'components/events';
 
 @use 'components/language-uk';
 @use 'components/language-ar';
+
 
 // Utilities
 @use 'utilities/tailwind-variables';
