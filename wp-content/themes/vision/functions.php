@@ -474,6 +474,8 @@ function vision_output_style_settings_css() {
     $theme_light_text = $opt['theme_light_text'];
     $theme_dark_bg = $opt['theme_dark_bg'];
     $theme_dark_text = $opt['theme_dark_text'];
+    $block_hover_text = isset($opt['block_hover_text_color']) ? $opt['block_hover_text_color'] : $main_color;
+    $block_hover_bg = isset($opt['block_hover_bg_color']) ? $opt['block_hover_bg_color'] : 'transparent';
 
     $format_size = function ($v) {
         $v = trim((string) $v);
@@ -507,14 +509,17 @@ function vision_output_style_settings_css() {
     ?>
     <style id="vision-style-settings-css">
     :root {
-        --vision-main-color: <?php echo esc_attr($main_color); ?>;
+        --vision-main-color: <?php echo esc_attr($main_website_color); ?>;
         --vision-main-website-color: <?php echo esc_attr($main_website_color); ?>;
+        --vision-accent-color: <?php echo esc_attr($main_color); ?>;
         --vision-theme-white-bg: <?php echo esc_attr($theme_white_bg); ?>;
         --vision-theme-white-text: <?php echo esc_attr($theme_white_text); ?>;
         --vision-theme-light-bg: <?php echo esc_attr($theme_light_bg); ?>;
         --vision-theme-light-text: <?php echo esc_attr($theme_light_text); ?>;
         --vision-theme-dark-bg: <?php echo esc_attr($theme_dark_bg); ?>;
         --vision-theme-dark-text: <?php echo esc_attr($theme_dark_text); ?>;
+        --vision-block-hover-text: <?php echo esc_attr($block_hover_text); ?>;
+        --vision-block-hover-bg: <?php echo esc_attr($block_hover_bg); ?>;
     }
     body { background-color: <?php echo esc_attr($body_bg); ?>; color: <?php echo esc_attr($body_text); ?>; }
     .vision-block-theme-white { background-color: var(--vision-theme-white-bg); color: var(--vision-theme-white-text); }
@@ -525,46 +530,41 @@ function vision_output_style_settings_css() {
     if ($block_hover !== 'none' && function_exists('vision_get_block_hover_effects') && array_key_exists($block_hover, vision_get_block_hover_effects())) {
         $base = '.vision-block-hover-effect--' . esc_attr($block_hover);
         $sel = $base . ':hover';
-        $targets = '.vision-block-heading, h1, h2, h3, h4, h5, h6, p';
-        $transition = 'transition: color .35s ease, background .35s ease, background-size .35s ease, box-shadow .35s ease, text-shadow .35s ease, filter .35s ease;';
-        echo "{$base} {$targets} { {$transition} }\n";
+        $transition = 'transition: background .35s ease, box-shadow .35s ease;';
+        echo "{$base} { {$transition} }\n";
         switch ($block_hover) {
             case 'color-fade':
-                echo "{$sel} {$targets} { color: var(--vision-main-color) !important; }\n";
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
                 break;
             case 'gradient-shift':
-                echo "{$sel}:not(.vision-block-theme-dark) {$targets} { background: linear-gradient(135deg, var(--vision-main-color) 0%, var(--vision-theme-light-text) 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
-                echo "{$sel}.vision-block-theme-dark {$targets} { background: linear-gradient(135deg, var(--vision-main-color) 0%, var(--vision-theme-dark-text) 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
                 break;
-            case 'underline-reveal':
-                echo "{$sel} {$targets} { box-shadow: 0 2px 0 0 var(--vision-main-color); color: var(--vision-main-color) !important; }\n";
+            case 'slide-line':
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
                 break;
             case 'glow':
-                echo "{$sel} {$targets} { text-shadow: 0 0 12px rgba(208,177,53,.4), 0 0 24px rgba(208,177,53,.25); color: var(--vision-main-color) !important; }\n";
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
                 break;
             case 'shine-sweep':
-                echo "{$base} {$targets} { background: linear-gradient(110deg, transparent 40%, var(--vision-main-color) 50%, transparent 60%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
-                echo "{$sel} {$targets} { background-position: 0 0; }\n";
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
                 break;
             case 'fill-from-left':
                 echo "{$base} { position: relative; }\n";
-                echo "{$base}::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--vision-main-color); opacity: 0; transition: width .35s ease, opacity .35s ease; z-index: 0; border-radius: 4px; }\n";
+                echo "{$base}::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--vision-accent-color); opacity: 0; transition: width .35s ease, opacity .35s ease; z-index: 0; border-radius: 4px; }\n";
                 echo "{$sel}::before { width: 100%; opacity: 1; }\n";
-                echo "{$base} {$targets} { position: relative; z-index: 1; }\n";
-                echo "{$sel} {$targets} { color: var(--vision-main-website-color) !important; }\n";
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
                 break;
             case 'lighten':
-                echo "{$sel} {$targets} { filter: brightness(1.25); color: var(--vision-main-color) !important; }\n";
-                echo "{$sel}.vision-block-theme-dark {$targets} { filter: brightness(1.4); }\n";
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
                 break;
-            case 'accent-underline':
-                echo "{$sel} {$targets} { border-bottom: 2px solid var(--vision-main-color); color: var(--vision-main-color) !important; padding-bottom: 2px; display: inline-block; }\n";
+            case 'scale-up':
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
                 break;
-            case 'double-tone':
-                echo "{$base}.vision-block-theme-light {$targets}, {$base}.vision-block-theme-white {$targets} { background: linear-gradient(90deg, var(--vision-main-color) 50%, var(--vision-theme-light-text) 50%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
-                echo "{$sel}.vision-block-theme-light {$targets}, {$sel}.vision-block-theme-white {$targets} { background-position: 0 0; }\n";
-                echo "{$base}.vision-block-theme-dark {$targets} { background: linear-gradient(90deg, var(--vision-main-color) 50%, var(--vision-theme-dark-text) 50%); background-size: 200% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
-                echo "{$sel}.vision-block-theme-dark {$targets} { background-position: 0 0; }\n";
+            case 'fade-invert':
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                break;
+            case 'soft-highlight':
+                echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; box-shadow: inset 0 0 0 2px var(--vision-accent-color); }\n";
                 break;
         }
     }
