@@ -466,7 +466,7 @@ function vision_output_style_settings_css() {
     $main_color = $opt['main_color'];
     $main_website_color = isset($opt['main_website_color']) ? $opt['main_website_color'] : '#00012E';
     // Main page: always the same (light preset as default)
-    $body_bg = $opt['theme_light_bg'];
+    $body_bg = $opt['theme_white_bg'];
     $body_text = $opt['theme_light_text'];
     $theme_white_bg = $opt['theme_white_bg'];
     $theme_white_text = $opt['theme_white_text'];
@@ -823,3 +823,45 @@ function enqueue_custom_scripts() {
     );
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+
+function renderRowBlock($acfBlockData) {
+    <!-- LEFT BLOCK -->
+                            <!-- Type Media -->
+                            <?php if ($blockType == 'media'): ?>
+                                <?php if($link): ?>
+                                    <a href="#">
+                                <?php endif; ?>
+                                    <div class="block-type-<?=$blockType?> block-style-<?=$blockTheme?>"
+                                            style="
+                                                    background: url: (<?= $block['media_block']['background_image'] ?>);
+                                                    <?= $customStyles ?>
+                                                    "
+                                    >
+                                    </div>
+                                <?php if($link): ?>
+                                </a>
+                                    <?php endif; ?>
+                            <?php endif; ?>
+
+                            <!-- Type Text -->
+                            <?php if ($blockType == 'text'): ?>
+                                <?php if($link): ?>
+                                    <a href="#">
+                                <?php endif; ?>
+                                    <div class="block-type-<?=$blockType?> block-style-<?=$blockTheme?>" style="<?= $customStyles ?>">
+                                        <?php if (!empty($block['text_block']['header'])) : ?>
+                                            <h3><?=$block['text_block']['header'] ?></h3>
+                                        <?php endif; ?>
+
+                                        <?php echo wp_kses_post(wpautop($block['text_block']['text'] ?? '')); ?>
+
+                                        <?php if (!empty($block['text_block']['read_more'])) : ?>
+                                            <span><?php pll_e('Read More'); ?></span>
+                                        <?php endif; ?>
+                                    </div>
+                                <?php if($link): ?>
+                                    </a>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <!-- END LEFT BLOCK -->
+}
