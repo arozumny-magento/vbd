@@ -459,6 +459,86 @@ require_once get_template_directory() . '/inc/class-walker-nav-menu.php';
 require_once get_template_directory() . '/inc/admin-settings.php';
 
 /**
+ * Render a single row block (text or media) for home/section rows.
+ *
+ * @param array $block_data ACF block data: block_settings (block_type, block_theme, block_link),
+ *                          custom_styles (background_color, text_color), media_block (background_image),
+ *                          text_block (header, text, read_more), link_to_page, block_url.
+ * @return string HTML for the block (optional <a> wrapper + block div).
+ */
+function vision_render_row_block($block_data) {
+    if (empty($block_data) || !is_array($block_data)) {
+        return '';
+    }
+    $settings = $block_data['block_settings'] ?? array();
+    $block_type = strtolower((string)($settings['block_type'] ?? ''));
+    $block_theme = strtolower((string)($settings['block_theme'] ?? ''));
+    $block_link = strtolower((string)($settings['block_link'] ?? ''));
+    $custom_styles = '';
+    if ( $block_theme === 'custom' && ! empty( $block_data['custom_styles'] ) && is_array( $block_data['custom_styles'] ) ) {
+        $cs = $block_data['custom_styles'];
+        $custom_styles = 'background-color:' . esc_attr( (string) ( $cs['background_color'] ?? '' ) ) . ';';
+        $custom_styles .= 'color:' . esc_attr( (string) ( $cs['text_color'] ?? '' ) ) . ';';
+    }
+    $link_url = '';
+    if ($block_link === 'page' && !empty($block_data['link_to_page'])) {
+        $page = $block_data['link_to_page'];
+        $link_url = is_array($page) ? ($page['url'] ?? get_permalink($page['ID'] ?? 0)) : get_permalink((int) $page);
+    } elseif (!empty($block_data['block_url'])) {
+        $link_url = is_array($block_data['block_url']) ? ($block_data['block_url']['url'] ?? '') : (string) $block_data['block_url'];
+    }
+    $link_url = $link_url ? esc_url($link_url) : '';
+
+    ob_start();
+    if ( $block_type === 'media' ) {
+        $media_block = $block_data['media_block'] ?? array();
+        $bg_image = is_array( $media_block ) ? ( $media_block['background_image'] ?? '' ) : '';
+        $style = $custom_styles;
+        if ($bg_image) {
+            $style = 'background-image:url(' . esc_url($bg_image) . ');' . $style;
+        }
+        if ($link_url) {
+            echo '<a href="' . $link_url . '">';
+        }
+        echo '<div class="row-block block-type-media block-style-' . esc_attr($block_theme) . '" style="' . esc_attr(trim($style)) . '"></div>';
+        if ($link_url) {
+            echo '</a>';
+        }
+    } elseif ( $block_type === 'text' ) {
+        if ( $link_url ) {
+            echo '<a href="' . $link_url . '">';
+        }
+        $text_block = is_array( $block_data['text_block'] ?? null ) ? $block_data['text_block'] : array();
+        echo '<div class="row-block block-type-text block-style-' . esc_attr($block_theme) . '" style="' . esc_attr($custom_styles) . '">';
+        if (!empty($text_block['header'])) {
+            echo '<h3>' . esc_html($text_block['header']) . '</h3>';
+        }
+        echo wp_kses_post(wpautop($text_block['text'] ?? ''));
+        if (!empty($text_block['read_more'])) {
+            echo '<span>';
+            if (function_exists('pll_e')) {
+                pll_e('Read More');
+            } else {
+                esc_html_e('Read More', 'vision');
+            }
+            echo '</span>';
+        }
+        echo '</div>';
+        if ($link_url) {
+            echo '</a>';
+        }
+    }
+    return ob_get_clean();
+}
+
+/**
+ * Alias for vision_render_row_block. Use in templates: echo renderRowBlock($blockData);
+ */
+function renderRowBlock($block_data) {
+    return vision_render_row_block($block_data);
+}
+
+/**
  * Output dynamic CSS from Vision Style Settings
  */
 function vision_output_style_settings_css() {
@@ -522,9 +602,9 @@ function vision_output_style_settings_css() {
         --vision-block-hover-bg: <?php echo esc_attr($block_hover_bg); ?>;
     }
     body { background-color: <?php echo esc_attr($body_bg); ?>; color: <?php echo esc_attr($body_text); ?>; }
-    .vision-block-theme-white { background-color: var(--vision-theme-white-bg); color: var(--vision-theme-white-text); }
-    .vision-block-theme-light { background-color: var(--vision-theme-light-bg); color: var(--vision-theme-light-text); }
-    .vision-block-theme-dark { background-color: var(--vision-theme-dark-bg); color: var(--vision-theme-dark-text); }
+    .block-style-white { background-color: var(--vision-theme-white-bg); color: var(--vision-theme-white-text); }
+    .block-style-light { background-color: var(--vision-theme-light-bg); color: var(--vision-theme-light-text); }
+    .block-style-dark { background-color: var(--vision-theme-dark-bg); color: var(--vision-theme-dark-text); }
     <?php
     $block_hover = isset($opt['block_hover_effect']) ? $opt['block_hover_effect'] : 'color-fade';
     if ($block_hover !== 'none' && function_exists('vision_get_block_hover_effects') && array_key_exists($block_hover, vision_get_block_hover_effects())) {
@@ -823,45 +903,3 @@ function enqueue_custom_scripts() {
     );
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
-
-function renderRowBlock($acfBlockData) {
-    <!-- LEFT BLOCK -->
-                            <!-- Type Media -->
-                            <?php if ($blockType == 'media'): ?>
-                                <?php if($link): ?>
-                                    <a href="#">
-                                <?php endif; ?>
-                                    <div class="block-type-<?=$blockType?> block-style-<?=$blockTheme?>"
-                                            style="
-                                                    background: url: (<?= $block['media_block']['background_image'] ?>);
-                                                    <?= $customStyles ?>
-                                                    "
-                                    >
-                                    </div>
-                                <?php if($link): ?>
-                                </a>
-                                    <?php endif; ?>
-                            <?php endif; ?>
-
-                            <!-- Type Text -->
-                            <?php if ($blockType == 'text'): ?>
-                                <?php if($link): ?>
-                                    <a href="#">
-                                <?php endif; ?>
-                                    <div class="block-type-<?=$blockType?> block-style-<?=$blockTheme?>" style="<?= $customStyles ?>">
-                                        <?php if (!empty($block['text_block']['header'])) : ?>
-                                            <h3><?=$block['text_block']['header'] ?></h3>
-                                        <?php endif; ?>
-
-                                        <?php echo wp_kses_post(wpautop($block['text_block']['text'] ?? '')); ?>
-
-                                        <?php if (!empty($block['text_block']['read_more'])) : ?>
-                                            <span><?php pll_e('Read More'); ?></span>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php if($link): ?>
-                                    </a>
-                                <?php endif; ?>
-                            <?php endif; ?>
-                            <!-- END LEFT BLOCK -->
-}

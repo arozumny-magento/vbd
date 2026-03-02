@@ -335,9 +335,11 @@ main {
           flex-direction: column;
         }
       }
+
       .image-block {
         order: 1;
       }
+
       .content-text {
         order: 2;
       }
@@ -402,7 +404,7 @@ header {
 }
 
 section {
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2 {
     text-transform: uppercase;
     letter-spacing: .2em;
   }
@@ -410,13 +412,36 @@ section {
   header {
     width: 100%;
     text-align: center;
+
     h2 {
       text-align: center;
       padding: 1.4rem 0;
     }
   }
+
   .row.two-col {
     display: grid;
     grid-template-columns: repeat(2, minmax(0px, 1fr));
+
+    .row-block {
+      padding: 4rem 6rem;
+
+      h3 {
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+      }
+
+      ul {
+        margin-top: 0;
+      }
+
+      li {
+        margin-bottom: 1rem;
+      }
+
+      @media screen and (max-width: 1024px) {
+        padding: 2rem;
+      }
+    }
   }
 }

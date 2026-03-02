@@ -2401,7 +2401,7 @@ header h1 {
   text-transform: uppercase;
 }
 
-section h1, section h2, section h3, section h4, section h5, section h6 {
+section h1, section h2 {
   text-transform: uppercase;
   letter-spacing: 0.2em;
 }
@@ -2416,6 +2416,24 @@ section header h2 {
 section .row.two-col {
   display: grid;
   grid-template-columns: repeat(2, minmax(0px, 1fr));
+}
+section .row.two-col .row-block {
+  padding: 4rem 6rem;
+}
+section .row.two-col .row-block h3 {
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+section .row.two-col .row-block ul {
+  margin-top: 0;
+}
+section .row.two-col .row-block li {
+  margin-bottom: 1rem;
+}
+@media screen and (max-width: 1024px) {
+  section .row.two-col .row-block {
+    padding: 2rem;
+  }
 }
 
 .search-page__wrapper {

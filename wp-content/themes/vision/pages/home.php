@@ -40,73 +40,19 @@ get_header();
             $row = $about_us['section_row'];
 
             if (isset($row)):
-                $block = $row['left_block'] ?? array();
-                $blockSettings = $block['block_settings'] ?? array();
-                $blockType = strtolower($blockSettings['block_type']) ?? '';
-                $blockTheme = strtolower($blockSettings['block_theme']) ?? '';
-                $blockLink = strtolower($blockSettings['block_link']) ?? '';
-                $blockOrder = $blockSettings['order'] ?? '';
-                $customStyles = $blockTheme == 'custom' ?
-                    "background-color:" . $block['custom_styles']['background_color'] .";" .
-                    "color:" . $block['custom_styles']['text_color'] .";" : "";
-
+                $leftBlock = $row['left_block'] ?? array();
                 $rightBlock = $row['right_block'] ?? array();
-
-                $link = $blockLink == 'Page' ? $block['link_to_page'] : $block['block_url'];
                 ?>
                 <section class="section" id="about">
                     <header class="header">
-                        <?php if (isset($about_us['section_label'])) : ?>
+                        <?php if ($about_us['section_label']) : ?>
                             <h2><?= $about_us['section_label'] ?></h2>
                         <?php endif; ?>
                     </header>
                     <?php if ($row): ?>
                         <div class="row two-col">
-                            <!-- LEFT BLOCK -->
-                            <!-- Type Media -->
-                            <?php if ($blockType == 'media'): ?>
-                                <?php if($link): ?>
-                                    <a href="#">
-                                <?php endif; ?>
-                                    <div class="block-type-<?=$blockType?> block-style-<?=$blockTheme?>"
-                                            style="
-                                                    background: url: (<?= $block['media_block']['background_image'] ?>);
-                                                    <?= $customStyles ?>
-                                                    "
-                                    >
-                                    </div>
-                                <?php if($link): ?>
-                                </a>
-                                    <?php endif; ?>
-                            <?php endif; ?>
-
-                            <!-- Type Text -->
-                            <?php if ($blockType == 'text'): ?>
-                                <?php if($link): ?>
-                                    <a href="#">
-                                <?php endif; ?>
-                                    <div class="block-type-<?=$blockType?> block-style-<?=$blockTheme?>" style="<?= $customStyles ?>">
-                                        <?php if (!empty($block['text_block']['header'])) : ?>
-                                            <h3><?=$block['text_block']['header'] ?></h3>
-                                        <?php endif; ?>
-
-                                        <?php echo wp_kses_post(wpautop($block['text_block']['text'] ?? '')); ?>
-
-                                        <?php if (!empty($block['text_block']['read_more'])) : ?>
-                                            <span><?php pll_e('Read More'); ?></span>
-                                        <?php endif; ?>
-                                    </div>
-                                <?php if($link): ?>
-                                    </a>
-                                <?php endif; ?>
-                            <?php endif; ?>
-                            <!-- END LEFT BLOCK -->
-
-                            <div class="block-right">
-                                <?php if (!empty($ar['header'])) : ?>
-                                    <h3><?php echo esc_html($ar['header']); ?></h3><?php endif; ?>
-                                <?php echo wp_kses_post(wpautop($ar['description'] ?? '')); ?>
-                            </div>
+                            <?php echo vision_render_row_block($leftBlock); ?>
+                            <?php echo vision_render_row_block($rightBlock); ?>
                         </div>
                     <?php endif; ?>
                 </section>
@@ -114,42 +60,65 @@ get_header();
         <?php endif; ?>
 
         <!-- 3. Services -->
-        <?php if (have_rows('services')) : ?>
+        <?php
+        $services = get_field('services_section');
+        if ( ! empty( $services ) && ! empty( $services['section_row'] ) && is_array( $services['section_row'] ) ) :
+            ?>
             <section class="section" id="services">
                 <header class="header">
-                    <h2><?php esc_html_e('Services', 'vision'); ?></h2>
+                    <?php if ( ! empty( $services['section_label'] ) ) : ?>
+                        <h2><?php echo esc_html( $services['section_label'] ); ?></h2>
+                    <?php endif; ?>
                 </header>
                 <?php
-                while (have_rows('services')) :
-                    the_row();
-                    $sl = get_sub_field('left_block');
-                    $sr = get_sub_field('right_block');
+                foreach ( $services['section_row'] as $row ) :
+                    $leftBlock  = $row['left_block'] ?? array();
+                    $rightBlock = $row['right_block'] ?? array();
                     ?>
-                    <div class="row">
-                        <div class="block-left">
-                            <?php if (!empty($sl['link'])) : ?><a
-                                    href="<?php echo esc_url($sl['link']); ?>"><?php endif; ?>
-                                <?php if (!empty($sl['header'])) : ?>
-                                    <h3><?php echo esc_html($sl['header']); ?></h3><?php endif; ?>
-                                <?php echo wp_kses_post($sl['text'] ?? ''); ?>
-                                <?php if (!empty($sl['link'])) : ?>
-                                    <span><?php pll_e('Read More'); ?></span><?php endif; ?>
-                                <?php if (!empty($sl['link'])) : ?></a><?php endif; ?>
-                        </div>
-                        <div class="block-right">
-                            <?php if (!empty($sr['link'])) : ?><a
-                                    href="<?php echo esc_url($sr['link']); ?>"><?php endif; ?>
-                                <?php if (!empty($sr['header'])) : ?>
-                                    <h3><?php echo esc_html($sr['header']); ?></h3><?php endif; ?>
-                                <?php echo wp_kses_post($sr['text'] ?? ''); ?>
-                                <?php if (!empty($sr['link'])) : ?>
-                                    <span><?php pll_e('Read More'); ?></span><?php endif; ?>
-                                <?php if (!empty($sr['link'])) : ?></a><?php endif; ?>
-                        </div>
+                    <div class="row two-col">
+                        <?php echo vision_render_row_block( $leftBlock ); ?>
+                        <?php echo vision_render_row_block( $rightBlock ); ?>
                     </div>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </section>
         <?php endif; ?>
+
+<!--        --><?php //if (have_rows('services')) : ?>
+<!--            <section class="section" id="services">-->
+<!--                <header class="header">-->
+<!--                    <h2>--><?php //esc_html_e('Services', 'vision'); ?><!--</h2>-->
+<!--                </header>-->
+<!--                --><?php
+//                while (have_rows('services')) :
+//                    the_row();
+//                    $sl = get_sub_field('left_block');
+//                    $sr = get_sub_field('right_block');
+//                    ?>
+<!--                    <div class="row">-->
+<!--                        <div class="block-left">-->
+<!--                            --><?php //if (!empty($sl['link'])) : ?><!--<a-->
+<!--                                    href="--><?php //echo esc_url($sl['link']); ?><!--">--><?php //endif; ?>
+<!--                                --><?php //if (!empty($sl['header'])) : ?>
+<!--                                    <h3>--><?php //echo esc_html($sl['header']); ?><!--</h3>--><?php //endif; ?>
+<!--                                --><?php //echo wp_kses_post($sl['text'] ?? ''); ?>
+<!--                                --><?php //if (!empty($sl['link'])) : ?>
+<!--                                    <span>--><?php //pll_e('Read More'); ?><!--</span>--><?php //endif; ?>
+<!--                                --><?php //if (!empty($sl['link'])) : ?><!--</a>--><?php //endif; ?>
+<!--                        </div>-->
+<!--                        <div class="block-right">-->
+<!--                            --><?php //if (!empty($sr['link'])) : ?><!--<a-->
+<!--                                    href="--><?php //echo esc_url($sr['link']); ?><!--">--><?php //endif; ?>
+<!--                                --><?php //if (!empty($sr['header'])) : ?>
+<!--                                    <h3>--><?php //echo esc_html($sr['header']); ?><!--</h3>--><?php //endif; ?>
+<!--                                --><?php //echo wp_kses_post($sr['text'] ?? ''); ?>
+<!--                                --><?php //if (!empty($sr['link'])) : ?>
+<!--                                    <span>--><?php //pll_e('Read More'); ?><!--</span>--><?php //endif; ?>
+<!--                                --><?php //if (!empty($sr['link'])) : ?><!--</a>--><?php //endif; ?>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                --><?php //endwhile; ?>
+<!--            </section>-->
+<!--        --><?php //endif; ?>
 
         <!-- 4. Testimonials -->
         <?php
