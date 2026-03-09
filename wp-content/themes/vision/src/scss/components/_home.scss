@@ -230,12 +230,12 @@ main {
 .partners {
   padding: 0 8rem;
 
-  h3 {
+  h2 {
     color: $color-white;
-    font-size: 2rem;
-    margin: 2rem 0 -2rem;
-    width: 100%;
-    text-align: center
+  }
+
+  ul {
+    margin: -2rem 0 0 0;
   }
 }
 
@@ -396,7 +396,7 @@ header {
     width: 100%;
     text-align: center;
     padding: 1.4rem 4rem;
-    max-width: 1280px;
+    max-width: 1152px;
     margin: 0 auto;
     letter-spacing: .2em;
     text-transform: uppercase;
@@ -425,6 +425,7 @@ section {
 
     .row-block {
       padding: 4rem 6rem;
+      height: 100%;
 
       h3 {
         text-transform: uppercase;
@@ -439,9 +440,111 @@ section {
         margin-bottom: 1rem;
       }
 
+      .read-more {
+        background: none;
+        border: 0;
+        box-sizing: border-box;
+        margin: 5rem 0 0 0;
+        text-transform: uppercase;
+        font-size: 14px;
+        line-height: 130%;
+        padding: .5rem 1rem;
+        display: inline-block;
+
+        // Required, since we're setting absolute on pseudo-elements
+        position: relative;
+        vertical-align: middle;
+
+        &:before,
+        &:after {
+          content: '' !important;
+          box-sizing: inherit;
+          position: absolute;
+          border: 2px solid transparent;
+          width: 0;
+          height: 0;
+        }
+
+        &:before {
+          top: 0;
+          left: 0;
+        }
+
+        // And this the bottom & left borders (expands left, then up)
+        &:after {
+          bottom: 0;
+          right: 0;
+        }
+
+        &:after {
+          top: 0;
+          left: 0;
+        }
+      }
+
+      &:hover {
+        .read-more {
+          transition: color 0.15s;
+          color: $color-gold;
+          // Hover styles
+          &:before,
+          &:after {
+            width: 100%;
+            height: 100%;
+          }
+
+          &:before {
+            border-top-color: $color-gold; // Make borders visible
+            border-right-color: $color-gold;
+            transition: width 0.15s ease-out, // Width expands first
+            height 0.15s ease-out 0.15s; // And then height
+          }
+
+          &:after {
+            border-bottom-color: $color-gold; // Make borders visible
+            border-left-color: $color-gold;
+            transition: border-color 0s ease-out 0.5s, // Wait for ::before to finish before showing border
+            width 0.25s ease-out 0.5s, // And then exanding width
+            height 0.25s ease-out 0.75s; // And finally height
+          }
+
+          // Start ::after in same position as ::before
+          &:after {
+            top: 0;
+            left: 0;
+          }
+
+
+          // Change colors
+          &:before {
+            border-top-color: $color-gold;
+            border-right-color: $color-gold;
+          }
+
+          &:after {
+            border-bottom-color: $color-gold;
+            border-left-color: $color-gold;
+            transition: // Animate height first, then width
+                    height 0.15s ease-out,
+                    width 0.15s ease-out 0.15s;
+          }
+        }
+      }
+
       @media screen and (max-width: 1024px) {
         padding: 2rem;
       }
     }
   }
+
+  .testimonial-logo {
+    img {
+      max-width: 50px;
+    }
+  }
+}
+
+.block-type-media {
+  background-size: cover;
+  background-position: center center;
 }

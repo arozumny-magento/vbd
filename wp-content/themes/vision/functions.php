@@ -515,7 +515,7 @@ function vision_render_row_block($block_data) {
         }
         echo wp_kses_post(wpautop($text_block['text'] ?? ''));
         if (!empty($text_block['read_more'])) {
-            echo '<span>';
+            echo '<span class="read-more">';
             if (function_exists('pll_e')) {
                 pll_e('Read More');
             } else {
@@ -528,6 +528,75 @@ function vision_render_row_block($block_data) {
             echo '</a>';
         }
     }
+    return ob_get_clean();
+}
+
+/**
+ * Render a single row block (text or media) for home/section rows.
+ *
+ * @param array $block_data ACF block data: block_settings (block_type, block_theme, block_link),
+ *                          custom_styles (background_color, text_color), media_block (background_image),
+ *                          text_block (header, text, read_more), link_to_page, block_url.
+ * @return string HTML for the block (optional <a> wrapper + block div).
+ */
+function vision_render_testimonials_row_block($block_data) {
+    if (empty($block_data) || !is_array($block_data)) {
+        return '';
+    }
+    $settings = $block_data['block_settings'] ?? array();
+    $block_theme = strtolower((string)($settings['block_theme'] ?? ''));
+    $postId = array_shift($block_data['testimonials_relation']) ?? '';
+    $custom_styles = '';
+    if ( $block_theme === 'custom' && ! empty( $block_data['custom_styles'] ) && is_array( $block_data['custom_styles'] ) ) {
+        $cs = $block_data['custom_styles'];
+        $custom_styles = 'background-color:' . esc_attr( (string) ( $cs['background_color'] ?? '' ) ) . ';';
+        $custom_styles .= 'color:' . esc_attr( (string) ( $cs['text_color'] ?? '' ) ) . ';';
+    }
+    $link_url = get_permalink($postId);
+
+    ob_start();
+        if ( $link_url ) {
+            echo '<a href="' . $link_url . '">';
+        }
+        echo '<div class="row-block block-type-text block-style-' . esc_attr($block_theme) . '" style="' . esc_attr($custom_styles) . '">';
+            echo '<div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header flex justify-between">';
+            echo '<div>';
+            echo '<h3 style="margin-bottom: 8px">' . get_field('company', $postId) . '</h3>';
+            echo '<span class="testimonial-author text-sm capitalize font-normal block pb-1">' . get_field('testimonial_author', $postId) . '</span>';
+            echo '</div>';
+
+            /** echo testimonials */
+            echo '<div>';
+            $testimonial_logo = get_field('testimonial_logo', $postId);
+            $logo_url = '';
+            if ($testimonial_logo) {
+                if (is_array($testimonial_logo)) {
+                    // Return format is "Image Array"
+                    $logo_url = $testimonial_logo['url'] ?? '';
+                } elseif (is_numeric($testimonial_logo)) {
+                    // Return format is "Image ID"
+                    $logo_url = wp_get_attachment_image_url($testimonial_logo, 'full');
+                } else {
+                    // Return format is "Image URL"
+                    $logo_url = $testimonial_logo;
+                }
+            }
+            if ($logo_url) :
+                echo '<span class="testimonial-logo"> <img src="' . esc_url($logo_url) .'" alt="' . esc_attr(get_field('testimonial_author', $postId) ?: '') .'"/></span>';
+            endif;
+            echo '</div>';
+            echo '</div>';
+
+            echo '<div class="flex flex-col justify-between gap-20">
+                                        <div>
+                                            ' . wpautop(get_field('feedback', $postId)) .'
+                                        </div>
+                                    </div>';
+        echo '</div>';
+        if ($link_url) {
+            echo '</a>';
+        }
+
     return ob_get_clean();
 }
 
