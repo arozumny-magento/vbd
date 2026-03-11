@@ -675,45 +675,68 @@ function vision_output_style_settings_css() {
     .block-style-light { background-color: var(--vision-theme-light-bg); color: var(--vision-theme-light-text); }
     .block-style-dark { background-color: var(--vision-theme-dark-bg); color: var(--vision-theme-dark-text); }
     <?php
-    $block_hover = isset($opt['block_hover_effect']) ? $opt['block_hover_effect'] : 'color-fade';
-    if ($block_hover !== 'none' && function_exists('vision_get_block_hover_effects') && array_key_exists($block_hover, vision_get_block_hover_effects())) {
-        $base = '.vision-block-hover-effect--' . esc_attr($block_hover);
-        $sel = $base . ':hover';
-        $transition = 'transition: background .35s ease, box-shadow .35s ease;';
-        echo "{$base} { {$transition} }\n";
-        switch ($block_hover) {
+    $block_hover_enabled = ! empty( $opt['block_hover_enabled'] );
+    $block_hover = isset( $opt['block_hover_effect'] ) ? $opt['block_hover_effect'] : 'color-fade';
+    // Block styles that can receive the hover effect (including custom with inline colors).
+    $block_styles_sel = '.block-style-white, .block-style-light, .block-style-dark, .block-style-custom';
+    $hover_sel = '.block-style-white:hover, .block-style-light:hover, .block-style-dark:hover, .block-style-custom:hover';
+    $hover_children = '.block-style-white:hover h3, .block-style-light:hover h3, .block-style-dark:hover h3, .block-style-custom:hover h3, '
+        . '.block-style-white:hover p, .block-style-light:hover p, .block-style-dark:hover p, .block-style-custom:hover p, '
+        . '.block-style-white:hover .read-more, .block-style-light:hover .read-more, .block-style-dark:hover .read-more, .block-style-custom:hover .read-more, '
+        . '.block-style-white:hover span, .block-style-light:hover span, .block-style-dark:hover span, .block-style-custom:hover span';
+    if ( $block_hover_enabled && $block_hover !== 'none' && function_exists( 'vision_get_block_hover_effects' ) && array_key_exists( $block_hover, vision_get_block_hover_effects() ) ) {
+        $transition = 'transition: background .35s ease, box-shadow .35s ease, color .35s ease;';
+        echo "{$block_styles_sel} { {$transition} }\n";
+        echo "{$block_styles_sel} h3, {$block_styles_sel} p, {$block_styles_sel} .read-more, {$block_styles_sel} span { transition: color .35s ease, background .35s ease, background-size .35s ease, box-shadow .35s ease, text-shadow .35s ease; }\n";
+        // Always set text color on the block itself when hovered.
+        echo "{$hover_sel} { color: var(--vision-block-hover-text) !important; }\n";
+        $sel = $hover_sel;
+        $sel_children = $hover_children;
+        switch ( $block_hover ) {
             case 'color-fade':
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                echo "{$sel_children} { color: var(--vision-block-hover-text) !important; }\n";
                 break;
             case 'gradient-shift':
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                echo "{$sel_children} { background: linear-gradient(135deg, var(--vision-accent-color) 0%, var(--vision-theme-light-text) 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
+                echo ".block-style-dark:hover h3, .block-style-dark:hover p, .block-style-dark:hover .read-more, .block-style-dark:hover span { background: linear-gradient(135deg, var(--vision-accent-color) 0%, var(--vision-theme-dark-text) 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
                 break;
             case 'slide-line':
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                echo "{$sel_children} { color: var(--vision-block-hover-text) !important; box-shadow: inset 0 -2px 0 0 var(--vision-block-hover-text); }\n";
                 break;
             case 'glow':
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                echo "{$sel_children} { color: var(--vision-block-hover-text) !important; text-shadow: 0 0 14px var(--vision-accent-color), 0 0 28px var(--vision-accent-color); }\n";
                 break;
             case 'shine-sweep':
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                echo "{$sel_children} { background: linear-gradient(110deg, transparent 40%, var(--vision-accent-color) 50%, transparent 60%); background-size: 200% 100%; background-position: 0 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }\n";
                 break;
             case 'fill-from-left':
-                echo "{$base} { position: relative; }\n";
-                echo "{$base}::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--vision-accent-color); opacity: 0; transition: width .35s ease, opacity .35s ease; z-index: 0; border-radius: 4px; }\n";
+                echo "{$block_styles_sel} { position: relative; }\n";
+                echo "{$block_styles_sel}::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--vision-accent-color); opacity: 0; transition: width .35s ease, opacity .35s ease; z-index: 0; border-radius: 4px; }\n";
                 echo "{$sel}::before { width: 100%; opacity: 1; }\n";
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                echo "{$sel_children} { color: var(--vision-block-hover-text) !important; position: relative; z-index: 1; }\n";
                 break;
             case 'lighten':
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                echo "{$sel_children} { color: var(--vision-block-hover-text) !important; filter: brightness(1.25); }\n";
+                echo ".block-style-dark:hover h3, .block-style-dark:hover p, .block-style-dark:hover .read-more, .block-style-dark:hover span { filter: brightness(1.4); }\n";
                 break;
             case 'scale-up':
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                echo "{$sel_children} { color: var(--vision-block-hover-text) !important; }\n";
                 break;
             case 'fade-invert':
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; }\n";
+                echo "{$sel_children} { color: var(--vision-block-hover-text) !important; }\n";
                 break;
             case 'soft-highlight':
                 echo "{$sel} { background-color: var(--vision-block-hover-bg) !important; box-shadow: inset 0 0 0 2px var(--vision-accent-color); }\n";
+                echo "{$sel_children} { color: var(--vision-block-hover-text) !important; }\n";
                 break;
         }
     }

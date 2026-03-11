@@ -79,6 +79,7 @@ function vision_get_style_settings_defaults() {
         'font_uk_h4_size_mobile' => '1.5', 'font_uk_h4_line_height_mobile' => '1.3', 'font_uk_h4_weight_mobile' => '600',
         'font_uk_h5_size_mobile' => '1.25', 'font_uk_h5_line_height_mobile' => '1.3', 'font_uk_h5_weight_mobile' => '600',
         'font_uk_h6_size_mobile' => '1', 'font_uk_h6_line_height_mobile' => '1.3', 'font_uk_h6_weight_mobile' => '600',
+        'block_hover_enabled'   => true,
         'block_hover_effect'     => 'color-fade',
         'block_hover_text_color' => '#d0b135',
         'block_hover_bg_color'   => 'transparent',
@@ -187,6 +188,7 @@ function vision_sanitize_style_settings($input) {
     $out['theme_dark_bg']    = isset($input['theme_dark_bg']) ? sanitize_hex_color($input['theme_dark_bg']) : $defaults['theme_dark_bg'];
     $out['theme_dark_text']  = isset($input['theme_dark_text']) ? sanitize_hex_color($input['theme_dark_text']) : $defaults['theme_dark_text'];
 
+    $out['block_hover_enabled'] = ! empty($input['block_hover_enabled']);
     $effects = array_keys(vision_get_block_hover_effects());
     $out['block_hover_effect'] = isset($input['block_hover_effect']) && in_array($input['block_hover_effect'], $effects, true)
         ? $input['block_hover_effect']
@@ -451,6 +453,16 @@ function vision_render_style_settings_page() {
 
                 <h2 class="title"><?php esc_html_e('Block hover effect', 'vision'); ?></h2>
                 <table class="form-table" role="presentation">
+                    <tr>
+                        <th scope="row"><?php esc_html_e('Enable hover effect', 'vision'); ?></th>
+                        <td>
+                            <label for="vision_block_hover_enabled">
+                                <input type="checkbox" id="vision_block_hover_enabled" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[block_hover_enabled]" value="1" <?php checked(! empty($opt['block_hover_enabled'])); ?> />
+                                <?php esc_html_e('Show hover effect on block-style-white, block-style-light and block-style-dark when hovering', 'vision'); ?>
+                            </label>
+                            <p class="description"><?php esc_html_e('When enabled, content blocks with these styles will show the selected effect on hover.', 'vision'); ?></p>
+                        </td>
+                    </tr>
                     <tr>
                         <th scope="row"><label for="vision_block_hover_effect"><?php esc_html_e('On hover effect for block', 'vision'); ?></label></th>
                         <td>

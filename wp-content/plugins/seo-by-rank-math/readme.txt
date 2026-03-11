@@ -5,7 +5,7 @@ Tags: seo, WordPress SEO, google search console, schema, redirection,
 Tested up to: 6.9
 Requires at least: 6.3
 Requires PHP: 7.4
-Stable tag: 1.0.262
+Stable tag: 1.0.265
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -339,14 +339,11 @@ Please drop us an email at support@rankmath.com, and we will be more than happy 
 
 == Changelog ==
 
-= 1.0.262 [Jan 14, 2026] =
-- Updated: Twitter logo in the [Social Media Options](https://rankmath.com/kb/meta-box-social-tab/#twitter-options)
-- Fixed: [Content AI Write tool](https://rankmath.com/kb/how-to-use-content-ai/#write-with-content-ai) was not working in the Elementor editor
-- Fixed: [Keyword density test](https://rankmath.com/kb/score-100-in-tests/#keyword-density-primary-and-secondary-focus-keywords) was not working properly when a dash `-` was used in the keyword
-- Fixed: Removed deprecated packages used in the Post & Site editor that were causing the browser to show deprecated warnings
-- Fixed: [Instant Indexing](https://rankmath.com/kb/how-to-use-indexnow/) was not working properly with the secondary language posts created using the WPML plugin
-- Fixed: Update SEO Scores tool was recalculating score of posts where the score was already set, even when option to `Include posts/pages where the score is already set` was not selected
-- Fixed: SEO Desc column in the Posts lists was not showing the default SEO description
-- Fixed: PHP error on some setups using the WooCommerce version 9.7 or lower
+= 1.0.265 [Mar 04, 2026] =
+- Fixed: [Fix with AI tool](https://rankmath.com/kb/fix-seo-tests-with-content-ai/) breaks the Gallery block on certain setups
+- Fixed: Setup Wizard steps did not update immediately after selecting Easy or Advanced mode in the [Getting Started step](https://rankmath.com/kb/how-to-setup/#starting-the-setup-wizard)
+- Fixed: Rank Math Dashboard page shows a blank page on Network setup
+- Fixed: UI issues in the [Generate with AI modal](https://rankmath.com/kb/content-ai-seo-meta-tool/) in the Classic editor
+
 
 Full changelog can be found here - **[Rank Math changelog](https://rankmath.com/changelog/?utm_source=Plugin&utm_medium=Changelog&utm_campaign=WP)**
