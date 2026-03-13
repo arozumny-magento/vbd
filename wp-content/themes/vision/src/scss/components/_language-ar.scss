@@ -28,12 +28,12 @@
   &.home h1 {
     @media screen and (min-width: 1024px) {
       font-size: 2.8rem;
+      text-align: center;
     }
   }
 
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo,
-  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo
-  {
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo {
     width: 130px;
   }
 
@@ -61,7 +61,8 @@
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item {
     width: 145px;
   }
-    nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,
+
+  nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item > a.mega-menu-link,
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item > a.mega-menu-link {
     font-family: 'Tajawal', sans-serif;
   }
@@ -104,6 +105,7 @@
         color: $color-dark-blue;
       }
     }
+
     .block-light {
       background-color: $color-dark-blue;
       color: $color-white;
@@ -115,6 +117,7 @@
       }
     }
   }
+
   .form-default button {
     font-size: 1.3rem;
     font-weight: 700;
@@ -155,8 +158,8 @@
     }
 
     &.home h1 {
-        font-size: 1.8rem;
-        line-height: 150%;
+      font-size: 1.8rem;
+      line-height: 150%;
     }
 
     header nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-megamenu > ul.mega-sub-menu ul.menu li a {

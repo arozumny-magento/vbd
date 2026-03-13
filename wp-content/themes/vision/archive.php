@@ -27,7 +27,7 @@ $current_lang = pll_current_language();
             <?php while (have_posts()) : the_post(); ?>
                 <div class="block cursor-pointer">
                     <a href="<?= get_the_permalink() ?>" style="display: flex; padding:0; margin: 0;">
-                        <div class="list-trident">
+                        <div class="list-trident" style="padding: 0;">
                             <div class="mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header">
                                 <span><?php pll_e('Client') ?></span>
                                 <h3 class="uppercase !text-xl !lg:text-3xl font-bold"><?php the_title() ?></h3>
