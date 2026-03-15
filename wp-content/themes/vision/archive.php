@@ -26,17 +26,17 @@ $current_lang = pll_current_language();
         <div class="mx-auto md:grid grid-cols-2 gap-0">
             <?php while (have_posts()) : the_post(); ?>
                 <div class="block cursor-pointer">
-                    <a href="<?= get_the_permalink() ?>" style="display: flex; padding:0; margin: 0;">
-                        <div class="list-trident" style="padding: 0;">
+                    <a href="<?= get_the_permalink() ?>" style="display: flex; padding:0; margin: 0;" >
+                        <div class="list-trident sm:p-6 lg:p-0 md:p-0">
                             <div class="mb-5 lg:mb-8 !text-xl !lg:text-3xl aos-init aos-animate block-header">
                                 <span><?php pll_e('Client') ?></span>
-                                <h3 class="uppercase !text-xl !lg:text-3xl font-bold"><?php the_title() ?></h3>
+                                <h3 class="uppercase !lg:text-3xl font-bold"><?php the_title() ?></h3>
 
                             </div>
                             <div class="mb-3 lg:mb-8 lg:text-lg aos-init aos-animate block-text" data-aos="fade-up"
                                  data-aos-delay="200">
                                 <span><?php pll_e('Project Type') ?></span>
-                                <h3 class="uppercase !text-xl !lg:text-3xl font-bold">
+                                <h3 class="uppercase !lg:text-3xl font-bold">
                                     <?php the_field('type') ?></h3>
                             </div>
                             <div>

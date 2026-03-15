@@ -36,7 +36,7 @@ $current_lang = pll_current_language();
                     </div>
                 </div>
             </div>
-            <div class="block bg-white relative" style="max-height: 350px;">
+            <div class="block bg-white relative" style="max-height: 370px;">
                 <img src="<?php the_sub_field('hero_image'); ?>" alt="" class="w-full h-full object-cover">
             </div>
         </div>

@@ -32,6 +32,11 @@
     }
   }
 
+  section#news,
+  &.vision-page-update-internal {
+    direction: ltr;
+  }
+
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo,
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.mega-current-menu-item.menu-item-logo {
     width: 130px;
@@ -46,6 +51,14 @@
 
   .read-more {
     font-size: 1rem;
+  }
+
+  section .row.two-col .row-block .read-more {
+    font-size: inherit;
+  }
+
+  .testimonial-author {
+    font-size: inherit;
   }
 
   .language-switcher .dropdown-menu {

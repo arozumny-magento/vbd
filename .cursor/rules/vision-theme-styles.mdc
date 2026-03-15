@@ -1,0 +1,16 @@
+---
+description: Run npm run build after Vision theme style changes
+globs: wp-content/themes/vision/**/*.scss, wp-content/themes/vision/**/*.css, wp-content/themes/vision/style.css
+alwaysApply: false
+---
+
+# Vision theme – build after style changes
+
+When you edit Vision theme styles (SCSS or CSS under `wp-content/themes/vision/`), **run the theme build** so changes are compiled and reflected:
+
+```bash
+cd wp-content/themes/vision && npm run build
+```
+
+- SCSS is in `src/scss/` and compiles to `style.css` (and `assets/css/main.css` when using build:css).
+- Always run `npm run build` (or `npm run build:css`) after changing any `.scss` or theme CSS.
