@@ -48,7 +48,7 @@ if ($elementor_active) {
                     </div>
 
                     <?php if (has_post_thumbnail()) : ?>
-                    <div class="block bg-white relative" style="max-height: 310px;">
+                    <div class="block bg-white relative" style="max-height: 370px;">
                         <img src="<?php the_post_thumbnail_url('large'); ?>" alt="" class="w-full h-full object-cover">
                     </div>
                     <?php endif; ?>

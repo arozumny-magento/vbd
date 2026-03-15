@@ -41,7 +41,7 @@ function compileAndUpdate() {
         console.log('🔨 Compiling SCSS...');
         
         // Compile SCSS to temp file (expanded for development) with source map
-        execSync(`sass "${scssFile}" "${tempCssFile}" --style=expanded --source-map`, {
+        execSync(`npx sass "${scssFile}" "${tempCssFile}" --style=expanded --source-map`, {
             stdio: 'inherit',
             cwd: themeDir
         });

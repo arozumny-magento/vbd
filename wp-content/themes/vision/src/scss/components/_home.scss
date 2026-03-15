@@ -19,6 +19,10 @@ main {
   .umb-block-list {
     margin-top: $desktop-header-height;
 
+    @media screen and (max-width: 1024px) {
+      margin-top: $mobile-header-height;
+    }
+
     .hero-wrapper {
       padding: 1.4rem 4rem;
       max-width: 1152px;
@@ -43,14 +47,6 @@ main {
   }
 }
 
-@media screen and (min-width: 1024px) {
-  //body.home h1 {
-  //  font-size: 2rem;
-  //  line-height: 1.5;
-  //  text-align: center;
-  //  font-weight: 600;
-  //}
-}
 
 .block-dark,
 .block-light {
@@ -358,11 +354,9 @@ body {
           flex-direction: column;
         }
       }
-
       .image-block {
         order: 1;
       }
-
       .content-text {
         order: 2;
       }
@@ -412,6 +406,10 @@ body {
 
 main {
   margin-top: $desktop-header-height;
+
+  @media screen and (max-width: 1024px) {
+    margin-top: $mobile-header-height;
+  }
 }
 
 header {
@@ -423,6 +421,35 @@ header {
     margin: 0 auto;
     letter-spacing: .2em;
     text-transform: uppercase;
+
+    @media screen and (max-width: 1024px) {
+      padding: 1.4rem 0;
+    }
+  }
+}
+
+.content-grid.project-grid {
+  .list-trident {
+    padding: 0;
+
+    @media screen and (max-width: 1024px) {
+      padding: 2rem;
+
+    }
+  }
+}
+
+.vision-page-event-internal,
+.vision-page-update-internal,
+.vision-page-project-internal {
+  .umb-block-list {
+    h1 {
+      text-align: center;
+    }
+
+    .bg-lightblue {
+      padding: 5rem 6rem;
+    }
   }
 }
 
@@ -558,6 +585,53 @@ section {
 
       @media screen and (max-width: 1024px) {
         padding: 2rem;
+      }
+    }
+  }
+
+  .grid-cols-2 {
+    > div {
+      &:first-child {
+        padding: 5rem 6rem;
+      }
+      &:nth-child(2) {
+        height: 100%;
+      }
+    }
+  }
+
+  // Mobile (up to 1024px): one block per row, 100% width, order from ACF
+  @media screen and (max-width: 1024px) {
+
+    .project-grid {
+      div.block {
+        padding: 2rem
+      }
+    }
+
+    .row.two-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+
+      .row-block {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .row-block.block-type-media {
+        min-height: 250px;
+      }
+
+      .row-block .read-more {
+        margin: 2rem 0 0 -0.95rem;
+      }
+    }
+
+    @for $i from 1 through 20 {
+      .row-block-order-#{$i} {
+        order: $i;
       }
     }
   }

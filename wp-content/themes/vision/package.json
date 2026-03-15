@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Vision WordPress Theme - SCSS compilation",
   "scripts": {
-    "build": "node build.js",
-    "build:css": "sass src/scss/main.scss assets/css/main.css --style=compressed --source-map",
-    "watch": "node watch.js",
-    "dev": "node watch.js"
+    "build": "NODE_OPTIONS='--disable-warning=ExperimentalWarning' node build.js",
+    "build:css": "npx sass src/scss/main.scss assets/css/main.css --style=compressed --source-map",
+    "watch": "NODE_OPTIONS='--disable-warning=ExperimentalWarning' node watch.js",
+    "dev": "NODE_OPTIONS='--disable-warning=ExperimentalWarning' node watch.js"
   },
   "keywords": [
     "wordpress",

@@ -34,8 +34,8 @@ Tags: lightweight, clean, modern, responsive
 console.log('🔨 Compiling SCSS...');
 
 try {
-    // Compile SCSS to temp file with source map
-    execSync(`sass "${scssFile}" "${tempCssFile}" --style=compressed --source-map`, {
+    // Compile SCSS to temp file with source map (use npx so local sass is used)
+    execSync(`npx sass "${scssFile}" "${tempCssFile}" --style=compressed --source-map`, {
         stdio: 'inherit',
         cwd: themeDir
     });
