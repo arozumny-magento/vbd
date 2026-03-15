@@ -35,11 +35,11 @@ if ($elementor_active) {
                             <div class="default__container mt-8">
                                 <div class="project-columns__post flex flex-col gap-2">
                                         <span class="txt-block flex gap-4">
-                                            <span class="txt-name whitespace-nowrap"><?php pll_e('Industry'); ?></span>
+                                            <span class="txt-name"><?php pll_e('Industry'); ?></span>
                                             <span class="txt-title font-bold"><?php the_field('industry'); ?></span>
                                         </span>
                                         <span class="txt-block flex gap-4">
-                                            <span class="txt-name whitespace-nowrap"><?php pll_e('Project Type'); ?></span>
+                                            <span class="txt-name"><?php pll_e('Project Type'); ?></span>
                                             <span class="txt-title font-bold"><?php the_field('type'); ?></span>
                                         </span>
                                 </div>
@@ -48,7 +48,7 @@ if ($elementor_active) {
                     </div>
 
                     <?php if (has_post_thumbnail()) : ?>
-                    <div class="block bg-white relative umb-block-list__image-cell">
+                    <div class="block bg-white relative" style="max-height: 310px;">
                         <img src="<?php the_post_thumbnail_url('large'); ?>" alt="" class="w-full h-full object-cover">
                     </div>
                     <?php endif; ?>

@@ -80,7 +80,7 @@ function vision_get_style_settings_defaults() {
         'font_uk_h5_size_mobile' => '1.25', 'font_uk_h5_line_height_mobile' => '1.3', 'font_uk_h5_weight_mobile' => '600',
         'font_uk_h6_size_mobile' => '1', 'font_uk_h6_line_height_mobile' => '1.3', 'font_uk_h6_weight_mobile' => '600',
         'block_hover_enabled'   => true,
-        'block_hover_effect'     => 'default',
+        'block_hover_effect'     => 'color-fade',
         'block_hover_text_color' => '#d0b135',
         'block_hover_bg_color'   => 'transparent',
         'contact_form_shortcode'   => '[contact-form-7 id="8a5b653" title="Contact form - Contact US"]',
@@ -95,10 +95,11 @@ function vision_get_style_settings_defaults() {
 function vision_get_block_hover_effects() {
     return array(
         'none'           => __('None', 'vision'),
-        'default'       => __('Default', 'vision'),
         'color-fade'     => __('Color fade', 'vision'),
         'gradient-shift' => __('Gradient shift', 'vision'),
+        'slide-line'     => __('Slide line', 'vision'),
         'glow'           => __('Glow', 'vision'),
+        'shine-sweep'    => __('Shine sweep', 'vision'),
         'fill-from-left' => __('Fill from left', 'vision'),
         'lighten'        => __('Subtle lighten', 'vision'),
         'scale-up'       => __('Scale up', 'vision'),
@@ -113,7 +114,7 @@ function vision_get_block_hover_effects() {
  */
 function vision_get_block_hover_effect_class() {
     $opt = vision_get_style_settings();
-    $effect = isset($opt['block_hover_effect']) ? $opt['block_hover_effect'] : 'default';
+    $effect = isset($opt['block_hover_effect']) ? $opt['block_hover_effect'] : 'color-fade';
     if ($effect === 'none') {
         return '';
     }
@@ -479,14 +480,14 @@ function vision_render_style_settings_page() {
                         <th scope="row"><?php esc_html_e('On hover text color', 'vision'); ?></th>
                         <td>
                             <input type="text" id="vision_block_hover_text_color" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[block_hover_text_color]" value="<?php echo esc_attr($opt['block_hover_text_color']); ?>" class="vision-color-picker vision-hover-demo-color" data-demo-type="text" />
-                            <p class="description"><?php esc_html_e('Text color when hovering over a block. Leave empty to keep current text color (no change on hover).', 'vision'); ?></p>
+                            <p class="description"><?php esc_html_e('Text color when hovering over a block. Used by the effect preview and front end.', 'vision'); ?></p>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><?php esc_html_e('On hover background color', 'vision'); ?></th>
                         <td>
                             <input type="text" id="vision_block_hover_bg_color" name="<?php echo esc_attr(VISION_SETTINGS_OPTION); ?>[block_hover_bg_color]" value="<?php echo esc_attr($opt['block_hover_bg_color']); ?>" class="vision-color-picker vision-hover-demo-color" data-demo-type="bg" />
-                            <p class="description"><?php esc_html_e('Block background color on hover. Leave empty or use transparent to keep current background (no change on hover).', 'vision'); ?></p>
+                            <p class="description"><?php esc_html_e('Block background color on hover. Use transparent to keep current background.', 'vision'); ?></p>
                         </td>
                     </tr>
                 </table>
@@ -495,20 +496,8 @@ function vision_render_style_settings_page() {
                 <?php
                 $hover_effect = $opt['block_hover_effect'];
                 $accent_color = $opt['main_color'];
-                $block_hover_text = isset($opt['block_hover_text_color']) ? trim((string) $opt['block_hover_text_color']) : '';
-                if ( $block_hover_text === '' || strtolower( $block_hover_text ) === 'transparent' ) {
-                    $block_hover_text = 'inherit';
-                } else {
-                    $block_hover_text = $block_hover_text ?: $accent_color;
-                }
-                $block_hover_bg = isset($opt['block_hover_bg_color']) ? trim((string) $opt['block_hover_bg_color']) : '';
-                if ( $block_hover_bg === '' || strtolower( $block_hover_bg ) === 'transparent' ) {
-                    $block_hover_bg = 'inherit';
-                } else {
-                    $block_hover_bg = $block_hover_bg ?: 'transparent';
-                }
-                $apply_hover_text = ( $block_hover_text !== 'inherit' );
-                $apply_hover_bg   = ( $block_hover_bg !== 'inherit' );
+                $block_hover_text = isset($opt['block_hover_text_color']) ? $opt['block_hover_text_color'] : $accent_color;
+                $block_hover_bg = isset($opt['block_hover_bg_color']) ? $opt['block_hover_bg_color'] : 'transparent';
                 $theme_light_bg = $opt['theme_light_bg'];
                 $theme_light_text = $opt['theme_light_text'];
                 $theme_dark_bg = $opt['theme_dark_bg'];
@@ -530,48 +519,46 @@ function vision_render_style_settings_page() {
                 .vision-hover-demo-block.vision-demo-white h3,
                 .vision-hover-demo-block.vision-demo-white p { color: <?php echo esc_attr($theme_white_text); ?>; }
                 .vision-hover-demo-blocks { --vision-demo-hover-text: <?php echo esc_attr($block_hover_text); ?>; --vision-demo-hover-bg: <?php echo esc_attr($block_hover_bg); ?>; }
-                <?php if ( $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--default:hover h3,
-                .vision-hover-demo-block.vision-hover-effect--default:hover p { color: var(--vision-demo-hover-text) !important; }
-                <?php endif; ?><?php if ( $apply_hover_bg ) : ?>.vision-hover-demo-block.vision-hover-effect--default:hover { background: var(--vision-demo-hover-bg) !important; }
-                <?php endif; ?><?php if ( $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--color-fade:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--color-fade:hover h3,
                 .vision-hover-demo-block.vision-hover-effect--color-fade:hover p { color: var(--vision-demo-hover-text) !important; }
-                <?php endif; ?><?php if ( $apply_hover_bg ) : ?>.vision-hover-demo-block.vision-hover-effect--color-fade:hover { background: var(--vision-demo-hover-bg) !important; }
-                <?php endif; ?>.vision-hover-demo-block.vision-hover-effect--gradient-shift:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--color-fade:hover { background: var(--vision-demo-hover-bg) !important; }
+                .vision-hover-demo-block.vision-hover-effect--gradient-shift:hover h3,
                 .vision-hover-demo-block.vision-hover-effect--gradient-shift:hover p { background: linear-gradient(135deg, <?php echo esc_attr($accent_color); ?> 0%, <?php echo esc_attr($theme_light_text); ?> 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; }
                 .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--gradient-shift:hover h3,
                 .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--gradient-shift:hover p { background: linear-gradient(135deg, <?php echo esc_attr($accent_color); ?> 0%, <?php echo esc_attr($theme_dark_text); ?> 100%); -webkit-background-clip: text; background-clip: text; }
-                <?php if ( $apply_hover_bg ) : ?>.vision-hover-demo-block.vision-hover-effect--gradient-shift:hover { background: var(--vision-demo-hover-bg) !important; }
-                <?php endif; ?><?php if ( $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--glow:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--gradient-shift:hover { background: var(--vision-demo-hover-bg) !important; }
+                .vision-hover-demo-block.vision-hover-effect--slide-line:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--slide-line:hover p { color: var(--vision-demo-hover-text) !important; box-shadow: inset 0 -2px 0 0 var(--vision-demo-hover-text); }
+                .vision-hover-demo-block.vision-hover-effect--slide-line:hover { background: var(--vision-demo-hover-bg) !important; }
+                .vision-hover-demo-block.vision-hover-effect--glow:hover h3,
                 .vision-hover-demo-block.vision-hover-effect--glow:hover p { text-shadow: 0 0 14px <?php echo esc_attr($accent_color); ?>, 0 0 28px <?php echo esc_attr($accent_color); ?>; color: var(--vision-demo-hover-text) !important; }
-                <?php endif; ?><?php if ( ! $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--glow:hover h3,
-                .vision-hover-demo-block.vision-hover-effect--glow:hover p { text-shadow: 0 0 14px <?php echo esc_attr($accent_color); ?>, 0 0 28px <?php echo esc_attr($accent_color); ?>; }
-                <?php endif; ?><?php if ( $apply_hover_bg ) : ?>.vision-hover-demo-block.vision-hover-effect--glow:hover { background: var(--vision-demo-hover-bg) !important; }
-                <?php endif; ?>.vision-hover-demo-block.vision-hover-effect--fill-from-left:hover { position: relative; <?php if ( $apply_hover_bg ) : ?>background: var(--vision-demo-hover-bg) !important; <?php endif; ?>}
-                <?php if ( $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--fill-from-left:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--glow:hover { background: var(--vision-demo-hover-bg) !important; }
+                .vision-hover-demo-block.vision-hover-effect--shine-sweep:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--shine-sweep:hover p { background: linear-gradient(110deg, transparent 40%, <?php echo esc_attr($accent_color); ?> 50%, transparent 60%); background-size: 200% 100%; background-position: 0 0; -webkit-background-clip: text; background-clip: text; color: transparent !important; }
+                .vision-hover-demo-block.vision-hover-effect--shine-sweep:hover { background: var(--vision-demo-hover-bg) !important; }
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover { position: relative; background: var(--vision-demo-hover-bg) !important; }
+                .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover h3,
                 .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover p { color: var(--vision-demo-hover-text) !important; }
-                <?php endif; ?>
                 .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 100%; background: <?php echo esc_attr($accent_color); ?>; opacity: 1; z-index: 0; border-radius: 5px; }
                 .vision-hover-demo-block.vision-hover-effect--fill-from-left { position: relative; }
                 .vision-hover-demo-block.vision-hover-effect--fill-from-left::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: <?php echo esc_attr($accent_color); ?>; opacity: 0; transition: width .35s ease, opacity .35s ease; z-index: 0; border-radius: 5px; }
                 .vision-hover-demo-block.vision-hover-effect--fill-from-left:hover::before { width: 100%; opacity: 1; }
                 .vision-hover-demo-block.vision-hover-effect--fill-from-left h3,
                 .vision-hover-demo-block.vision-hover-effect--fill-from-left p { position: relative; z-index: 1; }
-                <?php if ( $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--lighten:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--lighten:hover h3,
                 .vision-hover-demo-block.vision-hover-effect--lighten:hover p { filter: brightness(1.25); color: var(--vision-demo-hover-text) !important; }
-                <?php endif; ?><?php if ( ! $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--lighten:hover h3,
-                .vision-hover-demo-block.vision-hover-effect--lighten:hover p { filter: brightness(1.25); }
-                <?php endif; ?>.vision-hover-demo-block.vision-demo-dark.vision-hover-effect--lighten:hover h3,
+                .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--lighten:hover h3,
                 .vision-hover-demo-block.vision-demo-dark.vision-hover-effect--lighten:hover p { filter: brightness(1.4); }
-                <?php if ( $apply_hover_bg ) : ?>.vision-hover-demo-block.vision-hover-effect--lighten:hover { background: var(--vision-demo-hover-bg) !important; }
-                <?php endif; ?><?php if ( $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--scale-up:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--lighten:hover { background: var(--vision-demo-hover-bg) !important; }
+                .vision-hover-demo-block.vision-hover-effect--scale-up:hover h3,
                 .vision-hover-demo-block.vision-hover-effect--scale-up:hover p { color: var(--vision-demo-hover-text) !important; }
-                <?php endif; ?><?php if ( $apply_hover_bg ) : ?>.vision-hover-demo-block.vision-hover-effect--scale-up:hover { background: var(--vision-demo-hover-bg) !important; }
-                <?php endif; ?><?php if ( $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--fade-invert:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--scale-up:hover { background: var(--vision-demo-hover-bg) !important; }
+                .vision-hover-demo-block.vision-hover-effect--fade-invert:hover h3,
                 .vision-hover-demo-block.vision-hover-effect--fade-invert:hover p { color: var(--vision-demo-hover-text) !important; }
-                <?php endif; ?><?php if ( $apply_hover_bg ) : ?>.vision-hover-demo-block.vision-hover-effect--fade-invert:hover { background: var(--vision-demo-hover-bg) !important; }
-                <?php endif; ?><?php if ( $apply_hover_text ) : ?>.vision-hover-demo-block.vision-hover-effect--soft-highlight:hover h3,
+                .vision-hover-demo-block.vision-hover-effect--fade-invert:hover { background: var(--vision-demo-hover-bg) !important; }
+                .vision-hover-demo-block.vision-hover-effect--soft-highlight:hover h3,
                 .vision-hover-demo-block.vision-hover-effect--soft-highlight:hover p { color: var(--vision-demo-hover-text) !important; }
-                <?php endif; ?>.vision-hover-demo-block.vision-hover-effect--soft-highlight:hover { <?php if ( $apply_hover_bg ) : ?>background: var(--vision-demo-hover-bg) !important; <?php endif; ?>box-shadow: inset 0 0 0 2px <?php echo esc_attr($accent_color); ?>; }
+                .vision-hover-demo-block.vision-hover-effect--soft-highlight:hover { background: var(--vision-demo-hover-bg) !important; box-shadow: inset 0 0 0 2px <?php echo esc_attr($accent_color); ?>; }
                 </style>
                 <div class="vision-hover-demo-blocks" style="max-width: 640px;">
                     <div class="vision-hover-demo-block vision-demo-light vision-hover-effect--<?php echo esc_attr($hover_effect); ?>" data-base-class="vision-demo-light">

@@ -41,12 +41,13 @@ if ($elementor_active) {
                     </div>
 
                     <?php if (has_post_thumbnail()) : ?>
-                    <div class="hidden md:block bg-white relative">
+                    <div class="hidden md:block bg-white relative" style="max-height: 310px;">
                         <img src="<?php the_post_thumbnail_url('large'); ?>" alt="" class="w-full h-full object-cover">
                     </div>
                     <?php endif; ?>
                 </div>
             </div>
+
 
             <div class="w-full relative" >
                 <div class="card-grid relative bg-white p-6 md:p-10 lg:py-20 lg:px-20 white-bg">

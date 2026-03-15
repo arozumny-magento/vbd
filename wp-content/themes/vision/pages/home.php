@@ -88,7 +88,7 @@ get_header();
         $testimonials = get_field('testimonials_section');
         if ( ! empty( $testimonials ) && ! empty( $testimonials['section_row'] ) && is_array( $testimonials['section_row'] ) ) :
             ?>
-            <section class="section" id="testimonials">
+            <section class="section" id="services">
                 <header class="header">
                     <?php if ( ! empty( $testimonials['section_label'] ) ) : ?>
                         <h2><?php echo esc_html( $testimonials['section_label'] ); ?></h2>
@@ -130,7 +130,7 @@ get_header();
         $news = get_field('news_section');
         if ( ! empty( $news ) && ! empty( $news['section_row'] ) && is_array( $news['section_row'] ) ) :
             ?>
-            <section class="section" id="news">
+            <section class="section" id="services">
                 <header class="header">
                     <?php if ( ! empty( $news['section_label'] ) ) : ?>
                         <h2><?php echo esc_html( $news['section_label'] ); ?></h2>

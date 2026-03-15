@@ -131,11 +131,6 @@ header nav .mega-menu-link {
 
   .dropdown-menu {
     top: $desktop-header-height;
-
-    @media screen and (max-width: 1024px) {
-      top: $mobile-header-height;
-    }
-
     right: 0;
     left: auto;
     width: 250px;

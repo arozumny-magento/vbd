@@ -19,10 +19,6 @@ main {
   .umb-block-list {
     margin-top: $desktop-header-height;
 
-    @media screen and (max-width: 1024px) {
-      margin-top: $mobile-header-height;
-    }
-
     .hero-wrapper {
       padding: 1.4rem 4rem;
       max-width: 1152px;
@@ -416,36 +412,6 @@ body {
 
 main {
   margin-top: $desktop-header-height;
-
-  @media screen and (max-width: 1024px) {
-    margin-top: $mobile-header-height;
-  }
-}
-
-// Two-column layout (md+): left (text) = natural height; right (image) = same height as left (no JS)
-@media screen and (min-width: 1024px) {
-  .umb-block-list {
-    .grid-cols-2 {
-      position: relative;
-
-      > div:nth-child(2) {
-        position: absolute;
-        left: 50%;
-        top: 0;
-        bottom: 0;
-        width: 50%;
-        overflow: hidden;
-
-        img.object-cover {
-          width: 100%;
-          height: 100%;
-          min-height: 100%;
-          object-fit: cover;
-          display: block;
-        }
-      }
-    }
-  }
 }
 
 header {
@@ -457,39 +423,6 @@ header {
     margin: 0 auto;
     letter-spacing: .2em;
     text-transform: uppercase;
-
-    @media screen and (max-width: 1024px) {
-      padding: 1.4rem 0;
-    }
-  }
-}
-
-.content-grid.project-grid {
-  .list-trident {
-    padding: 0;
-
-    @media screen and (max-width: 1024px) {
-      padding: 2rem;
-
-    }
-  }
-}
-
-.vision-page-event-internal,
-.vision-page-update-internal,
-.vision-page-project-internal {
-  .umb-block-list {
-    h1 {
-      text-align: center;
-    }
-
-    .bg-lightblue {
-      padding: 5rem 6rem;
-
-      h1 {
-        text-align: left;
-      }
-    }
   }
 }
 
@@ -625,54 +558,6 @@ section {
 
       @media screen and (max-width: 1024px) {
         padding: 2rem;
-      }
-    }
-  }
-
-  .grid-cols-2 {
-    > div {
-      &:first-child {
-        padding: 5rem 6rem;
-      }
-
-      &:nth-child(2) {
-        height: 100%;
-      }
-    }
-  }
-
-  // Mobile (up to 1024px): one block per row, 100% width, order from ACF
-  @media screen and (max-width: 1024px) {
-
-    .project-grid {
-      div.block {
-        padding: 2rem
-      }
-    }
-
-    .row.two-col {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-
-      .row-block {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-      }
-
-      .row-block.block-type-media {
-        min-height: 250px;
-      }
-
-      .row-block .read-more {
-        margin: 2rem 0 0 -0.95rem;
-      }
-    }
-
-    @for $i from 1 through 20 {
-      .row-block-order-#{$i} {
-        order: $i;
       }
     }
   }
