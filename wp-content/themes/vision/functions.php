@@ -623,8 +623,8 @@ function vision_output_style_settings_css() {
     $opt = vision_get_style_settings();
     $main_color = $opt['main_color'];
     $main_website_color = isset($opt['main_website_color']) ? $opt['main_website_color'] : '#00012E';
-    // Main page: always the same (light preset as default)
-    $body_bg = $opt['theme_white_bg'];
+    // Website body: white background; text from light preset. Block presets only affect their blocks.
+    $body_bg = '#FFF';
     $body_text = $opt['theme_light_text'];
     $theme_white_bg = $opt['theme_white_bg'];
     $theme_white_text = $opt['theme_white_text'];

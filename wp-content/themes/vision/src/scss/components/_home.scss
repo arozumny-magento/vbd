@@ -449,6 +449,10 @@ header {
 
     .bg-lightblue {
       padding: 5rem 6rem;
+
+      @media screen and (max-width: 1024px) {
+        padding: 1.5rem;
+      }
     }
 
     .bg-lightblue h1 {
@@ -597,6 +601,10 @@ section {
     > div {
       &:first-child {
         padding: 5rem 6rem;
+
+        @media screen and (max-width: 1024px) {
+          padding: 1.5rem;
+        }
       }
       &:nth-child(2) {
         height: 100%;
