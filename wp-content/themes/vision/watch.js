@@ -39,46 +39,27 @@ Tags: lightweight, clean, modern, responsive
 function compileAndUpdate() {
     try {
         console.log('🔨 Compiling SCSS...');
-        
-        // Compile SCSS to temp file (expanded for development) with source map
+
         execSync(`npx sass "${scssFile}" "${tempCssFile}" --style=expanded --source-map`, {
             stdio: 'inherit',
             cwd: themeDir
         });
 
-        // Read compiled CSS
         let compiledCss = fs.readFileSync(tempCssFile, 'utf8');
-        
-        // Remove BOM (UTF-8 BOM is \uFEFF) and any leading ZWNBSP characters
         compiledCss = compiledCss.replace(/^\uFEFF/, '').replace(/^\u200B/, '');
-
-        // Update source map reference in CSS to point to the correct location
-        // Replace reference from main.css.map to style.css.map
         compiledCss = compiledCss.replace(/sourceMappingURL=main\.css\.map/g, 'sourceMappingURL=style.css.map');
 
-        // Combine header + compiled CSS
-        const finalCss = themeHeader + compiledCss;
+        fs.writeFileSync(styleCssFile, themeHeader + compiledCss, 'utf8');
 
-        // Write to style.css
-        fs.writeFileSync(styleCssFile, finalCss, 'utf8');
-
-        // Update and copy source map if it exists
         if (fs.existsSync(tempMapFile)) {
             let sourceMap = JSON.parse(fs.readFileSync(tempMapFile, 'utf8'));
-            
-            // Update source map paths to be relative to style.css location
             sourceMap.sources = sourceMap.sources.map(source => {
-                // Adjust paths to be relative to theme root
                 if (source.startsWith('../../src/scss/')) {
                     return source.replace('../../src/scss/', 'src/scss/');
                 }
                 return source;
             });
-            
-            // Update file reference
             sourceMap.file = 'style.css';
-            
-            // Write updated source map
             fs.writeFileSync(styleMapFile, JSON.stringify(sourceMap, null, 2), 'utf8');
         }
 
@@ -94,7 +75,6 @@ compileAndUpdate();
 console.log('👀 Watching for SCSS changes...');
 console.log('   Press Ctrl+C to stop\n');
 
-// Watch SCSS files
 const watcher = chokidar.watch(path.join(scssDir, '**/*.scss'), {
     ignored: /node_modules/,
     persistent: true,
@@ -110,7 +90,6 @@ watcher
         console.error('❌ Watcher error:', error);
     });
 
-// Handle process termination
 process.on('SIGINT', () => {
     console.log('\n\n👋 Stopping watch...');
     watcher.close();

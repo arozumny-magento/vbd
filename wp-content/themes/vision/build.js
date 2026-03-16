@@ -34,45 +34,26 @@ Tags: lightweight, clean, modern, responsive
 console.log('🔨 Compiling SCSS...');
 
 try {
-    // Compile SCSS to temp file with source map (use npx so local sass is used)
     execSync(`npx sass "${scssFile}" "${tempCssFile}" --style=compressed --source-map`, {
         stdio: 'inherit',
         cwd: themeDir
     });
 
-    // Read compiled CSS and remove any BOM/ZWNBSP characters
     let compiledCss = fs.readFileSync(tempCssFile, 'utf8');
-    
-    // Remove BOM (UTF-8 BOM is \uFEFF) and any leading ZWNBSP characters
     compiledCss = compiledCss.replace(/^\uFEFF/, '').replace(/^\u200B/, '');
-
-    // Update source map reference in CSS to point to the correct location
-    // Replace reference from main.css.map to style.css.map
     compiledCss = compiledCss.replace(/sourceMappingURL=main\.css\.map/g, 'sourceMappingURL=style.css.map');
 
-    // Combine header + compiled CSS
-    const finalCss = themeHeader + compiledCss;
+    fs.writeFileSync(styleCssFile, themeHeader + compiledCss, 'utf8');
 
-    // Write to style.css without BOM
-    fs.writeFileSync(styleCssFile, finalCss, 'utf8');
-
-    // Update and copy source map if it exists
     if (fs.existsSync(tempMapFile)) {
         let sourceMap = JSON.parse(fs.readFileSync(tempMapFile, 'utf8'));
-        
-        // Update source map paths to be relative to style.css location
         sourceMap.sources = sourceMap.sources.map(source => {
-            // Adjust paths to be relative to theme root
             if (source.startsWith('../../src/scss/')) {
                 return source.replace('../../src/scss/', 'src/scss/');
             }
             return source;
         });
-        
-        // Update file reference
         sourceMap.file = 'style.css';
-        
-        // Write updated source map
         fs.writeFileSync(styleMapFile, JSON.stringify(sourceMap, null, 2), 'utf8');
     }
 

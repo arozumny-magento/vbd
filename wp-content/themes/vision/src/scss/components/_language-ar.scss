@@ -28,7 +28,20 @@
   &.home h1 {
     @media screen and (min-width: 1024px) {
       font-size: 2.8rem;
+      text-align: center;
     }
+  }
+
+  &.vision-page-event-internal .umb-block-list .bg-lightblue h1,
+  &.vision-page-update-internal .umb-block-list .bg-lightblue h1,
+  &.vision-page-project-internal .umb-block-list .bg-lightblue h1 {
+    direction: rtl;
+    text-align: right;
+  }
+
+  section#news,
+  &.vision-page-update-internal {
+    direction: ltr;
   }
 
   nav #mega-menu-wrap-primary #mega-menu-primary > li.mega-menu-item.menu-item-logo,
@@ -46,6 +59,14 @@
 
   .read-more {
     font-size: 1rem;
+  }
+
+  section .row.two-col .row-block .read-more {
+    font-size: inherit;
+  }
+
+  .testimonial-author {
+    font-size: inherit;
   }
 
   .language-switcher .dropdown-menu {
