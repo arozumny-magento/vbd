@@ -90,6 +90,107 @@ function vision_get_style_settings_defaults() {
 }
 
 /**
+ * Language-specific font defaults used by "Restore to default" per language tab.
+ * Returns only font_* keys for the requested language (desktop + mobile).
+ */
+function vision_get_language_font_defaults($lang) {
+    $lang = in_array($lang, array('en', 'uk', 'ar'), true) ? $lang : 'en';
+
+    $weights = array(
+        'main' => '400',
+        'block_heading' => '600',
+        'h1' => '600',
+        'h2' => '600',
+        'h3' => '600',
+        'h4' => '600',
+        'h5' => '600',
+        'h6' => '600',
+    );
+
+    // Desktop defaults from provided screenshots.
+    $desktop = array(
+        'en' => array(
+            'main' => array('size' => '1.125', 'line_height' => '28px'),
+            'block_heading' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h1' => array('size' => '2', 'line_height' => '1.5'),
+            'h2' => array('size' => '2', 'line_height' => '1.3'),
+            'h3' => array('size' => '1.25', 'line_height' => '28px'),
+            'h4' => array('size' => '1.5', 'line_height' => '1.3'),
+            'h5' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h6' => array('size' => '1', 'line_height' => '1.3'),
+        ),
+        'uk' => array(
+            'main' => array('size' => '1.125', 'line_height' => '28px'),
+            'block_heading' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h1' => array('size' => '2.1', 'line_height' => '1.5'),
+            'h2' => array('size' => '2', 'line_height' => '1.3'),
+            'h3' => array('size' => '1.25', 'line_height' => '28px'),
+            'h4' => array('size' => '1.5', 'line_height' => '1.3'),
+            'h5' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h6' => array('size' => '1', 'line_height' => '1.3'),
+        ),
+        'ar' => array(
+            'main' => array('size' => '1.125', 'line_height' => '28px'),
+            'block_heading' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h1' => array('size' => '2', 'line_height' => '1.5'),
+            'h2' => array('size' => '2', 'line_height' => '1.3'),
+            'h3' => array('size' => '1.25', 'line_height' => '28px'),
+            'h4' => array('size' => '1.5', 'line_height' => '1.3'),
+            'h5' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h6' => array('size' => '1', 'line_height' => '1.3'),
+        ),
+    );
+
+    // Mobile defaults from provided screenshots.
+    $mobile = array(
+        'en' => array(
+            'main' => array('size' => '1', 'line_height' => '1.6'),
+            'block_heading' => array('size' => '1.2', 'line_height' => '1.3'),
+            'h1' => array('size' => '1.3', 'line_height' => '1.3'),
+            'h2' => array('size' => '1.1', 'line_height' => '1.3'),
+            'h3' => array('size' => '1', 'line_height' => '1.3'),
+            'h4' => array('size' => '0.9', 'line_height' => '1.3'),
+            'h5' => array('size' => '0.8', 'line_height' => '1.3'),
+            'h6' => array('size' => '0.7', 'line_height' => '1.3'),
+        ),
+        'uk' => array(
+            'main' => array('size' => '1', 'line_height' => '1.6'),
+            'block_heading' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h1' => array('size' => '1.4', 'line_height' => '1.3'),
+            'h2' => array('size' => '2', 'line_height' => '1.3'),
+            'h3' => array('size' => '1.75', 'line_height' => '1.3'),
+            'h4' => array('size' => '1.5', 'line_height' => '1.3'),
+            'h5' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h6' => array('size' => '1', 'line_height' => '1.3'),
+        ),
+        'ar' => array(
+            'main' => array('size' => '1', 'line_height' => '1.6'),
+            'block_heading' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h1' => array('size' => '2.5', 'line_height' => '1.3'),
+            'h2' => array('size' => '2', 'line_height' => '1.3'),
+            'h3' => array('size' => '2.25', 'line_height' => '1.3'),
+            'h4' => array('size' => '1.5', 'line_height' => '1.3'),
+            'h5' => array('size' => '1.25', 'line_height' => '1.3'),
+            'h6' => array('size' => '1', 'line_height' => '1.3'),
+        ),
+    );
+
+    $result = array();
+    foreach ($desktop[$lang] as $group => $cfg) {
+        $result["font_{$lang}_{$group}_size"] = $cfg['size'];
+        $result["font_{$lang}_{$group}_line_height"] = $cfg['line_height'];
+        $result["font_{$lang}_{$group}_weight"] = $weights[$group];
+    }
+    foreach ($mobile[$lang] as $group => $cfg) {
+        $result["font_{$lang}_{$group}_size_mobile"] = $cfg['size'];
+        $result["font_{$lang}_{$group}_line_height_mobile"] = $cfg['line_height'];
+        $result["font_{$lang}_{$group}_weight_mobile"] = $weights[$group];
+    }
+
+    return $result;
+}
+
+/**
  * Available block hover effects (for dropdown and CSS)
  */
 function vision_get_block_hover_effects() {
@@ -233,6 +334,17 @@ function vision_sanitize_style_settings($input) {
             $out["font_{$lang}_h{$i}_line_height_mobile"] = isset($input["font_{$lang}_h{$i}_line_height_mobile"]) ? sanitize_text_field($input["font_{$lang}_h{$i}_line_height_mobile"]) : $defaults["font_{$lang}_h{$i}_line_height_mobile"];
             $w = isset($input["font_{$lang}_h{$i}_weight_mobile"]) ? $sanitize_weight($input["font_{$lang}_h{$i}_weight_mobile"]) : '';
             $out["font_{$lang}_h{$i}_weight_mobile"] = ($w !== '') ? $w : $defaults["font_{$lang}_h{$i}_weight_mobile"];
+        }
+    }
+
+    // Restore only the selected language tab fonts (desktop + mobile).
+    if (isset($_POST['vision_restore_fonts_lang'])) {
+        $restore_lang = sanitize_key(wp_unslash($_POST['vision_restore_fonts_lang']));
+        if (in_array($restore_lang, array('en', 'uk', 'ar'), true)) {
+            $restore_defaults = vision_get_language_font_defaults($restore_lang);
+            foreach ($restore_defaults as $k => $v) {
+                $out[$k] = $v;
+            }
         }
     }
 
@@ -684,6 +796,26 @@ function vision_render_style_settings_page() {
                     </table>
                 </div>
                 <?php endforeach; ?>
+
+                <p style="margin-top:1rem;">
+                    <button
+                        type="submit"
+                        class="button button-secondary"
+                        name="vision_restore_fonts_lang"
+                        value="<?php echo esc_attr($code); ?>"
+                        onclick="return confirm('<?php echo esc_js(__('Restore this language fonts (desktop + mobile) to defaults?', 'vision')); ?>');"
+                    >
+                        <?php
+                        echo esc_html(
+                            sprintf(
+                                /* translators: %s: language code (ENG/UKR/ARA) */
+                                __('Restore %s to default', 'vision'),
+                                strtoupper($tab_key)
+                            )
+                        );
+                        ?>
+                    </button>
+                </p>
             </div>
             <?php endforeach; ?>
 

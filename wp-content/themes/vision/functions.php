@@ -474,6 +474,8 @@ function vision_render_row_block($block_data) {
     $block_type = strtolower((string)($settings['block_type'] ?? ''));
     $block_theme = strtolower((string)($settings['block_theme'] ?? ''));
     $block_link = strtolower((string)($settings['block_link'] ?? ''));
+    $block_order = max( 1, min( 20, (int) ( $settings['order'] ?? 1 ) ) );
+    $order_class = 'row-block-order-' . $block_order;
     $custom_styles = '';
     if ( $block_theme === 'custom' && ! empty( $block_data['custom_styles'] ) && is_array( $block_data['custom_styles'] ) ) {
         $cs = $block_data['custom_styles'];
@@ -507,20 +509,20 @@ function vision_render_row_block($block_data) {
             $style = 'background-image:url(' . esc_url($bg_image) . ');' . $style;
         }
         if ($link_url) {
-            echo '<a href="' . $link_url . '">';
+            echo '<a href="' . $link_url . '" class="' . esc_attr($order_class) . '">';
         }
-        echo '<div class="row-block block-type-media block-style-' . esc_attr($block_theme) . '" style="' . esc_attr(trim($style)) . '"></div>';
+        echo '<div class="row-block block-type-media block-style-' . esc_attr($block_theme) . ( $link_url ? '' : ' ' . esc_attr($order_class) ) . '" style="' . esc_attr(trim($style)) . '"></div>';
         if ($link_url) {
             echo '</a>';
         }
     } elseif ( $block_type === 'text' ) {
         if ( $link_url ) {
-            echo '<a href="' . $link_url . '">';
+            echo '<a href="' . $link_url . '" class="' . esc_attr($order_class) . '">';
         }
         $text_block = is_array( $block_data['text_block'] ?? null ) ? $block_data['text_block'] : array();
-        echo '<div class="row-block block-type-text block-style-' . esc_attr($block_theme) . '" style="' . esc_attr($custom_styles) . '">';
+        echo '<div class="row-block block-type-text block-style-' . esc_attr($block_theme) . ( $link_url ? '' : ' ' . esc_attr($order_class) ) . '" style="' . esc_attr($custom_styles) . '">';
         if (!empty($text_block['header'])) {
-            echo '<h3>' . esc_html($text_block['header']) . '</h3>';
+            echo '<h3 class="vision-block-heading">' . esc_html($text_block['header']) . '</h3>';
         }
         echo wp_kses_post(wpautop($text_block['text'] ?? ''));
         if (!empty($text_block['read_more'])) {
@@ -554,6 +556,8 @@ function vision_render_testimonials_row_block($block_data) {
     }
     $settings = $block_data['block_settings'] ?? array();
     $block_theme = strtolower((string)($settings['block_theme'] ?? ''));
+    $block_order = max( 1, min( 20, (int) ( $settings['order'] ?? 1 ) ) );
+    $order_class = 'row-block-order-' . $block_order;
     $postId = array_shift($block_data['testimonials_relation']) ?? '';
     $custom_styles = '';
     if ( $block_theme === 'custom' && ! empty( $block_data['custom_styles'] ) && is_array( $block_data['custom_styles'] ) ) {
@@ -567,10 +571,10 @@ function vision_render_testimonials_row_block($block_data) {
         if ( $link_url ) {
             echo '<a href="' . $link_url . '">';
         }
-        echo '<div class="row-block block-type-text block-style-' . esc_attr($block_theme) . '" style="' . esc_attr($custom_styles) . '">';
+        echo '<div class="row-block block-type-text block-style-' . esc_attr($block_theme) . ' ' . esc_attr($order_class) . '" style="' . esc_attr($custom_styles) . '">';
             echo '<div class="uppercase mb-5 lg:mb-8 !text-xl !lg:text-3xl block-header flex justify-between">';
             echo '<div>';
-            echo '<h3 style="margin-bottom: 8px">' . get_field('company', $postId) . '</h3>';
+            echo '<h3 class="vision-block-heading" style="margin-bottom: 8px">' . get_field('company', $postId) . '</h3>';
             echo '<span class="testimonial-author text-sm capitalize font-normal block pb-1">' . get_field('testimonial_author', $postId) . '</span>';
             echo '</div>';
 

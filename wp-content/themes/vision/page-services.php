@@ -4,19 +4,7 @@
  */
 
 get_header();
-
-// Check if Elementor is being used for this post
-$elementor_active = class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor(get_the_ID());
-
-if ($elementor_active) {
-    // Elementor template - let Elementor handle the content
-    while (have_posts()) :
-        the_post();
-        the_content();
-    endwhile;
-} else {
-    // Fallback to custom template
-    ?>
+?>
     <main id="main" class="site-main">
         <?php
         while (have_posts()) :
@@ -47,6 +35,7 @@ if ($elementor_active) {
                 <!-- START ASSET -->
                 <?php if (have_rows('top_columns')): ?>
                     <?php while (have_rows('top_columns')): the_row(); ?>
+                    <?php if(get_sub_field('add_title')): ?>
                         <section class="hero">
                             <div class="relative isolate overflow-hidden bg-white">
                                 <div class="mx-auto max-w-7xl px-4 py-4 lg:px-20" style="padding: 2rem 4rem">
@@ -59,6 +48,7 @@ if ($elementor_active) {
                                 </div>
                             </div>
                         </section>
+                    <?php endif; ?>
                         <div class="w-full relative content-grid asset-container">
                             <div class="mx-auto md:grid grid-cols-2 gap-0 ">
                                 <?php if (have_rows('add_block')): while (have_rows('add_block')) : the_row(); ?>
@@ -90,12 +80,36 @@ if ($elementor_active) {
                             </div>
                         </div>
                     <?php endwhile; endif; ?>
+
+                <?php
+                $services = get_field('services_top_section');
+                if ( ! empty( $services ) && ! empty( $services['section_row'] ) && is_array( $services['section_row'] ) ) :
+                    ?>
+                    <section class="section" id="services">
+                        <header class="header" style="max-width: 1152px; margin:0 auto">
+                            <?php if ( ! empty( $services['section_label'] ) ) : ?>
+                                <h2><?php echo esc_html( $services['section_label'] ); ?></h2>
+                            <?php endif; ?>
+                        </header>
+                        <?php
+                        foreach ( $services['section_row'] as $row ) :
+                            $leftBlock  = $row['left_block'] ?? array();
+                            $rightBlock = $row['right_block'] ?? array();
+                            ?>
+                            <div class="row two-col">
+                                <?php echo vision_render_row_block( $leftBlock ); ?>
+                                <?php echo vision_render_row_block( $rightBlock ); ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </section>
+                <?php endif; ?>
                 <!-- END ASSET -->
 
 
                 <!-- START RESULTS -->
                 <?php if (have_rows('bot_columns')): ?>
                     <?php while (have_rows('bot_columns')): the_row(); ?>
+                        <?php if(get_sub_field('add_title')): ?>
                         <section class="hero">
                             <div class="relative isolate overflow-hidden bg-white">
                                 <div class="mx-auto max-w-7xl px-4 py-4 lg:px-20" style="padding: 2rem 4rem">
@@ -108,6 +122,7 @@ if ($elementor_active) {
                                 </div>
                             </div>
                         </section>
+                        <?php endif; ?>
                         <div class="w-full relative content-grid expected-results-container">
                             <div class="mx-auto md:grid grid-cols-2 gap-0 ">
                                 <?php if (have_rows('add_block')): while (have_rows('add_block')) : the_row(); ?>
@@ -139,6 +154,28 @@ if ($elementor_active) {
                             </div>
                         </div>
                     <?php endwhile; endif; ?>
+                <?php
+                $services = get_field('services_bottom_section');
+                if ( ! empty( $services ) && ! empty( $services['section_row'] ) && is_array( $services['section_row'] ) ) :
+                    ?>
+                    <section class="section" id="services">
+                        <header class="header" style="max-width: 1152px; margin:0 auto">
+                            <?php if ( ! empty( $services['section_label'] ) ) : ?>
+                                <h2><?php echo esc_html( $services['section_label'] ); ?></h2>
+                            <?php endif; ?>
+                        </header>
+                        <?php
+                        foreach ( $services['section_row'] as $row ) :
+                            $leftBlock  = $row['left_block'] ?? array();
+                            $rightBlock = $row['right_block'] ?? array();
+                            ?>
+                            <div class="row two-col">
+                                <?php echo vision_render_row_block( $leftBlock ); ?>
+                                <?php echo vision_render_row_block( $rightBlock ); ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </section>
+                <?php endif; ?>
                 <!-- END RESULTS -->
 
 
@@ -164,7 +201,6 @@ if ($elementor_active) {
             </div>
         <?php endwhile; ?>
     </main>
-    <?php
-}
-//get_sidebar();
+
+<?php
 get_footer();

@@ -612,8 +612,8 @@ section {
     }
   }
 
-  // Mobile (up to 1024px): one block per row, 100% width, order from ACF
-  @media screen and (max-width: 1024px) {
+  // Mobile (up to 767px): one block per row, 100% width, order from ACF
+  @media screen and (max-width: 767px) {
 
     .project-grid {
       div.block {
@@ -658,4 +658,15 @@ section {
 .block-type-media {
   background-size: cover;
   background-position: center center;
+}
+
+@media screen and (max-width: 767px) {
+  #news {
+    .row.two-col {
+      > a {
+        order: 2;
+
+      }
+    }
+  }
 }

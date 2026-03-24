@@ -128,9 +128,9 @@ get_header();
         <!-- 6. News -->
         <?php
         $news = get_field('news_section');
-        if ( ! empty( $news ) && ! empty( $news['section_row'] ) && is_array( $news['section_row'] ) ) :
+        if ($news['news_feed_mode'] == 'Manual' && ! empty( $news ) && ! empty( $news['section_row'] ) && is_array( $news['section_row'] ) ) :
             ?>
-            <section class="section" id="services">
+            <section class="section" id="news">
                 <header class="header">
                     <?php if ( ! empty( $news['section_label'] ) ) : ?>
                         <h2><?php echo esc_html( $news['section_label'] ); ?></h2>
@@ -149,6 +149,49 @@ get_header();
             </section>
         <?php endif; ?>
 
+        <!-- NEWS -->
+        <?php
+        // Get the latest 2 posts using WP_Query
+        $news_query = new WP_Query(array(
+            'lang' => 'eng',
+            'posts_per_page' => $news['news_feed']['news_row'] ?? 2,
+            'category_name' => 'updates',
+            'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'DESC'
+        ));
+
+        if ($news['news_feed_mode'] == 'Auto' && $news_query->have_posts()) :
+            ?>
+        <section class="section" id="news">
+
+        <?php
+                $newsStyle = pll_current_language() === 'ara' ?  'light' : 'dark';
+                $i = pll_current_language() === 'ara' ? 0 : 1;
+                while ($news_query->have_posts()) : $news_query->the_post();
+                    $newsStyle = $newsStyle == 'light' ? 'dark' : 'light';
+                    ?>
+                    <div class="row two-col">
+                        <div class="row-block block-type-media block-style<?= $newsStyle ?>"
+                             style="background-image:url('<?= get_the_post_thumbnail_url(get_the_ID(), 'full') ?>'); <?= $i%2 == 0? 'order:1' : '' ?>">
+
+                        </div>
+                        <a href="<?= get_the_permalink() ?>">
+                            <div class="row-block block-type-text block-style-white" style="">
+                                <h3><?php the_title() ?></h3>
+                                <p><?php the_excerpt(); ?></p>
+                                <span class="read-more"><?php pll_e('Read More') ?></span>
+                            </div>
+                        </a>
+                    </div>
+                    <?php
+                    $i++;
+                endwhile;
+                wp_reset_postdata();
+                ?>
+        </section>
+        <?php endif; ?>
+        <!-- END NEWS -->
     </main>
 <?php
 get_footer();
