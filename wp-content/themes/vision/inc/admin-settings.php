@@ -191,6 +191,34 @@ function vision_get_language_font_defaults($lang) {
 }
 
 /**
+ * Defaults only for "Blocks Style" tab fields.
+ */
+function vision_get_blocks_style_defaults() {
+    $defaults = vision_get_style_settings_defaults();
+    $keys = array(
+        'theme_white_bg',
+        'theme_white_text',
+        'theme_light_bg',
+        'theme_light_text',
+        'theme_dark_bg',
+        'theme_dark_text',
+        'block_hover_enabled',
+        'block_hover_effect',
+        'block_hover_text_color',
+        'block_hover_bg_color',
+    );
+
+    $result = array();
+    foreach ($keys as $k) {
+        if (array_key_exists($k, $defaults)) {
+            $result[$k] = $defaults[$k];
+        }
+    }
+
+    return $result;
+}
+
+/**
  * Available block hover effects (for dropdown and CSS)
  */
 function vision_get_block_hover_effects() {
@@ -345,6 +373,13 @@ function vision_sanitize_style_settings($input) {
             foreach ($restore_defaults as $k => $v) {
                 $out[$k] = $v;
             }
+        }
+    }
+    // Restore only Blocks Style tab fields.
+    if (isset($_POST['vision_restore_blocks_style'])) {
+        $restore_defaults = vision_get_blocks_style_defaults();
+        foreach ($restore_defaults as $k => $v) {
+            $out[$k] = $v;
         }
     }
 
@@ -610,6 +645,7 @@ function vision_render_style_settings_page() {
                 $accent_color = $opt['main_color'];
                 $block_hover_text = isset($opt['block_hover_text_color']) ? $opt['block_hover_text_color'] : $accent_color;
                 $block_hover_bg = isset($opt['block_hover_bg_color']) ? $opt['block_hover_bg_color'] : 'transparent';
+                $demo_hover_no_bg_class = (strtolower(trim((string) $block_hover_bg)) === 'transparent') ? 'vision-hover-no-bg' : '';
                 $theme_light_bg = $opt['theme_light_bg'];
                 $theme_light_text = $opt['theme_light_text'];
                 $theme_dark_bg = $opt['theme_dark_bg'];
@@ -671,8 +707,12 @@ function vision_render_style_settings_page() {
                 .vision-hover-demo-block.vision-hover-effect--soft-highlight:hover h3,
                 .vision-hover-demo-block.vision-hover-effect--soft-highlight:hover p { color: var(--vision-demo-hover-text) !important; }
                 .vision-hover-demo-block.vision-hover-effect--soft-highlight:hover { background: var(--vision-demo-hover-bg) !important; box-shadow: inset 0 0 0 2px <?php echo esc_attr($accent_color); ?>; }
+                /* If hover bg is transparent, keep original block background in preview */
+                .vision-hover-demo-blocks.vision-hover-no-bg .vision-hover-demo-block.vision-demo-light:hover { background: <?php echo esc_attr($theme_light_bg); ?> !important; }
+                .vision-hover-demo-blocks.vision-hover-no-bg .vision-hover-demo-block.vision-demo-dark:hover { background: <?php echo esc_attr($theme_dark_bg); ?> !important; }
+                .vision-hover-demo-blocks.vision-hover-no-bg .vision-hover-demo-block.vision-demo-white:hover { background: <?php echo esc_attr($theme_white_bg); ?> !important; }
                 </style>
-                <div class="vision-hover-demo-blocks" style="max-width: 640px;">
+                <div class="vision-hover-demo-blocks <?php echo esc_attr($demo_hover_no_bg_class); ?>" style="max-width: 640px;">
                     <div class="vision-hover-demo-block vision-demo-light vision-hover-effect--<?php echo esc_attr($hover_effect); ?>" data-base-class="vision-demo-light">
                         <h3><?php esc_html_e('Light theme', 'vision'); ?></h3>
                         <p><?php esc_html_e('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 'vision'); ?></p>
@@ -708,8 +748,25 @@ function vision_render_style_settings_page() {
                         if (prop === 'bg') { $block.css('background-color', val); } else { $block.css('color', val); $block.find('h3, p').css('color', val); }
                     }
                     $('.vision-theme-color-input').on('change input', function() { visionUpdateDemoFromInput($(this)); });
+                    function visionSyncHoverBgPreviewMode() {
+                        var bgVal = ($('#vision_block_hover_bg_color').val() || '').toString().trim().toLowerCase();
+                        $('.vision-hover-demo-blocks').toggleClass('vision-hover-no-bg', bgVal === 'transparent');
+                    }
+                    visionSyncHoverBgPreviewMode();
+                    $('#vision_block_hover_bg_color').on('change input', visionSyncHoverBgPreviewMode);
                 });
                 </script>
+                <p style="margin-top:1rem;">
+                    <button
+                        type="submit"
+                        class="button button-secondary"
+                        name="vision_restore_blocks_style"
+                        value="1"
+                        onclick="return confirm('<?php echo esc_js(__('Reset Blocks Style settings to defaults?', 'vision')); ?>');"
+                    >
+                        <?php esc_html_e('Reset Blocks Style to default', 'vision'); ?>
+                    </button>
+                </p>
             </div>
 
             <?php
