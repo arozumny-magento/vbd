@@ -88,7 +88,7 @@ get_header();
         $testimonials = get_field('testimonials_section');
         if ( ! empty( $testimonials ) && ! empty( $testimonials['section_row'] ) && is_array( $testimonials['section_row'] ) ) :
             ?>
-            <section class="section" id="services">
+            <section class="section" id="testimonials">
                 <header class="header">
                     <?php if ( ! empty( $testimonials['section_label'] ) ) : ?>
                         <h2><?php echo esc_html( $testimonials['section_label'] ); ?></h2>

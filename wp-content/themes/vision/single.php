@@ -34,12 +34,12 @@ if ($elementor_active) {
                         <?php if (has_category('project')) : ?>
                             <div class="default__container mt-8">
                                 <div class="project-columns__post flex flex-col gap-2">
-                                        <span class="txt-block flex gap-4">
-                                            <span class="txt-name"><?php pll_e('Industry'); ?></span>
+                                        <span class="txt-block flex gap-0 flex-col mb-4">
+                                            <span class="txt-name whitespace-nowrap"><?php pll_e('Industry'); ?></span>
                                             <span class="txt-title font-bold"><?php the_field('industry'); ?></span>
                                         </span>
-                                        <span class="txt-block flex gap-4">
-                                            <span class="txt-name"><?php pll_e('Project Type'); ?></span>
+                                        <span class="txt-block flex gap-0 flex-col">
+                                            <span class="txt-name whitespace-nowrap"><?php pll_e('Project Type'); ?></span>
                                             <span class="txt-title font-bold"><?php the_field('type'); ?></span>
                                         </span>
                                 </div>
